@@ -4,6 +4,7 @@ public class Group {
     private ArrayList<User> users;
     private ArrayList<User> editors;
     private ArrayList<User> owners;
+    private int groupID;
 
     public Group(User creator) {
         this.addUser(creator);
