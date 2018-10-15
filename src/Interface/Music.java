@@ -1,3 +1,5 @@
+package Interface;
+
 public class Music {
     private String title;
     private Artist artist;

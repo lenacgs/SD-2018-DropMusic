@@ -1,3 +1,5 @@
+package Interface;
+
 import java.util.*;
 
 public class Artist {

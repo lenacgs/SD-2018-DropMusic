@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6650896d-54c3-4d4e-a36b-aad76ffafb43" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Album.java" afterPath="$PROJECT_DIR$/src/Interface/Album.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Artist.java" afterPath="$PROJECT_DIR$/src/Interface/Artist.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Description.java" afterPath="$PROJECT_DIR$/src/Interface/Description.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/DropMusic.java" afterPath="$PROJECT_DIR$/src/Interface/DropMusic.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Group.java" afterPath="$PROJECT_DIR$/src/Interface/Group.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Music.java" afterPath="$PROJECT_DIR$/src/Interface/Music.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Review.java" afterPath="$PROJECT_DIR$/src/Interface/Review.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/User.java" afterPath="$PROJECT_DIR$/src/Interface/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,7 +32,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rmiClient.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rmiClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -34,14 +42,56 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="MulticastServer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-216">
+              <caret line="1" column="2" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/MulticastServer/MulticastServer.java" />
+        <option value="$PROJECT_DIR$/src/User.java" />
+        <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1680" />
     <option name="height" value="1050" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -81,6 +131,12 @@
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Interface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="rmi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -101,6 +157,11 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Interface" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -113,7 +174,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RMIClient">
+  <component name="RunManager" selected="Application.RMIServer">
+    <configuration name="MulticastServer" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SD-2018-DropMusic" />
+      <envs />
+    </configuration>
     <configuration name="RMIClient" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="rmiClient.rmiClient" />
       <option name="VM_PARAMETERS" value="" />
@@ -185,9 +259,10 @@
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.RMIServer" />
       <item index="1" class="java.lang.String" itemvalue="Application.RMIClient" />
+      <item index="2" class="java.lang.String" itemvalue="Application.MulticastServer" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -200,12 +275,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539624043616</updated>
-      <workItem from="1539624046366" duration="282000" />
+      <workItem from="1539624046366" duration="847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="282000" />
+    <option name="totallyTimeSpent" value="847000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -216,7 +291,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2966457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2966457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -248,13 +323,13 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1539624325936" expanded="true" signature="14471:14506" ph="..." />
-            <marker date="1539624325936" expanded="true" signature="14471:14519" ph="..." />
-            <marker date="1539624325936" expanded="true" signature="16896:17261" ph="..." />
-            <marker date="1539624325936" expanded="true" signature="14471:14488" ph="..." />
-            <marker date="1539624325936" expanded="true" signature="16902:17246" ph="..." />
-            <marker date="1539624325936" expanded="true" signature="16964:17233" ph="..." />
-            <marker date="1539624325936" expanded="true" signature="17009:17215" ph="..." />
+            <marker date="1539624942227" expanded="true" signature="14471:14506" ph="..." />
+            <marker date="1539624942227" expanded="true" signature="14471:14519" ph="..." />
+            <marker date="1539624942227" expanded="true" signature="22215:22278" ph="..." />
+            <marker date="1539624942227" expanded="true" signature="14471:14488" ph="..." />
+            <marker date="1539624942227" expanded="true" signature="22215:22263" ph="..." />
+            <marker date="1539624942227" expanded="true" signature="22215:22250" ph="..." />
+            <marker date="1539624942227" expanded="true" signature="22215:22232" ph="..." />
           </folding>
         </state>
       </provider>
@@ -271,6 +346,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-216">
+          <caret line="1" column="2" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
           <folding />
         </state>
       </provider>

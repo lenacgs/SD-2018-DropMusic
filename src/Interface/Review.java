@@ -1,3 +1,5 @@
+package Interface;
+
 public class Review {
     private int rate;
     private String text;
