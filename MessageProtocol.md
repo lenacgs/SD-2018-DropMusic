@@ -12,7 +12,7 @@ Não podem haver "|", ";" nem "\n" nas chaves ou valores.
 
 ####User Registration
 
-REQUEST: **type** | registry ; **username** | new username ; **password** | new password \n
+REQUEST: **type** | register ; **username** | new username ; **password** | new password \n
 
 ANSWER: **type** | status ; **logged** | on \n
 
