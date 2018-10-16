@@ -27,7 +27,7 @@ public class MulticastServer extends Thread {
         String tokens[] = message.split(" ; ");
         String info[][] = new String[tokens.length][];
         for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
-        if(info[0][0].equals("type"){
+        if(info[0][0].equals("type")){
             String command = info[0][1];
             switch(command){
                 case "register":
@@ -83,20 +83,14 @@ public class MulticastServer extends Thread {
             InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
             socket.joinGroup(group);
             while(true){
-                byte[] buffer1 = new byte[256];
-                DatagramPacket packet = new DatagramPacket(buffer1, buffer1.length);
+                byte[] buffer = new byte[256];
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
-                System.out.println("Received packet!");
                 String message = new String(packet.getData(), 0, packet.getLength());
-                System.out.println(message);
-
                 String reply = translation(message);
-
-                byte[] buffer2 = reply.getBytes();
-
-                packet = new DatagramPacket(buffer2, buffer2.length, group, PORT-1);
+                buffer = reply.getBytes();
+                packet = new DatagramPacket(buffer, buffer.length, group, PORT-1);
                 socket.send(packet);
-                System.out. println("Sent packet!");
 
 
             }
