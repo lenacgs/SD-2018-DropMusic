@@ -14,7 +14,8 @@ Não podem haver "|", ";" nem "\n" nas chaves ou valores.
 
 REQUEST: **type** | register ; **username** | new username ; **password** | new password \n
 
-ANSWER: **type** | status ; **logged** | on \n
+ANSWER: **type** | status ; **register** | succeeded ou failed \n
+
 
 ANSWER: **type** | status ; **operation** | failed \n
 
@@ -22,15 +23,15 @@ ANSWER: **type** | status ; **operation** | failed \n
 
 REQUEST: **type** | login ; **username** | username ; **password** | password \n
 
-ANSWER: **type** | status ; **logged** | on ** ; **perks** | 0 ou 1 \n
+ANSWER: **type** | status ; **login** | succeeded ou failed** ; **perks** | 0 ou 1 \n
 
 (0 - normal user, 1 - admin)
 
 ####User Logout
 
-REQUEST: **type** | status ; **logged** | out ; **username** | username \n
+REQUEST: **type** | logout ; **username** | username \n
 
-ANSWER: **type** | status ; **logged** | out \n
+ANSWER: **type** | status ; **logout** | succeeded ou failed \n
 
 ####Check for user perks (outside a group - admin or normal user?)
 
