@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="3cc12d55-3369-4dce-864b-08c941636213" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Multicast/MulticastClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
+=======
+    <list default="true" id="6650896d-54c3-4d4e-a36b-aad76ffafb43" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MessageProtocol.md" beforeDir="false" afterPath="$PROJECT_DIR$/MessageProtocol.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" afterDir="false" />
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,6 +19,45 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="FUSProjectUsageTrigger">
+    <session id="1212959648">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="15" />
+          <entry key="java" value="762" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="762" />
+          <entry key="PLAIN_TEXT" value="15" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="false">
@@ -37,8 +83,13 @@
       <file leaf-file-name="MulticastServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="435">
               <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+=======
+            <state relative-caret-position="142">
+              <caret line="30" column="28" lean-forward="true" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#365#371#0" expanded="true" />
@@ -52,6 +103,7 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="2820">
               <caret line="431" column="21" lean-forward="true" selection-start-line="431" selection-start-column="21" selection-end-line="431" selection-end-column="21" />
               <folding />
@@ -85,6 +137,13 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+=======
+            <state>
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
             </state>
           </provider>
         </entry>
@@ -116,6 +175,13 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1920" />
+    <option name="height" value="1040" />
+  </component>
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -134,7 +200,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scratches" />
+=======
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -178,6 +247,23 @@
       <pane id="Scope" />
     </panes>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539703545514" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Interface" />
+    </key>
+  </component>
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -290,7 +376,17 @@
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="295000" />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
@@ -317,6 +413,38 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+=======
+    <frame x="0" y="0" width="1536" height="832" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26626018" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32998565" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28755364" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32904148" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32904148" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32761088" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -398,6 +526,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FileHandling/ObjectFile.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="195">
           <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
           <folding />
@@ -409,13 +538,25 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+=======
+        <state>
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="435">
           <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+=======
+        <state relative-caret-position="142">
+          <caret line="30" column="28" lean-forward="true" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+>>>>>>> 2dcca055c188b4db023a9d1e7ab5ddc84411ac8b
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#365#371#0" expanded="true" />
