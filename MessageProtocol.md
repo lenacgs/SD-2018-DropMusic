@@ -1,4 +1,4 @@
-## Protocolo de comunicação 
+﻿## Protocolo de comunicação 
 
 Especificação de todos os comandos que são enviados entre o servidor RMI e os servidores Multicast. Para efeitos de simplificação, assumi que o servidor RMI é (1) e os servidores Multicast são (2).
 
@@ -14,21 +14,22 @@ Não podem haver "|", ";" nem "\n" nas chaves ou valores.
 
 REQUEST: **type** | register ; **username** | new username ; **password** | new password \n
 
-ANSWER: **type** | status ; **logged** | on \n
+ANSWER: **type** | status ; **register** | succeeded ou failed \n
+
 
 ####User Login
 
 REQUEST: **type** | login ; **username** | username ; **password** | password \n
 
-ANSWER: **type** | status ; **logged** | on ** ; **perks** | 0 ou 1 \n
+ANSWER: **type** | status ; **login** | succeeded ou failed** ; **perks** | 0 ou 1 \n
 
 (0 - normal user, 1 - admin)
 
 ####User Logout
 
-REQUEST: **type** | status ; **logged** | out ; **username** | username \n
+REQUEST: **type** | logout ; **username** | username \n
 
-ANSWER: **type** | status ; **logged** | out \n
+ANSWER: **type** | status ; **logout** | succeeded ou failed \n
 
 ####Check for user perks (outside a group - admin or normal user?)
 

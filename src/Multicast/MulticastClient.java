@@ -69,9 +69,7 @@ class MulticastUser extends Thread {
             Scanner keyboardScanner = new Scanner(System.in);
             while (true) {
                 String readKeyboard = keyboardScanner.nextLine().replaceAll("^[,\\s]+", "");
-
                 byte[] buffer = readKeyboard.getBytes();
-
                 InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);
                 socket.send(packet);
