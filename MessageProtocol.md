@@ -121,7 +121,9 @@ Escrever críticas a um álbum
 
 REQUEST: **type** | review ; **album\_title** | album title ; **username** | username ; **text** | texto até 300 carateres ; **rate** | rate \n
 
-(não precisa de resposta do servidor, qualquer user pode adicinar uma review)
+ANSWER: **type** | review  ; **status** | (ok / fail) \n 
+
+(só retorna se a review foi feita com sucesso ou nao)
 
 ###REQUISITO Nº 6
 

@@ -17,7 +17,7 @@ public class rmiClient {
     // um exemplo da lista podia ser [(<grupo> <role>) (<grupo> <role>) (...)]
     // desta maneira quando formos fazer um pedido ao RMI para mexer em algum grupo, enviamos logo a informação do grupo que ele que alterar
     // e sabemos logo a partir do role se ele pode fazer essas alterações ou não
-
+    private static String user=null;
 
     public static void main(String[] args) throws IOException, NotBoundException, InterruptedException {
         establishRMIConnection();
@@ -48,10 +48,12 @@ public class rmiClient {
     }
 
     private static void firstMenu(){
-        System.out.println(" ------------");
-        System.out.println(" | WELCOME! |");
-        System.out.println(" ------------");
         int option;
+        boolean verifier=false;
+        System.out.println("  ------------");
+        System.out.println("  | WELCOME! |");
+        System.out.println("  ------------");
+
         while(true) {
             System.out.println("----------------");
             System.out.println("| 1) Register  |");
@@ -60,11 +62,22 @@ public class rmiClient {
             System.out.println("----------------");
             try {
                 option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
-                if(option == 1 || option == 2) {
+                if (option == 1 || option == 2) {
                     validationMenu(option);
-                }
-                else if(option == 3)
                     break;
+                }
+                else if (option == 3){
+                    if (user != null) {
+                        while (!verifier) {
+                            try {
+                                verifier = rmi.logout(user);
+                            } catch (RemoteException e) {
+                                retryRMIConnection();
+                            }
+                        }
+                    }
+                    break;
+                }
                 System.out.println("Please select a valid option\n");
             }catch (NumberFormatException e) {
                 System.out.println("I only work with numbers bro! Try again...\n");
@@ -73,8 +86,9 @@ public class rmiClient {
     }
 
     private static void validationMenu(int modifier){
-        String username, password, trash;
+        String username, password;
         int verifier;
+        boolean validation;
         System.out.println("(you can type '0' at any time to go back)");
         while(true) {
             System.out.print("\nUsername: ");
@@ -82,50 +96,224 @@ public class rmiClient {
             if (username.equals("0")) {
                 break;
             }
+            if(username.contains(" ")) {
+                System.out.println("Username cannot contain spaces");
+                continue;
+            }
+            validation=stringChecker(username);
+            if(!validation)
+                continue;
             System.out.print("\nPassword: ");
             password = sc.nextLine().replaceAll("^[,\\s]+", "");
             if (password.equals("0")) {
                 break;
             }
-            if (username.contains("|") || username.contains(";") || username.contains(" ") || password.contains("|") || password.contains(";") || password.contains(" "))
-                System.out.println("Username or Password contains forbidden characters ('|' , ';' or ' ')\n");
-            else {
-                try {
-                    //funcao de registar e login tem que devolver um boolean
-                    if (modifier == 1) //registar
-                        verifier = rmi.testerLogin();
-                    else //login
-                        verifier = rmi.testerLogin();
-                    if (verifier <= 4) { //1- admin geral, 2- owner de algum grupo, 3- editor de algum grupo, 4- normal, 5-nao existe/credencias mal;
-                        if (modifier == 1)
-                            System.out.println("User registed successfully!");
-                        else
-                            System.out.println("Logged in successfully!");
-                        mainMenu(verifier);
-                        break;
-                    } else {
-                        if (modifier == 1)
-                            System.out.println("Username already exists. Please chose another one\n");
-                        else
-                            System.out.println("Invalid Credentials!");
-                    }
-                } catch (RemoteException e) {
-                    retryRMIConnection();
+            if(password.contains(" ")) {
+                System.out.println("Password cannot contain spaces");
+                continue;
+            }
+            validation=stringChecker(password);
+            if(!validation)
+                continue;
+            try {
+                //funcao de registar e login tem que devolver um boolean
+                if (modifier == 1) //registar
+                    verifier = rmi.testerLogin();
+                else //login
+                    verifier = rmi.testerLogin();
+                if (verifier <= 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-nao existe/credencias mal;
+                    if (modifier == 1)
+                        System.out.println("User registed successfully!");
+                    else
+                        System.out.println("Logged in successfully!");
+                    user=username;
+                    mainMenu(verifier);
+                    break;
+                } else {
+                    if (modifier == 1)
+                        System.out.println("Username already exists. Please chose another one\n");
+                    else
+                        System.out.println("Invalid Credentials!");
                 }
+            } catch (RemoteException e) {
+                retryRMIConnection();
             }
         }
     }
 
     private static void mainMenu(int perk){
-        System.out.println("-------------------------------------------------------"); //2, 6,
-        System.out.println("| 1) Search");
-        System.out.println("| 2) Album and Artist details");
-        System.out.println("| 3) Album Review");
-        System.out.println("| 4) Upload Music");
-        System.out.println("| 5) Share Music");
-        System.out.println("| 6) Download Music");
-        System.out.println("| 7) Create Group");
-        //to be continued
+        int option;
+        while(true) {
+            System.out.println("----------------| Main Menu |----------------"); //2, 6,
+            System.out.println("| 1) Search                                 |");
+            System.out.println("| 2) Album and Artist details               |");
+            System.out.println("| 3) Album Review                           |");
+            System.out.println("| 4) Upload Music                           |");
+            System.out.println("| 5) Download Music                         |");
+            System.out.println("| 6) Share Music                            |");
+            System.out.println("| 7) Create Group                           |");
+            System.out.println("---------------------------------------------");
+            //to be continued
+            option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            if (option == 1)
+                searchMenu();
+            else if(option == 2)
+                detailsMenu();
+            else if(option == 3)
+                reviewMenu();
+        }
+    }
+
+    private static void searchMenu(){
+        int ob;
+        String keyword=null, object, answer=null;
+        boolean validation=false;
+        while(true) {
+            System.out.println("----------------| Search |----------------");
+            System.out.println("| What are you searching for:            |");
+            System.out.println("| 1) Music                               |");
+            System.out.println("| 2) Album                               |");
+            System.out.println("| 3) Genre                               |");
+            System.out.println("| 4) Artist                              |");
+            System.out.println("| 0) Back                                |");
+            System.out.println("------------------------------------------");
+            ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            if (ob == 0) {
+                break;
+            }
+            else if (ob>4){
+                System.out.println("Please select a valid option");
+                continue;
+            }
+            else{
+                while(!validation){
+                    System.out.println("----------------| Search |----------------");
+                    System.out.println("| Insert your keyword(s):                |");
+                    System.out.println("------------------------------------------");
+                    keyword = sc.nextLine().replaceAll("^[,\\s]+", "");
+                    validation = stringChecker(keyword);
+                }
+                if(ob == 1)
+                    object="music";
+                else if(ob == 2)
+                    object="album";
+                else if(ob == 3)
+                    object="genre";
+                else
+                    object="artist";
+                while(answer==null) {
+                    try {
+                        answer = rmi.search(keyword, object);
+                    } catch (RemoteException e) {
+                        retryRMIConnection();
+                    }
+                }
+                System.out.println(answer);
+                break;
+            }
+        }
+    }
+
+    private static void detailsMenu(){
+        int ob;
+        String object, title=null, answer=null;
+        boolean validation=false;
+        while(true) {
+            System.out.println("----------------| Details |----------------");
+            System.out.println("| Know more about:                        |");
+            System.out.println("| 1) Album                                |");
+            System.out.println("| 2) Artist                               |");
+            System.out.println("| 0) Back                                 |");
+            System.out.println("-------------------------------------------");
+            ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            if (ob == 0) {
+                break;
+            }
+            else if (ob>2){
+                System.out.println("Please select a valid option");
+                continue;
+            }
+            else{
+                if(ob==1)
+                    object = "album";
+                else
+                    object = "artist";
+                while(!validation){
+                    System.out.println("----------------| Details |----------------");
+                    System.out.println("| Insert "+object+" name:                     |");
+                    System.out.println("-------------------------------------------");
+                    title = sc.nextLine().replaceAll("^[,\\s]+", "");
+                    validation = stringChecker(title);
+                }
+                while(answer==null) {
+                    try {
+                        answer = rmi.details(object, title);
+                    } catch (RemoteException e) {
+                        retryRMIConnection();
+                    }
+                }
+                System.out.println(answer);
+                break;
+            }
+        }
+    }
+
+    private static void reviewMenu(){
+        int rating;
+        String review=null, title=null;
+        boolean validation=false, verifier=false;
+        while(!validation) {
+            System.out.println("----------------| Reviews |----------------");
+            System.out.println("| Insert the album title:                 |");
+            System.out.println("-------------------------------------------");
+            title=sc.nextLine().replaceAll("^[,\\s]+", "");
+            validation = stringChecker(title);
+        }
+        validation=false;
+        while(!validation) {
+            System.out.println("----------------| Reviews |----------------");
+            System.out.println("| Write a review (maximum 300 words):     |");
+            System.out.println("-------------------------------------------");
+            review=sc.nextLine().replaceAll("^[,\\s]+", "");
+            validation = stringChecker(review);
+        }
+        while(true) {
+            System.out.println("----------------| Reviews |----------------");
+            System.out.println("| Rate the album (1 to 5):                |");
+            System.out.println("-------------------------------------------");
+            try {
+                rating = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+            } catch (NumberFormatException e) {
+                System.out.println("Please rate the album from 1 to 5");
+                continue;
+            }
+            if (rating < 1 || rating > 5) {
+                System.out.println("Please rate the album from 1 to 5");
+                continue;
+            }
+            break;
+        }
+        validation=false;
+        while(!validation){
+            try{
+                verifier=rmi.review(title,user,review,rating);
+                validation=true;
+            } catch (RemoteException e) {
+                retryRMIConnection();
+            }
+        }
+        if(verifier)
+            System.out.println("Reviewed "+title+" successfully!");
+        else
+            System.out.println("Something went wrong! Maybe that album does not exist...");
+    }
+
+    private static boolean stringChecker (String toCheck){
+        if (toCheck.contains("|") || toCheck.contains(";")) {
+            System.out.println("String contains forbidden characters ('|' , ';')\n");
+            return false;
+        }
+        return true;
     }
 
 }

@@ -92,4 +92,33 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
         //enquanto nao temos a funcao esta serve para ir testando.
     }
+    public int register (String username, String password) throws java.rmi.RemoteException{
+        String request = "type | register ; username | "+username+" ; password | "+password;
+        return 1; //alterar quando comunicar com o multicast
+    }
+    public int login(String username, String password) throws java.rmi.RemoteException{
+        String request = "type | login ; username | "+username+" ; password | "+password;
+        return 1; //alterar quando comunicar com o multicast
+    }
+
+    public boolean logout(String username) throws java.rmi.RemoteException{
+        //envia informação aos multicasts que este user já nao está online
+        return true;
+    }
+
+    public String search(String keyword, String object) throws java.rmi.RemoteException{
+        //faz request aos multicasts para Search
+        String request = "type | search ; keyword | "+keyword+" ; object | "+object;
+        return "Toma la a resposta mano : "+request;
+    }
+
+    public String details(String object, String title) throws java.rmi.RemoteException{
+        String request = "type | get_info ; object | "+object+" ; title | "+title;
+        return request;
+    }
+
+    public boolean review(String title,String user,String review,int rating) throws java.rmi.RemoteException{
+        String request = "type | review ; album_title | "+title+" ; username | "+user+" ; text | "+review+" ; rate | "+rating;
+        return true;
+    }
 }
