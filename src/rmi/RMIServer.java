@@ -109,6 +109,14 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     public String search(String keyword, String object) throws java.rmi.RemoteException{
         //faz request aos multicasts para Search
         String request = "type | search ; keyword | "+keyword+" ; object | "+object;
+
+        //envio do request
+
+        //wait for answer
+
+        //execute operation
+
+        //return to client
         return "Toma la a resposta mano : "+request;
     }
 
