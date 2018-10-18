@@ -58,8 +58,14 @@ ANSWER: **type** | perks_group ; **user** | "normal" or "editor" or "owner" \n
 
 REQUEST: **type** | groups ; **username** | username\n
 
-ANSEWR: **type** | groups ; **list** | <group1 , group2 , ...>\n
+ANSEWR: **type** | groups ; **list** | <group1,group2,...>\n
 (isto para apresentar ao user todos os grupos aos quais ele pode juntar-se. É enviado o username para só devolver os grupos aos quais ele nao pertençe)
+
+####Create Group
+
+REQUEST: **type** | new_group ; **username** | username\n
+
+ANSWER: **type** | new_group ; **object** | groupID ; **status** | succeeded ou failed\n
 
 
 ### REQUISITO Nº 3
@@ -138,7 +144,6 @@ REQUEST: **type** | review ; **album\_title** | album title ; **username** | use
 
 ANSWER: **type** | review  ; **status** | success/fail \n
 
-(só retorna se a review foi feita com sucesso ou nao)
 
 ###REQUISITO Nº 6
 
@@ -162,6 +167,8 @@ Caso o user não esteja online, o rmi responde ao servidor que não foi possíve
 **type** | notify\_user ; **status** | fail ; **username** | username \n
 
 Ainda não pensei como vai funcionar a questão das notificações caso o user não esteja online
+É fácil, guardas num ficheiro / BD as mensagens e quando o user loga mandas. Precisas de um ficheiro / tabela só para isto.
+
 
 #### Join group
 

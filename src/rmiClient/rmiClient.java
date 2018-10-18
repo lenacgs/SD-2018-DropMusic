@@ -5,14 +5,11 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class rmiClient {
     private static Scanner sc = new Scanner(System.in);
     private static Services rmi;
-    private static ArrayList<String> groups = new ArrayList<>();
     // o que estou a pensar é, no ato do login e em cada alteração atualizar esta lista para ser mais simples enviar pedidos ao RMI
     // um exemplo da lista podia ser [(<grupo> <role>) (<grupo> <role>) (...)]
     // desta maneira quando formos fazer um pedido ao RMI para mexer em algum grupo, enviamos logo a informação do grupo que ele que alterar
@@ -147,23 +144,23 @@ public class rmiClient {
         int option;
         boolean verifier=false;
         while(true) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal
-            System.out.println("----------------| Main Menu |----------------"); //2, 6,
+            System.out.println("----------------| Main Menu |----------------");
             System.out.println("| 1) Search                                 |");
             System.out.println("| 2) Album and Artist details               |");
             System.out.println("| 3) Album Review                           |");
-            System.out.println("| 4) Upload Music                           |");
-            System.out.println("| 5) Download Music                         |");
-            System.out.println("| 6) Share Music                            |");
+            System.out.println("| 4) Upload Music                           |");//falta
+            System.out.println("| 5) Download Music                         |");//falta
+            System.out.println("| 6) Share Music                            |");//falta
             System.out.println("| 7) Create Group                           |");
             System.out.println("| 8) Join Group                             |");
-            if (perk<3){ // se for editou ou owner
-                System.out.println("| 9) Manage Groups                          |");
-                System.out.println("| 10) Give 'Editor' privileges              |");
+            if (perk<3){ // se for editor ou owner
+                System.out.println("| 9) Manage Groups                          |");//falta
+                System.out.println("| 10) Give 'Editor' privileges              |");//falta
 
             }
             if(perk<2){ // se for owner
-                System.out.println("| 11) Manage group requests                 |");
-                System.out.println("| 12) Give 'Owner' privileges               |");
+                System.out.println("| 11) Manage group requests                 |");//falta
+                System.out.println("| 12) Give 'Owner' privileges               |");//falta
             }
             System.out.println("| 0) Logout                                 |");
             System.out.println("---------------------------------------------");
@@ -200,16 +197,15 @@ public class rmiClient {
                 System.out.println();
                 // continue
             else if(option == 7)
-                System.out.println();
-                // continue
+                createGroupMenu();
             else if(option == 8)
                 joinGroupMenu();
-                // continue
             else if(option == 9 || option == 10){
                 if(perk==3){
                     System.out.println("Please select one of the given options");
                     continue;
                 }
+                System.out.println();
                 //if(option == 9)
                     // continue
                 //if(option == 10)
@@ -220,6 +216,7 @@ public class rmiClient {
                     System.out.println("Please select one of the given options");
                     continue;
                 }
+                System.out.println();
                 //if(option == 11)
                 // continue
                 //if(option == 12)
@@ -247,10 +244,8 @@ public class rmiClient {
             if (ob == 0) {
                 break;
             }
-            else if (ob>4){
+            else if (ob > 4 || ob < 0)
                 System.out.println("Please select a valid option");
-                continue;
-            }
             else{
                 while(!validation){
                     System.out.println("----------------| Search |----------------");
@@ -295,10 +290,8 @@ public class rmiClient {
             if (ob == 0) {
                 break;
             }
-            else if (ob>2){
+            else if (ob > 2 || ob < 0)
                 System.out.println("Please select a valid option");
-                continue;
-            }
             else{
                 if(ob==1)
                     object = "album";
@@ -374,6 +367,27 @@ public class rmiClient {
             System.out.println("Something went wrong! Maybe that album does not exist...");
     }
 
+    private static void createGroupMenu(){
+        String groupID;
+        while(true){
+            try {
+                groupID = rmi.newGroup(user);
+                break;
+            } catch (RemoteException e){
+                retryRMIConnection();
+            }
+        }
+        System.out.println("----------------| Create Group |----------------");
+        if (groupID==null)
+            System.out.println("| Something went wrong. Try again later.       |");
+        else {
+            System.out.println("| Group " + groupID + " created successfully!           |");
+            if(perk!=1)
+                perk=1;
+        }
+        System.out.println("------------------------------------------------");
+    }
+
     private static void joinGroupMenu(){
         int option;
         String groups=null;
@@ -393,7 +407,6 @@ public class rmiClient {
         }
         else {
             String[] splitted = groups.replaceAll("^[,\\s]+", "").split(",");
-            verifier = false;
             while (true) {
                 System.out.println("----------------| Join Group |----------------");
                 for (int i = 0; i < splitted.length; i++) {

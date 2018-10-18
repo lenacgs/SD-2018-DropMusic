@@ -96,6 +96,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String request = "type | login ; username | "+username+" ; password | "+password;
         //se o login foi aprovado
         String perkRequest = "type | perks ; username | "+username;
+
         //se o login foi rejeitado return 4
         return 1; //alterar quando comunicar com o multicast dependendo da resposta ao perkRequest
     }
@@ -103,6 +104,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     public boolean logout(String username) throws java.rmi.RemoteException{
         //envia informação aos multicasts que este user já nao está online
         String request = "type | logout ; username | "+username;
+        //return true ou false consoante a resposta
         return true;
     }
 
@@ -117,21 +119,25 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //execute operation
 
         //return to client
-        return "Toma la a resposta mano : "+request;
+        return request;
     }
 
     public String details(String object, String title) throws java.rmi.RemoteException{
         String request = "type | get_info ; object | "+object+" ; title | "+title;
+        //return a info vinda do multicast
         return request;
     }
 
     public boolean review(String title,String user,String review,int rating) throws java.rmi.RemoteException{
         String request = "type | review ; album_title | "+title+" ; username | "+user+" ; text | "+review+" ; rate | "+rating;
+        //return true ou false se bateu ou nao
         return true;
     }
 
-    public boolean newGroup()throws java.rmi.RemoteException{
-        return true;
+    public String newGroup(String username)throws java.rmi.RemoteException{
+        String request = "type | new_group ; username ! "+username;
+        //return o Id do grupo que foi criado. Se deu merda return null
+        return request;
     }
 
     public String showGroups(String username)throws java.rmi.RemoteException{

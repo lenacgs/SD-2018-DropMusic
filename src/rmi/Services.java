@@ -13,4 +13,5 @@ public interface Services extends Remote {
     boolean review(String title,String user,String review,int rating) throws java.rmi.RemoteException;
     String showGroups(String username)throws java.rmi.RemoteException;
     boolean joinGroup(String username, String group)throws java.rmi.RemoteException;
+    String newGroup(String username)throws java.rmi.RemoteException;
 }
