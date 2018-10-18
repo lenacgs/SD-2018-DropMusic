@@ -1,4 +1,4 @@
-## Protocolo de comunicação 
+﻿## Protocolo de comunicação 
 
 Especificação de todos os comandos que são enviados entre o servidor RMI e os servidores Multicast. Para efeitos de simplificação, assumi que o servidor RMI é (1) e os servidores Multicast são (2).
 
@@ -16,16 +16,21 @@ REQUEST: **type** | register ; **username** | new username ; **password** | new 
 
 ANSWER: **type** | status ; **register** | succeeded ou failed \n
 
+REQUEST: **type** | data_count ; **object** | user\n
 
-ANSWER: **type** | status ; **operation** | failed ; **message** | This username already exists... Try a different one! \n
+ANSWER: **type** | data_count ; **object** | user ; **count** | <n users>\n (isto para saber se é o primeiro para ficar owner da plataforma)
+
 
 ####User Login
 
 REQUEST: **type** | login ; **username** | username ; **password** | password \n
 
-ANSWER: **type** | status ; **login** | succeeded ou failed** ; **perks** | 0 ou 1 \n
+ANSWER: **type** | status ; **login** | succeeded ou failed ; \n
 
-(0 - normal user, 1 - admin)
+REQUEST: **type** | perks ; **username** | username \n
+
+ANSWER: **type** | perks ; **user** | 1(owner) / 2(editor) / 3(normal)\n
+
 
 ####User Logout
 
@@ -33,11 +38,12 @@ REQUEST: **type** | logout ; **username** | username \n
 
 ANSWER: **type** | status ; **logout** | succeeded ou failed \n
 
-####Check for user perks (outside a group - admin or normal user?)
+
+####Check for user perks (Owner de algum grupo, Editor de algum grupo ou normal)
 
 REQUEST: **type** | perks ; **username** | username \n
 
-ANSWER: **type** | perks ; **user** | "admin" or "normal" \n
+ANSWER: **type** | perks ; **user** | 1(owner) / 2(editor) / 3(normal)\n
 
 
 
@@ -46,6 +52,14 @@ ANSWER: **type** | perks ; **user** | "admin" or "normal" \n
 REQUEST: **type** | perks_group ; **username** | username ; **groupID** | groupID \n
 
 ANSWER: **type** | perks_group ; **user** | "normal" or "editor" or "owner" \n
+
+
+####Check for groups
+
+REQUEST: **type** | groups ; **username** | username\n
+
+ANSEWR: **type** | groups ; **list** | <group1 , group2 , ...>\n
+(isto para apresentar ao user todos os grupos aos quais ele pode juntar-se. É enviado o username para só devolver os grupos aos quais ele nao pertençe)
 
 
 ### REQUISITO Nº 3
@@ -80,7 +94,7 @@ Gerir artistas, álbuns e músicas
 
 ####Alterar informação de álbuns/artistas
 
-REQUEST: **type** | change\_info ; **object** | album/artist ; **new_info** | new\_text ; **username** | username \n
+REQUEST: **type** | change\_info ; **object** | album/artist ; **new_info** | new\_text ; **username** | username ; **group** | group_name\n
 
 ANSWER: **type** | change\_info ; **status** | success/fail \n
 
@@ -122,7 +136,7 @@ Escrever críticas a um álbum
 
 REQUEST: **type** | review ; **album\_title** | album title ; **username** | username ; **text** | texto até 300 carateres ; **rate** | rate \n
 
-ANSWER: **type** | review  ; **status** | (ok / fail) \n 
+ANSWER: **type** | review  ; **status** | success/fail \n
 
 (só retorna se a review foi feita com sucesso ou nao)
 
@@ -132,7 +146,7 @@ Dar privilégios de editor a um user
 
 REQUEST: **type** | grant\_perks ; **username** | username proprio ; **new\_editor** | username do novo editor \n
 
-ANSWER: **type** | grant\_perks ; **status** | success/fail
+ANSWER: **type** | grant\_perks ; **status** | success/fail \n
 
 (Pode ser success ou fail, dependendo se o user que estiver a dar privilégios seja ou não editor
 
@@ -148,4 +162,10 @@ Caso o user não esteja online, o rmi responde ao servidor que não foi possíve
 **type** | notify\_user ; **status** | fail ; **username** | username \n
 
 Ainda não pensei como vai funcionar a questão das notificações caso o user não esteja online
+
+#### Join group
+
+REQUEST: **type** | join_group ; **username** | username ; **group** | group\n
+
+ANSWER: **type** | join_group ; **username** | username ; **group** | group ; **status** | success/fail\n
 

@@ -18,6 +18,7 @@ public class rmiClient {
     // desta maneira quando formos fazer um pedido ao RMI para mexer em algum grupo, enviamos logo a informação do grupo que ele que alterar
     // e sabemos logo a partir do role se ele pode fazer essas alterações ou não
     private static String user=null;
+    private static int perk=0;
 
     public static void main(String[] args) throws IOException, NotBoundException, InterruptedException {
         establishRMIConnection();
@@ -89,7 +90,7 @@ public class rmiClient {
         String username, password;
         int verifier;
         boolean validation;
-        System.out.println("(you can type '0' at any time to go back)");
+        System.out.println("(you can type '0' at any time to exit)");
         while(true) {
             System.out.print("\nUsername: ");
             username = sc.nextLine().replaceAll("^[,\\s]+", "");
@@ -118,16 +119,17 @@ public class rmiClient {
             try {
                 //funcao de registar e login tem que devolver um boolean
                 if (modifier == 1) //registar
-                    verifier = rmi.testerLogin();
+                    verifier = rmi.register(username,password);
                 else //login
-                    verifier = rmi.testerLogin();
+                    verifier = rmi.login(username,password);
                 if (verifier <= 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-nao existe/credencias mal;
                     if (modifier == 1)
                         System.out.println("User registed successfully!");
                     else
                         System.out.println("Logged in successfully!");
                     user=username;
-                    mainMenu(verifier);
+                    perk=verifier;
+                    mainMenu();
                     break;
                 } else {
                     if (modifier == 1)
@@ -141,9 +143,10 @@ public class rmiClient {
         }
     }
 
-    private static void mainMenu(int perk){
+    private static void mainMenu(){
         int option;
-        while(true) {
+        boolean verifier=false;
+        while(true) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal
             System.out.println("----------------| Main Menu |----------------"); //2, 6,
             System.out.println("| 1) Search                                 |");
             System.out.println("| 2) Album and Artist details               |");
@@ -152,15 +155,78 @@ public class rmiClient {
             System.out.println("| 5) Download Music                         |");
             System.out.println("| 6) Share Music                            |");
             System.out.println("| 7) Create Group                           |");
+            System.out.println("| 8) Join Group                             |");
+            if (perk<3){ // se for editou ou owner
+                System.out.println("| 9) Manage Groups                          |");
+                System.out.println("| 10) Give 'Editor' privileges              |");
+
+            }
+            if(perk<2){ // se for owner
+                System.out.println("| 11) Manage group requests                 |");
+                System.out.println("| 12) Give 'Owner' privileges               |");
+            }
+            System.out.println("| 0) Logout                                 |");
             System.out.println("---------------------------------------------");
             //to be continued
-            option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            try {
+                option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+            } catch (NumberFormatException e){
+                System.out.println("I can only work with numbers bro!");
+                continue;
+            }
+            if (option == 0) {
+                while (!verifier) {
+                    try {
+                        verifier = rmi.logout(user);
+                    } catch (RemoteException e) {
+                        retryRMIConnection();
+                    }
+                }
+                break;
+            }
             if (option == 1)
                 searchMenu();
             else if(option == 2)
                 detailsMenu();
             else if(option == 3)
                 reviewMenu();
+            else if(option == 4)
+                System.out.println();
+                // continue
+            else if(option == 5)
+                System.out.println();
+                // continue
+            else if(option == 6)
+                System.out.println();
+                // continue
+            else if(option == 7)
+                System.out.println();
+                // continue
+            else if(option == 8)
+                joinGroupMenu();
+                // continue
+            else if(option == 9 || option == 10){
+                if(perk==3){
+                    System.out.println("Please select one of the given options");
+                    continue;
+                }
+                //if(option == 9)
+                    // continue
+                //if(option == 10)
+                    // continue
+            }
+            else if(option == 11 || option == 12){
+                if (perk>1){
+                    System.out.println("Please select one of the given options");
+                    continue;
+                }
+                //if(option == 11)
+                // continue
+                //if(option == 12)
+                // continue
+            }
+             else
+                System.out.println("Please select one of the given options");
         }
     }
 
@@ -306,6 +372,62 @@ public class rmiClient {
             System.out.println("Reviewed "+title+" successfully!");
         else
             System.out.println("Something went wrong! Maybe that album does not exist...");
+    }
+
+    private static void joinGroupMenu(){
+        int option;
+        String groups=null;
+        boolean verifier=false, validation;
+        while (!verifier) {
+            try {
+                groups = rmi.showGroups(user);
+                verifier = true;
+            } catch (RemoteException e) {
+                retryRMIConnection();
+            }
+        }
+        if(groups==null){
+            System.out.println("----------------| Join Group |----------------");
+            System.out.println("| There are no groups for you to join!       |");
+            System.out.println("----------------------------------------------");
+        }
+        else {
+            String[] splitted = groups.replaceAll("^[,\\s]+", "").split(",");
+            verifier = false;
+            while (true) {
+                System.out.println("----------------| Join Group |----------------");
+                for (int i = 0; i < splitted.length; i++) {
+                    System.out.println(" " + (i + 1) + ") " + splitted[i]);
+                }
+                System.out.println(" 0) Back");
+                System.out.println("----------------------------------------------");
+                System.out.print("Choose a group: ");
+                try {
+                    option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+                } catch (NumberFormatException e) {
+                    System.out.println("I can only work with numbers bro!");
+                    continue;
+                }
+                if (option == 0)
+                    break;
+                else if (option > 0 && option < splitted.length) {
+                    while (true) {
+                        try {
+                            validation = rmi.joinGroup(user, splitted[option - 1]);
+                            break;
+                        } catch (RemoteException e) {
+                            retryRMIConnection();
+                        }
+                    }
+                    if (validation)
+                        System.out.println("Request successfully sent to group owner");
+                    else
+                        System.out.println("Something went wrong, please try again later");
+                    break;
+                } else
+                    System.out.println("Please select one of the given options");
+            }
+        }
     }
 
     private static boolean stringChecker (String toCheck){

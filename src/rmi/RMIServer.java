@@ -84,25 +84,25 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //esta funcao nao precisa de fazer nada pois so serve para testar a ligacao entre o primario e o secundario
     }
 
-    public int testerLogin() throws java.rmi.RemoteException{
-        return 1;
-    }
-
-    public boolean tester() throws java.rmi.RemoteException{
-        return true;
-        //enquanto nao temos a funcao esta serve para ir testando.
-    }
     public int register (String username, String password) throws java.rmi.RemoteException{
         String request = "type | register ; username | "+username+" ; password | "+password;
-        return 1; //alterar quando comunicar com o multicast
+        //se o register foi aprovado
+        String userCountRequest = "type | data_count ; object | user";
+        //dependendo se for o primeiro ou nao fica com o perk de owner da plataforma ou user normal
+        //se o register foi recusado retorna 4
+        return 1; //alterar quando comunicar com o multicast dependendo da resposta
     }
     public int login(String username, String password) throws java.rmi.RemoteException{
         String request = "type | login ; username | "+username+" ; password | "+password;
-        return 1; //alterar quando comunicar com o multicast
+        //se o login foi aprovado
+        String perkRequest = "type | perks ; username | "+username;
+        //se o login foi rejeitado return 4
+        return 1; //alterar quando comunicar com o multicast dependendo da resposta ao perkRequest
     }
 
     public boolean logout(String username) throws java.rmi.RemoteException{
         //envia informação aos multicasts que este user já nao está online
+        String request = "type | logout ; username | "+username;
         return true;
     }
 
@@ -129,4 +129,23 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String request = "type | review ; album_title | "+title+" ; username | "+user+" ; text | "+review+" ; rate | "+rating;
         return true;
     }
+
+    public boolean newGroup()throws java.rmi.RemoteException{
+        return true;
+    }
+
+    public String showGroups(String username)throws java.rmi.RemoteException{
+        String request = "type | groups ; username | "+username;
+        //quando chega a resposta le a lista de grupos disponivel e envia.
+        //se a lista estiver vazia retorna null.
+        String groups="grupo1,grupo2,grupo3"; // fica com a lista de grupos para apresentar.
+        return groups;
+    }
+
+    public boolean joinGroup(String username, String group)throws java.rmi.RemoteException{
+        String request = "type | join_group ; username | "+username+" ; group | "+group;
+        return true;
+    }
+
+
 }
