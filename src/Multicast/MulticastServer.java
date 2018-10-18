@@ -233,13 +233,7 @@ class requestHandler extends Thread{
 
                     mainThread.getRegisteredUsers().add(newUser);
 
-                    try {
-                        mainThread.getUsersObjectFile().openWrite("users.obj");
-                        mainThread.getUsersObjectFile().writesObject(newUser);
-                        mainThread.getUsersObjectFile().closeWrite();
-                    } catch (IOException e) {
-                        System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");
-                    }
+                    saveFile("users.obj", mainThread.getRegisteredUsers());
 
                     return "type | status ; operation | succeeded ; message | User registered! \n";
 
@@ -256,7 +250,7 @@ class requestHandler extends Thread{
 
                     mainThread.getLoggedOn().add(currentUser);
 
-
+                    saveFile("logged.obj", mainThread.getLoggedOn());
 
                     return "type | status ; operation | succeeded ; message | Welcome " + username + "! \n";
 
