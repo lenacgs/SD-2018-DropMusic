@@ -1,8 +1,9 @@
 package Interface;
 
 import java.util.*;
+import java.io.*;
 
-public class User {
+public class User implements Serializable{
     private String username;
     private String password;
     private ArrayList<Group> defaultShareGroups; //lista de grupos a quem o utilizador partilha sempre por omissão

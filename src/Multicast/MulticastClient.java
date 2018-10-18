@@ -41,9 +41,9 @@ public class MulticastClient extends Thread {
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
 
-                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message:");
+
                 String message = new String(packet.getData(), 0, packet.getLength());
-                System.out.println(message);
+                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,6 +69,7 @@ class MulticastUser extends Thread {
             Scanner keyboardScanner = new Scanner(System.in);
             while (true) {
                 String readKeyboard = keyboardScanner.nextLine().replaceAll("^[,\\s]+", "");
+                System.out.println("you are sending: " + readKeyboard);
                 byte[] buffer = readKeyboard.getBytes();
                 InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);

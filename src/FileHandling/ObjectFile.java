@@ -13,6 +13,14 @@ public class ObjectFile {
         input_stream = new ObjectInputStream(new FileInputStream(fileName));
     }
 
+    public void openWrite(String fileName) throws IOException{
+        try {
+            output_stream = new ObjectOutputStream(new FileOutputStream(fileName));
+        } catch (IOException e) {
+            System.out.println("Excepção encontrada na função openWrite para ficheiro " + fileName + ": " + e);
+        }
+    }
+
     public Object readsObject() {
         try {
             return (input_stream.readObject());
