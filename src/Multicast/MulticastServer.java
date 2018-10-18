@@ -160,6 +160,9 @@ class requestHandler extends Thread{
         return null;
     }
 
+    private boolean verifyPassword(User current, String password){ return current.getPassword().equals(password);}
+
+
     private boolean register(){
         return false;
     }
@@ -200,6 +203,16 @@ class requestHandler extends Thread{
         return false;
     }
 
+    private void saveFile(String filename, Object o){
+        try {
+            mainThread.getUsersObjectFile().openWrite(filename);
+            mainThread.getUsersObjectFile().writesObject(o);
+            mainThread.getUsersObjectFile().closeWrite();
+        } catch (IOException e) {
+            System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");
+        }
+    }
+
     private String translation(String message){
         String tokens[] = message.split(" ; ");
         String info[][] = new String[tokens.length][];
@@ -207,7 +220,7 @@ class requestHandler extends Thread{
         if(info[0][0].equals("type")){
             String command = info[0][1];
             switch(command){
-                case "register":
+                case "register": {
                     String username = info[1][1];
                     String password = info[2][1];
                     if (findUser(username) != null) { //já existe este username
@@ -222,33 +235,33 @@ class requestHandler extends Thread{
 
                     try {
                         mainThread.getUsersObjectFile().openWrite("users.obj");
-                    }catch (IOException e) {System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");}
-
-                    mainThread.getUsersObjectFile().writesObject(newUser);
-
-                    mainThread.getUsersObjectFile().closeWrite();
+                        mainThread.getUsersObjectFile().writesObject(newUser);
+                        mainThread.getUsersObjectFile().closeWrite();
+                    } catch (IOException e) {
+                        System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");
+                    }
 
                     return "type | status ; operation | succeeded ; message | User registered! \n";
-                case "login":
-                    if(info[1][0].equals("username") && info[2][0].equals("password") && info.length == 3) {
-                        if(true) { //se o login funcionar
-                            return "type | status ; login | succeeded ; perks | ";
-                        }else{
-                            return "type | status ; login | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
+
+                }case "login": {
+                    User currentUser;
+                    String username = info[1][1];
+                    String password = info[2][1];
+                    if((currentUser = findUser(username)) == null){
+                        return "type | status ; operation | failed ; message | This username doesn't exist! \n";
                     }
-                case "logout":
-                    if(info[1][0].equals("username") && info.length == 2){
-                        if(true){ //se o logout funcionar
-                            return "type | status ; logout | succeeded";
-                        }else{
-                            return "type | status ; logout | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
+                    if(!verifyPassword(currentUser, password)){
+                        return "type | status ; operation | failed ; message | Wrong password! \n";
                     }
+
+                    mainThread.getLoggedOn().add(currentUser);
+
+
+
+                    return "type | status ; operation | succeeded ; message | Welcome " + username + "! \n";
+
+                }case "logout":
+
                 case "perks":
                     if(info[1][0].equals("username") && info.length == 2){
                         if(true){  //se o perks funcionar
