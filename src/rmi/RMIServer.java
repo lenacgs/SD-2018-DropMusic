@@ -92,6 +92,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //se o register foi recusado retorna 4
         return 1; //alterar quando comunicar com o multicast dependendo da resposta
     }
+
     public int login(String username, String password) throws java.rmi.RemoteException{
         String request = "type | login ; username | "+username+" ; password | "+password;
         //se o login foi aprovado
@@ -142,6 +143,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     public String showGroups(String username)throws java.rmi.RemoteException{
         String request = "type | groups ; username | "+username;
+        //a resposta consiste em todos os grupo onde nao esta este user para este se poder juntar
         //quando chega a resposta le a lista de grupos disponivel e envia.
         //se a lista estiver vazia retorna null.
         String groups="grupo1,grupo2,grupo3"; // fica com a lista de grupos para apresentar.
@@ -153,5 +155,20 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
+    public String changeInfo(String object, String objectName, String text, String username, String groupID)throws java.rmi.RemoteException{
+        String request = "type | change_info ; object | "+object+" ; object_name | "+objectName+" ; new_info | "+text+" ; username | "+username+" ; group | "+groupID;
+        //multicasts tem que verificar se esse user é editor ou owner deste grupo e depois sim fazer as alteracoes.
+        //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
+        //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
+        return request;
+    }
+
+    public String givePermissions(String perk, String username, String newUser, String groupID)throws java.rmi.RemoteException{
+        String request = "type | grant_perks ; perk | "+perk+" ; username | "+username+" ; new_user | "+newUser+" ; group | "+groupID;
+        //multicasts tem que verificar se esse user é editor ou owner deste grupo e depois sim fazer as alteracoes.
+        //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
+        //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
+        return request;
+    }
 
 }

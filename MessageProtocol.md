@@ -145,15 +145,14 @@ REQUEST: **type** | review ; **album\_title** | album title ; **username** | use
 ANSWER: **type** | review  ; **status** | success/fail \n
 
 
-###REQUISITO Nº 6
 
-Dar privilégios de editor a um user
+Dar privilégios de editor ou owner a um user
 
-REQUEST: **type** | grant\_perks ; **username** | username proprio ; **new\_editor** | username do novo editor \n
+REQUEST: **type** | grant\_perks ; **perk** | (editor / user) ; **username** | username proprio ; **new\_user** | username do novo editor ; **group** | groupID \n
 
 ANSWER: **type** | grant\_perks ; **status** | success/fail \n
 
-(Pode ser success ou fail, dependendo se o user que estiver a dar privilégios seja ou não editor
+(Pode ser success ou fail, dependendo se o user que estiver a dar privilégios seja ou não editor ou owner
 
 
 ####Neste caso, o user que recebeu os privilégios deve ser notificado imediatamente
