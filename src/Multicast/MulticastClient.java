@@ -24,9 +24,9 @@ public class MulticastClient extends Thread {
     private int PORT = 4321;
 
     public static void main(String[] args) {
-        MulticastClient client = new MulticastClient();
+        MulticastClient client = new MulticastClient(); //for receiving packets
         client.start();
-        MulticastUser user = new MulticastUser();
+        MulticastUser user = new MulticastUser(); //for getting keyboard input and sending packets
         user.start();
     }
 

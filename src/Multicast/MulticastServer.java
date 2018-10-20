@@ -2,6 +2,8 @@ package Multicast;
 
 import Interface.*;
 import FileHandling.*;
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 import java.net.MulticastSocket;
 import java.io.*;
 import java.net.DatagramPacket;
@@ -17,6 +19,7 @@ public class MulticastServer extends Thread {
     private CopyOnWriteArrayList<User> registeredUsers;
     private CopyOnWriteArrayList<User> loggedOn;
     private String pathToObjectFiles;
+    private String name;
 
     public void setUsersObjectFile(ObjectFile usersObjectFile) {
         this.usersObjectFile = usersObjectFile;
@@ -74,6 +77,7 @@ public class MulticastServer extends Thread {
         registeredUsers = new CopyOnWriteArrayList<>();
         loggedOn = new CopyOnWriteArrayList<>();
         this.pathToObjectFiles = pathToObjectFiles;
+        this.name = name;
     }
 
     public ObjectFile getUsersObjectFile() {
@@ -86,11 +90,7 @@ public class MulticastServer extends Thread {
 
             //carregar o que esta nos ficheiros de objetos para a registeredUsers
 
-            User aux = (User)this.getUsersObjectFile().readsObject();
-            while (aux != null) {
-                this.registeredUsers.add(aux);
-                aux = (User)this.getUsersObjectFile().readsObject();
-            }
+            this.setRegisteredUsers((CopyOnWriteArrayList)this.getUsersObjectFile().readsObject());
             this.getUsersObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
 
@@ -117,17 +117,23 @@ public class MulticastServer extends Thread {
             socket = new MulticastSocket(PORT);
             InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
             socket.joinGroup(group);
+            socket.setLoopbackMode(false);
 
-            while(true){
+            System.out.println("This is my address: " + socket.getInterface().getHostAddress());
+
+            while(true){ //receiving
                 byte[] buffer = new byte[256];
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
+
                 String message = new String(packet.getData(), 0, packet.getLength());
 
-                //creates new thread for handling the new request
-                requestHandler newRequest = new requestHandler(message, this);
-                newRequest.start();
-            }
+                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + "with message: " + message);
+
+                    //creates new thread for handling the new request
+                    requestHandler newRequest = new requestHandler(message, this);
+                    newRequest.start();
+                }
         }catch(IOException e){
             e.printStackTrace();
         }finally{
@@ -137,7 +143,7 @@ public class MulticastServer extends Thread {
 }
 
 
-class requestHandler extends Thread{
+class requestHandler extends Thread{ //handles request and sends answer back to RMI
     private String request;
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4321;
@@ -205,134 +211,137 @@ class requestHandler extends Thread{
         String info[][] = new String[tokens.length][];
         for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
         if(info[0][0].equals("type")){
-            String command = info[0][1];
-            switch(command){
-                case "register":
-                    String username = info[1][1];
-                    String password = info[2][1];
-                    if (findUser(username) != null) { //já existe este username
-                        return "type | status ; operation | failed ; message | This username already exists... Try a different one! \n";
-                    }
+        String command = info[0][1];
+        switch(command){
+            case "register":
+                String username = info[1][1];
+                String password = info[2][1];
+                if (findUser(username) != null) { //já existe este username
+                    return "type | status ; operation | failed ; message | This username already exists... Try a different one! \n";
+                }
 
-                    //else, register the new user
+                //else, register the new user
 
-                    User newUser = new User(username, password);
+                User newUser = new User(username, password);
 
-                    mainThread.getRegisteredUsers().add(newUser);
+                mainThread.getRegisteredUsers().add(newUser);
 
-                    try {
-                        mainThread.getUsersObjectFile().openWrite("users.obj");
-                    }catch (IOException e) {System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");}
+                try {
+                    mainThread.getUsersObjectFile().openWrite("users.obj");
+                }catch (IOException e) {System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");}
 
-                    mainThread.getUsersObjectFile().writesObject(newUser);
+                mainThread.getUsersObjectFile().writesObject(mainThread.getRegisteredUsers());
 
-                    mainThread.getUsersObjectFile().closeWrite();
+                mainThread.getUsersObjectFile().closeWrite();
 
-                    return "type | status ; operation | succeeded ; message | User registered! \n";
-                case "login":
-                    if(info[1][0].equals("username") && info[2][0].equals("password") && info.length == 3) {
-                        if(true) { //se o login funcionar
-                            return "type | status ; login | succeeded ; perks | ";
-                        }else{
-                            return "type | status ; login | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
-                    }
-                case "logout":
-                    if(info[1][0].equals("username") && info.length == 2){
-                        if(true){ //se o logout funcionar
-                            return "type | status ; logout | succeeded";
-                        }else{
-                            return "type | status ; logout | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
-                    }
-                case "perks":
-                    if(info[1][0].equals("username") && info.length == 2){
-                        if(true){  //se o perks funcionar
-                            return "type | perks ; user | ";
-                        }else{
-                            return "type | status ; perks | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
-                    }
-                case "perks_group":
-                    if(info[1][0].equals("username") && info[2][0].equals("groupID") && info.length == 3){
-                        if(true){
-                            return "type | perks_group ; user | ";
-                        }else{
-                            return "type | status ; perks_group | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
-                    }
-                case "search":
-                    if(info[1][0].equals("keyword") && info[2][0].equals("object") && info.length == 3){
-                        if(true){
-                            return "type | " + " ; item_count | " ;
-                        }else{
-                            return "type | status ; perks_group | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
-                    }
+                int admin = 1;
+                if (mainThread.getRegisteredUsers().size() > 1) admin = 0;
 
-                case "add_info":
-                    if(info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4){
-                        if(true){
-                            return "type | status ; add_info | successful";
-                        }else{
-                            return "type | status ; add_info | failed";
-                        }
+                return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered! \n";
+            case "login":
+                if(info[1][0].equals("username") && info[2][0].equals("password") && info.length == 3) {
+                    if(true) { //se o login funcionar
+                        return "type | status ; login | succeeded ; perks | ";
                     }else{
-                        return "type | status ; command | invalid";
+                        return "type | status ; login | failed";
                     }
-                case "change_info":
-                    if(info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4){
-                        if(true){
-                            return "type | status ; change_info | successful";
-                        }else{
-                            return "type | status ; change_info | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
-                    }
-                case "get_info":
-                    if(info[1][0].equals("object") && info[2][0].equals("title") && info.length == 3){
-                        if(true){
-                            return "type | status ; get_info | successful";
-                        }else{
-                            return "type | status ; get_info | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
-                    }
-                case "review":
-                    if(info[1][0].equals("album_title") && info[2][0].equals("username")  && info[3][0].equals("text") && info[4][0].equals("rate") && info.length == 4){
-                        if(true){
-                            return "type | status ; review | successful";
-                        }else{
-                            return "type | status ; review | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
-                    }
-                case "grant_perks":
-                    if(info[1][0].equals("username") && info[2][0].equals("groupID") && info.length == 3){
-                        if(true){
-                            return "type | status ; grant_perks | succeeded";
-                        }else{
-                            return "type | status ; perks_group | failed";
-                        }
-                    }else{
-                        return "type | status ; command | invalid";
-                    }
-                default:
+                }else{
                     return "type | status ; command | invalid";
-            }
+                }
+            case "logout":
+                if(info[1][0].equals("username") && info.length == 2){
+                    if(true){ //se o logout funcionar
+                        return "type | status ; logout | succeeded";
+                    }else{
+                        return "type | status ; logout | failed";
+                    }
+                }else{
+                    return "type | status ; command | invalid";
+                }
+            case "perks":
+                if(info[1][0].equals("username") && info.length == 2){
+                    if(true){  //se o perks funcionar
+                        return "type | perks ; user | ";
+                    }else{
+                        return "type | status ; perks | failed";
+                    }
+                }else{
+                    return "type | status ; command | invalid";
+                }
+            case "perks_group":
+                if(info[1][0].equals("username") && info[2][0].equals("groupID") && info.length == 3){
+                    if(true){
+                        return "type | perks_group ; user | ";
+                    }else{
+                        return "type | status ; perks_group | failed";
+                    }
+                }else{
+                    return "type | status ; command | invalid";
+                }
+            case "search":
+                if(info[1][0].equals("keyword") && info[2][0].equals("object") && info.length == 3){
+                    if(true){
+                        return "type | " + " ; item_count | " ;
+                    }else{
+                        return "type | status ; perks_group | failed";
+                    }
+                }else{
+                    return "type | status ; command | invalid";
+                }
+
+            case "add_info":
+                if(info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4){
+                    if(true){
+                        return "type | status ; add_info | successful";
+                    }else{
+                        return "type | status ; add_info | failed";
+                    }
+                }else{
+                    return "type | status ; command | invalid";
+                }
+            case "change_info":
+                if(info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4){
+                    if(true){
+                        return "type | status ; change_info | successful";
+                    }else{
+                        return "type | status ; change_info | failed";
+                    }
+                }else{
+                    return "type | status ; command | invalid";
+                }
+            case "get_info":
+                if(info[1][0].equals("object") && info[2][0].equals("title") && info.length == 3){
+                    if(true){
+                        return "type | status ; get_info | successful";
+                    }else{
+                        return "type | status ; get_info | failed";
+                    }
+                }else{
+                    return "type | status ; command | invalid";
+                }
+            case "review":
+                if(info[1][0].equals("album_title") && info[2][0].equals("username")  && info[3][0].equals("text") && info[4][0].equals("rate") && info.length == 4){
+                    if(true){
+                        return "type | status ; review | successful";
+                    }else{
+                        return "type | status ; review | failed";
+                    }
+                }else{
+                    return "type | status ; command | invalid";
+                }
+            case "grant_perks":
+                if(info[1][0].equals("username") && info[2][0].equals("groupID") && info.length == 3){
+                    if(true){
+                        return "type | status ; grant_perks | succeeded";
+                    }else{
+                        return "type | status ; perks_group | failed";
+                    }
+                }else{
+                    return "type | status ; command | invalid";
+                }
+            default:
+                return "type | status ; command | invalid";
+        }
         }
         return "type | status ; command | invalid";
     }
@@ -343,7 +352,9 @@ class requestHandler extends Thread{
         MulticastSocket socket = null;
         try {
             socket = new MulticastSocket();  // create socket without binding it (only for sending)
-            byte buffer[] = translation(this.request).getBytes();
+            String message = translation(this.request);
+            System.out.println("Sent to multicast address: " + message);
+            byte buffer[] = message.getBytes();
             InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);
             socket.send(packet);
