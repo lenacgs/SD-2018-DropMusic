@@ -56,13 +56,13 @@ ANSWER: **type** | perks_group ; **user** | "normal" or "editor" or "owner" \n
 
 ####Check for groups
 
-REQUEST: **type** | groups ; **username** | username\n
+REQUEST: **type** | groups ; **username** | username\n	
 
-ANSEWR: **type** | groups ; **list** | <group1,group2,...>\n
-(isto para apresentar ao user todos os grupos aos quais ele pode juntar-se. É enviado o username para só devolver os grupos aos quais ele nao pertençe)
+ANSWER: **type** | groups ; **list** | <group1,group2,...>\n
+(isto para apresentar ao user todos os grupos aos quais ele pode juntar-se. É enviado o username para só devolver os grupos aos quais ele nao pertence)
 
 ####Create Group
-
+	
 REQUEST: **type** | new_group ; **username** | username\n
 
 ANSWER: **type** | new_group ; **object** | groupID ; **status** | succeeded ou failed\n
