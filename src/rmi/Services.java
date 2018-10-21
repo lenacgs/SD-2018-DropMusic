@@ -14,4 +14,6 @@ public interface Services extends Remote {
     String showGroups(String username)throws java.rmi.RemoteException;
     boolean joinGroup(String username, String group)throws java.rmi.RemoteException;
     String newGroup(String username)throws java.rmi.RemoteException;
+    String changeInfo(String object, String objectName, String text, String username, String groupID)throws java.rmi.RemoteException;
+    String givePermissions(String perk, String username, String newUser, String groupID)throws java.rmi.RemoteException;
 }
