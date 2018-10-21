@@ -234,25 +234,6 @@ class requestHandler extends Thread{
             String command = info[0][1];
             switch(command) {
                 case "register": {
-                    String username = info[1][1];
-                    String password = info[2][1];
-                    if (findUser(username) != null) { //já existe este username
-                        return "type | status ; operation | failed ; message | This username already exists... Try a different one! \n";
-                    }
-
-                    //else, register the new user
-                    User newUser;
-                    if(this.mainThread.getRegisteredUsers().size()==0){
-                        newUser = new User(username, password,1);
-                    }else{
-                        newUser = new User(username, password, 3);
-                    }
-
-                    mainThread.getRegisteredUsers().add(newUser);
-
-                    saveFile("users.obj", mainThread.getRegisteredUsers());
-
-                    return "type | status ; operation | succeeded ; message | User registered! \n";
 
                 }case "login": {
                     User currentUser;
