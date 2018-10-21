@@ -26,6 +26,8 @@ public class Group {
         this.owners.add(user);
     }
 
+    public int getGroupID(){ return this.groupID;}
+
     public boolean isUser(User user) {
         if (this.users.contains(user)) {
             return true;
@@ -41,7 +43,7 @@ public class Group {
     }
 
     public boolean isOwner(User user) {
-        if (this.editors.contains(user)) {
+        if (this.owners.contains(user)) {
             return true;
         }
         return false;

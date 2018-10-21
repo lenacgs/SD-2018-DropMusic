@@ -18,6 +18,7 @@ public class MulticastServer extends Thread {
     private int PORT = 4322;
     private CopyOnWriteArrayList<User> registeredUsers;
     private CopyOnWriteArrayList<User> loggedOn;
+    private CopyOnWriteArrayList<Group> groups;
     private String pathToObjectFiles;
     private String name;
 
@@ -32,6 +33,8 @@ public class MulticastServer extends Thread {
     public void setMULTICAST_ADDRESS(String MULTICAST_ADDRESS) {
         this.MULTICAST_ADDRESS = MULTICAST_ADDRESS;
     }
+
+    public CopyOnWriteArrayList<Group> getGroups(){ return groups;   }
 
     public int getPORT() {
         return PORT;
@@ -74,8 +77,10 @@ public class MulticastServer extends Thread {
     public MulticastServer(String name, String pathToObjectFiles){
         super(name);
         usersObjectFile = new ObjectFile();
-        registeredUsers = new CopyOnWriteArrayList<>();
-        loggedOn = new CopyOnWriteArrayList<>();
+
+        registeredUsers = new CopyOnWriteArrayList<User>();
+        groups = new CopyOnWriteArrayList<Group>();
+        loggedOn = new CopyOnWriteArrayList<User>();
         this.pathToObjectFiles = pathToObjectFiles;
         this.name = name;
     }
@@ -83,6 +88,7 @@ public class MulticastServer extends Thread {
     public ObjectFile getUsersObjectFile() {
         return usersObjectFile;
     }
+
 
     public void fileHandler() {
         try {
@@ -105,7 +111,6 @@ public class MulticastServer extends Thread {
 
 
     }
-
 
     public void run(){
         MulticastSocket socket = null;
@@ -155,6 +160,18 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         this.mainThread = mainThread;
     }
 
+    private Group findGroup(int id) {
+        Iterator it = mainThread.getGroups().iterator();
+
+        while (it.hasNext()) {
+            Group aux = (Group)it.next();
+
+            if(aux.getGroupID() == id) return aux;
+        }
+
+        return null;
+    }
+
     private User findUser (String username){
         Iterator it = mainThread.getRegisteredUsers().iterator();
 
@@ -166,44 +183,57 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return null;
     }
 
-    private boolean register(){
-        return false;
+    private void test(){
+        System.out.println("Registered:");
+        Iterator it1 = mainThread.getRegisteredUsers().iterator();
+        while(it1.hasNext()){
+            User aux = (User)it1.next();
+            System.out.println(aux.getUsername());
+        }
+        System.out.println("Logged on:");
+        Iterator it2 = mainThread.getLoggedOn().iterator();
+        while(it2.hasNext()){
+            User aux = (User)it2.next();
+            System.out.println(aux.getUsername());
+        }
+        System.out.println("Groups:");
+        Iterator it3 = mainThread.getGroups().iterator();
+        while(it3.hasNext()){
+            User aux = (User)it3.next();
+            System.out.println(aux.getUsername());
+        }
     }
 
-    private boolean login(){
-        return false;
+    private boolean isInGroup(User user, Group group){ return (group.isUser(user)); }
+
+    private boolean verifyPassword(User current, String password){ return current.getPassword().equals(password);}
+
+    private String getAvailableGroups(User user){
+        int counter = 0;
+        String reply = "<";
+        Iterator it = mainThread.getGroups().iterator();
+
+        while(it.hasNext()) {
+            Group aux = (Group)it.next();
+            if(!isInGroup(user, aux)){
+                if(counter++ > 0){
+                    reply += ",";
+                }
+                reply += String.format("%d",aux.getGroupID());
+            }
+        }
+        reply += ">";
+        return reply;
     }
 
-    private boolean logout(){
-        return false;
-    }
-
-    private boolean perks(){
-        return false;
-    }
-
-    private boolean perks_group(){
-        return false;
-    }
-
-    private boolean search(){
-        return false;
-    }
-
-    private boolean add_info(){
-        return false;
-    }
-
-    private boolean change_info(){
-        return false;
-    }
-
-    private boolean review(){
-        return false;
-    }
-
-    private boolean grant_perks(){
-        return false;
+    private void saveFile(String filename, Object o){
+        try {
+            mainThread.getUsersObjectFile().openWrite(filename);
+            mainThread.getUsersObjectFile().writesObject(o);
+            mainThread.getUsersObjectFile().closeWrite();
+        } catch (IOException e) {
+            System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");
+        }
     }
 
     private String translation(String message){
@@ -211,137 +241,157 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         String info[][] = new String[tokens.length][];
         for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
         if(info[0][0].equals("type")){
-        String command = info[0][1];
-        switch(command){
-            case "register":
-                String username = info[1][1];
-                String password = info[2][1];
-                if (findUser(username) != null) { //já existe este username
-                    return "type | status ; operation | failed ; message | This username already exists... Try a different one! \n";
-                }
+            String command = info[0][1];
+            switch(command) {
+                case "register":
+                    String username = info[1][1];
+                    String password = info[2][1];
+                    if (findUser(username) != null) { //já existe este username
+                        return "type | status ; operation | failed ; message | This username already exists... Try a different one! \n";
+                    }
 
-                //else, register the new user
 
-                User newUser = new User(username, password);
+                    //else, register the new user
 
-                mainThread.getRegisteredUsers().add(newUser);
+                    int admin = 1;
+                    if (mainThread.getRegisteredUsers().size() > 0) admin = 3;
 
-                try {
-                    mainThread.getUsersObjectFile().openWrite("users.obj");
-                }catch (IOException e) {System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");}
+                    User newUser = new User(username, password, admin);
 
-                mainThread.getUsersObjectFile().writesObject(mainThread.getRegisteredUsers());
+                    mainThread.getRegisteredUsers().add(newUser);
 
-                mainThread.getUsersObjectFile().closeWrite();
+                    try {
+                        mainThread.getUsersObjectFile().openWrite("users.obj");
+                    }catch (IOException e) {System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");}
 
-                int admin = 1;
-                if (mainThread.getRegisteredUsers().size() > 1) admin = 0;
+                    mainThread.getUsersObjectFile().writesObject(mainThread.getRegisteredUsers());
 
-                return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered! \n";
-            case "login":
-                if(info[1][0].equals("username") && info[2][0].equals("password") && info.length == 3) {
-                    if(true) { //se o login funcionar
-                        return "type | status ; login | succeeded ; perks | ";
-                    }else{
-                        return "type | status ; login | failed";
-                    }
-                }else{
-                    return "type | status ; command | invalid";
-                }
-            case "logout":
-                if(info[1][0].equals("username") && info.length == 2){
-                    if(true){ //se o logout funcionar
-                        return "type | status ; logout | succeeded";
-                    }else{
-                        return "type | status ; logout | failed";
-                    }
-                }else{
-                    return "type | status ; command | invalid";
-                }
-            case "perks":
-                if(info[1][0].equals("username") && info.length == 2){
-                    if(true){  //se o perks funcionar
-                        return "type | perks ; user | ";
-                    }else{
-                        return "type | status ; perks | failed";
-                    }
-                }else{
-                    return "type | status ; command | invalid";
-                }
-            case "perks_group":
-                if(info[1][0].equals("username") && info[2][0].equals("groupID") && info.length == 3){
-                    if(true){
-                        return "type | perks_group ; user | ";
-                    }else{
-                        return "type | status ; perks_group | failed";
-                    }
-                }else{
-                    return "type | status ; command | invalid";
-                }
-            case "search":
-                if(info[1][0].equals("keyword") && info[2][0].equals("object") && info.length == 3){
-                    if(true){
-                        return "type | " + " ; item_count | " ;
-                    }else{
-                        return "type | status ; perks_group | failed";
-                    }
-                }else{
-                    return "type | status ; command | invalid";
-                }
+                    mainThread.getUsersObjectFile().closeWrite();
 
-            case "add_info":
-                if(info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4){
-                    if(true){
-                        return "type | status ; add_info | successful";
-                    }else{
-                        return "type | status ; add_info | failed";
+
+
+                    return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered! \n";
+                case "login": {
+                    User currentUser;
+                    username = info[1][1];
+                    password = info[2][1];
+                    if ((currentUser = findUser(username)) == null) {
+                        return "type | status ; operation | failed ; message | This username doesn't exist! \n";
                     }
-                }else{
+                    if (!verifyPassword(currentUser, password)) {
+                        return "type | status ; operation | failed ; message | Wrong password! \n";
+                    }
+
+                    mainThread.getLoggedOn().add(currentUser);
+
+                    saveFile("logged.obj", mainThread.getLoggedOn());
+
+                    return "type | status ; operation | succeeded ; message | Welcome " + username + "! \n";
+
+                }case "logout":{
+                    username = info[1][1];
+                    User current = findUser(username);
+                    if(current != null) {
+                        mainThread.getLoggedOn().remove(current);
+                        saveFile("logged.obj", mainThread.getLoggedOn());
+                    }
+                    return "type | status ; operation | succeeded \n";
+
+                }case "perks":{
+                    username = info[1][1];
+                    User current = findUser(username);
+                    if(current == null){
+                        return "type | status ; operation | failed \n";
+                    }
+                    return "type | perks ; user | " + current.getPerks() + " \n";
+
+                }case "perks_group": {
+                    User current = findUser(info[1][1]);
+                    int groupID = Integer.parseInt(info[2][1]);
+                    Group g = findGroup(groupID);
+                    if(g == null){
+                        return "type | status ; operation | failed \n";
+                    }
+                    if(g.isOwner(current)){
+                        return "type | perks_group ; user | owner \n";
+                    } else if(g.isEditor(current)){
+                        return "type | perks_group ; user | editor \n";
+                    }else if(g.isUser(current)) {
+                        return "type | perks_group ; user | normal \n";
+                    }else{
+                        return "type | status ; operation | failed \n";
+                    }
+                }case "groups": {
+                    username = info[1][1];
+                    User current = findUser(username);
+                    return "type | groups ; list ; " + getAvailableGroups(current) + " \n";
+                }case "new_group": {
+                    username = info[1][1];
+                    User current = findUser(username);
+                    mainThread.getGroups().add(new Group(current));
+                    saveFile("groups.obj", mainThread.getGroups());
+                }case "search": {
+
+                }case "add_info": {
+                    if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {
+                        if (true) {
+                            return "type | status ; add_info | successful";
+                        } else {
+                            return "type | status ; add_info | failed";
+                        }
+                    } else {
+                        return "type | status ; command | invalid";
+                    }
+                }case "change_info": {
+                    if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {
+                        if (true) {
+                            return "type | status ; change_info | successful";
+                        } else {
+                            return "type | status ; change_info | failed";
+                        }
+                    } else {
+                        return "type | status ; command | invalid";
+                    }
+                }case "get_info": {
+                    if (info[1][0].equals("object") && info[2][0].equals("title") && info.length == 3) {
+                        if (true) {
+                            return "type | status ; get_info | successful";
+                        } else {
+                            return "type | status ; get_info | failed";
+                        }
+                    } else {
+                        return "type | status ; command | invalid";
+                    }
+                }case "review": {
+                    if (info[1][0].equals("album_title") && info[2][0].equals("username") && info[3][0].equals("text") && info[4][0].equals("rate") && info.length == 4) {
+                        if (true) {
+                            return "type | status ; review | successful";
+                        } else {
+                            return "type | status ; review | failed";
+                        }
+                    } else {
+                        return "type | status ; command | invalid";
+                    }
+                }case "grant_perks": {
+                    username = info[1][1];
+                    String new_editor_username = info[2][1];
+                    User current = findUser(username);
+                    if(current.getPerks()<3){
+                        User new_editor = findUser(new_editor_username);
+                        if(new_editor == null){
+                            return "type | grant_perks ; status | failed \n";
+                        }
+                        new_editor.setPerks(2);
+                        return "type | grant_perks ; status | succeeded \n";
+                    }
+                    return "type | grant_perks ; status | failed \n";
+                }case "test": {
+                    test();
+                    return "type | status, command | tested";
+                }default: {
                     return "type | status ; command | invalid";
                 }
-            case "change_info":
-                if(info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4){
-                    if(true){
-                        return "type | status ; change_info | successful";
-                    }else{
-                        return "type | status ; change_info | failed";
-                    }
-                }else{
-                    return "type | status ; command | invalid";
-                }
-            case "get_info":
-                if(info[1][0].equals("object") && info[2][0].equals("title") && info.length == 3){
-                    if(true){
-                        return "type | status ; get_info | successful";
-                    }else{
-                        return "type | status ; get_info | failed";
-                    }
-                }else{
-                    return "type | status ; command | invalid";
-                }
-            case "review":
-                if(info[1][0].equals("album_title") && info[2][0].equals("username")  && info[3][0].equals("text") && info[4][0].equals("rate") && info.length == 4){
-                    if(true){
-                        return "type | status ; review | successful";
-                    }else{
-                        return "type | status ; review | failed";
-                    }
-                }else{
-                    return "type | status ; command | invalid";
-                }
-            case "grant_perks":
-                if(info[1][0].equals("username") && info[2][0].equals("groupID") && info.length == 3){
-                    if(true){
-                        return "type | status ; grant_perks | succeeded";
-                    }else{
-                        return "type | status ; perks_group | failed";
-                    }
-                }else{
-                    return "type | status ; command | invalid";
-                }
-            default:
-                return "type | status ; command | invalid";
-        }
+            }
         }
         return "type | status ; command | invalid";
     }

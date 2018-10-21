@@ -6,12 +6,14 @@ import java.io.*;
 public class User implements Serializable{
     private String username;
     private String password;
+    private int perks;
     private ArrayList<Group> defaultShareGroups; //lista de grupos a quem o utilizador partilha sempre por omissão
     private ArrayList<Music> transferredMusics; //lista de musicas que o user transferiu para o servidor (e que pode enventualmente partilhar com outros userss/grupos)
 
-    public User(String username, String password) {
+    public User(String username, String password, int perks) {
         this.username = username;
         this.password = password;
+        this.perks = perks;
         //this.defaultShareGroups = public group;
         this.transferredMusics = null;
     }
@@ -31,6 +33,10 @@ public class User implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getPerks() { return perks;}
+
+    public void setPerks(int perks) { this.perks = perks; }
 
     public ArrayList<Group> getDefaultShareGroups() {
         return defaultShareGroups;
