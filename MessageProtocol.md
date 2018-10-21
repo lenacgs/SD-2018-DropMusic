@@ -1,4 +1,4 @@
-﻿## Protocolo de comunicação 
+﻿	## Protocolo de comunicação 
 
 Especificação de todos os comandos que são enviados entre o servidor RMI e os servidores Multicast. Para efeitos de simplificação, assumi que o servidor RMI é (1) e os servidores Multicast são (2).
 

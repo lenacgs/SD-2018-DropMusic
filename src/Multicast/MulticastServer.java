@@ -74,8 +74,10 @@ public class MulticastServer extends Thread {
     public MulticastServer(String name, String pathToObjectFiles){
         super(name);
         usersObjectFile = new ObjectFile();
-        registeredUsers = new CopyOnWriteArrayList<>();
-        loggedOn = new CopyOnWriteArrayList<>();
+
+        registeredUsers = new CopyOnWriteArrayList<User>();
+        groups = new CopyOnWriteArrayList<Group>();
+        loggedOn = new CopyOnWriteArrayList<User>();
         this.pathToObjectFiles = pathToObjectFiles;
     }
 
@@ -83,17 +85,14 @@ public class MulticastServer extends Thread {
         return usersObjectFile;
     }
 
+
     public void fileHandler() {
         try {
             this.getUsersObjectFile().openRead("users.obj");
 
             //carregar o que esta nos ficheiros de objetos para a registeredUsers
 
-            User aux = (User)this.getUsersObjectFile().readsObject();
-            while (aux != null) {
-                this.registeredUsers.add(aux);
-                aux = (User)this.getUsersObjectFile().readsObject();
-            }
+            this.setRegisteredUsers((CopyOnWriteArrayList)this.getUsersObjectFile().readsObject());
             this.getUsersObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
 
@@ -108,7 +107,6 @@ public class MulticastServer extends Thread {
 
 
     }
-
 
     public void run(){
         MulticastSocket socket = null;
@@ -175,6 +173,27 @@ class requestHandler extends Thread{
         return null;
     }
 
+    private void test(){
+        System.out.println("Registered:");
+        Iterator it1 = mainThread.getRegisteredUsers().iterator();
+        while(it1.hasNext()){
+            User aux = (User)it1.next();
+            System.out.println(aux.getUsername());
+        }
+        System.out.println("Logged on:");
+        Iterator it2 = mainThread.getLoggedOn().iterator();
+        while(it2.hasNext()){
+            User aux = (User)it2.next();
+            System.out.println(aux.getUsername());
+        }
+        System.out.println("Groups:");
+        Iterator it3 = mainThread.getGroups().iterator();
+        while(it3.hasNext()){
+            User aux = (User)it3.next();
+            System.out.println(aux.getUsername());
+        }
+    }
+
     private boolean isInGroup(User user, Group group){ return (group.isUser(user)); }
 
     private boolean verifyPassword(User current, String password){ return current.getPassword().equals(password);}
@@ -235,8 +254,7 @@ class requestHandler extends Thread{
 
                     return "type | status ; operation | succeeded ; message | User registered! \n";
 
-                }
-                case "login": {
+                }case "login": {
                     User currentUser;
                     String username = info[1][1];
                     String password = info[2][1];
@@ -253,12 +271,12 @@ class requestHandler extends Thread{
 
                     return "type | status ; operation | succeeded ; message | Welcome " + username + "! \n";
 
-                }
-                case "logout":{
+                }case "logout":{
                     String username = info[1][1];
                     User current = findUser(username);
                     if(current != null) {
                         mainThread.getLoggedOn().remove(current);
+                        saveFile("logged.obj", mainThread.getLoggedOn());
                     }
                     return "type | status ; operation | succeeded \n";
 
@@ -294,6 +312,7 @@ class requestHandler extends Thread{
                     String username = info[1][1];
                     User current = findUser(username);
                     mainThread.getGroups().add(new Group(current));
+                    saveFile("groups.obj", mainThread.getGroups());
                 }case "search": {
 
                 }case "add_info": {
@@ -349,6 +368,9 @@ class requestHandler extends Thread{
                         return "type | grant_perks ; status | succeeded \n";
                     }
                     return "type | grant_perks ; status | failed \n";
+                }case "test": {
+                    test();
+                    return "type | status, command | tested";
                 }default: {
                     return "type | status ; command | invalid";
                 }
