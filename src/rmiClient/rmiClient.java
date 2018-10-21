@@ -48,6 +48,7 @@ public class rmiClient {
     private static void firstMenu(){
         int option;
         boolean verifier=false;
+        System.out.println("");
         System.out.println("  ------------");
         System.out.println("  | WELCOME! |");
         System.out.println("  ------------");
@@ -154,17 +155,16 @@ public class rmiClient {
             System.out.println("| 7) Create Group                           |");
             System.out.println("| 8) Join Group                             |");
             if (perk<3){ // se for editor ou owner
-                System.out.println("| 9) Manage Groups                          |");//falta
-                System.out.println("| 10) Give 'Editor' privileges              |");//falta
+                System.out.println("| 9) Manage Groups                          |");
+                System.out.println("| 10) Give 'Editor' privileges              |");
 
             }
             if(perk<2){ // se for owner
-                System.out.println("| 11) Manage group requests                 |");//falta
-                System.out.println("| 12) Give 'Owner' privileges               |");//falta
+                System.out.println("| 11) Give 'Owner' privileges               |");
+                System.out.println("| 12) Manage group requests                 |");//falta
             }
             System.out.println("| 0) Logout                                 |");
             System.out.println("---------------------------------------------");
-            //to be continued
             try {
                 option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
             } catch (NumberFormatException e){
@@ -205,20 +205,18 @@ public class rmiClient {
                     System.out.println("Please select one of the given options");
                     continue;
                 }
-                System.out.println();
-                //if(option == 9)
-                    // continue
-                //if(option == 10)
-                    // continue
+                if(option == 9)
+                    manageGroup();
+                if(option == 10)
+                    givePermissionsMenu("editor");
             }
             else if(option == 11 || option == 12){
                 if (perk>1){
                     System.out.println("Please select one of the given options");
                     continue;
                 }
-                System.out.println();
-                //if(option == 11)
-                // continue
+                if(option == 11)
+                    givePermissionsMenu("owner");
                 //if(option == 12)
                 // continue
             }
@@ -443,9 +441,116 @@ public class rmiClient {
         }
     }
 
+    private static void manageGroup(){
+        String groupID=null, text=null, object, objectName=null;
+        int ob;
+        boolean validation=false;
+        String verifier;
+        while(true) {
+            System.out.println("----------------| Manage Group |----------------");
+            System.out.println("| Change information about:                    |");
+            System.out.println("| 1) Album                                     |");
+            System.out.println("| 2) Artist                                    |");
+            System.out.println("| 3) Music                                     |");
+            System.out.println("| 0) Back                                      |");
+            System.out.println("------------------------------------------------");
+            ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            if (ob == 0) {
+                break;
+            } else if (ob > 3 || ob < 0)
+                System.out.println("Please select a valid option");
+            else {
+                if(ob==1)
+                    object = "album";
+                else if(ob==2)
+                    object = "artist";
+                else
+                    object = "music";
+                while(!validation){
+                    System.out.println("-----------------| Manage Group |-----------------");
+                    System.out.println("| Insert the name of the "+object+"                |");
+                    System.out.println("-------------------------------------------------");
+                    objectName = sc.nextLine().replaceAll("^[,\\s]+", "");
+                    validation = stringChecker(objectName);
+                }
+                validation=false;
+                while(!validation){
+                    System.out.println("-----------------| Manage Group |-----------------");
+                    System.out.println("| Insert new info about "+objectName+"             |");
+                    System.out.println("--------------------------------------------------");
+                    text = sc.nextLine().replaceAll("^[,\\s]+", "");
+                    validation = stringChecker(text);
+                }
+                validation=false;
+                while(!validation){
+                    System.out.println("-----------------| Manage Group |-----------------");
+                    System.out.println("| Group in which you want to make these changes? |");
+                    System.out.println("--------------------------------------------------");
+                    groupID = sc.nextLine().replaceAll("^[,\\s]+", "");
+                    validation = stringChecker(groupID);
+                }
+                while(true){
+                    try{
+                        verifier=rmi.changeInfo(object, objectName, text, user, groupID);
+                        break;
+                    }catch (RemoteException e){
+                        retryRMIConnection();
+                    }
+                }
+                System.out.println(verifier);
+                break;
+            }
+        }
+    }
+
+    private static void givePermissionsMenu(String perk) {
+        String username=null, groupID=null;
+        boolean validation=false;
+        String verifier;
+        System.out.println("(you can type '0' at any time to exit)");
+        while (!validation){
+            System.out.println("----------------| Permissions Menu |----------------");
+            System.out.println("| Name of the new "+perk+"?                          |");
+            System.out.println("----------------------------------------------------");
+            username = sc.nextLine().replaceAll("^[,\\s]+", "");
+            if (username.equals("0")) {
+                return;
+            }
+            if (username.contains(" ")) {
+                System.out.println("Username cannot contain spaces");
+                continue;
+            }
+            validation = stringChecker(username);
+        }
+        validation=false;
+        while (!validation){
+            System.out.println("----------------| Permissions Menu |----------------");
+            System.out.println("| Group in which you want to make these changes?   |");
+            System.out.println("----------------------------------------------------");
+            groupID = sc.nextLine().replaceAll("^[,\\s]+", "");
+            if (groupID.equals("0")) {
+                return;
+            }
+            validation = stringChecker(groupID);
+        }
+        while(true){
+            try{
+                verifier=rmi.givePermissions(perk,user,username,groupID);
+                break;
+            }catch(RemoteException e){
+                retryRMIConnection();
+            }
+        }
+        System.out.println(verifier);
+    }
+
     private static boolean stringChecker (String toCheck){
+        if(toCheck==null) {
+            System.out.println("String is NULL. Please type something");
+            return false;
+        }
         if (toCheck.contains("|") || toCheck.contains(";")) {
-            System.out.println("String contains forbidden characters ('|' , ';')\n");
+            System.out.println("String contains forbidden characters ('|' or ';')\n");
             return false;
         }
         return true;
