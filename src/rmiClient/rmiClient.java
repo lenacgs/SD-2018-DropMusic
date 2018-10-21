@@ -8,22 +8,30 @@ import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
 
 public class rmiClient {
-    private static Scanner sc = new Scanner(System.in);
-    private static Services rmi;
+    private Scanner sc = new Scanner(System.in);
+    private Services rmi;
     // o que estou a pensar é, no ato do login e em cada alteração atualizar esta lista para ser mais simples enviar pedidos ao RMI
     // um exemplo da lista podia ser [(<grupo> <role>) (<grupo> <role>) (...)]
     // desta maneira quando formos fazer um pedido ao RMI para mexer em algum grupo, enviamos logo a informação do grupo que ele que alterar
     // e sabemos logo a partir do role se ele pode fazer essas alterações ou não
-    private static String user=null;
-    private static int perk=0;
+    private String user=null;
+    private int perk=0;
 
-    public static void main(String[] args) throws IOException, NotBoundException, InterruptedException {
-        establishRMIConnection();
-        rmi.hello();
-        firstMenu();
+    public rmiClient() {
     }
 
-    private static void establishRMIConnection(){
+    public Services getRmi() {
+        return rmi;
+    }
+
+    public static void main(String[] args) throws IOException, NotBoundException, InterruptedException {
+        rmiClient client = new rmiClient();
+        client.establishRMIConnection();
+        client.getRmi().hello();
+        client.firstMenu();
+    }
+
+    private void establishRMIConnection(){
         try {
             rmi = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting");
         }catch (RemoteException | NotBoundException e) {
@@ -31,7 +39,7 @@ public class rmiClient {
         }
     }
 
-    private static void retryRMIConnection(){
+    private void retryRMIConnection(){
         while(true){
             try {
                 Thread.sleep(1000);
@@ -45,7 +53,7 @@ public class rmiClient {
         }
     }
 
-    private static void firstMenu(){
+    private void firstMenu(){
         int option;
         boolean verifier=false;
         System.out.println("");
@@ -84,7 +92,7 @@ public class rmiClient {
         }
     }
 
-    private static void validationMenu(int modifier){
+    private void validationMenu(int modifier){
         String username, password;
         int verifier;
         boolean validation;
@@ -141,7 +149,7 @@ public class rmiClient {
         }
     }
 
-    private static void mainMenu(){
+    private void mainMenu(){
         int option;
         boolean verifier=false;
         while(true) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal
@@ -187,9 +195,9 @@ public class rmiClient {
                 detailsMenu();
             else if(option == 3)
                 reviewMenu();
-            else if(option == 4)
-                System.out.println();
-                // continue
+            else if(option == 4){}
+                //uploadMenu();
+
             else if(option == 5)
                 System.out.println();
                 // continue
@@ -225,7 +233,7 @@ public class rmiClient {
         }
     }
 
-    private static void searchMenu(){
+    private void searchMenu(){
         int ob;
         String keyword=null, object, answer=null;
         boolean validation=false;
@@ -273,7 +281,7 @@ public class rmiClient {
         }
     }
 
-    private static void detailsMenu(){
+    private void detailsMenu(){
         int ob;
         String object, title=null, answer=null;
         boolean validation=false;
@@ -315,7 +323,8 @@ public class rmiClient {
         }
     }
 
-    private static void reviewMenu(){
+
+    private void reviewMenu(){
         int rating;
         String review=null, title=null;
         boolean validation=false, verifier=false;
@@ -365,7 +374,7 @@ public class rmiClient {
             System.out.println("Something went wrong! Maybe that album does not exist...");
     }
 
-    private static void createGroupMenu(){
+    private void createGroupMenu(){
         String groupID;
         while(true){
             try {
@@ -386,7 +395,7 @@ public class rmiClient {
         System.out.println("------------------------------------------------");
     }
 
-    private static void joinGroupMenu(){
+    private void joinGroupMenu(){
         int option;
         String groups=null;
         boolean verifier=false, validation;
@@ -441,7 +450,7 @@ public class rmiClient {
         }
     }
 
-    private static void manageGroup(){
+    private void manageGroup(){
         String groupID=null, text=null, object, objectName=null;
         int ob;
         boolean validation=false;
@@ -503,7 +512,7 @@ public class rmiClient {
         }
     }
 
-    private static void givePermissionsMenu(String perk) {
+    private void givePermissionsMenu(String perk) {
         String username=null, groupID=null;
         boolean validation=false;
         String verifier;
@@ -544,7 +553,7 @@ public class rmiClient {
         System.out.println(verifier);
     }
 
-    private static boolean stringChecker (String toCheck){
+    private boolean stringChecker (String toCheck){
         if(toCheck==null) {
             System.out.println("String is NULL. Please type something");
             return false;
