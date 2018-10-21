@@ -1,4 +1,4 @@
-﻿## Protocolo de comunicação 
+## Protocolo de comunicação 
 
 Especificação de todos os comandos que são enviados entre o servidor RMI e os servidores Multicast. Para efeitos de simplificação, assumi que o servidor RMI é (1) e os servidores Multicast são (2).
 
@@ -14,7 +14,7 @@ Não podem haver "|", ";" nem "\n" nas chaves ou valores.
 
 REQUEST: **type** | register ; **username** | new username ; **password** | new password \n
 
-ANSWER: **type** | status ; **register** | succeeded ou failed \n
+ANSWER: **type** | status ; **register** | succeeded ou failed ; admin | 0 ou 1\n
 
 REQUEST: **type** | data_count ; **object** | user\n
 

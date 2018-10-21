@@ -1,5 +1,6 @@
 package rmi;
 
+import java.io.IOException;
 import java.rmi.AccessException;
 import java.rmi.ConnectException;
 import java.rmi.NotBoundException;
@@ -9,9 +10,16 @@ import java.rmi.registry.Registry;
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+import sun.net.*;
+import java.net.*;
+
 public class RMIServer extends UnicastRemoteObject implements Services {
 
     private static Services s;
+    private String MULTICAST_ADDRESS = "224.0.224.0";
+    private int PORT = 4322;
+    private String name = "RMIServer";
 
     private RMIServer() throws RemoteException {
 
@@ -29,6 +37,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
 
     private static void createRegistry() throws RemoteException, InterruptedException {
+        /*Creates registry of new RMI server on port 7000
+        If AccessException happens => prints message
+        If ExportException happens => There is already a RMI server, then changes to backup RMI server*/
         int port = 7000;
         try {
             Registry registry = LocateRegistry.createRegistry(port);
@@ -42,7 +53,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
+
     private static void secondaryRMI() throws RemoteException, InterruptedException {
+        /*This function is executed when a new RMI server is created but there's already a main one*/
 
         try {
             s = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting"); // liga-se ao RMI Primário
@@ -52,7 +65,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             createRegistry(); //se não der, é porque entretanto deu cagada no primário e tenta ser ele o primário
         }
         int timer = 1;
-        //iniciam os pings
+        //iniciam os pings: ao fim de 5 pings, se não tiver obtido resposta do RMI primário, torna-se primário
         while (true){
             try {
                 Thread.sleep(500);
@@ -78,19 +91,70 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     public void hello() throws java.rmi.RemoteException {
         System.out.println("New client connected!");
+
+        //creates RMIWorker thread to deal with client interaction
     }
 
     public void ping() throws java.rmi.RemoteException {
         //esta funcao nao precisa de fazer nada pois so serve para testar a ligacao entre o primario e o secundario
     }
 
+    public String dealWithRequest(String request) {
+        MulticastSocket socket = null;
+        String message = null;
+
+        try {
+            socket = new MulticastSocket(PORT);  // creates socket and binds it
+            InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
+            System.out.println("hello");
+            socket.joinGroup(group); //joins multicast group
+            socket.setLoopbackMode(false);
+            System.out.println("This is my address: " + socket.getInterface().getHostAddress());
+            //sends request to multicast address
+            byte[] buffer = request.getBytes();
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);
+            socket.send(packet);
+
+            System.out.println("Sent to multicast address: " + request);
+
+            //waits for answer
+            buffer = new byte[256];
+            packet = new DatagramPacket(buffer, buffer.length);
+            socket = new MulticastSocket(4321);
+            socket.joinGroup(group);
+            socket.receive(packet); //bloqueante
+
+            //callback to client
+            message = new String(packet.getData(), 0, packet.getLength());
+
+            String tokens[] = message.split(" ; ");
+            String info[][] = new String[tokens.length][];
+            for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
+
+            System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            socket.close();
+            System.out.println("am i doing this?");
+            return message;
+        }
+    }
+
     public int register (String username, String password) throws java.rmi.RemoteException{
         String request = "type | register ; username | "+username+" ; password | "+password;
-        //se o register foi aprovado
-        String userCountRequest = "type | data_count ; object | user";
-        //dependendo se for o primeiro ou nao fica com o perk de owner da plataforma ou user normal
-        //se o register foi recusado retorna 4
-        return 1; //alterar quando comunicar com o multicast dependendo da resposta
+        String ans = this.dealWithRequest(request);
+
+        //se o register não foi aprovado
+        if (ans.equals("type | status ; register | failed\n")) {
+            return 4;
+        }
+        String tokens[] = ans.split(" ; ");
+        String info[][] = new String[tokens.length][];
+        for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
+        int ret = Integer.parseInt(info[2][1]);
+        if (ret == 1) return 1;
+        else return 3;
     }
 
     public int login(String username, String password) throws java.rmi.RemoteException{
