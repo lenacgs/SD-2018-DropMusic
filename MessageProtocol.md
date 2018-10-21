@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿	## Protocolo de comunicação 
+=======
+## Protocolo de comunicação 
+>>>>>>> master
 
 Especificação de todos os comandos que são enviados entre o servidor RMI e os servidores Multicast. Para efeitos de simplificação, assumi que o servidor RMI é (1) e os servidores Multicast são (2).
 
@@ -14,7 +18,7 @@ Não podem haver "|", ";" nem "\n" nas chaves ou valores.
 
 REQUEST: **type** | register ; **username** | new username ; **password** | new password \n
 
-ANSWER: **type** | status ; **register** | succeeded ou failed \n
+ANSWER: **type** | status ; **register** | succeeded ou failed ; admin | 0 ou 1\n
 
 REQUEST: **type** | data_count ; **object** | user\n
 
@@ -145,15 +149,14 @@ REQUEST: **type** | review ; **album\_title** | album title ; **username** | use
 ANSWER: **type** | review  ; **status** | success/fail \n
 
 
-###REQUISITO Nº 6
 
-Dar privilégios de editor a um user
+Dar privilégios de editor ou owner a um user
 
-REQUEST: **type** | grant\_perks ; **username** | username proprio ; **new\_editor** | username do novo editor \n
+REQUEST: **type** | grant\_perks ; **perk** | (editor / user) ; **username** | username proprio ; **new\_user** | username do novo editor ; **group** | groupID \n
 
 ANSWER: **type** | grant\_perks ; **status** | success/fail \n
 
-(Pode ser success ou fail, dependendo se o user que estiver a dar privilégios seja ou não editor
+(Pode ser success ou fail, dependendo se o user que estiver a dar privilégios seja ou não editor ou owner
 
 
 ####Neste caso, o user que recebeu os privilégios deve ser notificado imediatamente

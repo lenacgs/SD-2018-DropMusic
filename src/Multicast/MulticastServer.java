@@ -2,6 +2,8 @@ package Multicast;
 
 import Interface.*;
 import FileHandling.*;
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 import java.net.MulticastSocket;
 import java.io.*;
 import java.net.DatagramPacket;
@@ -18,6 +20,7 @@ public class MulticastServer extends Thread {
     private CopyOnWriteArrayList<User> loggedOn;
     private CopyOnWriteArrayList<Group> groups;
     private String pathToObjectFiles;
+    private String name;
 
     public void setUsersObjectFile(ObjectFile usersObjectFile) {
         this.usersObjectFile = usersObjectFile;
@@ -79,6 +82,7 @@ public class MulticastServer extends Thread {
         groups = new CopyOnWriteArrayList<Group>();
         loggedOn = new CopyOnWriteArrayList<User>();
         this.pathToObjectFiles = pathToObjectFiles;
+        this.name = name;
     }
 
     public ObjectFile getUsersObjectFile() {
@@ -118,17 +122,23 @@ public class MulticastServer extends Thread {
             socket = new MulticastSocket(PORT);
             InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
             socket.joinGroup(group);
+            socket.setLoopbackMode(false);
 
-            while(true){
+            System.out.println("This is my address: " + socket.getInterface().getHostAddress());
+
+            while(true){ //receiving
                 byte[] buffer = new byte[256];
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
+
                 String message = new String(packet.getData(), 0, packet.getLength());
 
-                //creates new thread for handling the new request
-                requestHandler newRequest = new requestHandler(message, this);
-                newRequest.start();
-            }
+                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + "with message: " + message);
+
+                    //creates new thread for handling the new request
+                    requestHandler newRequest = new requestHandler(message, this);
+                    newRequest.start();
+                }
         }catch(IOException e){
             e.printStackTrace();
         }finally{
@@ -138,7 +148,7 @@ public class MulticastServer extends Thread {
 }
 
 
-class requestHandler extends Thread{
+class requestHandler extends Thread{ //handles request and sends answer back to RMI
     private String request;
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4321;
@@ -233,12 +243,38 @@ class requestHandler extends Thread{
         if(info[0][0].equals("type")){
             String command = info[0][1];
             switch(command) {
-                case "register": {
-
-                }case "login": {
-                    User currentUser;
+                case "register":
                     String username = info[1][1];
                     String password = info[2][1];
+                    if (findUser(username) != null) { //já existe este username
+                        return "type | status ; operation | failed ; message | This username already exists... Try a different one! \n";
+                    }
+
+
+                    //else, register the new user
+
+                    int admin = 1;
+                    if (mainThread.getRegisteredUsers().size() > 0) admin = 3;
+
+                    User newUser = new User(username, password, admin);
+
+                    mainThread.getRegisteredUsers().add(newUser);
+
+                    try {
+                        mainThread.getUsersObjectFile().openWrite("users.obj");
+                    }catch (IOException e) {System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");}
+
+                    mainThread.getUsersObjectFile().writesObject(mainThread.getRegisteredUsers());
+
+                    mainThread.getUsersObjectFile().closeWrite();
+
+
+
+                    return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered! \n";
+                case "login": {
+                    User currentUser;
+                    username = info[1][1];
+                    password = info[2][1];
                     if ((currentUser = findUser(username)) == null) {
                         return "type | status ; operation | failed ; message | This username doesn't exist! \n";
                     }
@@ -253,7 +289,7 @@ class requestHandler extends Thread{
                     return "type | status ; operation | succeeded ; message | Welcome " + username + "! \n";
 
                 }case "logout":{
-                    String username = info[1][1];
+                    username = info[1][1];
                     User current = findUser(username);
                     if(current != null) {
                         mainThread.getLoggedOn().remove(current);
@@ -262,7 +298,7 @@ class requestHandler extends Thread{
                     return "type | status ; operation | succeeded \n";
 
                 }case "perks":{
-                    String username = info[1][1];
+                    username = info[1][1];
                     User current = findUser(username);
                     if(current == null){
                         return "type | status ; operation | failed \n";
@@ -286,11 +322,11 @@ class requestHandler extends Thread{
                         return "type | status ; operation | failed \n";
                     }
                 }case "groups": {
-                    String username = info[1][1];
+                    username = info[1][1];
                     User current = findUser(username);
                     return "type | groups ; list ; " + getAvailableGroups(current) + " \n";
                 }case "new_group": {
-                    String username = info[1][1];
+                    username = info[1][1];
                     User current = findUser(username);
                     mainThread.getGroups().add(new Group(current));
                     saveFile("groups.obj", mainThread.getGroups());
@@ -337,7 +373,7 @@ class requestHandler extends Thread{
                         return "type | status ; command | invalid";
                     }
                 }case "grant_perks": {
-                    String username = info[1][1];
+                    username = info[1][1];
                     String new_editor_username = info[2][1];
                     User current = findUser(username);
                     if(current.getPerks()<3){
@@ -366,7 +402,9 @@ class requestHandler extends Thread{
         MulticastSocket socket = null;
         try {
             socket = new MulticastSocket();  // create socket without binding it (only for sending)
-            byte buffer[] = translation(this.request).getBytes();
+            String message = translation(this.request);
+            System.out.println("Sent to multicast address: " + message);
+            byte buffer[] = message.getBytes();
             InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);
             socket.send(packet);
