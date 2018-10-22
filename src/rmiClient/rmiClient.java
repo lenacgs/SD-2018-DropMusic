@@ -1,7 +1,11 @@
 package rmiClient;
 
 import rmi.Services;
-import java.io.IOException;
+
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -195,9 +199,8 @@ public class rmiClient {
                 detailsMenu();
             else if(option == 3)
                 reviewMenu();
-            else if(option == 4){}
-                //uploadMenu();
-
+            else if(option == 4)
+                uploadMenu();
             else if(option == 5)
                 System.out.println();
                 // continue
@@ -231,6 +234,81 @@ public class rmiClient {
              else
                 System.out.println("Please select one of the given options");
         }
+    }
+
+    private void uploadMenu() {
+        System.out.println("You have to associate your music file with one of the musics info in our DB\n");
+        boolean validation = false;
+        String keyword = "", answer = "";
+
+        while (!validation){
+            System.out.println("----------------| Search |----------------");
+            System.out.println("| Insert your keyword(s):                |");
+            System.out.println("------------------------------------------");
+            keyword = sc.nextLine().replaceAll("^[,\\s]+", "");
+            validation = stringChecker(keyword);
+        }
+        //search for the keyword
+        try {
+            answer = rmi.search(keyword, "music");
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+        //warn the server that you will be sending a music file to associate with a certain file
+        try {
+            rmi.uploadFile(user, answer);
+        }catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+        uploadFile(user, answer);
+
+    }
+
+    //function to communicate with multicast server
+    private void TCPServerConnection(String username, String music, String path) throws UnknownHostException, IOException {
+        String serverIP = "127.0.0.1";
+        int serverPort = 5000;
+
+        //opens a new socket in any avaliable port
+        Socket sock = new Socket(serverIP, serverPort);
+
+        File file = new File(path);
+        long length = file.length();
+        byte[] bytes = new byte[16*1024];
+        InputStream in = new FileInputStream(file);
+        OutputStream out = sock.getOutputStream();
+
+        //write file content to output stream
+        int count;
+        while ((count = in.read(bytes)) > 0) {
+            out.write(bytes, 0, count);
+        }
+
+        out.close();
+        in.close();
+        sock.close();
+    }
+
+    private void uploadFile(String username, String music) {
+        boolean validation = false;
+        String path = null;
+
+        while (!validation){
+            System.out.println("-------------------| Search |-------------------");
+            System.out.println("| Insert the path to the file you want to upload |");
+            System.out.println("------------------------------------------------");
+            path = sc.nextLine().replaceAll("^[,\\s]+", "");
+            validation = stringChecker(path);
+
+            try {
+                TCPServerConnection(username, music, path);
+            } catch (IOException e) {
+                System.out.println("There was an exception: " + e);
+            }
+        }
+
     }
 
     private void searchMenu(){

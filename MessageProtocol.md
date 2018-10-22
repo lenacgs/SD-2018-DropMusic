@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿	## Protocolo de comunicação 
-=======
 ## Protocolo de comunicação 
->>>>>>> master
 
 Especificação de todos os comandos que são enviados entre o servidor RMI e os servidores Multicast. Para efeitos de simplificação, assumi que o servidor RMI é (1) e os servidores Multicast são (2).
 
@@ -179,3 +175,6 @@ REQUEST: **type** | join_group ; **username** | username ; **group** | group\n
 
 ANSWER: **type** | join_group ; **username** | username ; **group** | group ; **status** | success/fail\n
 
+
+####Upload de ficheiros para um servidor
+REQUEST: **type** | upload ; **username** | username ; **music_title** | music title \n

@@ -3,12 +3,12 @@ package Multicast;
 import Interface.*;
 import FileHandling.*;
 import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
-import java.net.MulticastSocket;
+import java.net.*;
 import java.io.*;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -388,6 +388,44 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "test": {
                     test();
                     return "type | status, command | tested";
+                }case "upload": {
+                    //há um user a querer fazer upload de um ficheiro
+                    username = info[1][1];
+                    String musicTitle = info[2][1];
+                    ServerSocket welcomeSocket = null;
+                    Socket connectionSocket = null;
+                    InputStream is = null;
+                    FileOutputStream fos = null;
+                    BufferedOutputStream bos = null;
+                    int bytesRead;
+                    int current = 0;
+
+                    //ligação TCP
+                    try{
+                        welcomeSocket = new ServerSocket(5000);
+
+                        connectionSocket = welcomeSocket.accept();
+                        System.out.println("Accepted connection " + connectionSocket);
+
+                        is = connectionSocket.getInputStream();
+
+                        //fos = new FileOutputStream(path_to_file) - não sei como isto vai funcionar...
+                        //bos = new BufferedOutputStream(fos);
+                        byte[] file = new byte[16*1024];
+                        bytesRead = is.read(file, 0, file.length);
+                        current = bytesRead;
+                    }catch(IOException e){
+                        System.out.println("Exception: " + e.getStackTrace());
+                    }
+
+
+
+
+
+
+
+
+
                 }default: {
                     return "type | status ; command | invalid";
                 }

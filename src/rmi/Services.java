@@ -16,4 +16,5 @@ public interface Services extends Remote {
     String newGroup(String username)throws java.rmi.RemoteException;
     String changeInfo(String object, String objectName, String text, String username, String groupID)throws java.rmi.RemoteException;
     String givePermissions(String perk, String username, String newUser, String groupID)throws java.rmi.RemoteException;
+    boolean uploadFile(String username, String musicTitle) throws java.rmi.RemoteException;
 }

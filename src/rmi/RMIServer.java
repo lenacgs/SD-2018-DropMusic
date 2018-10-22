@@ -214,6 +214,15 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return groups;
     }
 
+    public boolean uploadFile (String username, String musicTitle) throws java.rmi.RemoteException{
+        String request = "type | upload ; username | " + username + " ; music_title | " + musicTitle + " \n";
+        String ans = dealWithRequest(request);
+
+        //a resposta é sempre positiva... o user pesquisou por músicas que apenas ele tinha acesso, só o pôde fazer depois de ter feito login, portanto tem sempre permissão
+
+        return true;
+    }
+
     public boolean joinGroup(String username, String group)throws java.rmi.RemoteException{
         String request = "type | join_group ; username | "+username+" ; group | "+group;
         return true;
