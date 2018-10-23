@@ -8,12 +8,13 @@ public class Artist {
     private Description description;
     private ArrayList<String> concerts; //each concert should be "month/day/year - concert venue, city, country"
     private String genre;
+    private ArrayList<Music> musics;
 
     public Artist(String name, String genre) {
-        albuns = null;
+        albums = null;
         description = null;
         musics = null;
-        albuns  = null;
+        albums  = null;
         concerts = null;
         this.genre = genre;
         this.name = name;
@@ -52,11 +53,11 @@ public class Artist {
     }
 
     public ArrayList<Album> getAlbuns() {
-        return albuns;
+        return albums;
     }
 
     public void setAlbuns(ArrayList<Album> albuns) {
-        this.albuns = albuns;
+        this.albums = albuns;
     }
 
     public ArrayList<String> getConcerts() {

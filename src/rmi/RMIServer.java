@@ -35,7 +35,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     }
 
 
-
     private static void createRegistry() throws RemoteException, InterruptedException {
         /*Creates registry of new RMI server on port 7000
         If AccessException happens => prints message
@@ -88,6 +87,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             }
         }
     }
+
 
     public void hello() throws java.rmi.RemoteException {
         System.out.println("New client connected!");

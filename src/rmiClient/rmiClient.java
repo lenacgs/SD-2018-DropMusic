@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
@@ -242,7 +243,11 @@ public class rmiClient {
 
                             break;
                         }
-                        res = rmi.addInfo(this.user, "music", title, artist, genre, duration);
+                        try{
+                            res = rmi.addInfo(this.user, "music", title, artist, genre, duration);
+                        } catch (RemoteException e){
+                            retryRMIConnection();
+                        }
                     }
 
                     if (option == 2) { //user wants to add a new artist
@@ -290,7 +295,11 @@ public class rmiClient {
                                 continue;
                             break;
                         }
-                        res = rmi.addInfo(this.user, "artist", name, description, concerts, genre);
+                        try {
+                            res = rmi.addInfo(this.user, "artist", name, description, concerts, genre);
+                        }catch (RemoteException e){
+                            retryRMIConnection();
+                        }
                     }
 
                     if (option == 3) { //user wants to add a new album
@@ -369,7 +378,11 @@ public class rmiClient {
 
                             break;
                         }
-                        res = rmi.addInfo(this.user, artist, title, musics, year, publisher, genre, description);
+                        try {
+                            res = rmi.addInfo(this.user, artist, title, musics, year, publisher, genre, description);
+                        }catch(RemoteException e){
+                            retryRMIConnection();
+                        }
                     }
 
                     break;
