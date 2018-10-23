@@ -136,7 +136,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             e.printStackTrace();
         } finally {
             socket.close();
-            System.out.println("am i doing this?");
             return message;
         }
     }
@@ -242,6 +241,46 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
         //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
         return request;
+    }
+
+    public boolean addInfo(String username, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
+
+        if (type.equals("music")) {
+            String title = s1, artist = s2, genre = s3, duration = s4;
+
+            String request = "type | add_music ; username | " + username + /*" ; groups | " + groups + */ " ; title | " + title + " ; artist | " + artist + " ; genre | " + genre
+                    + " ; duration | " + duration + " \n";
+
+            String ans = dealWithRequest(request);
+
+            if (ans.equals("type | add ; status | success \n"))
+                return true;
+            else return false;
+        }
+
+        else if (type.equals("artist")) {
+            String name = s1, description = s2, concerts = s3, genre = s4;
+
+            String request = "type | add_artist ; username | " + username + " ; name | " + name + " ; description | " + description + " ; concerts | " + concerts + " ; genre | " + genre + " \n";
+
+            String ans = dealWithRequest(request);
+
+            if (ans.equals("type | add ; status | success \n"))
+                return true;
+            else return false;
+        }
+        return false;
+    }
+
+    public boolean addInfo(String username, String artist, String title, String musics, String year, String publisher, String genre, String description) { //used for albums
+        String request = "type | add_album ; username | " + username + " ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
+                + publisher + " ; genre | " + genre + " ; description | " + description + " \n";
+
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | add ; status | success \n"))
+            return true;
+        return false;
     }
 
 }

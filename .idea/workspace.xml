@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80c123d5-c966-4df5-a368-7ca9727665e8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmiClient/rmiClient.class" afterPath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmiClient/rmiClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MessageProtocol.md" afterPath="$PROJECT_DIR$/MessageProtocol.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Interface/Artist.java" afterPath="$PROJECT_DIR$/src/Interface/Artist.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmi/RMIServer.java" afterPath="$PROJECT_DIR$/src/rmi/RMIServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmi/Services.java" afterPath="$PROJECT_DIR$/src/rmi/Services.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" afterPath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/users.obj" afterPath="$PROJECT_DIR$/users.obj" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,28 +22,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MulticastServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+      <file leaf-file-name="rmiClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="400" column="36" lean-forward="false" selection-start-line="400" selection-start-column="36" selection-end-line="400" selection-end-column="36" />
+            <state relative-caret-position="-1819">
+              <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="24" />
               <folding>
-                <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
-                <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
-                <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-                <element signature="method#test#0;class#requestHandler#0" expanded="false" />
-                <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-                <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MulticastServer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="84" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="454" selection-end-column="1" />
+              <folding>
+                <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
+                <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
+                <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
+                <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="217" column="40" lean-forward="true" selection-start-line="217" selection-start-column="26" selection-end-line="217" selection-end-column="40" />
+            <state relative-caret-position="592">
+              <caret line="270" column="9" lean-forward="false" selection-start-line="270" selection-start-column="9" selection-end-line="270" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -49,22 +63,8 @@
         <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="91" lean-forward="false" selection-start-line="18" selection-start-column="91" selection-end-line="18" selection-end-column="91" />
+              <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="146" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rmiClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="274" column="41" lean-forward="false" selection-start-line="274" selection-start-column="41" selection-end-line="274" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#937#938#0" expanded="true" />
-                <element signature="e#963#964#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -79,6 +79,14 @@
       <find>stringChecker</find>
       <find>createre</find>
       <find>rmi.register</find>
+      <find>fileHandler</find>
+      <find>registeredUsers</find>
+      <find>main</find>
+      <find>lena</find>
+      <find>login</find>
+      <find>rmi.</find>
+      <find>users.obj</find>
+      <find>filehan</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -93,10 +101,11 @@
         <option value="$PROJECT_DIR$/src/FileHandling/ObjectFile.java" />
         <option value="$PROJECT_DIR$/src/Interface/User.java" />
         <option value="$PROJECT_DIR$/src/Multicast/MulticastClient.java" />
-        <option value="$PROJECT_DIR$/src/rmi/Services.java" />
-        <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
-        <option value="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
         <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
+        <option value="$PROJECT_DIR$/src/rmi/Services.java" />
+        <option value="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Group.java" />
+        <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
       </list>
     </option>
   </component>
@@ -119,6 +128,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -151,6 +161,18 @@
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="FileHandling" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Interface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Multicast" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -178,7 +200,6 @@
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -197,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.rmiClient">
+  <component name="RunManager" selected="Application.MulticastServer1">
     <configuration name="MulticastClient" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Multicast.MulticastClient" />
       <option name="VM_PARAMETERS" />
@@ -318,8 +339,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.rmiClient" />
-        <item index="1" class="java.lang.String" itemvalue="Application.RMIServer" />
+        <item index="0" class="java.lang.String" itemvalue="Application.RMIServer" />
+        <item index="1" class="java.lang.String" itemvalue="Application.rmiClient" />
       </list>
     </recent_temporary>
   </component>
@@ -335,11 +356,12 @@
       <updated>1540141601318</updated>
       <workItem from="1540141603694" duration="86000" />
       <workItem from="1540142466096" duration="13205000" />
+      <workItem from="1540301151474" duration="6994000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14344000" />
+    <option name="totallyTimeSpent" value="26781000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -347,11 +369,10 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2966457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2966457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -363,6 +384,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -380,51 +402,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="67" column="27" lean-forward="false" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="27" />
-          <folding>
-            <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="150" column="83" lean-forward="false" selection-start-line="150" selection-start-column="83" selection-end-line="150" selection-end-column="83" />
-          <folding>
-            <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="124" column="40" lean-forward="false" selection-start-line="124" selection-start-column="40" selection-end-line="124" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-            <element signature="e#963#964#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -437,9 +420,7 @@
             <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
             <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -459,9 +440,7 @@
             <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
             <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -502,9 +481,7 @@
             <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
             <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -597,9 +574,7 @@
             <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
             <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -610,8 +585,6 @@
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-            <element signature="e#963#964#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -631,9 +604,7 @@
             <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
             <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -651,8 +622,6 @@
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-            <element signature="e#963#964#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -665,9 +634,7 @@
             <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
             <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -687,9 +654,7 @@
             <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
             <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -730,9 +695,7 @@
             <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
             <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -755,13 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -810,46 +766,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interface/Music.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interface/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="88" column="24" lean-forward="true" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interface/User.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="41" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="18" column="91" lean-forward="false" selection-start-line="18" selection-start-column="91" selection-end-line="18" selection-end-column="91" />
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="146" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="270" column="9" lean-forward="false" selection-start-line="270" selection-start-column="9" selection-end-line="270" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="274" column="41" lean-forward="false" selection-start-line="274" selection-start-column="41" selection-end-line="274" selection-end-column="41" />
+        <state relative-caret-position="-1819">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-            <element signature="e#963#964#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="400" column="36" lean-forward="false" selection-start-line="400" selection-start-column="36" selection-end-line="400" selection-end-column="36" />
+        <state relative-caret-position="218">
+          <caret line="84" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="454" selection-end-column="1" />
           <folding>
             <element signature="method#requestHandler#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findGroup#0;class#requestHandler#0" expanded="false" />
             <element signature="method#findUser#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#test#0;class#requestHandler#0" expanded="false" />
             <element signature="method#getAvailableGroups#0;class#requestHandler#0" expanded="false" />
-            <element signature="method#saveFile#0;class#requestHandler#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="217" column="40" lean-forward="true" selection-start-line="217" selection-start-column="26" selection-end-line="217" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>

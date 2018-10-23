@@ -70,7 +70,6 @@ public class MulticastServer extends Thread {
 
     public static void main(String[] args) {
         MulticastServer server = new MulticastServer(args[0], args[1]);
-        System.setProperty("java.net.preferIPv4Stack", "true");
         server.start();
     }
 

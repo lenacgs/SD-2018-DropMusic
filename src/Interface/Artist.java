@@ -6,8 +6,6 @@ public class Artist {
     private String name;
     private ArrayList<Album> albums;
     private Description description;
-    private ArrayList<Music> musics;
-    private ArrayList<Album> albuns;
     private ArrayList<String> concerts; //each concert should be "month/day/year - concert venue, city, country"
     private String genre;
 
