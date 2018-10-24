@@ -75,6 +75,23 @@ REQUEST: **type** | new_group ; **username** | username\n
 
 ANSWER: **type** | new_group ; **object** | groupID ; **status** | succeeded ou failed\n
 
+####Grant Perks inside a group
+
+REQUEST: **type** | grant_perks_group ; **username** | username ; **new_editor/owner** | username ; **groupID** | groupID ; **new_perks** | owner/editor \n
+
+ANSWER: **type** | grant_perks_group ; **operation** | succeeded/failed \n
+
+####Manage group requests
+
+REQUEST: **type** | manage_requests ; **username** | username ; **new_member** | username ; **groupID** | groupID ; **request** | accepted/declined \n
+
+ANSWER: **type** | manage_requests ; **request** | accepted/declined \n
+
+####Expell group_user
+
+REQUEST: **type** | expell_user ; **username** | username ; **expelled_user** | username ; **groupID** | groupID \n
+
+ANSWER: **type** | expell_user ; **operation** | succeeded/failed;
 
 ### REQUISITO Nº 3
 
@@ -208,6 +225,7 @@ REQUEST: **type** | join_group ; **username** | username ; **group** | group\n
 
 ANSWER: **type** | join_group ; **username** | username ; **group** | group ; **status** | success/fail\n
 
+###
 
 ####Upload de ficheiros para um servidor
 REQUEST: **type** | upload ; **username** | username ; **music_title** | music title \n
