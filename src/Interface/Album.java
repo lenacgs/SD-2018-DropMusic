@@ -2,8 +2,9 @@
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Album implements Serializable{
+    public class Album implements Serializable{
     private static final long serialVersionUID = 4L;
     private Artist artist;
     private String title;
@@ -12,8 +13,8 @@ public class Album implements Serializable{
     private String publisher;
     private String genre;
     private Description description;
-    private ArrayList<Review> reviews;
-
+    private CopyOnWriteArrayList<Review> reviews;
+    private CopyOnWriteArrayList<Integer> groups;
     public Album(Artist artist, String title, int yearOfPublication, ArrayList<Music> musics, String publisher, String genre, Description description) {
         this.artist = artist;
         this.title = title;
@@ -22,7 +23,8 @@ public class Album implements Serializable{
         this.publisher = publisher;
         this.genre = genre;
         this.description = description;
-        this.reviews = new ArrayList<>();
+        this.reviews = new CopyOnWriteArrayList<>();
+        this.groups = new CopyOnWriteArrayList<>();
     }
 
     public int getYearOfPublication() {
@@ -81,11 +83,11 @@ public class Album implements Serializable{
         this.description = description;
     }
 
-    public ArrayList<Review> getReviews() {
+    public CopyOnWriteArrayList<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(ArrayList<Review> reviews) {
+    public void setReviews(CopyOnWriteArrayList<Review> reviews) {
         this.reviews = reviews;
     }
 

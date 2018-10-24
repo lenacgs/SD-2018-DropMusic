@@ -379,7 +379,18 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         }
     }
 
-    private ArrayList<Music> findMusic(String keyword){
+    private boolean verifyGroups(ArrayList<Integer> musicGroups, ArrayList<Group> userGroups){
+        for(Integer i : musicGroups){
+            for(Group g : userGroups){
+                if(g.getGroupID() == i){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private ArrayList<Music> findMusic(String keyword, User user){
         Iterator it = mainThread.getSongs().iterator();
 
         ArrayList<Music> toReturn = new ArrayList<>();
@@ -387,7 +398,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
         while (it.hasNext()) {
             Music aux = (Music)it.next();
-            if(aux.getTitle().contains(keyword) || aux.getArtist().getName().contains(keyword) || aux.getGenre().contains(keyword)) {
+            if((aux.getTitle().contains(keyword) || aux.getArtist().getName().contains(keyword) || aux.getGenre().contains(keyword)) && verifyGroups(aux.getGroups(), user.getDefaultShareGroups())) {
                 toReturn.add(aux);
                 i++;
             }
@@ -446,7 +457,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         if(info[0][0].equals("type")){
             String command = info[0][1];
             switch(command) {
-                case "register":
+                case "register": {
                     String username = info[1][1];
                     String password = info[2][1];
                     if (findUser(username) != null) { //já existe este username
@@ -465,10 +476,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
                     return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered! \n";
-                case "login": {
+                }case "login": {
                     User currentUser;
-                    username = info[1][1];
-                    password = info[2][1];
+                    String username = info[1][1];
+                    String password = info[2][1];
                     if ((currentUser = findUser(username)) == null) {
                         return "type | status ; operation | failed ; message | This username doesn't exist! \n";
                     }
@@ -483,7 +494,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | status ; operation | succeeded ; message | Welcome " + username + "! \n";
 
                 }case "logout":{
-                    username = info[1][1];
+                    String username = info[1][1];
                     User current = findUser(username);
                     if(current != null) {
                         mainThread.getLoggedOn().remove(current);
@@ -492,7 +503,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | status ; operation | succeeded \n";
 
                 }case "perks":{
-                    username = info[1][1];
+                    String username = info[1][1];
                     User current = findUser(username);
                     if(current == null){
                         return "type | status ; operation | failed \n";
@@ -516,17 +527,17 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | status ; operation | failed \n";
                     }
                 }case "groups": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     User current = findUser(username);
                     return "type | groups ; list ; " + getAvailableGroups(current) + " \n";
                 }case "new_group": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     User current = findUser(username);
                     mainThread.getGroups().add(new Group(current, mainThread.getGroups().size() + 1));
                     saveFile("src/Multicast/groups.obj", mainThread.getGroups());
                     return "type | new_group ; operation | succeeded \n";
                 }case "join_group": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     int groupID = Integer.parseInt(info[2][1]);
                     User current = findUser(username);
                     Group g = findGroup(groupID);
@@ -534,7 +545,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
                     return "type | join_group ; operation | succeeded \n";
                 }case "grant_perks_group": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     String username2 = info[2][1];
                     int groupID = Integer.parseInt(info[3][1]);
                     User current = findUser(username);
@@ -545,49 +556,48 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                     saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
                 }case "search": {
-                    String keyword = info[1][1];
-                    String object = info[2][1];
-                    String toReturn="type | ";
+                    String username = info[1][1];
+                    User current = findUser(info[1][1]);
+                    String keyword = info[2][1];
+                    String object = info[3][1];
+                    String toReturn = "type | ";
                     if(object.equals("music")){
-                        toReturn+="music_list ; item_count | ";
-                        ArrayList<Music> m = findMusic(keyword);
+                        toReturn += "music_list ; item_count | ";
+                        ArrayList<Music> m = findMusic(keyword, current);
                         if(m==null)
-                            toReturn+="0";
+                            toReturn += "0";
                         else {
-                            toReturn+=m.size()+" ; item_list | ";
+                            toReturn += m.size()+" ; item_list | ";
                             for (Music music : m) {
-                                toReturn +=music.getTitle()+", "+music.getArtist().getName()+"\n";
+                                toReturn += music.getTitle()+", "+music.getArtist().getName();
                             }
                         }
-                    }
-                    else if(object.equals("album")){
-                        toReturn+="album_list ; item_count | ";
+                    }else if(object.equals("album")){
+                        toReturn += "album_list ; item_count | ";
                         ArrayList<Album> a = findAlbum(keyword);
                         if(a==null)
-                            toReturn+="0";
+                            toReturn += "0";
                         else {
-                            toReturn+=a.size()+" ; item_list | ";
+                            toReturn += a.size() + " ; item_list | ";
                             for (Album album : a) {
-                                toReturn +=album.getTitle()+", "+album.getArtist().getName()+"\n";
+                                toReturn += album.getTitle() + ", " + album.getArtist().getName();
                             }
                         }
-                    }
-                    else if(object.equals("artist")){
-                        toReturn+="artist_list ; item_count | ";
+                    }else if(object.equals("artist")){
+                        toReturn += "artist_list ; item_count | ";
                         ArrayList<Artist> ar = searchForArtist(keyword);
-                        if(ar==null)
-                            toReturn+="0";
+                        if(ar == null)
+                            toReturn += "0";
                         else {
-                            toReturn+=ar.size()+" ; item_list | ";
+                            toReturn += ar.size() + " ; item_list | ";
                             for (Artist artist : ar) {
-                                toReturn +=artist.getName()+"\n";
+                                toReturn += artist.getName();
                             }
                         }
                     }
                     return toReturn;
-
                 }case "add_music": {
-                    username = info[1][1];
+                    String username = info[1][1];
 
                     User current = findUser(username);
                     if (current.getPerks() < 3) { //se é editor ou owner
@@ -627,8 +637,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | add_music ; operation | failed \n";
 
                 }case "add_artist" : {
-                    username = info[1][1];
-
+                    String username = info[1][1];
                     User current = findUser(username);
                     if (current.getPerks() < 3) {
                         String name = info[2][1];
@@ -649,8 +658,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                     return "type | add_artist ; operation | failed \n";
                 }case "add_album": {
-                    username = info[1][1];
-
+                    String username = info[1][1];
                     User current = findUser(username);
                     if (current.getPerks() < 3) {
                         String title = info[2][1];
@@ -685,16 +693,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                     return "type | add_album ; operation | failed \n";
 
-                }case "add_info": {
-                    if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {
-                        if (true) {
-                            return "type | status ; add_info | successful";
-                        } else {
-                            return "type | status ; add_info | failed";
-                        }
-                    } else {
-                        return "type | status ; command | invalid";
-                    }
                 }case "change_info": {
                     if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {
                         if (true) {
@@ -726,7 +724,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | status ; command | invalid";
                     }
                 }case "grant_perks": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     String new_editor_username = info[2][1];
                     User current = findUser(username);
                     if(current.getPerks()<3){
@@ -743,7 +741,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | status, command | tested";
                 }case "upload": {
                     //há um user a querer fazer upload de um ficheiro
-                    username = info[1][1];
+                    String username = info[1][1];
                     String musicTitle = info[2][1];
                     ServerSocket welcomeSocket = null;
                     Socket connectionSocket = null;
@@ -770,15 +768,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }catch(IOException e){
                         System.out.println("Exception: " + e.getStackTrace());
                     }
-
-
-
-
-
-
-
-
-
                 }default: {
                     return "type | status ; command | invalid";
                 }

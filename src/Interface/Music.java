@@ -26,6 +26,8 @@ public class Music implements Serializable {
         this.genre = genre;
     }
 
+    public ArrayList<Integer> getGroups() { return this.groups;  }
+
     public String getTitle() {
         return title;
     }
