@@ -1,10 +1,12 @@
 package Interface;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Description {
+public class Description implements Serializable{
+    private static final long serialVersionUID = 4L;
     private String text;
-    private ArrayList<User> editors;
+    private ArrayList<User> editors = new ArrayList<>();
 
     public Description(String text, User editor) {
         this.text = text;

@@ -120,9 +120,34 @@ Se o user não tiver privilégios para alterar/adicionar a informação -> fail
 
 ####Adicionar informação de álbuns/artistas
 
-REQUEST: **type** | add\_info ; **object** | album/artist ; **new_info** | new\_text ; **username** | username \n
+Esta função é usada quando um editor quer **acrescentar** um novo álbum, música ou artista às bases de dados, partilhando-as com grupos seleccionados
 
-ANSWER: **type** | add\_info ; **status** | success/fail \n
+Parâmetros que são pedidos ao user para colocar no novo objeto:
+
+Numa nova música: title, artist, genre, duration
+
+Num novo álbum: title, artist, list of musics, year of publication, publisher, genre, description
+
+Num novo artista: name, description, concerts, genre
+
+Há duas funções diferentes no RMI para addInfo, visto que nas músicas e nos artistas precisamos de 4 parâmetros, mas no novo artista precisamos de 7. Por isto, há 3 tipos de requests
+
+#####Add new music
+
+REQUEST: **type** | add\_music ; **username** | username que vai ficar associado à adição ; **groups** | lista de grupos com quem é partilhada esta informação ; **title** | title; **artist** | artist ; **genre** | genre ; **duration** | duration \n
+
+#####Add new artist
+
+REQUEST: **type** | add\_artist ; **username** | username que vai ficar associado à adição ; **groups** | lista de grupos com quem é partilhada esta informação ; **name** | name; **description** | description ; **concerts** | lista de concertos próximos* ; **genre** | genre \n
+
+\* - a lista de concertos deve conter os concertos separados por vírgulas, e cada concerto deve ser "concertVenue-city-country-year-month-day-hour"
+
+#####Add new album
+
+REQUEST: **type** | add\_album ; **username** | useername que vai ficar associado à adição ; **groups** | lista de grupos com quem é partilhada esta informação ; **title** | title ; **artist** | artist ; **musiclist** | lista de músicas do álbum ; **year** | ano de publicação ; **publisher** | editora ; **genre** | genre ; **description** | description \n
+
+
+ANSWER: **type** | add ; **status** | success/fail ; **message** | message \n
 
 
 ###REQUISITO Nº 4
