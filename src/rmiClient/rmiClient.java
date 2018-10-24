@@ -98,36 +98,37 @@ public class rmiClient {
         }
     }
 
-    private void validationMenu(int modifier){
-        String username, password;
+    private void validationMenu(int modifier) {
+        String username, password=null;
         int verifier;
         boolean validation;
         System.out.println("(you can type '0' at any time to exit)");
-        while(true) {
+        while (true) {
             System.out.print("\nUsername: ");
             username = sc.nextLine().replaceAll("^[,\\s]+", "");
             if (username.equals("0")) {
                 break;
             }
-            if(username.contains(" ")) {
+            if (username.contains(" ")) {
                 System.out.println("Username cannot contain spaces");
                 continue;
             }
-            validation=stringChecker(username);
-            if(!validation)
+            validation = stringChecker(username);
+            if (!validation)
                 continue;
             System.out.print("\nPassword: ");
             password = sc.nextLine().replaceAll("^[,\\s]+", "");
             if (password.equals("0")) {
                 break;
             }
-            if(password.contains(" ")) {
+            if (password.contains(" ")) {
                 System.out.println("Password cannot contain spaces");
                 continue;
             }
-            validation=stringChecker(password);
-            if(!validation)
+            validation = stringChecker(password);
+            if (!validation)
                 continue;
+
             try {
                 //funcao de registar e login tem que devolver um boolean
                 if (modifier == 1) //registar
@@ -151,8 +152,6 @@ public class rmiClient {
                     else
                         System.out.println("Invalid Credentials!");
                 }
-            } catch (RemoteException e) {
-                retryRMIConnection();
             }
         }
     }

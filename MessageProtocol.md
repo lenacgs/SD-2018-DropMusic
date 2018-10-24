@@ -136,7 +136,7 @@ REQUEST: **type** | add\_artist ; **username** | username que vai ficar associad
 
 #####Add new album
 
-REQUEST: **type** | add\_album ; **username** | username que vai ficar associado à adição ; **groups** | lista de grupos com quem é partilhada esta informação ; **title** | title ; **artist** | artist ; **musiclist** | lista de músicas do álbum ; **year** | ano de publicação ; **publisher** | editora ; **genre** | genre ; **description** | description \n
+REQUEST: **type** | add\_album ; **username** | useername que vai ficar associado à adição ; **groups** | lista de grupos com quem é partilhada esta informação ; **title** | title ; **artist** | artist ; **musiclist** | lista de músicas do álbum ; **year** | ano de publicação ; **publisher** | editora ; **genre** | genre ; **description** | description \n
 
 
 ANSWER: **type** | add ; **status** | success/fail ; **message** | message \n
