@@ -12,13 +12,13 @@ Não podem haver "|", ";" nem "\n" nas chaves ou valores.
 
 ####User Registration
 
-REQUEST: **type** | register ; **username** | new username ; **password** | new password \n
+REQUEST: **type** | register ; **username** | new\_username ; **password** | new password \n
 
 ANSWER: **type** | status ; **register** | succeeded ou failed ; admin | 0 ou 1\n
 
-REQUEST: **type** | data_count ; **object** | user\n
+REQUEST: **type** | data\_count ; **object** | user\n
 
-ANSWER: **type** | data_count ; **object** | user ; **count** | <n users>\n (isto para saber se é o primeiro para ficar owner da plataforma)
+ANSWER: **type** | data\_count ; **object** | user ; **count** | <n users>\n (isto para saber se é o primeiro para ficar owner da plataforma)
 
 
 ####User Login
@@ -49,9 +49,9 @@ ANSWER: **type** | perks ; **user** | 1(owner) / 2(editor) / 3(normal)\n
 
 ####Check for user perks inside a group (normal user, editor or owner?)
 
-REQUEST: **type** | perks_group ; **username** | username ; **groupID** | groupID \n
+REQUEST: **type** | perks\_group ; **username** | username ; **groupID** | groupID \n
 
-ANSWER: **type** | perks_group ; **user** | "normal" or "editor" or "owner" \n
+ANSWER: **type** | perks_\group ; **user** | "normal" or "editor" or "owner" \n
 
 
 ####Check for groups
@@ -64,40 +64,46 @@ ANSWER: **type** | groups ; **list** | <group1,group2,...>\n
 
 ####Check for own groups
 
-REQUEST: **type** | group_users ; **group** | group\n	
+REQUEST: **type** | group\_users ; **group** | group\n	
 
-ANSWER: **type** | group_users ; **list** | <user1,user2,...>\n
+ANSWER: **type** | group\_users ; **list** | <user1,user2,...>\n
 (isto para apresentar aos users que pertencem aquele grupo a notificacao de que foi alterada informacao)
 
 ####Create Group
 	
-REQUEST: **type** | new_group ; **username** | username\n
+REQUEST: **type** | new\_group ; **username** | username\n
 
-ANSWER: **type** | new_group ; **object** | groupID ; **status** | succeeded ou failed\n
+ANSWER: **type** | new\_group ; **object** | groupID ; **status** | succeeded ou failed\n
 
 ####Grant Perks inside a group
 
-REQUEST: **type** | grant_perks_group ; **username** | username ; **new_editor/owner** | username ; **groupID** | groupID ; **new_perks** | 1 (owner) or 2 (editor) \n
+REQUEST: **type** | grant\_perks\_group ; **username** | username ; **new_editor/owner** | username ; **groupID** | groupID ; **new_perks** | 1 (owner) or 2 (editor) \n
 
-ANSWER: **type** | grant_perks_group ; **operation** | succeeded/failed \n
+ANSWER: **type** | grant\_perks\_group ; **operation** | succeeded/failed \n
+
+####Get group requests
+
+REQUEST: **type** | get\_requests ; **username** | username ; **groupID** | groupID
+
+ANSWER: **type** | get\_requests; **operation** | succeeded/failed ; (if succeeded) **list** | <user1, user2,...>
 
 ####Manage group requests
 
-REQUEST: **type** | manage_request ; **username** | username ; **new_member** | username ; **groupID** | groupID ; **request** | accepted/declined \n
+REQUEST: **type** | manage\_request ; **username** | username ; **new_user** | username ; **groupID** | groupID ; **request** | accepted/declined \n
 
-ANSWER: **type** | manage_request ; **operation** | succeeded/failed \n
+ANSWER: **type** | manage\_request ; **operation** | succeeded/failed \n
 
 ####Expell group_user
 
-REQUEST: **type** | expell_user ; **username** | username ; **expelled_user** | username ; **groupID** | groupID \n
+REQUEST: **type** | expell\_user ; **username** | username ; **expelled_user** | username ; **groupID** | groupID \n
 
-ANSWER: **type** | expell_user ; **operation** | succeeded/failed;
+ANSWER: **type** | expell\_user ; **operation** | succeeded/failed;
 
 ####Leave group
 
-REQUEST: **type** | leave_group ; **username** | username ; **groupID** | groupID
+REQUEST: **type** | leave\_group ; **username** | username ; **groupID** | groupID
 
-ANSWER: **type** | leave_group ; **operation** | succeeded/failed 
+ANSWER: **type** | leave\_group ; **operation** | succeeded/failed 
 
 ### REQUISITO Nº 3
 
@@ -227,9 +233,9 @@ Ainda não pensei como vai funcionar a questão das notificações caso o user n
 
 #### Join group
 
-REQUEST: **type** | join_group ; **username** | username ; **group** | group\n
+REQUEST: **type** | join\_group ; **username** | username ; **group** | group\n
 
-ANSWER: **type** | join_group ; **username** | username ; **group** | group ; **status** | success/fail\n
+ANSWER: **type** | join\_group ; **username** | username ; **group** | group ; **status** | success/fail\n
 
 ###
 
