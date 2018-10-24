@@ -2,6 +2,7 @@ package Interface;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class Group implements Serializable {
@@ -9,6 +10,7 @@ public class Group implements Serializable {
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<User> editors = new ArrayList<>();
     private ArrayList<User> owners = new ArrayList<>();
+    private ArrayList<User> requests = new ArrayList<>();
 
     private int groupID;
 
@@ -17,6 +19,53 @@ public class Group implements Serializable {
         this.addEditor(creator);
         this.addOwner(creator);
         this.groupID = groupID;
+    }
+
+    public void addRequest(User user) { this.requests.add(user); }
+
+    public void removeRequest(String username) {
+        for(User u : this.requests){
+            if(u.getUsername().equals(username)){
+                this.requests.remove(u);
+                return;
+            }
+        }
+    }
+
+    public String getGroupRequests(){
+        String reply = "<";
+        int counter = 0;
+
+        for(User u : this.requests){
+            if(counter++ > 0){
+                reply += ",";
+            }
+            reply += u.getUsername();
+        }
+        reply += ">";
+        return reply;
+    }
+
+    public void removeUser(String username, ArrayList<User> users) {
+        for(User u : users){
+            if(u.getUsername().equals(username)){
+                users.remove(u);
+                return;
+            }
+        }
+    }
+
+    public int userPerks(String username){
+        for(User u : this.owners) {
+            if (u.getUsername().equals(username)) return 1;
+        }
+        for(User u : this.editors) {
+            if (u.getUsername().equals(username)) return 2;
+        }
+        for(User u : this.users) {
+            if (u.getUsername().equals(username)) return 3;
+        }
+        return 0;
     }
 
     public void addUser(User user) {
@@ -32,6 +81,12 @@ public class Group implements Serializable {
     }
 
     public int getGroupID(){ return this.groupID;}
+
+    public ArrayList<User> getUsers(){ return this.users;}
+
+    public ArrayList<User> getEditors() { return this.editors;}
+
+    public ArrayList<User> getOwners() { return this.editors;}
 
     public boolean isUser(User user) {
         return this.users.contains(user);
