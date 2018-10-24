@@ -1,6 +1,9 @@
 package Interface;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
+    private static final long serialVersionUID = 4L;
     private int rate;
     private String text;
     private User user;

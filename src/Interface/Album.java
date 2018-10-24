@@ -1,8 +1,10 @@
     package Interface;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Album {
+public class Album implements Serializable{
+    private static final long serialVersionUID = 4L;
     private Artist artist;
     private String title;
     private int yearOfPublication;
@@ -12,14 +14,15 @@ public class Album {
     private Description description;
     private ArrayList<Review> reviews;
 
-    public Album(String title, Artist artist, int year, String publisher, String genre) {
+    public Album(Artist artist, String title, int yearOfPublication, ArrayList<Music> musics, String publisher, String genre, Description description) {
         this.artist = artist;
-        this.yearOfPublication = year;
         this.title = title;
+        this.yearOfPublication = yearOfPublication;
+        this.musics = musics;
         this.publisher = publisher;
         this.genre = genre;
-        this.description = null;
-        this.musics = null;
+        this.description = description;
+        this.reviews = new ArrayList<>();
     }
 
     public int getYearOfPublication() {

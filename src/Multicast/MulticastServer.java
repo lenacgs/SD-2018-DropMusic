@@ -20,6 +20,74 @@ public class MulticastServer extends Thread {
     private CopyOnWriteArrayList<Group> groups;
     private String pathToObjectFiles;
     private String name;
+    private ObjectFile groupObjectFile; //file for groups
+    private ObjectFile songsObjectFile;
+    private ObjectFile artistsObjectFile;
+    private ObjectFile albumsObjectFile;
+    private CopyOnWriteArrayList<Music> songs;
+    private CopyOnWriteArrayList<Artist> artists;
+
+    public void setGroups(CopyOnWriteArrayList<Group> groups) {
+        this.groups = groups;
+    }
+
+    public ObjectFile getGroupObjectFile() {
+        return groupObjectFile;
+    }
+
+    public void setGroupObjectFile(ObjectFile groupObjectFile) {
+        this.groupObjectFile = groupObjectFile;
+    }
+
+    public ObjectFile getSongsObjectFile() {
+        return songsObjectFile;
+    }
+
+    public void setSongsObjectFile(ObjectFile songsObjectFile) {
+        this.songsObjectFile = songsObjectFile;
+    }
+
+    public ObjectFile getArtistsObjectFile() {
+        return artistsObjectFile;
+    }
+
+    public void setArtistsObjectFile(ObjectFile artistsObjectFile) {
+        this.artistsObjectFile = artistsObjectFile;
+    }
+
+    public ObjectFile getAlbumsObjectFile() {
+        return albumsObjectFile;
+    }
+
+    public void setAlbumsObjectFile(ObjectFile albumsObjectFile) {
+        this.albumsObjectFile = albumsObjectFile;
+    }
+
+    public CopyOnWriteArrayList<Music> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(CopyOnWriteArrayList<Music> songs) {
+        this.songs = songs;
+    }
+
+    public CopyOnWriteArrayList<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(CopyOnWriteArrayList<Artist> artists) {
+        this.artists = artists;
+    }
+
+    public CopyOnWriteArrayList<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(CopyOnWriteArrayList<Album> albums) {
+        this.albums = albums;
+    }
+
+    private CopyOnWriteArrayList<Album> albums;
 
     public void setUsersObjectFile(ObjectFile usersObjectFile) {
         this.usersObjectFile = usersObjectFile;
@@ -69,19 +137,24 @@ public class MulticastServer extends Thread {
 
     public static void main(String[] args) {
         MulticastServer server = new MulticastServer(args[0], args[1]);
-        System.setProperty("java.net.preferIPv4Stack", "true");
         server.start();
     }
 
     public MulticastServer(String name, String pathToObjectFiles){
         super(name);
         usersObjectFile = new ObjectFile();
-
+        groupObjectFile = new ObjectFile();
+        artistsObjectFile = new ObjectFile();
+        songsObjectFile = new ObjectFile();
+        albumsObjectFile = new ObjectFile();
         registeredUsers = new CopyOnWriteArrayList<User>();
         groups = new CopyOnWriteArrayList<Group>();
+        this.artists = new CopyOnWriteArrayList<>();
+        this.songs = new CopyOnWriteArrayList<>();
         loggedOn = new CopyOnWriteArrayList<User>();
         this.pathToObjectFiles = pathToObjectFiles;
         this.name = name;
+        this.albums = new CopyOnWriteArrayList<>();
     }
 
     public ObjectFile getUsersObjectFile() {
@@ -91,12 +164,34 @@ public class MulticastServer extends Thread {
 
     public void fileHandler() {
         try {
-            this.getUsersObjectFile().openRead("users.obj");
-
-            //carregar o que esta nos ficheiros de objetos para a registeredUsers
-
+            this.getUsersObjectFile().openRead("src/Multicast/users.obj");
             this.setRegisteredUsers((CopyOnWriteArrayList)this.getUsersObjectFile().readsObject());
             this.getUsersObjectFile().closeRead();
+        } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
+        System.out.println("1");
+        try {
+            System.out.println("yo");
+            this.getGroupObjectFile().openRead("src/Multicast/groups.obj");
+            this.setGroups((CopyOnWriteArrayList)this.getGroupObjectFile().readsObject());
+            this.getGroupObjectFile().closeRead();
+        } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
+        System.out.println("2");
+        try {
+            this.getSongsObjectFile().openRead("src/Multicast/musics.obj");
+            this.setSongs((CopyOnWriteArrayList)this.getSongsObjectFile().readsObject());
+            this.getSongsObjectFile().closeRead();
+        } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
+        System.out.println("3");
+        try {
+            this.getAlbumsObjectFile().openRead("src/Multicast/albums.obj");
+            this.setAlbums((CopyOnWriteArrayList)this.getAlbumsObjectFile().readsObject());
+            this.getAlbumsObjectFile().closeRead();
+        } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
+        System.out.println("4");
+        try {
+            this.getArtistsObjectFile().openRead("src/Multicast/artists.obj");
+            this.setArtists((CopyOnWriteArrayList)this.getArtistsObjectFile().readsObject());
+            this.getArtistsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
 
         Iterator it = registeredUsers.iterator();
@@ -107,8 +202,6 @@ public class MulticastServer extends Thread {
             User aux = (User)it.next();
             System.out.println(aux.getUsername());
         }
-
-
     }
 
     public void run(){
@@ -171,6 +264,16 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return null;
     }
 
+    private Artist findArtist (String artistName) {
+        if(mainThread.getArtists().equals(null)) return null;
+        for(Artist a : this.mainThread.getArtists()){
+            if(a.getName().equals(artistName)){
+                return a;
+            }
+        }
+        return null;
+    }
+
     private User findUser (String username){
         Iterator it = mainThread.getRegisteredUsers().iterator();
 
@@ -201,7 +304,32 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
             User aux = (User)it3.next();
             System.out.println(aux.getUsername());
         }
+        System.out.println("Musics:");
+        Iterator it4 = mainThread.getSongs().iterator();
+        while(it4.hasNext()){
+            Music aux = (Music)it4.next();
+            System.out.println(aux.getTitle());
+        }
+        System.out.println("Artists:");
+        it3 = mainThread.getArtists().iterator();
+        while(it3.hasNext()){
+            Artist aux = (Artist) it3.next();
+            System.out.println(aux.getName());
+        }
+        System.out.println("Albums:");
+        it3 = mainThread.getAlbums().iterator();
+        while(it3.hasNext()){
+            Album aux = (Album)it3.next();
+            System.out.println(aux.getTitle());
+        }
     }
+
+    /*public String searchAlbums (String keyword) {
+
+        CopyOnWriteArrayList<Album> albums = this.mainThread.getAlbums();
+        String reply;
+        for (Album a :albums) {}
+    }*/
 
     private boolean isInGroup(User user, Group group){ return (group.isUser(user)); }
 
@@ -214,11 +342,12 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
         while(it.hasNext()) {
             Group aux = (Group)it.next();
-            if(!isInGroup(user, aux)){
-                if(counter++ > 0){
+            aux.printUsers();
+            if (!aux.isUser(user)) {
+                if (counter++ > 0) {
                     reply += ",";
                 }
-                reply += String.format("%d",aux.getGroupID());
+                reply += aux.getGroupID();
             }
         }
         reply += ">";
@@ -231,8 +360,32 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
             mainThread.getUsersObjectFile().writesObject(o);
             mainThread.getUsersObjectFile().closeWrite();
         } catch (IOException e) {
-            System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");
+            System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "src/Multicast/users.obj");
         }
+    }
+
+    private Music findMusic(String artist, String title) {
+
+        Iterator it = mainThread.getSongs().iterator();
+
+        while (it.hasNext()) {
+            Music aux = (Music)it.next();
+            if (aux.getTitle().equals(title) && aux.getArtist().getName().equals(artist))
+                return aux;
+        }
+        return null;
+    }
+
+    private Album findAlbum(String title, String artist) {
+
+        Iterator it = mainThread.getAlbums().iterator();
+
+        while (it.hasNext()) {
+            Album aux = (Album)it.next();
+            if (aux.getTitle().equals(title) && aux.getArtist().getName() == artist) return aux;
+        }
+
+        return null;
     }
 
     private String translation(String message){
@@ -259,16 +412,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     mainThread.getRegisteredUsers().add(newUser);
 
-                    try {
-                        mainThread.getUsersObjectFile().openWrite("users.obj");
-                    }catch (IOException e) {System.out.println("Could not openWrite to file " + mainThread.getPathToObjectFiles() + "/users.obj");}
-
-                    mainThread.getUsersObjectFile().writesObject(mainThread.getRegisteredUsers());
-
-                    mainThread.getUsersObjectFile().closeWrite();
-
-
-
+                    saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
                     return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered! \n";
                 case "login": {
                     User currentUser;
@@ -283,7 +427,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     mainThread.getLoggedOn().add(currentUser);
 
-                    saveFile("logged.obj", mainThread.getLoggedOn());
+                    saveFile("src/Multicast/logged.obj", mainThread.getLoggedOn());
 
                     return "type | status ; operation | succeeded ; message | Welcome " + username + "! \n";
 
@@ -292,7 +436,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     User current = findUser(username);
                     if(current != null) {
                         mainThread.getLoggedOn().remove(current);
-                        saveFile("logged.obj", mainThread.getLoggedOn());
+                        saveFile("src/Multicast/logged.obj", mainThread.getLoggedOn());
                     }
                     return "type | status ; operation | succeeded \n";
 
@@ -327,9 +471,128 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "new_group": {
                     username = info[1][1];
                     User current = findUser(username);
-                    mainThread.getGroups().add(new Group(current));
-                    saveFile("groups.obj", mainThread.getGroups());
+                    mainThread.getGroups().add(new Group(current, mainThread.getGroups().size() + 1));
+                    saveFile("src/Multicast/groups.obj", mainThread.getGroups());
+                    return "type | new_group ; operation | succeeded \n";
+                }case "join_group": {
+                    username = info[1][1];
+                    int groupID = Integer.parseInt(info[2][1]);
+                    User current = findUser(username);
+                    Group g = findGroup(groupID);
+                    g.addUser(current);
+                    saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                    return "type | join_group ; operation | succeeded \n";
+                }case "grant_perks_group": {
+                    username = info[1][1];
+                    String username2 = info[2][1];
+                    int groupID = Integer.parseInt(info[3][1]);
+                    User current = findUser(username);
+                    User new_editor = findUser(username2);
+                    Group g = findGroup(groupID);
+                    if(g.isOwner(current) && g.isUser(new_editor)) {
+                        g.addEditor(new_editor);
+                    }
+                    saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
                 }case "search": {
+
+                }case "add_music": {
+                    username = info[1][1];
+
+                    User current = findUser(username);
+                    if (current.getPerks() < 3) { //se é editor ou owner
+
+                        //questão dos grupos ainda tem que ser tratada antes------------------
+                        /*String groupIDs = info[2][1];
+                        groupIDs.replace("<", "");
+                        groupIDs.replace(">", "");
+                        String aux[] = groupIDs.split(",");----------------------------------*/
+
+                        String title = info[2][1];
+                        String genre = info[4][1];
+                        Artist artist = findArtist(info[3][1]);
+                        if (artist == null) artist = new Artist(info[3][1], genre);
+                        float duration = Float.parseFloat(info[5][1]);
+
+                        //se já houver uma música com o mesmo title e artist, não se pode adicionar
+
+                        if (findMusic(artist.getName(), title) == null) {
+                            //caso este artista ainda não exista, cria-se um novo com a informação que já é dada
+
+                            Music newMusic = new Music(title, artist, genre, duration);
+
+                            newMusic.add_editor(username);
+
+                            /*for(int i = 0; i < aux.length ; i++){
+                                newMusic.add_groups(Integer.parseInt(aux[i]));
+                            }*/
+                            artist.addMusic(newMusic);
+                            this.mainThread.getArtists().add(artist);
+                            this.mainThread.getSongs().add(newMusic);
+                            saveFile("src/Multicast/musics.obj", mainThread.getSongs());
+                            saveFile("src/Multicast/artists.obj", mainThread.getArtists());
+                            return "type | add_music ; operation | succeeded \n";
+                        }
+                    }
+                    return "type | add_music ; operation | failed \n";
+
+                }case "add_artist" : {
+                    username = info[1][1];
+
+                    User current = findUser(username);
+                    if (current.getPerks() < 3) {
+                        String name = info[2][1];
+                        String description = info[3][1];
+                        String concerts = info[4][1];
+                        Description desc = new Description(info[3][1], current);
+                        String genre = info[5][1];
+
+                        String conc[] = concerts.split(",");
+
+                        if (findArtist(name) == null) {
+                            Artist newArtist = new Artist(name, desc, new ArrayList<>(Arrays.asList(conc)), genre);
+
+                            this.mainThread.getArtists().add(newArtist);
+                            saveFile("src/Multicast/artists.obj", mainThread.getArtists());
+                            return "type | add_artist ; operation | succeeded \n";
+                        }
+                    }
+                    return "type | add_artist ; operation | failed \n";
+                }case "add_album": {
+                    username = info[1][1];
+
+                    User current = findUser(username);
+                    if (current.getPerks() < 3) {
+                        String title = info[2][1];
+                        String genre = info[7][1];
+                        Artist artist = findArtist(info[3][1]);
+                        if (artist == null) artist = new Artist(info[3][1], genre);
+                        int year = Integer.parseInt(info[5][1]);
+                        String musics = info[4][1];
+                        musics = musics.replace("<", "");
+                        musics = musics.replace(">", "");
+                        String mus[] = musics.split(",");
+
+                        String publisher = info[6][1];
+                        String description = info[8][1];
+                        Description desc = new Description(description, current);
+                        ArrayList<Music> musicList = new ArrayList<>();
+
+                        for (String m: mus) {
+                            Music newMusic = new Music(title, artist, genre);
+                            musicList.add(newMusic);
+                            if (findMusic(artist.getName(), m) == null) mainThread.getSongs().add(newMusic);
+                        }
+                        if (findAlbum(title, info[3][1]) == null) {
+
+                            Album newAlbum = new Album(artist, title, year, musicList, publisher, genre, desc);
+
+                            this.mainThread.getAlbums().add(newAlbum);
+                            saveFile("src/Multicast/albums.obj", this.mainThread.getAlbums());
+                            saveFile("src/Multicast/musics.obj", this.mainThread.getSongs());
+                            return "type | add_album ; operation | succeeded \n";
+                        }
+                    }
+                    return "type | add_album ; operation | failed \n";
 
                 }case "add_info": {
                     if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {

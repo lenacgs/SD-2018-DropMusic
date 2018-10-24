@@ -1,24 +1,34 @@
 package Interface;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Artist {
+public class Artist implements Serializable {
     private String name;
-    private ArrayList<Album> albums;
     private Description description;
     private ArrayList<Music> musics;
-    private ArrayList<Album> albuns;
-    private ArrayList<String> concerts; //each concert should be "month/day/year - concert venue, city, country"
+    private ArrayList<Album> albums;
+    private ArrayList<String> concerts; //each concert should be "concertVenue-city-country-year-month-day-hour"
     private String genre;
+    private static final long serialVersionUID = 4L;
 
     public Artist(String name, String genre) {
-        albuns = null;
-        description = null;
-        musics = null;
-        albuns  = null;
-        concerts = null;
+        albums = new ArrayList<>();
+        musics = new ArrayList<>();
+        concerts = new ArrayList<>();
         this.genre = genre;
         this.name = name;
+    }
+
+    public Artist(String name, Description description, ArrayList<String> concerts, String genre) {
+        this.name = name;
+        this.description = description;
+        this.concerts = concerts;
+        this.genre = genre;
+    }
+
+    public void addMusic(Music m) {
+        this.musics.add(m);
     }
 
     public String getName() {
@@ -31,10 +41,6 @@ public class Artist {
 
     public ArrayList<Album> getAlbums() {
         return albums;
-    }
-
-    public void setAlbums(ArrayList<Album> albums) {
-        this.albums = albums;
     }
 
     public Description getDescription() {
@@ -53,12 +59,8 @@ public class Artist {
         this.musics = musics;
     }
 
-    public ArrayList<Album> getAlbuns() {
-        return albuns;
-    }
-
-    public void setAlbuns(ArrayList<Album> albuns) {
-        this.albuns = albuns;
+    public void setAlbums(ArrayList<Album> albums) {
+        this.albums = albums;
     }
 
     public ArrayList<String> getConcerts() {
