@@ -90,16 +90,11 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
-<<<<<<< HEAD
     public int hello() throws java.rmi.RemoteException {
         clientPort++;
         return clientPort;
     }
-=======
 
-    public void hello() throws java.rmi.RemoteException {
-        System.out.println("New client connected!");
->>>>>>> 68426fdc063394b9cf80c6ccd8b544abc01b28c0
 
     public void newClient(int port) throws java.rmi.RemoteException{
         Clients c;
@@ -286,19 +281,20 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return request;
     }
 
-<<<<<<< HEAD
-    private void sendNotification(String message, String user){
-        for(Clients c : clientList ){
+
+    private void sendNotification(String message, String user) {
+        for (Clients c : clientList) {
             try {
-                if(c.getUsername()==null)
+                if (c.getUsername() == null)
                     continue;
                 if (c.getUsername().equals(user))
                     c.notification(message);
-            }catch (RemoteException e){
+            } catch (RemoteException e) {
                 clientList.remove(c);
             }
         }
-=======
+    }
+
     public boolean addInfo(String username, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
 
         if (type.equals("music")) {
@@ -340,7 +336,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         if (ans.equals("type | add_album ; operation | succeeded \n"))
             return true;
         return false;
->>>>>>> 68426fdc063394b9cf80c6ccd8b544abc01b28c0
     }
 
 }

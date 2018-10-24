@@ -128,7 +128,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     }
 
     private static void validationMenu(int modifier) {
-        String username, password=null;
+        String username, password = null;
         int verifier;
         boolean validation;
         System.out.println("(you can type '0' at any time to exit)");
@@ -157,7 +157,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             validation = stringChecker(password);
             if (!validation)
                 continue;
-<<<<<<< HEAD
             while (true) {
                 try {
                     //funcao de registar e login tem que devolver um boolean
@@ -185,36 +184,12 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     retryRMIConnection();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-=======
-
-            try {
-                //funcao de registar e login tem que devolver um boolean
-                if (modifier == 1) //registar
-                    verifier = rmi.register(username,password);
-                else {//login
-                    verifier = rmi.login(username, password);
-                    System.out.println("verifier=" + verifier);
-                }
-                if (verifier <= 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-nao existe/credencias mal;
-                    if (modifier == 1)
-                        System.out.println("User registed successfully!");
-                    else
-                        System.out.println("Logged in successfully!");
-                    user=username;
-                    perk=verifier;
-                    mainMenu();
-                    break;
-                } else {
-                    if (modifier == 1)
-                        System.out.println("Username already exists. Please chose another one\n");
-                    else
-                        System.out.println("Invalid Credentials!");
                 }
             }
         }
     }
 
-    private void addChangeInfoMenu() { //apenas os editors têm acesso a este menu
+    private static void addChangeInfoMenu() { //apenas os editors têm acesso a este menu
 
         int option;
         boolean validation;
@@ -301,7 +276,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             break;
                         }
                         try{
-                            res = rmi.addInfo(this.user, "music", title, artist, genre, duration);
+                            res = rmi.addInfo(user, "music", title, artist, genre, duration);
                         } catch (RemoteException e){
                             retryRMIConnection();
                         }
@@ -353,7 +328,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             break;
                         }
                         try {
-                            res = rmi.addInfo(this.user, "artist", name, description, concerts, genre);
+                            res = rmi.addInfo(user, "artist", name, description, concerts, genre);
                         }catch (RemoteException e){
                             retryRMIConnection();
                         }
@@ -436,7 +411,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             break;
                         }
                         try {
-                            res = rmi.addInfo(this.user, artist, title, musics, year, publisher, genre, description);
+                            res = rmi.addInfo(user, artist, title, musics, year, publisher, genre, description);
                         }catch(RemoteException e){
                             retryRMIConnection();
                         }
@@ -447,7 +422,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 if (res) {//success
                     System.out.println("New information successfully added!");
                     return;
->>>>>>> 68426fdc063394b9cf80c6ccd8b544abc01b28c0
                 }
                 else
                     System.out.println("Could not add new information :(");
