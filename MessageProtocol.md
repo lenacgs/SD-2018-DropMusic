@@ -61,6 +61,14 @@ REQUEST: **type** | groups ; **username** | username\n
 ANSWER: **type** | groups ; **list** | <group1,group2,...>\n
 (isto para apresentar ao user todos os grupos aos quais ele pode juntar-se. É enviado o username para só devolver os grupos aos quais ele nao pertence)
 
+
+####Check for own groups
+
+REQUEST: **type** | group_users ; **group** | group\n	
+
+ANSWER: **type** | group_users ; **list** | <user1,user2,...>\n
+(isto para apresentar aos users que pertencem aquele grupo a notificacao de que foi alterada informacao)
+
 ####Create Group
 	
 REQUEST: **type** | new_group ; **username** | username\n

@@ -3,7 +3,8 @@ import java.rmi.Remote;
 
 
 public interface Services extends Remote {
-    void hello() throws java.rmi.RemoteException;
+    int hello() throws java.rmi.RemoteException;
+    void newClient(int port) throws java.rmi.RemoteException;
     void ping() throws java.rmi.RemoteException;
     int register (String username, String password) throws java.rmi.RemoteException;
     int login(String username, String password) throws java.rmi.RemoteException;

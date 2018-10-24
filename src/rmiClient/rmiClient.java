@@ -3,39 +3,66 @@ package rmiClient;
 import rmi.Services;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.ExportException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
-public class rmiClient {
-    private Scanner sc = new Scanner(System.in);
-    private Services rmi;
+public class rmiClient extends UnicastRemoteObject implements Clients  {
+
+    private static Scanner sc = new Scanner(System.in);
+    private static Clients c;
+    private static Services rmi;
     // o que estou a pensar é, no ato do login e em cada alteração atualizar esta lista para ser mais simples enviar pedidos ao RMI
     // um exemplo da lista podia ser [(<grupo> <role>) (<grupo> <role>) (...)]
     // desta maneira quando formos fazer um pedido ao RMI para mexer em algum grupo, enviamos logo a informação do grupo que ele que alterar
     // e sabemos logo a partir do role se ele pode fazer essas alterações ou não
-    private String user=null;
-    private int perk=0;
+    private static String user=null;
+    private static int perk=0;
+    private static int port;
 
-    public rmiClient() {
+    private rmiClient() throws RemoteException {
     }
 
-    public Services getRmi() {
+
+    private static Services getRmi() throws RemoteException {
         return rmi;
     }
 
-    public static void main(String[] args) throws IOException, NotBoundException, InterruptedException {
-        rmiClient client = new rmiClient();
-        client.establishRMIConnection();
-        client.getRmi().hello();
-        client.firstMenu();
+    private static void setPort(int p){
+        port=p;
     }
 
-    private void establishRMIConnection(){
+    private static void setC() throws RemoteException, InterruptedException{
+        while(true) {
+            try {
+                Registry registry = LocateRegistry.createRegistry(port);
+                System.out.println(c);
+                registry.rebind("Benfica", c);
+                rmi.newClient(port);
+                break;
+            } catch (ExportException e) {
+                UnicastRemoteObject.unexportObject(c, true);
+
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException, NotBoundException, InterruptedException{
+        c = new rmiClient();
+        establishRMIConnection();
+        setPort(getRmi().hello());
+        firstMenu();
+    }
+
+    private static void establishRMIConnection(){
         try {
             rmi = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting");
         }catch (RemoteException | NotBoundException e) {
@@ -43,11 +70,13 @@ public class rmiClient {
         }
     }
 
-    private void retryRMIConnection(){
+    private static void retryRMIConnection(){
         while(true){
             try {
                 Thread.sleep(1000);
                 rmi = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting");
+                port=rmi.hello();
+                setC();
                 break;
             }catch (RemoteException | NotBoundException e) {
                 System.out.print(".");
@@ -57,7 +86,7 @@ public class rmiClient {
         }
     }
 
-    private void firstMenu(){
+    private static void firstMenu(){
         int option;
         boolean verifier=false;
         System.out.println("");
@@ -96,7 +125,7 @@ public class rmiClient {
         }
     }
 
-    private void validationMenu(int modifier) {
+    private static void validationMenu(int modifier) {
         String username, password=null;
         int verifier;
         boolean validation;
@@ -140,6 +169,7 @@ public class rmiClient {
                             System.out.println("Logged in successfully!");
                         user = username;
                         perk = verifier;
+                        setC();
                         mainMenu();
                         return;
                     } else {
@@ -150,12 +180,14 @@ public class rmiClient {
                     }
                 } catch (RemoteException e) {
                     retryRMIConnection();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
 
-    private void mainMenu(){
+    private static void mainMenu(){
         int option;
         boolean verifier=false;
         while(true) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal
@@ -238,7 +270,7 @@ public class rmiClient {
         }
     }
 
-    private void uploadMenu() {
+    private static void uploadMenu() {
         System.out.println("You have to associate your music file with one of the musics info in our DB\n");
         boolean validation = false;
         String keyword = "", answer = "";
@@ -269,7 +301,7 @@ public class rmiClient {
     }
 
     //function to communicate with multicast server
-    private void TCPServerConnection(String username, String music, String path) throws UnknownHostException, IOException {
+    private static void TCPServerConnection(String username, String music, String path) throws UnknownHostException, IOException {
         String serverIP = "127.0.0.1";
         int serverPort = 5000;
 
@@ -293,7 +325,7 @@ public class rmiClient {
         sock.close();
     }
 
-    private void uploadFile(String username, String music) {
+    private static void uploadFile(String username, String music) {
         boolean validation = false;
         String path = null;
 
@@ -313,7 +345,7 @@ public class rmiClient {
 
     }
 
-    private void searchMenu(){
+    private static void searchMenu(){
         int ob;
         String keyword=null, object, answer=null;
         boolean validation=false;
@@ -361,7 +393,7 @@ public class rmiClient {
         }
     }
 
-    private void detailsMenu(){
+    private static void detailsMenu(){
         int ob;
         String object, title=null, answer=null;
         boolean validation=false;
@@ -404,7 +436,7 @@ public class rmiClient {
     }
 
 
-    private void reviewMenu(){
+    private static void reviewMenu(){
         int rating;
         String review=null, title=null;
         boolean validation=false, verifier=false;
@@ -454,7 +486,7 @@ public class rmiClient {
             System.out.println("Something went wrong! Maybe that album does not exist...");
     }
 
-    private void createGroupMenu(){
+    private static void createGroupMenu(){
         String groupID;
         while(true){
             try {
@@ -475,7 +507,7 @@ public class rmiClient {
         System.out.println("------------------------------------------------");
     }
 
-    private void joinGroupMenu(){
+    private static void joinGroupMenu(){
         int option;
         String groups=null;
         boolean verifier=false, validation;
@@ -530,7 +562,7 @@ public class rmiClient {
         }
     }
 
-    private void manageGroup(){
+    private static void manageGroup(){
         String groupID=null, text=null, object, objectName=null;
         int ob;
         boolean validation=false;
@@ -592,7 +624,7 @@ public class rmiClient {
         }
     }
 
-    private void givePermissionsMenu(String perk) {
+    private static void givePermissionsMenu(String perk) {
         String username=null, groupID=null;
         boolean validation=false;
         String verifier;
@@ -633,7 +665,7 @@ public class rmiClient {
         System.out.println(verifier);
     }
 
-    private boolean stringChecker (String toCheck){
+    private static boolean stringChecker (String toCheck){
         if(toCheck==null) {
             System.out.println("String is NULL. Please type something");
             return false;
@@ -643,6 +675,15 @@ public class rmiClient {
             return false;
         }
         return true;
+    }
+
+    public void notification (String message) throws RemoteException{
+        System.out.println("----------------| New Notification |----------------");
+        System.out.println(message);
+    }
+
+    public String getUsername() throws RemoteException {
+        return user;
     }
 
 }
