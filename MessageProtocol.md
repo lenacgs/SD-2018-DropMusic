@@ -77,7 +77,7 @@ ANSWER: **type** | new_group ; **object** | groupID ; **status** | succeeded ou 
 
 ####Grant Perks inside a group
 
-REQUEST: **type** | grant_perks_group ; **username** | username ; **new_editor/owner** | username ; **groupID** | groupID ; **new_perks** | owner/editor \n
+REQUEST: **type** | grant_perks_group ; **username** | username ; **new_editor/owner** | username ; **groupID** | groupID ; **new_perks** | 1 (owner) or 2 (editor) \n
 
 ANSWER: **type** | grant_perks_group ; **operation** | succeeded/failed \n
 
