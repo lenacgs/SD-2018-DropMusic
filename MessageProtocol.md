@@ -82,7 +82,7 @@ Pesquisar músicas
 
 ####Search for musics, albums or artists
 
-REQUEST: **type** | search ; **keyword** | what you search for | **object** | type of object (musics, albums or artists) \n
+REQUEST: **type** | search ; **username** | username ; **keyword** | what you search for | **object** | type of object (musics, albums or artists) \n
 
 **Se pesquisou por artistas:**
 

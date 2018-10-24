@@ -78,4 +78,16 @@ public class Artist implements Serializable {
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
+    public boolean checkIfContains(String keyword){
+        for(Music m : musics){
+            if(m.getTitle().contains(keyword))
+                return true;
+        }
+        for(Album a : albums){
+            if(a.getTitle().contains(keyword))
+                return true;
+        }
+        return false;
+    }
 }

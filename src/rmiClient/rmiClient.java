@@ -46,7 +46,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         while(true) {
             try {
                 Registry registry = LocateRegistry.createRegistry(port);
-                System.out.println(c);
                 registry.rebind("Benfica", c);
                 rmi.newClient(port);
                 break;
@@ -78,7 +77,8 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 Thread.sleep(1000);
                 rmi = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting");
                 port=rmi.hello();
-                setC();
+                if(user!=null)
+                    setC();
                 break;
             }catch (RemoteException | NotBoundException e) {
                 System.out.print(".");
@@ -129,7 +129,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     private static void validationMenu(int modifier) {
         String username, password = null;
-        int verifier;
+        int verifier=0;
         boolean validation;
         System.out.println("(you can type '0' at any time to exit)");
         while (true) {
@@ -164,6 +164,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                         verifier = rmi.register(username, password);
                     else //login
                         verifier = rmi.login(username, password);
+                    } catch (RemoteException e) {
+                        retryRMIConnection();
+                    }
                     if (verifier <= 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-nao existe/credencias mal;
                         if (modifier == 1)
                             System.out.println("User registed successfully!");
@@ -171,7 +174,13 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             System.out.println("Logged in successfully!");
                         user = username;
                         perk = verifier;
-                        setC();
+                        try {
+                            setC();
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         mainMenu();
                         return;
                     } else {
@@ -180,11 +189,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                         else
                             System.out.println("Invalid Credentials!");
                     }
-                } catch (RemoteException e) {
-                    retryRMIConnection();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }
         }
     }
@@ -454,14 +458,13 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| 7) Create Group                           |");
             System.out.println("| 8) Join Group                             |");
             if (perk<3){ // se for editor ou owner
-                System.out.println("| 9) Manage Groups                          |");
-                System.out.println("| 10) Give 'Editor' privileges              |");
-                System.out.println("| 11) Add/change info                       |");
+                System.out.println("| 9) Give 'Editor' privileges               |");
+                System.out.println("| 10) Add/change info                       |");
 
             }
             if(perk<2){ // se for owner
-                System.out.println("| 12) Give 'Owner' privileges               |");
-                System.out.println("| 13) Manage group requests                 |");//falta
+                System.out.println("| 11) Give 'Owner' privileges               |");
+                System.out.println("| 12) Manage group requests                 |");//falta
             }
             System.out.println("| 0) Logout                                 |");
             System.out.println("---------------------------------------------");
@@ -499,24 +502,22 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 createGroupMenu();
             else if(option == 8)
                 joinGroupMenu();
-            else if(option == 9 || option == 10 || option == 11){
+            else if(option == 9 || option == 10){
                 if(perk==3){
                     System.out.println("Please select one of the given options");
                     continue;
                 }
                 if(option == 9)
-                    manageGroup();
-                if(option == 10)
                     givePermissionsMenu("editor");
-                if (option == 11)
+                if (option == 10)
                     addChangeInfoMenu();
             }
-            else if(option == 12 || option == 13){
+            else if(option == 11 || option == 12){
                 if (perk>1){
                     System.out.println("Please select one of the given options");
                     continue;
                 }
-                if(option == 12)
+                if(option == 11)
                     givePermissionsMenu("owner");
                 //if(option == 12)
                 // continue
