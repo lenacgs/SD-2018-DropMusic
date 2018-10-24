@@ -152,6 +152,8 @@ public class rmiClient {
                     else
                         System.out.println("Invalid Credentials!");
                 }
+            } catch(RemoteException e){
+                retryRMIConnection();
             }
         }
     }
@@ -178,8 +180,6 @@ public class rmiClient {
             if (option == 0) {
                 return;
             }
-
-
 
             if (option == 1) { //adding new content
 
