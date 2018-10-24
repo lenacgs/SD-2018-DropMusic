@@ -185,8 +185,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } catch(RemoteException e){
-                retryRMIConnection();
             }
         }
     }
