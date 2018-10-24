@@ -85,7 +85,7 @@ ANSWER: **type** | grant_perks_group ; **operation** | succeeded/failed \n
 
 REQUEST: **type** | manage_request ; **username** | username ; **new_member** | username ; **groupID** | groupID ; **request** | accepted/declined \n
 
-ANSWER: **type** | manage_request ; **request** | accepted/declined \n
+ANSWER: **type** | manage_request ; **operation** | succeeded/failed \n
 
 ####Expell group_user
 
