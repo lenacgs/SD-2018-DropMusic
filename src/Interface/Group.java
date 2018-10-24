@@ -1,17 +1,22 @@
 package Interface;
 
+import java.io.*;
 import java.util.*;
 
-public class Group {
-    private ArrayList<User> users;
-    private ArrayList<User> editors;
-    private ArrayList<User> owners;
+
+public class Group implements Serializable {
+    private static final long serialVersionUID = 4L;
+    private ArrayList<User> users = new ArrayList<>();
+    private ArrayList<User> editors = new ArrayList<>();
+    private ArrayList<User> owners = new ArrayList<>();
+
     private int groupID;
 
-    public Group(User creator) {
+    public Group(User creator, int groupID) {
         this.addUser(creator);
         this.addEditor(creator);
         this.addOwner(creator);
+        this.groupID = groupID;
     }
 
     public void addUser(User user) {
@@ -29,24 +34,27 @@ public class Group {
     public int getGroupID(){ return this.groupID;}
 
     public boolean isUser(User user) {
-        if (this.users.contains(user)) {
-            return true;
-        }
-        return false;
+        return this.users.contains(user);
     }
 
     public boolean isEditor(User user) {
-        if (this.editors.contains(user)) {
-            return true;
-        }
-        return false;
+        return this.editors.contains(user);
     }
 
     public boolean isOwner(User user) {
-        if (this.owners.contains(user)) {
-            return true;
+        return this.owners.contains(user);
+    }
+
+    public void printUsers(){
+        System.out.print("(");
+        int counter = 0;
+        for(User u : this.users){
+            System.out.print(u.getUsername());
+            if(++counter<this.users.size()){
+                System.out.print(",");
+            }
         }
-        return false;
+        System.out.println(")");
     }
 
     private User getUserByName(String name) {

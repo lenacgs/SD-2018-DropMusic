@@ -127,10 +127,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             //callback to client
             message = new String(packet.getData(), 0, packet.getLength());
 
-            String tokens[] = message.split(" ; ");
-            String info[][] = new String[tokens.length][];
-            for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
-
             System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
         } catch (IOException e) {
             e.printStackTrace();
@@ -253,8 +249,11 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String ans = dealWithRequest(request);
 
-            if (ans.equals("type | add ; status | success \n"))
+            if (ans.equals("type | add_music ; operation | succeeded \n")) {
+                System.out.println("returning true!");
                 return true;
+            }
+
             else return false;
         }
 
@@ -265,7 +264,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String ans = dealWithRequest(request);
 
-            if (ans.equals("type | add ; status | success \n"))
+            if (ans.equals("type | add_artist ; operation | succeeded \n"))
                 return true;
             else return false;
         }
@@ -278,7 +277,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
         String ans = dealWithRequest(request);
 
-        if (ans.equals("type | add ; status | success \n"))
+        if (ans.equals("type | add_album ; operation | succeeded \n"))
             return true;
         return false;
     }

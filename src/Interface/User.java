@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class User implements Serializable{
+    private static final long serialVersionUID = 4L;
     private String username;
     private String password;
     private int perks;
@@ -14,8 +15,9 @@ public class User implements Serializable{
         this.username = username;
         this.password = password;
         this.perks = perks;
+        this.defaultShareGroups = new ArrayList<>();
         //this.defaultShareGroups = public group;
-        this.transferredMusics = null;
+        this.transferredMusics = new ArrayList<>();
     }
 
     public String getUsername() {

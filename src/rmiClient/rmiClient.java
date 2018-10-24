@@ -165,7 +165,7 @@ public class rmiClient {
 
         while (true) {
             System.out.println("Choose one of the following options: ");
-            System.out.println("1) Add new content (musics, albums or artists");
+            System.out.println("1) Add new content (musics, albums or artists)");
             System.out.println("2) Change info of existing content");
             System.out.println("0) Go back");
 
