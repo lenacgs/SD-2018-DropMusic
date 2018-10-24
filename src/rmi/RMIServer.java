@@ -1,5 +1,6 @@
 package rmi;
 
+import rmiClient.Clients;
 import java.io.IOException;
 import java.rmi.AccessException;
 import java.rmi.ConnectException;
@@ -11,6 +12,7 @@ import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 
 import java.net.*;
+import java.util.ArrayList;
 
 public class RMIServer extends UnicastRemoteObject implements Services {
 
@@ -18,6 +20,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4322;
     private String name = "RMIServer";
+    private ArrayList<Clients> clientList = new ArrayList<>();
+    private int clientPort = 7000;
 
     private RMIServer() throws RemoteException {
 
@@ -86,18 +90,34 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
+    public int hello() throws java.rmi.RemoteException {
+        clientPort++;
+        return clientPort;
+    }
 
-    public void hello() throws java.rmi.RemoteException {
-        System.out.println("New client connected!");
 
-        //creates RMIWorker thread to deal with client interaction
+    public void newClient(int port) throws java.rmi.RemoteException{
+        Clients c;
+        while (true) {
+            try {
+                c = (Clients) LocateRegistry.getRegistry(port).lookup("Benfica");
+                break;
+            } catch (ConnectException | NotBoundException exception) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        clientList.add(c);
     }
 
     public void ping() throws java.rmi.RemoteException {
         //esta funcao nao precisa de fazer nada pois so serve para testar a ligacao entre o primario e o secundario
     }
 
-    public String dealWithRequest(String request) {
+    private String dealWithRequest(String request) {
         MulticastSocket socket = null;
         String message = null;
 
@@ -163,6 +183,14 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //envia informação aos multicasts que este user já nao está online
         String request = "type | logout ; username | "+username;
         //return true ou false consoante a resposta
+        for(Clients c : clientList ){
+            try {
+                if (c.getUsername().equals(username))
+                    clientList.remove(c);
+            }catch (RemoteException e){
+                clientList.remove(c);
+            }
+        }
         return true;
     }
 
@@ -183,6 +211,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     public String details(String object, String title) throws java.rmi.RemoteException{
         String request = "type | get_info ; object | "+object+" ; title | "+title;
         //return a info vinda do multicast
+
         return request;
     }
 
@@ -218,6 +247,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     public boolean joinGroup(String username, String group)throws java.rmi.RemoteException{
         String request = "type | join_group ; username | "+username+" ; group | "+group;
+        //processar resposta e enviar notificação ao(s) owner(s) se online
+        String message = "You have a new request to join group: "+group;
+        //sendNotification(message,user);
         return true;
     }
 
@@ -226,6 +258,14 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //multicasts tem que verificar se esse user é editor ou owner deste grupo e depois sim fazer as alteracoes.
         //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
         //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
+
+        //processar resposta e enviar notificação a toda a gente do grupo
+        request = "type | group_users ; group | "+groupID;
+
+        //for(percorre lista de users)
+        //if(user.equals(username) continue; //para nao enviar notificacao a quem fez as alteracoes
+        //sendNotification(message,user);
+
         return request;
     }
 
@@ -234,7 +274,25 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //multicasts tem que verificar se esse user é editor ou owner deste grupo e depois sim fazer as alteracoes.
         //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
         //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
+        String message = "Your permitions on group "+groupID+" have been updated";
+        sendNotification(message, newUser);
+        //processar a resposta e chamar o metodo para enviar notificacao ao cliente
+
         return request;
+    }
+
+
+    private void sendNotification(String message, String user) {
+        for (Clients c : clientList) {
+            try {
+                if (c.getUsername() == null)
+                    continue;
+                if (c.getUsername().equals(user))
+                    c.notification(message);
+            } catch (RemoteException e) {
+                clientList.remove(c);
+            }
+        }
     }
 
     public boolean addInfo(String username, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
