@@ -82,23 +82,19 @@ Pesquisar músicas
 
 ####Search for musics, albums or artists
 
-REQUEST: **type** | search ; **keyword** | what you search for | **object** | type of object (musics, albums, genre or artists) \n
+REQUEST: **type** | search ; **keyword** | what you search for | **object** | type of object (musics, albums or artists) \n
 
 **Se pesquisou por artistas:**
 
-ANSWER: **type** | artist\_list ; **item\_count** | n ; **item\_0\_name** | bla bla ; **item\_1\_name** | bla bla ........ \n 
+ANSWER: **type** | artist\_list ; **item_count** | n ; **item_list** | bla bla \n 
 
 **Se pesquisou por musicas:**
 
-ANSWER: **type** | music\_list ; **item\_count** | n ; **item\_0\_name** | bla bla ; **item\_1\_name** | bla bla ........ \n 
+ANSWER: **type** | music\_list ; **item_count** | n ; **item_list** | bla bla \n 
 
 **Se pesquisou por álbuns:**
 
-ANSWER: **type** | album\_list ; **item\_count** | n ; **item\_0\_name** | bla bla ; **item\_1\_name** | bla bla ........ \n 
-
-**Se pesquisou por género:**
-
-ANSWER: **type** | genre\_list ; **item\_count** | n ; **item\_0\_name** | bla bla ; **item\_1\_name** | bla bla ........ \n 
+ANSWER: **type** | album\_list ;  **item_count** | n ; **item_list** | bla bla \n 
 
 
 

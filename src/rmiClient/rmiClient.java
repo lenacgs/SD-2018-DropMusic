@@ -200,22 +200,16 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("1) Add new content (musics, albums or artists)");
             System.out.println("2) Change info of existing content");
             System.out.println("0) Go back");
-
             try {
                 option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
             } catch (NumberFormatException e) {
                 System.out.println("I can only work with numbers bro!");
                 continue;
             }
-
             if (option == 0) {
                 return;
             }
-
-
-
             if (option == 1) { //adding new content
-
                 while (true) {
                     System.out.println("What kind of content do you want to add?");
                     System.out.println("1) Music");
@@ -616,15 +610,14 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| What are you searching for:            |");
             System.out.println("| 1) Music                               |");
             System.out.println("| 2) Album                               |");
-            System.out.println("| 3) Genre                               |");
-            System.out.println("| 4) Artist                              |");
+            System.out.println("| 3) Artist                              |");
             System.out.println("| 0) Back                                |");
             System.out.println("------------------------------------------");
             ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
             if (ob == 0) {
                 break;
             }
-            else if (ob > 4 || ob < 0)
+            else if (ob > 3 || ob < 0)
                 System.out.println("Please select a valid option");
             else{
                 while(!validation){
@@ -638,8 +631,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     object="music";
                 else if(ob == 2)
                     object="album";
-                else if(ob == 3)
-                    object="genre";
                 else
                     object="artist";
                 while(answer==null) {

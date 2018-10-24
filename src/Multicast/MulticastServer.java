@@ -26,6 +26,7 @@ public class MulticastServer extends Thread {
     private ObjectFile albumsObjectFile;
     private CopyOnWriteArrayList<Music> songs;
     private CopyOnWriteArrayList<Artist> artists;
+    private CopyOnWriteArrayList<Album> albums;
 
     public void setGroups(CopyOnWriteArrayList<Group> groups) {
         this.groups = groups;
@@ -86,8 +87,6 @@ public class MulticastServer extends Thread {
     public void setAlbums(CopyOnWriteArrayList<Album> albums) {
         this.albums = albums;
     }
-
-    private CopyOnWriteArrayList<Album> albums;
 
     public void setUsersObjectFile(ObjectFile usersObjectFile) {
         this.usersObjectFile = usersObjectFile;
@@ -264,6 +263,22 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return null;
     }
 
+    private ArrayList<Artist> searchForArtist(String keyword){
+        Iterator it = mainThread.getSongs().iterator();
+
+        ArrayList<Artist> toReturn = new ArrayList<>();
+        int i=0;
+
+        while (it.hasNext()) {
+            Artist aux = (Artist)it.next();
+            if(aux.getName().contains(keyword) || aux.getGenre().contains(keyword) || aux.getMusics().contains(keyword) || aux.getAlbums().contains(keyword)){
+                toReturn.add(aux);
+                i++;
+            }
+        }
+        return toReturn;
+    }
+
     private Artist findArtist (String artistName) {
         if(mainThread.getArtists().equals(null)) return null;
         for(Artist a : this.mainThread.getArtists()){
@@ -364,17 +379,53 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         }
     }
 
+    private ArrayList<Music> findMusic(String keyword){
+        Iterator it = mainThread.getSongs().iterator();
+
+        ArrayList<Music> toReturn = new ArrayList<>();
+        int i=0;
+
+        while (it.hasNext()) {
+            Music aux = (Music)it.next();
+            if(aux.getTitle().contains(keyword) || aux.getArtist().getName().contains(keyword) || aux.getGenre().contains(keyword)) {
+                toReturn.add(aux);
+                i++;
+            }
+        }
+        return toReturn;
+    }
+
     private Music findMusic(String artist, String title) {
 
         Iterator it = mainThread.getSongs().iterator();
 
         while (it.hasNext()) {
             Music aux = (Music)it.next();
-            if (aux.getTitle().equals(title) && aux.getArtist().getName().equals(artist))
+            if (aux.getTitle().equals(title) && aux.getArtist().getName().equals(artist)) {
                 return aux;
+            }
         }
         return null;
     }
+
+    private ArrayList<Album> findAlbum(String keyword) {
+
+        Iterator it = mainThread.getAlbums().iterator();
+
+        ArrayList<Album> toReturn = new ArrayList<>();
+        int i=0;
+
+        while (it.hasNext()) {
+            Album aux = (Album) it.next();
+            if(aux.getTitle().contains(keyword) || aux.getArtist().getName().contains(keyword) || aux.getGenre().contains(keyword)){
+                toReturn.add(aux);
+                i++;
+            }
+
+        }
+        return toReturn;
+    }
+
 
     private Album findAlbum(String title, String artist) {
 
@@ -494,6 +545,46 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                     saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
                 }case "search": {
+                    String keyword = info[1][1];
+                    String object = info[2][1];
+                    String toReturn="type | ";
+                    if(object.equals("music")){
+                        toReturn+="music_list ; item_count | ";
+                        ArrayList<Music> m = findMusic(keyword);
+                        if(m==null)
+                            toReturn+="0";
+                        else {
+                            toReturn+=m.size()+" ; item_list | ";
+                            for (Music music : m) {
+                                toReturn +=music.getTitle()+", "+music.getArtist().getName()+"\n";
+                            }
+                        }
+                    }
+                    else if(object.equals("album")){
+                        toReturn+="album_list ; item_count | ";
+                        ArrayList<Album> a = findAlbum(keyword);
+                        if(a==null)
+                            toReturn+="0";
+                        else {
+                            toReturn+=a.size()+" ; item_list | ";
+                            for (Album album : a) {
+                                toReturn +=album.getTitle()+", "+album.getArtist().getName()+"\n";
+                            }
+                        }
+                    }
+                    else if(object.equals("artist")){
+                        toReturn+="artist_list ; item_count | ";
+                        ArrayList<Artist> ar = searchForArtist(keyword);
+                        if(ar==null)
+                            toReturn+="0";
+                        else {
+                            toReturn+=ar.size()+" ; item_list | ";
+                            for (Artist artist : ar) {
+                                toReturn +=artist.getName()+"\n";
+                            }
+                        }
+                    }
+                    return toReturn;
 
                 }case "add_music": {
                     username = info[1][1];
@@ -530,7 +621,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             this.mainThread.getSongs().add(newMusic);
                             saveFile("src/Multicast/musics.obj", mainThread.getSongs());
                             saveFile("src/Multicast/artists.obj", mainThread.getArtists());
-                            return "type | add_music ; operation | succeeded \n";
+                            return "type | add_music ; operation | succeeded";
                         }
                     }
                     return "type | add_music ; operation | failed \n";

@@ -26,10 +26,10 @@ public class ObjectFile {
     public Object readsObject() {
         try {
             return (input_stream.readObject());
-        } catch (IOException e1) {
-             System.out.println("Excepção encontrada na função readsObject: " + e1);
-        } catch (ClassNotFoundException e2) {
-            System.out.println("Excepção encontrada na função readsObject: " + e2);
+        } catch (IOException e) {
+            System.out.println("Excepção encontrada na função readsObject: " + e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Excepção encontrada na função readsObject: " + e);
         }
         return null;
     }
