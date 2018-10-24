@@ -93,6 +93,12 @@ REQUEST: **type** | expell_user ; **username** | username ; **expelled_user** | 
 
 ANSWER: **type** | expell_user ; **operation** | succeeded/failed;
 
+####Leave group
+
+REQUEST: **type** | leave_group ; **username** | username ; **groupID** | groupID
+
+ANSWER: **type** | leave_group ; **operation** | succeeded/failed 
+
 ### REQUISITO Nº 3
 
 Pesquisar músicas
