@@ -269,10 +269,11 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
     }
 
     private Artist findArtist (String artistName) {
-        if(mainThread.getArtists().equals(null)) return null;
-        for(Artist a : this.mainThread.getArtists()){
-            if(a.getName().equals(artistName)){
-                return a;
+        if(mainThread.getArtists() != null){
+            for(Artist a : this.mainThread.getArtists()){
+                if(a.getName().equals(artistName)){
+                    return a;
+                }
             }
         }
         return null;
@@ -734,10 +735,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         if (artist == null) artist = new Artist(info[3][1], genre);
                         int year = Integer.parseInt(info[6] [1]);
                         String musics = info[5][1];
-                        musics = musics.replace("<", "");
-                        musics = musics.replace(">", "");
                         String mus[] = musics.split(",");
-
                         String publisher = info[7][1];
                         String description = info[9][1];
                         Description desc = new Description(description, current);
