@@ -2,6 +2,7 @@ package Interface;
 
 import java.util.*;
 import java.io.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class User implements Serializable{
     private static final long serialVersionUID = 4L;
@@ -10,6 +11,7 @@ public class User implements Serializable{
     private int perks;
     private ArrayList<Group> defaultShareGroups; //lista de grupos a quem o utilizador partilha sempre por omissão
     private ArrayList<Music> transferredMusics; //lista de musicas que o user transferiu para o servidor (e que pode enventualmente partilhar com outros userss/grupos)
+    private CopyOnWriteArrayList<Notification> notifications;
 
     public User(String username, String password, int perks) {
         this.username = username;
@@ -18,6 +20,15 @@ public class User implements Serializable{
         this.defaultShareGroups = new ArrayList<>();
         //this.defaultShareGroups = public group;
         this.transferredMusics = new ArrayList<>();
+        this.notifications = new CopyOnWriteArrayList<>();
+    }
+
+    public CopyOnWriteArrayList<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(CopyOnWriteArrayList<Notification> notifications) {
+        this.notifications = notifications;
     }
 
     public String getUsername() {

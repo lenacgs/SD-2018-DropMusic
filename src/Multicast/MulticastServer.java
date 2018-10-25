@@ -21,7 +21,7 @@ public class MulticastServer extends Thread {
     private CopyOnWriteArrayList<Group> groups;
     private String pathToObjectFiles;
     private String name;
-    private ObjectFile groupObjectFile; //file for groups
+    private ObjectFile groupObjectFile;
     private ObjectFile songsObjectFile;
     private ObjectFile artistsObjectFile;
     private ObjectFile albumsObjectFile;
@@ -169,26 +169,22 @@ public class MulticastServer extends Thread {
             this.setRegisteredUsers((CopyOnWriteArrayList)this.getUsersObjectFile().readsObject());
             this.getUsersObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-        System.out.println("1");
         try {
             System.out.println("yo");
             this.getGroupObjectFile().openRead("src/Multicast/groups.obj");
             this.setGroups((CopyOnWriteArrayList)this.getGroupObjectFile().readsObject());
             this.getGroupObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-        System.out.println("2");
         try {
             this.getSongsObjectFile().openRead("src/Multicast/musics.obj");
             this.setSongs((CopyOnWriteArrayList)this.getSongsObjectFile().readsObject());
             this.getSongsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-        System.out.println("3");
         try {
             this.getAlbumsObjectFile().openRead("src/Multicast/albums.obj");
             this.setAlbums((CopyOnWriteArrayList)this.getAlbumsObjectFile().readsObject());
             this.getAlbumsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-        System.out.println("4");
         try {
             this.getArtistsObjectFile().openRead("src/Multicast/artists.obj");
             this.setArtists((CopyOnWriteArrayList)this.getArtistsObjectFile().readsObject());
@@ -237,6 +233,8 @@ public class MulticastServer extends Thread {
         }finally{
             socket.close();
         }
+
+
     }
 }
 
@@ -419,18 +417,24 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     User currentUser;
                     username = info[1][1];
                     password = info[2][1];
-                    if ((currentUser = findUser(username)) == null) {
-                        return "type | status ; operation | failed ; message | This username doesn't exist! \n";
-                    }
-                    if (!verifyPassword(currentUser, password)) {
-                        return "type | status ; operation | failed ; message | Wrong password! \n";
+                    if ((currentUser = findUser(username)) == null || !verifyPassword(currentUser, password)) {
+                        return "type | status ; operation | failed";
                     }
 
                     mainThread.getLoggedOn().add(currentUser);
 
                     saveFile("src/Multicast/logged.obj", mainThread.getLoggedOn());
 
-                    return "type | status ; operation | succeeded ; message | Welcome " + username + "! \n";
+                    int perks = currentUser.getPerks();
+
+                    String notifications = ",";
+
+                    for (Notification notif : currentUser.getNotifications()){
+                        notifications += notif.getMessage() + "@" + notif.getTimeStamp() + ",";
+                        currentUser.getNotifications().remove(notif);
+                    }
+
+                    return "type | status ; operation | succeeded ; perks | " + perks + " ; notifications | " + notifications;
 
                 }case "logout":{
                     username = info[1][1];
@@ -636,8 +640,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | status ; command | invalid";
                     }
                 }case "grant_perks": {
-                    username = info[1][1];
-                    String new_editor_username = info[2][1];
+                    username = info[2][1];
+                    String new_editor_username = info[3][1];
                     User current = findUser(username);
                     if(current.getPerks()<3){
                         User new_editor = findUser(new_editor_username);
@@ -650,7 +654,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | grant_perks ; status | failed \n";
                 }case "test": {
                     test();
-                    return "type | status, command | tested";
+                    return "type | status ; command | tested";
                 }case "upload": {
                     //há um user a querer fazer upload de um ficheiro
                     username = info[1][1];
@@ -664,7 +668,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     int current = 0;
 
                     //ligação TCP
-                    try{
+                    try {
                         welcomeSocket = new ServerSocket(5000);
 
                         connectionSocket = welcomeSocket.accept();
@@ -674,20 +678,22 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                         //fos = new FileOutputStream(path_to_file) - não sei como isto vai funcionar...
                         //bos = new BufferedOutputStream(fos);
-                        byte[] file = new byte[16*1024];
+                        byte[] file = new byte[16 * 1024];
                         bytesRead = is.read(file, 0, file.length);
                         current = bytesRead;
-                    }catch(IOException e){
+                    } catch (IOException e) {
                         System.out.println("Exception: " + e.getStackTrace());
                     }
+                }case "notification": {
+                    username = info[1][1];
+                    String notif = info[2][1];
 
+                    User current = findUser(username);
+                    Notification newNotif = new Notification(notif);
+                    current.getNotifications().add(newNotif);
+                    saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
 
-
-
-
-
-
-
+                    return "type | status ; operation | succeeded";
 
                 }default: {
                     return "type | status ; command | invalid";

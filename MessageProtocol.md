@@ -25,11 +25,30 @@ ANSWER: **type** | data_count ; **object** | user ; **count** | <n users>\n (ist
 
 REQUEST: **type** | login ; **username** | username ; **password** | password \n
 
-ANSWER: **type** | status ; **login** | succeeded ou failed ; \n
 
-REQUEST: **type** | perks ; **username** | username \n
+**Se falhar**
 
-ANSWER: **type** | perks ; **user** | 1(owner) / 2(editor) / 3(normal)\n
+ANSWER: **type** | login ; **operation** | failed
+
+**Se tiver sucesso**
+
+ANSWER: **type** | status ; **operation** | succeeded ; **perks** | perks do user* ; **notifications** | todas as notificações pendentes para esse user
+
+\* - 1: user é owner de algum grupo
+
+\* - 2: user é editor de algum grupo
+
+\* - 3: user é um user normal
+
+Para transmitir estas informações ao cliente, é retornada uma string com a seguinte estrutura:
+
+"perk_number,notif1,notif2,..."
+
+Cada notificação segue a seguinte estrutura:
+
+"mensagem@timeStamp"
+
+
 
 
 ####User Logout
@@ -179,7 +198,7 @@ ANSWER: **type** | review  ; **status** | success/fail \n
 
 
 
-Dar privilégios de editor ou owner a um user
+###Dar privilégios de editor ou owner a um user
 
 REQUEST: **type** | grant\_perks ; **perk** | (editor / user) ; **username** | username proprio ; **new\_user** | username do novo editor ; **group** | groupID \n
 
@@ -211,3 +230,8 @@ ANSWER: **type** | join_group ; **username** | username ; **group** | group ; **
 
 ####Upload de ficheiros para um servidor
 REQUEST: **type** | upload ; **username** | username ; **music_title** | music title \n
+
+
+####Guardar notificação porque o user não está loggado
+
+REQUEST: **type** | notification ; **username** | username ; **message** | mensagem da notificação

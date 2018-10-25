@@ -42,7 +42,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         port=p;
     }
 
-    private static void setC() throws RemoteException, InterruptedException{
+    private static void setC() throws RemoteException, InterruptedException{ //criar o registo da interface no client
         while(true) {
             try {
                 Registry registry = LocateRegistry.createRegistry(port);
@@ -122,7 +122,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 }
                 System.out.println("Please select a valid option\n");
             }catch (NumberFormatException e) {
-                System.out.println("I only work with numbers bro! Try again...\n");
+                System.out.println("I only work with numbers bro! Try again...\n" + e.getMessage());
             }
         }
     }
@@ -131,6 +131,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         String username, password = null;
         int verifier;
         boolean validation;
+        String ans = "";
         System.out.println("(you can type '0' at any time to exit)");
         while (true) {
             System.out.print("\nUsername: ");
@@ -157,34 +158,34 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             validation = stringChecker(password);
             if (!validation)
                 continue;
-            while (true) {
-                try {
-                    //funcao de registar e login tem que devolver um boolean
-                    if (modifier == 1) //registar
-                        verifier = rmi.register(username, password);
-                    else //login
-                        verifier = rmi.login(username, password);
-                    if (verifier <= 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-nao existe/credencias mal;
-                        if (modifier == 1)
-                            System.out.println("User registed successfully!");
-                        else
-                            System.out.println("Logged in successfully!");
-                        user = username;
-                        perk = verifier;
-                        setC();
-                        mainMenu();
-                        return;
-                    } else {
-                        if (modifier == 1)
-                            System.out.println("Username already exists. Please chose another one\n");
-                        else
-                            System.out.println("Invalid Credentials!");
-                    }
-                } catch (RemoteException e) {
-                    retryRMIConnection();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            try {
+                //funcao de registar e login tem que devolver um boolean
+                if (modifier == 1) { //registar
+                    verifier = rmi.register(username, password);
+                }else {//login
+                    verifier = rmi.login(username, password);
                 }
+
+                if (verifier < 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-nao existe/credencias mal;
+                    if (modifier == 1)
+                        System.out.println("User registed successfully!");
+                    else
+                        System.out.println("Logged in successfully!");
+                    user = username;
+                    perk = verifier;
+                    setC();
+                    mainMenu();
+                    return;
+                } else {
+                    if (modifier == 1)
+                        System.out.println("Username already exists. Please chose another one\n");
+                    else
+                        System.out.println("Invalid Credentials!");
+                }
+            } catch (RemoteException e) {
+                retryRMIConnection();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -887,7 +888,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     private static void givePermissionsMenu(String perk) {
         String username=null, groupID=null;
         boolean validation=false;
-        String verifier;
+        boolean verifier;
         System.out.println("(you can type '0' at any time to exit)");
         while (!validation){
             System.out.println("----------------| Permissions Menu |----------------");
@@ -914,15 +915,13 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             }
             validation = stringChecker(groupID);
         }
-        while(true){
-            try{
-                verifier=rmi.givePermissions(perk,user,username,groupID);
-                break;
-            }catch(RemoteException e){
-                retryRMIConnection();
-            }
+        try{
+            verifier=rmi.givePermissions(perk,user,username,groupID);
+            if (verifier) System.out.println(perk + " permissions given to " + username + " on group " + groupID);
+            else System.out.println("Could not give " + perk + " permissions to " + username + " :(");
+        }catch(RemoteException e) {
+            retryRMIConnection();
         }
-        System.out.println(verifier);
     }
 
     private static boolean stringChecker (String toCheck){
