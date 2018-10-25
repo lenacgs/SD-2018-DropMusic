@@ -13,7 +13,6 @@ import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 
 import java.net.*;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RMIServer extends UnicastRemoteObject implements Services {
@@ -154,7 +153,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             System.out.println("Sent to multicast address: " + request);
 
             //waits for answer
-            buffer = new byte[256];
+            buffer = new byte[8192];
             packet = new DatagramPacket(buffer, buffer.length);
             socket = new MulticastSocket(4321);
             socket.joinGroup(group);
@@ -240,17 +239,59 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return toReturn;
     }
 
-    public String details(String object, String title) throws java.rmi.RemoteException{
-        String request = "type | get_info ; object | "+object+" ; title | "+title;
-        //return a info vinda do multicast
-
-        return request;
+    public String details(String object, String title, String artist) throws java.rmi.RemoteException{
+        String request = "type | get_info ; object | "+object+" ; title | "+title+" ; artist_name | "+artist;
+        String answer = dealWithRequest(request);
+        if(answer.equals("type | status ; command | invalid"))
+            return "Malformed request, please try again!";
+        else if (answer.equals("type | get_info ; status | failed"))
+            return "Something went wrong... maybe the "+object+" you entered does not exist!";
+        else{
+            String[] splitted = answer.split(" ; ");
+            String[][] split = new String[splitted.length][];
+            int i=0;
+            for(String s : splitted){
+                split[i] = s.split(" \\| ");
+                i++;
+            }
+            return split[1][1];
+        }
     }
 
-    public boolean review(String title,String user,String review,int rating) throws java.rmi.RemoteException{
-        String request = "type | review ; album_title | "+title+" ; username | "+user+" ; text | "+review+" ; rate | "+rating;
-        //return true ou false se bateu ou nao
-        return true;
+    public String details(String object, String title) throws java.rmi.RemoteException{
+        String request = "type | get_info ; object | "+object+" ; title | "+title;
+        String answer = dealWithRequest(request);
+        if(answer.equals("type | status ; command | invalid"))
+            return "Malformed request, please try again!";
+        else if (answer.equals("type | get_info ; status | failed"))
+            return "Something went wrong... maybe the "+object+" you entered does not exist!";
+        else{
+            String[] splitted = answer.split(" ; ");
+            String[][] split = new String[splitted.length][];
+            int i=0;
+            for(String s : splitted){
+                split[i] = s.split(" \\| ");
+                i++;
+            }
+            return split[1][1];
+        }
+    }
+
+    public boolean review(String title,String artist,String user,String review,int rating) throws java.rmi.RemoteException{
+        String request = "type | review ; album_title | "+title+" ; artist_name | "+artist+" ; username | "+user+" ; text | "+review+" ; rate | "+rating;
+        String answer = dealWithRequest(request);
+
+        String[] splitted = answer.split(" ; ");
+        String[][] split = new String[splitted.length][];
+        int i=0;
+        for(String s : splitted){
+            split[i] = s.split(" \\| ");
+            i++;
+        }
+        if(split[1][1].equals("successful"))
+            return true;
+        else
+            return false;
     }
 
     public String newGroup(String username)throws java.rmi.RemoteException{
@@ -308,7 +349,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
 
         String ans = dealWithRequest(request);
-        if (ans.equals("type | grant_perks ; status | succeeded \n")) {
+        if (ans.equals("type | grant_perks ; status | succeeded")) {
             String message = "Your permissions on group " + groupID + " have been updated!";
             sendNotification(message, newUser);
             return true;
@@ -347,7 +388,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             String title = s1, artist = s2, genre = s3, duration = s4;
 
             String request = "type | add_music ; username | " + username + /*" ; groups | " + groups + */ " ; title | " + title + " ; artist | " + artist + " ; genre | " + genre
-                    + " ; duration | " + duration + " \n";
+                    + " ; duration | " + duration;
 
             String ans = dealWithRequest(request);
 
@@ -364,20 +405,20 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String ans = dealWithRequest(request);
 
-            if (ans.equals("type | add_artist ; operation | succeeded \n"))
+            if (ans.equals("type | add_artist ; operation | succeeded"))
                 return true;
             else return false;
         }
         return false;
     }
 
-    public boolean addInfo(String username, String artist, String title, String musics, String year, String publisher, String genre, String description) { //used for albums
+    public boolean addInfo(String username, String title, String artist, String musics, String year, String publisher, String genre, String description) { //used for albums
         String request = "type | add_album ; username | " + username + " ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
-                + publisher + " ; genre | " + genre + " ; description | " + description + " \n";
+                + publisher + " ; genre | " + genre + " ; description | " + description;
 
         String ans = dealWithRequest(request);
 
-        if (ans.equals("type | add_album ; operation | succeeded \n"))
+        if (ans.equals("type | add_album ; operation | succeeded"))
             return true;
         return false;
     }
