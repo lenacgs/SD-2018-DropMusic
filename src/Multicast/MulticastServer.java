@@ -169,7 +169,6 @@ public class MulticastServer extends Thread {
             this.getUsersObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
         try {
-            System.out.println("yo");
             this.getGroupObjectFile().openRead("src/Multicast/groups.obj");
             this.setGroups((CopyOnWriteArrayList)this.getGroupObjectFile().readsObject());
             this.getGroupObjectFile().closeRead();
@@ -441,12 +440,16 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
     private Album findAlbum(String title, String artist) {
 
         Iterator it = mainThread.getAlbums().iterator();
-
+        System.out.println("\n---------------- Vou procurar o album: "+title+" do mano: "+artist);
         while (it.hasNext()) {
             Album aux = (Album)it.next();
-            if (aux.getTitle().equals(title) && aux.getArtist().getName() == artist) return aux;
+            System.out.println("verficar se "+aux.getTitle()+" = "+title+" && se "+aux.getArtist().getName()+" = "+artist);
+            if (aux.getTitle().equals(title) && aux.getArtist().getName().equals(artist)){
+                System.out.println("E igual sim senhor, vou retornar este");
+                return aux;
+            }
         }
-
+        System.out.println("nao encontrei nenhum, caguei");
         return null;
     }
 
@@ -730,6 +733,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         String genre = info[7][1];
                         Artist artist = findArtist(info[3][1]);
                         if (artist == null) artist = new Artist(info[3][1], genre);
+
                         int year = Integer.parseInt(info[5][1]);
                         String musics = info[4][1];
                         musics = musics.replace("<", "");
@@ -742,7 +746,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         CopyOnWriteArrayList<Music> musicList = new CopyOnWriteArrayList<>();
 
                         for (String m: mus) {
-                            Music newMusic = new Music(title, artist, genre);
+                            Music newMusic = new Music(m, artist, genre);
                             musicList.add(newMusic);
                             if (findMusic(artist.getName(), m) == null) mainThread.getSongs().add(newMusic);
                         }
@@ -750,7 +754,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                             Album newAlbum = new Album(artist, title, year, musicList, publisher, genre, desc);
 
-                            this.mainThread.getAlbums().add(newAlbum);
+                            mainThread.getArtists().add(artist);
+                            mainThread.getAlbums().add(newAlbum);
+                            saveFile("src/Multicast/artists.obj", this.mainThread.getArtists());
                             saveFile("src/Multicast/albums.obj", this.mainThread.getAlbums());
                             saveFile("src/Multicast/musics.obj", this.mainThread.getSongs());
                             return "type | add_album ; operation | succeeded";
@@ -769,22 +775,67 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | status ; command | invalid";
                     }
                 }case "get_info": {
+                    String answer = "type | get_info ;  info | ";
                     if (info[1][0].equals("object") && info[2][0].equals("title") && info.length == 3) {
-                        if (true) {
-                            return "type | status ; get_info | successful";
-                        } else {
-                            return "type | status ; get_info | failed";
+
+                        if (info[1][1].equals("album")) {
+                            return "type | get_info ; status | failed";
                         }
-                    } else {
-                        return "type | status ; command | invalid";
+                        else {
+                            Artist a = findArtist(info[2][1]);
+                            if(a==null)
+                                return "type | get_info ; status | failed";
+                            answer+="----------| Artist |----------\n"+a.getName();
+                            answer+="----------| Albums |----------\n";
+                            for(Album album : a.getAlbums()){
+                                answer+=album.getTitle()+"\n";
+                            }
+                            answer+="----------| Genre |----------\n"+a.getGenre();
+                            answer+="----------| Biografy |----------\n"+a.getDescription().getText();
+                            return answer;
+                        }
                     }
-                }case "review": {
-                    if (info[1][0].equals("album_title") && info[2][0].equals("username") && info[3][0].equals("text") && info[4][0].equals("rate") && info.length == 4) {
-                        if (true) {
-                            return "type | status ; review | successful";
-                        } else {
-                            return "type | status ; review | failed";
+                    else if (info[1][0].equals("object") && info[2][0].equals("title") && info[3][0].equals("artist_name") && info.length == 4){
+                        if (info[1][1].equals("artist")) {
+                            return "type | get_info ; status | failed";
                         }
+                        else{
+                            Album a = findAlbum(info[2][1], info[3][1]);
+                            if(a==null) {
+                                System.out.println("bateu null");
+                                return "type | get_info ; status | failed";
+                            }
+                            answer+="----------| Album |----------\n"+a.getTitle()+"\n";
+                            answer+="----------| Artist |----------\n"+a.getArtist().getName()+"\n";
+                            answer+="----------| Music List |----------\n";
+                            for(Music m : a.getMusics()){
+                                answer+=m.getTitle()+"\n";
+                            }
+                            answer+="----------| Genre |----------\n"+a.getGenre()+"\n";
+                            answer+="----------| Year |----------\n"+a.getYearOfPublication()+"\n";
+                            answer+="----------| Description |----------\n";
+                            answer+=a.getDescription().getText()+"\n";
+                            answer+="----------| Reviews |----------\n";
+                            if(a.reviewsToString()!=null)
+                                answer+=a.reviewsToString()+"\n";
+                            return answer;
+                        }
+                    }
+                    else
+                        return "type | status ; command | invalid";
+                }case "review": {
+                    if (info[1][0].equals("album_title") && info[2][0].equals("artist_name") && info[3][0].equals("username") && info[4][0].equals("text") && info[5][0].equals("rate") && info.length == 6) {
+                        Album a = findAlbum(info[1][1], info[2][1]);
+                        if(a != null){
+                            Review r = new Review(Integer.parseInt(info[5][1]), info[4][1], findUser(info[3][1]));
+                            a.addReview(r);
+
+                            saveFile("src/Multicast/albums.obj", this.mainThread.getAlbums());
+                            return "type | status ; review | successful";
+                        }
+                        else
+                            return "type | status ; review | failed";
+
                     } else {
                         return "type | status ; command | invalid";
                     }
