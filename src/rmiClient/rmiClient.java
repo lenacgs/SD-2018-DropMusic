@@ -325,9 +325,24 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     }
 
                     if (option == 3) { //user wants to add a new album
-                        String artist=null, title, musics=null, year=null, publisher=null, genre=null, description=null;
+                        String group, artist=null, title=null, musics=null, year=null, publisher=null, genre=null, description=null;
 
                         while (true) {
+
+                            System.out.println("Where you want to add the album (group ID): ");
+                            group = sc.nextLine();
+
+                            if (group.equals(""))
+                                group="1";
+
+                            if (group.equals("0")) {
+                                break;
+                            }
+
+                            validation=stringChecker(group);
+                            if(!validation)
+                                continue;
+
                             System.out.println("Album title: ");
                             title = sc.nextLine();
                             if (title.equals("0")) {
@@ -401,7 +416,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             break;
                         }
                         try {
-                            res = rmi.addInfo(user, artist, title, musics, year, publisher, genre, description);
+                            res = rmi.addInfo(user, group, artist, title, musics, year, publisher, genre, description);
                         }catch(RemoteException e){
                             retryRMIConnection();
                         }
@@ -535,7 +550,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         }
         //search for the keyword
         try {
-            answer = rmi.search(keyword, "music");
+            answer = rmi.search(user, keyword, "music");
         } catch (RemoteException e) {
             retryRMIConnection();
         }
@@ -629,7 +644,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     object="artist";
                 while(answer==null) {
                     try {
-                        answer = rmi.search(keyword, object);
+                        answer = rmi.search(user, keyword, object);
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }

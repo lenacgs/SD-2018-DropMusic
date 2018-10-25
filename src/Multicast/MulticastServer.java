@@ -15,7 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class MulticastServer extends Thread {
     private ObjectFile usersObjectFile; //file for registered users
     private String MULTICAST_ADDRESS = "224.0.224.0";
-    private int PORT = 4322;
+    private int PORT = 4323;
     private CopyOnWriteArrayList<User> loggedOn;
     private CopyOnWriteArrayList<Group> groups;
     private String pathToObjectFiles;
@@ -231,7 +231,7 @@ public class MulticastServer extends Thread {
 class requestHandler extends Thread{ //handles request and sends answer back to RMI
     private String request;
     private String MULTICAST_ADDRESS = "224.0.224.0";
-    private int PORT = 4321;
+    private int PORT = 4324;
     private MulticastServer mainThread;
 
     public requestHandler(String request, MulticastServer mainThread){
@@ -469,17 +469,19 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     int admin;
                     User newUser;
+                    Group g;
                     if (mainThread.getGroups().size() == 0){
                         admin = 1;
                         newUser = new User(username, password, admin);
-                        Group g = new Group(newUser, 1);
+                        g = new Group(newUser, 1);
                         mainThread.getGroups().add(g);
                     }else{
                         admin = 3;
                         newUser = new User(username, password, admin);
-                        Group g = findGroup(1);
+                        g = findGroup(1);
                         g.addUser(newUser);
                     }
+                    newUser.addToDefaultShareGroups(g);
                     saveFile("src/Multicast/groups.obj", mainThread.getGroups());
                     return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered!";
 
@@ -649,7 +651,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         else {
                             toReturn += a.size() + " ; item_list | ";
                             for (Album album : a) {
-                                toReturn += album.getTitle() + ", " + album.getArtist().getName();
+                                toReturn += album.getTitle() + ", " + album.getArtist().getName()+"\n";
                             }
                         }
                     }else if(object.equals("artist")){
@@ -730,34 +732,48 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "add_album": {
                     String username = info[1][1];
                     User current = findUser(username);
-                    if (current.getPerks() < 3) {
+                    String groupIDs = info[2][1];
+                    String aux[] = groupIDs.split(",");
+                    CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+                    for(int i = 0; i < aux.length; i++){
+                        for(Group g : current.getDefaultShareGroups()){
+                            if(g.getGroupID() == Integer.parseInt(aux[i])){
+                                if(g.isEditor(username))
+                                    groups.add(g.getGroupID());
+                            }
+                        }
+                    }
+                    if(groups.size() > 0) {
                         String title = info[3][1];
-                        String groupIDs = info[2][1];
-                        String aux[] = groupIDs.split(",");
                         String genre = info[8][1];
                         Artist artist = findArtist(info[4][1]);
-                        if (artist == null){
+                        if (artist == null) {
                             artist = new Artist(info[3][1], genre);
+                            for(Integer i : groups){
+                                artist.add_groups(i);
+                            }
                             mainThread.getArtists().add(artist);
                             saveFile("src/Multicast/artists.obj", this.mainThread.getArtists());
                         }
-                        int year = Integer.parseInt(info[6] [1]);
+                        int year = Integer.parseInt(info[6][1]);
                         String musics = info[5][1];
                         String mus[] = musics.split(",");
                         String publisher = info[7][1];
                         String description = info[9][1];
                         Description desc = new Description(description, current);
                         CopyOnWriteArrayList<Music> musicList = new CopyOnWriteArrayList<>();
-
-                        for (String m: mus) {
+                        for (String m : mus) {
                             Music newMusic = new Music(m, artist, genre);
+                            for(Integer i : groups){
+                                newMusic.add_groups(i);
+                            }
                             musicList.add(newMusic);
                             if (findMusic(artist.getName(), m) == null) mainThread.getSongs().add(newMusic);
                         }
                         if (findAlbum(title, info[3][1]) == null) {
 
                             Album newAlbum = new Album(artist, title, year, musicList, publisher, genre, desc);
-                            for(int i = 0; i < aux.length; i++){
+                            for (int i = 0; i < aux.length; i++) {
                                 newAlbum.add_groups(Integer.parseInt(aux[i]));
                             }
                             this.mainThread.getAlbums().add(newAlbum);

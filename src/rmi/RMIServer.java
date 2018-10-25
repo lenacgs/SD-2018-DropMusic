@@ -19,7 +19,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     private static Services s;
     private String MULTICAST_ADDRESS = "224.0.224.0";
-    private int PORT = 4322;
+    private int PORT = 4323;
     private String name = "RMIServer";
     private CopyOnWriteArrayList<Clients> clientList = new CopyOnWriteArrayList<>();
     private int clientPort = 7000;
@@ -155,7 +155,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             //waits for answer
             buffer = new byte[8192];
             packet = new DatagramPacket(buffer, buffer.length);
-            socket = new MulticastSocket(4321);
+            socket = new MulticastSocket(4324);
             socket.joinGroup(group);
             socket.receive(packet); //bloqueante
 
@@ -222,9 +222,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
-    public String search(String keyword, String object) throws java.rmi.RemoteException{
+    public String search(String user, String keyword, String object) throws java.rmi.RemoteException{
         //faz request aos multicasts para Search
-        String request = "type | search ; keyword | "+keyword+" ; object | "+object;
+        String request = "type | search ; username | "+user+" ; keyword | "+keyword+" ; object | "+object;
 
         String ans = dealWithRequest(request);
 
@@ -412,8 +412,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return false;
     }
 
-    public boolean addInfo(String username, String title, String artist, String musics, String year, String publisher, String genre, String description) { //used for albums
-        String request = "type | add_album ; username | " + username + " ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
+    public boolean addInfo(String username, String groupIDs, String title, String artist, String musics, String year, String publisher, String genre, String description) { //used for albums
+        String request = "type | add_album ; username | " + username + " ; groups | "+groupIDs+" ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
                 + publisher + " ; genre | " + genre + " ; description | " + description;
 
         String ans = dealWithRequest(request);
