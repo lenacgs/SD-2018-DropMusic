@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="6b27ba56-9b46-4699-b1ec-dc9b62fcdc55" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/Interface/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/Album.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interface/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/Artist.java" afterDir="false" />
@@ -11,6 +12,18 @@
       <change beforePath="$PROJECT_DIR$/src/Multicast/groups.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Multicast/musics.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/musics.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Multicast/users.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/users.obj" afterDir="false" />
+=======
+    <list default="true" id="80c123d5-c966-4df5-a368-7ca9727665e8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MessageProtocol.md" beforeDir="false" afterPath="$PROJECT_DIR$/MessageProtocol.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmi/RMIServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmi/RMIServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interface/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/groups.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/groups.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/logged.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/logged.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/users.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/users.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rmi/RMIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/RMIServer.java" afterDir="false" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
       <change beforePath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,6 +35,7 @@
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="1212959648">
+<<<<<<< HEAD
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="java" value="3" />
@@ -34,23 +48,40 @@
           <entry key="JAVA" value="3" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="1" />
+=======
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="46" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+<<<<<<< HEAD
           <entry key="java" value="737" />
+=======
+          <entry key="JAVA" value="46" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+<<<<<<< HEAD
           <entry key="JAVA" value="737" />
+=======
+          <entry key="xml" value="1" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+<<<<<<< HEAD
           <entry key="project.closed" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.opened" value="1" />
+=======
+          <entry key="XML" value="1" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
         </counts>
       </usages-collector>
     </session>
@@ -58,6 +89,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -66,32 +98,112 @@
                 <element signature="imports" expanded="true" />
                 <element signature="e#1422#1423#0" expanded="true" />
                 <element signature="e#1444#1445#0" expanded="true" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="11662">
+              <caret line="701" column="38" selection-start-line="701" selection-start-column="38" selection-end-line="701" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1090#1091#0" expanded="true" />
+                <element signature="e#1126#1127#0" expanded="true" />
+                <element signature="e#1172#1173#0" expanded="true" />
+                <element signature="e#1210#1211#0" expanded="true" />
+                <element signature="e#1276#1277#0" expanded="true" />
+                <element signature="e#1330#1331#0" expanded="true" />
+                <element signature="e#1376#1377#0" expanded="true" />
+                <element signature="e#1414#1415#0" expanded="true" />
+                <element signature="e#1480#1481#0" expanded="true" />
+                <element signature="e#1534#1535#0" expanded="true" />
+                <element signature="e#1582#1583#0" expanded="true" />
+                <element signature="e#1622#1623#0" expanded="true" />
+                <element signature="e#1692#1693#0" expanded="true" />
+                <element signature="e#1750#1751#0" expanded="true" />
+                <element signature="e#1797#1798#0" expanded="true" />
+                <element signature="e#1836#1837#0" expanded="true" />
+                <element signature="e#1904#1905#0" expanded="true" />
+                <element signature="e#1960#1961#0" expanded="true" />
+                <element signature="e#2013#2014#0" expanded="true" />
+                <element signature="e#2041#2042#0" expanded="true" />
+                <element signature="e#2104#2105#0" expanded="true" />
+                <element signature="e#2138#2139#0" expanded="true" />
+                <element signature="e#2194#2195#0" expanded="true" />
+                <element signature="e#2224#2225#0" expanded="true" />
+                <element signature="e#2292#2293#0" expanded="true" />
+                <element signature="e#2330#2331#0" expanded="true" />
+                <element signature="e#2384#2385#0" expanded="true" />
+                <element signature="e#2413#2414#0" expanded="true" />
+                <element signature="e#2478#2479#0" expanded="true" />
+                <element signature="e#2514#2515#0" expanded="true" />
+                <element signature="e#2629#2630#0" expanded="true" />
+                <element signature="e#2683#2684#0" expanded="true" />
+                <element signature="e#2727#2728#0" expanded="true" />
+                <element signature="e#2767#2768#0" expanded="true" />
+                <element signature="e#2833#2834#0" expanded="true" />
+                <element signature="e#2891#2892#0" expanded="true" />
+                <element signature="e#2991#2992#0" expanded="true" />
+                <element signature="e#3018#3019#0" expanded="true" />
+                <element signature="e#3055#3056#0" expanded="true" />
+                <element signature="e#3087#3088#0" expanded="true" />
+                <element signature="e#3149#3150#0" expanded="true" />
+                <element signature="e#3187#3188#0" expanded="true" />
+                <element signature="e#3378#3379#0" expanded="true" />
+                <element signature="e#3409#3410#0" expanded="true" />
+                <element signature="e#3477#3478#0" expanded="true" />
+                <element signature="e#3517#3518#0" expanded="true" />
+                <element signature="e#3561#3562#0" expanded="true" />
+                <element signature="e#3601#3602#0" expanded="true" />
+                <element signature="e#3667#3668#0" expanded="true" />
+                <element signature="e#3725#3726#0" expanded="true" />
+                <element signature="e#4636#4637#0" expanded="true" />
+                <element signature="e#4674#4675#0" expanded="true" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Interface/Music.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="250">
               <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Interface/Artist.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="145">
               <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1077#1078#0" expanded="true" />
+                <element signature="e#1113#1114#0" expanded="true" />
+              </folding>
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Interface/Album.java">
+        <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-967">
               <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
             </state>
@@ -112,6 +224,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
               <caret line="266" column="73" selection-start-line="266" selection-start-column="73" selection-end-line="266" selection-end-column="73" />
+=======
+            <state relative-caret-position="71">
+              <caret line="100" column="22" selection-start-line="100" selection-start-column="22" selection-end-line="100" selection-end-column="22" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1156#1157#0" expanded="true" />
@@ -171,11 +287,19 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="211">
               <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="82" column="17" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -187,8 +311,41 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+<<<<<<< HEAD
       <find>menu</find>
       <find>please select a vali</find>
+=======
+      <find>static</find>
+      <find>stringChecker</find>
+      <find>createre</find>
+      <find>rmi.register</find>
+      <find>fileHandler</find>
+      <find>registeredUsers</find>
+      <find>main</find>
+      <find>lena</find>
+      <find>rmi.</find>
+      <find>users.obj</find>
+      <find>filehan</find>
+      <find>filehandler</find>
+      <find>getAvailableGroups</find>
+      <find>add_music</find>
+      <find>artists</find>
+      <find>albuns</find>
+      <find>.obj</find>
+      <find>null</find>
+      <find>addInf</find>
+      <find>test</find>
+      <find>dealwit</find>
+      <find>(musics, albums or artists</find>
+      <find>&lt;</find>
+      <find>your p</find>
+      <find>login</find>
+      <find>sendNo</find>
+      <find>setC</find>
+      <find>newClient</find>
+      <find>na lista de c</find>
+      <find>dealWithRequest</find>
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -200,6 +357,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
         <option value="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
@@ -208,22 +366,48 @@
         <option value="$PROJECT_DIR$/src/Interface/Music.java" />
         <option value="$PROJECT_DIR$/src/Interface/User.java" />
         <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
+=======
+        <option value="$PROJECT_DIR$/src/Multicast/MulticastClient.java" />
+        <option value="$PROJECT_DIR$/src/rmi/Services.java" />
+        <option value="$PROJECT_DIR$/src/FileHandling/ObjectFile.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Artist.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Review.java" />
+        <option value="$PROJECT_DIR$/src/Interface/User.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Description.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Album.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Music.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Group.java" />
+        <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
+        <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
+        <option value="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+<<<<<<< HEAD
     <option name="x" value="5" />
     <option name="y" value="10" />
     <option name="width" value="1920" />
     <option name="height" value="1080" />
+=======
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scope" />
       <pane id="PackagesPane" />
+=======
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -300,12 +484,21 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540430698633" />
+=======
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540436917339" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -319,8 +512,21 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Application.RMIServer">
     <configuration name="MulticastClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+=======
+  <component name="RunManager" selected="Application.rmiClient">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HEIGHT" value="0" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="WIDTH" value="0" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MulticastClient" type="Application" factoryName="Application">
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
       <option name="MAIN_CLASS_NAME" value="Multicast.MulticastClient" />
       <module name="SD-2018-DropMusic" />
       <extension name="coverage">
@@ -405,6 +611,7 @@
     </task>
     <servers />
   </component>
+<<<<<<< HEAD
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -414,6 +621,8 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+=======
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
@@ -434,8 +643,13 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32907802" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.36879432" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32907802" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3134752" />
+=======
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32914045" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32907802" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -477,6 +691,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/SD-2018-DropMusic.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -521,15 +736,21 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FileHandling/ObjectFile.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-171">
-          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+        <state relative-caret-position="324">
+          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1077#1078#0" expanded="true" />
+            <element signature="e#1113#1114#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Interface/Review.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -582,14 +803,87 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11662">
+          <caret line="701" column="38" selection-start-line="701" selection-start-column="38" selection-end-line="701" selection-end-column="38" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1090#1091#0" expanded="true" />
+            <element signature="e#1126#1127#0" expanded="true" />
+            <element signature="e#1172#1173#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
+            <element signature="e#1276#1277#0" expanded="true" />
+            <element signature="e#1330#1331#0" expanded="true" />
+            <element signature="e#1376#1377#0" expanded="true" />
+            <element signature="e#1414#1415#0" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1534#1535#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="true" />
+            <element signature="e#1622#1623#0" expanded="true" />
+            <element signature="e#1692#1693#0" expanded="true" />
+            <element signature="e#1750#1751#0" expanded="true" />
+            <element signature="e#1797#1798#0" expanded="true" />
+            <element signature="e#1836#1837#0" expanded="true" />
+            <element signature="e#1904#1905#0" expanded="true" />
+            <element signature="e#1960#1961#0" expanded="true" />
+            <element signature="e#2013#2014#0" expanded="true" />
+            <element signature="e#2041#2042#0" expanded="true" />
+            <element signature="e#2104#2105#0" expanded="true" />
+            <element signature="e#2138#2139#0" expanded="true" />
+            <element signature="e#2194#2195#0" expanded="true" />
+            <element signature="e#2224#2225#0" expanded="true" />
+            <element signature="e#2292#2293#0" expanded="true" />
+            <element signature="e#2330#2331#0" expanded="true" />
+            <element signature="e#2384#2385#0" expanded="true" />
+            <element signature="e#2413#2414#0" expanded="true" />
+            <element signature="e#2478#2479#0" expanded="true" />
+            <element signature="e#2514#2515#0" expanded="true" />
+            <element signature="e#2629#2630#0" expanded="true" />
+            <element signature="e#2683#2684#0" expanded="true" />
+            <element signature="e#2727#2728#0" expanded="true" />
+            <element signature="e#2767#2768#0" expanded="true" />
+            <element signature="e#2833#2834#0" expanded="true" />
+            <element signature="e#2891#2892#0" expanded="true" />
+            <element signature="e#2991#2992#0" expanded="true" />
+            <element signature="e#3018#3019#0" expanded="true" />
+            <element signature="e#3055#3056#0" expanded="true" />
+            <element signature="e#3087#3088#0" expanded="true" />
+            <element signature="e#3149#3150#0" expanded="true" />
+            <element signature="e#3187#3188#0" expanded="true" />
+            <element signature="e#3378#3379#0" expanded="true" />
+            <element signature="e#3409#3410#0" expanded="true" />
+            <element signature="e#3477#3478#0" expanded="true" />
+            <element signature="e#3517#3518#0" expanded="true" />
+            <element signature="e#3561#3562#0" expanded="true" />
+            <element signature="e#3601#3602#0" expanded="true" />
+            <element signature="e#3667#3668#0" expanded="true" />
+            <element signature="e#3725#3726#0" expanded="true" />
+            <element signature="e#4636#4637#0" expanded="true" />
+            <element signature="e#4674#4675#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="17">
           <caret line="182" column="18" selection-start-line="182" selection-start-column="11" selection-end-line="182" selection-end-column="18" />
         </state>
@@ -599,6 +893,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="128" column="4" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
+=======
+        <state relative-caret-position="71">
+          <caret line="100" column="22" selection-start-line="100" selection-start-column="22" selection-end-line="100" selection-end-column="22" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1422#1423#0" expanded="true" />
@@ -607,6 +905,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Interface/Music.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -672,6 +971,14 @@
             <element signature="e#3742#3743#0" expanded="true" />
             <element signature="e#4653#4654#0" expanded="true" />
             <element signature="e#4691#4692#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="82" column="17" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+>>>>>>> 79fa51bb48983e2b1215e5615b0eedb2faaf0f8e
           </folding>
         </state>
       </provider>

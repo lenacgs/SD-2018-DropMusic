@@ -21,7 +21,7 @@ public class MulticastServer extends Thread {
     private CopyOnWriteArrayList<Group> groups;
     private String pathToObjectFiles;
     private String name;
-    private ObjectFile groupObjectFile; //file for groups
+    private ObjectFile groupObjectFile;
     private ObjectFile songsObjectFile;
     private ObjectFile artistsObjectFile;
     private ObjectFile albumsObjectFile;
@@ -168,26 +168,22 @@ public class MulticastServer extends Thread {
             this.setRegisteredUsers((CopyOnWriteArrayList)this.getUsersObjectFile().readsObject());
             this.getUsersObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-        System.out.println("1");
         try {
             System.out.println("yo");
             this.getGroupObjectFile().openRead("src/Multicast/groups.obj");
             this.setGroups((CopyOnWriteArrayList)this.getGroupObjectFile().readsObject());
             this.getGroupObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-        System.out.println("2");
         try {
             this.getSongsObjectFile().openRead("src/Multicast/musics.obj");
             this.setSongs((CopyOnWriteArrayList)this.getSongsObjectFile().readsObject());
             this.getSongsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-        System.out.println("3");
         try {
             this.getAlbumsObjectFile().openRead("src/Multicast/albums.obj");
             this.setAlbums((CopyOnWriteArrayList)this.getAlbumsObjectFile().readsObject());
             this.getAlbumsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-        System.out.println("4");
         try {
             this.getArtistsObjectFile().openRead("src/Multicast/artists.obj");
             this.setArtists((CopyOnWriteArrayList)this.getArtistsObjectFile().readsObject());
@@ -236,6 +232,8 @@ public class MulticastServer extends Thread {
         }finally{
             socket.close();
         }
+
+
     }
 }
 
@@ -483,6 +481,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     User currentUser;
                     String username = info[1][1];
                     String password = info[2][1];
+
                     if ((currentUser = findUser(username)) == null) {
                         return "type | status ; operation | failed ; message | This username doesn't exist!";
                     }
@@ -494,7 +493,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     saveFile("src/Multicast/logged.obj", mainThread.getLoggedOn());
 
-                    return "type | status ; operation | succeeded ; message | Welcome " + username + "!";
+                    int perks = currentUser.getPerks();
+
+                    return "type | status ; operation | succeeded ; perks | " + perks;
+
 
                 }case "logout":{
                     String username = info[1][1];
@@ -787,8 +789,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | status ; command | invalid";
                     }
                 }case "grant_perks": {
-                    String username = info[1][1];
-                    String new_editor_username = info[2][1];
+                    String username = info[2][1];
+                    String new_editor_username = info[3][1];
+
                     User current = findUser(username);
                     if(current.getPerks()<3){
                         User new_editor = findUser(new_editor_username);
@@ -802,7 +805,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | grant_perks ; status | failed";
                 }case "test": {
                     test();
-                    return "type | status, command | tested";
+                    return "type | status ; command | tested";
                 }case "upload": {
                     //há um user a querer fazer upload de um ficheiro
                     String username = info[1][1];
@@ -816,7 +819,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     int current = 0;
 
                     //ligação TCP
-                    try{
+                    try {
                         welcomeSocket = new ServerSocket(5000);
 
                         connectionSocket = welcomeSocket.accept();
@@ -826,13 +829,38 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                         //fos = new FileOutputStream(path_to_file) - não sei como isto vai funcionar...
                         //bos = new BufferedOutputStream(fos);
-                        byte[] file = new byte[16*1024];
+                        byte[] file = new byte[16 * 1024];
                         bytesRead = is.read(file, 0, file.length);
                         current = bytesRead;
-                    }catch(IOException e){
+                    } catch (IOException e) {
                         System.out.println("Exception: " + e.getStackTrace());
                     }
-                }default: {
+                }case "notification": {
+                    String username = info[1][1];
+                    String notif = info[2][1];
+                    User current = findUser(username);
+                    Notification newNotif = new Notification(notif);
+                    current.getNotifications().add(newNotif);
+                    saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
+
+                    return "type | status ; operation | succeeded";
+
+                }case "get_notifications":{
+                    String username = info[1][1];
+                    User current = findUser(username);
+                    System.out.println(current == null);
+                    int counter;
+                    if((counter = current.getNotifications().size())>0){
+                        String reply = "type | get_notifications ; item_count | " + counter + " ; notifications | ";
+                        for(Notification n : current.getNotifications()){
+                            reply += n.getMessage() + "\n";
+                            current.getNotifications().remove(n);
+                        }
+                        return reply;
+                    }else{
+                        return "type | get_notifications ; item_count | 0 ; notifications | ";
+                    }
+                } default:{
                     return "type | status ; command | invalid";
                 }
             }

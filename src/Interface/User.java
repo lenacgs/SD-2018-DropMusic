@@ -9,8 +9,10 @@ public class User implements Serializable{
     private String username;
     private String password;
     private int perks;
+
     private CopyOnWriteArrayList<Group> defaultShareGroups; //lista de grupos a quem o utilizador partilha sempre por omissão
     private CopyOnWriteArrayList<Music> transferredMusics; //lista de musicas que o user transferiu para o servidor (e que pode enventualmente partilhar com outros userss/grupos)
+    private CopyOnWriteArrayList<Notification> notifications;
 
     public User(String username, String password, int perks) {
         this.username = username;
@@ -18,7 +20,17 @@ public class User implements Serializable{
         this.perks = perks;
         this.defaultShareGroups = new CopyOnWriteArrayList<>();
         //this.defaultShareGroups = public group;
+
         this.transferredMusics = new CopyOnWriteArrayList<>();
+        this.notifications = new CopyOnWriteArrayList<>();
+    }
+
+    public CopyOnWriteArrayList<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(CopyOnWriteArrayList<Notification> notifications) {
+        this.notifications = notifications;
     }
 
     public String getUsername() {
