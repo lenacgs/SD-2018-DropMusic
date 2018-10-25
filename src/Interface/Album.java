@@ -27,6 +27,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
         this.groups = new CopyOnWriteArrayList<>();
     }
 
+    public void add_groups(int group) { this.groups.add(group);}
+
     public int getYearOfPublication() {
         return yearOfPublication;
     }

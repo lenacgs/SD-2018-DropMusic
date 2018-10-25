@@ -935,6 +935,11 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     public void notification (String message) throws RemoteException{
         System.out.println("----------------| New Notification |----------------");
+        if(message.contains("editor")){
+            perk = 2;
+        }else if(message.contains("owner")){
+            perk = 1;
+        }
         System.out.println(message);
     }
 
