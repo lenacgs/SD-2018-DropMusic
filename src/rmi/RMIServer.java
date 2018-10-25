@@ -308,8 +308,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
 
         String ans = dealWithRequest(request);
-        if (ans.equals("type | grant_perks ; status | succeeded \n")) {
-            String message = "Your permissions on group " + groupID + " have been updated!";
+        if (ans.equals("type | grant_perks ; status | succeeded")) {
+            String message = "Your permissions on group " + groupID + " have been updated to " + perk +"!";
             sendNotification(message, newUser);
             return true;
         }

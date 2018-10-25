@@ -10,6 +10,7 @@ public class Artist implements Serializable {
     private CopyOnWriteArrayList<Music> musics;
     private CopyOnWriteArrayList<Album> albums;
     private CopyOnWriteArrayList<String> concerts; //each concert should be "concertVenue-city-country-year-month-day-hour"
+    private CopyOnWriteArrayList<Integer> groups;
     private String genre;
     private static final long serialVersionUID = 4L;
 
@@ -17,6 +18,7 @@ public class Artist implements Serializable {
         albums = new CopyOnWriteArrayList<>();
         musics = new CopyOnWriteArrayList<>();
         concerts = new CopyOnWriteArrayList<>();
+        groups = new CopyOnWriteArrayList<>();
         this.genre = genre;
         this.name = name;
     }
@@ -27,6 +29,8 @@ public class Artist implements Serializable {
         this.concerts = concerts;
         this.genre = genre;
     }
+
+    public void add_groups(int group) { this.groups.add(group);}
 
     public void addMusic(Music m) {
         this.musics.add(m);

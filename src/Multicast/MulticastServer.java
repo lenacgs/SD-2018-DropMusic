@@ -16,7 +16,6 @@ public class MulticastServer extends Thread {
     private ObjectFile usersObjectFile; //file for registered users
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4322;
-    private CopyOnWriteArrayList<User> registeredUsers;
     private CopyOnWriteArrayList<User> loggedOn;
     private CopyOnWriteArrayList<Group> groups;
     private String pathToObjectFiles;
@@ -111,14 +110,6 @@ public class MulticastServer extends Thread {
         this.PORT = PORT;
     }
 
-    public CopyOnWriteArrayList<User> getRegisteredUsers() {
-        return registeredUsers;
-    }
-
-    public void setRegisteredUsers(CopyOnWriteArrayList<User> registeredUsers) {
-        this.registeredUsers = registeredUsers;
-    }
-
     public CopyOnWriteArrayList<User> getLoggedOn() {
         return loggedOn;
     }
@@ -147,7 +138,6 @@ public class MulticastServer extends Thread {
         artistsObjectFile = new ObjectFile();
         songsObjectFile = new ObjectFile();
         albumsObjectFile = new ObjectFile();
-        registeredUsers = new CopyOnWriteArrayList<User>();
         groups = new CopyOnWriteArrayList<Group>();
         this.artists = new CopyOnWriteArrayList<>();
         this.songs = new CopyOnWriteArrayList<>();
@@ -164,12 +154,6 @@ public class MulticastServer extends Thread {
 
     public void fileHandler() {
         try {
-            this.getUsersObjectFile().openRead("src/Multicast/users.obj");
-            this.setRegisteredUsers((CopyOnWriteArrayList)this.getUsersObjectFile().readsObject());
-            this.getUsersObjectFile().closeRead();
-        } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-        try {
-            System.out.println("yo");
             this.getGroupObjectFile().openRead("src/Multicast/groups.obj");
             this.setGroups((CopyOnWriteArrayList)this.getGroupObjectFile().readsObject());
             this.getGroupObjectFile().closeRead();
@@ -190,14 +174,20 @@ public class MulticastServer extends Thread {
             this.getArtistsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
 
-        Iterator it = registeredUsers.iterator();
-
         System.out.println("File has been read... Registered users:");
 
-        while (it.hasNext()){
-            User aux = (User)it.next();
-            System.out.println(aux.getUsername());
+        if(this.getGroups().size()>0){
+            Group g = this.groups.get(0);
+            Iterator it = g.getUsers().iterator();
+
+
+            while (it.hasNext()){
+                User aux = (User)it.next();
+                System.out.println(aux.getUsername());
+            }
+
         }
+
     }
 
     public void run(){
@@ -279,29 +269,36 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
     }
 
     private Artist findArtist (String artistName) {
-        if(mainThread.getArtists().equals(null)) return null;
-        for(Artist a : this.mainThread.getArtists()){
-            if(a.getName().equals(artistName)){
-                return a;
+        if(mainThread.getArtists() != null){
+            for(Artist a : this.mainThread.getArtists()){
+                if(a.getName().equals(artistName)){
+                    return a;
+                }
             }
         }
         return null;
     }
 
     private User findUser (String username){
-        Iterator it = mainThread.getRegisteredUsers().iterator();
+        Group g = findGroup(1);
+        if(g != null){
+            Iterator it = g.getUsers().iterator();
 
-        while (it.hasNext()) {
-            User aux = (User)it.next();
+            while (it.hasNext()) {
+                User aux = (User)it.next();
 
-            if (aux.getUsername().equals(username)) return aux;
+                if (aux.getUsername().equals(username)) return aux;
+            }
+            return null;
+        }else{
+            return null;
         }
-        return null;
+
     }
 
     private void test(){
         System.out.println("Registered:");
-        Iterator it1 = mainThread.getRegisteredUsers().iterator();
+        Iterator it1 = findGroup(1).getUsers().iterator();
         while(it1.hasNext()){
             User aux = (User)it1.next();
             System.out.println(aux.getUsername());
@@ -460,21 +457,26 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 case "register": {
                     String username = info[1][1];
                     String password = info[2][1];
-                    if (findUser(username) != null) { //já existe este username
+                    if (mainThread.getGroups().size() > 0 && findUser(username) != null) { //já existe este username
                         return "type | status ; operation | failed ; message | This username already exists... Try a different one!";
                     }
 
-
                     //else, register the new user
 
-                    int admin = 1;
-                    if (mainThread.getRegisteredUsers().size() > 0) admin = 3;
-
-                    User newUser = new User(username, password, admin);
-
-                    mainThread.getRegisteredUsers().add(newUser);
-
-                    saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
+                    int admin;
+                    User newUser;
+                    if (mainThread.getGroups().size() == 0){
+                        admin = 1;
+                        newUser = new User(username, password, admin);
+                        Group g = new Group(newUser, 1);
+                        mainThread.getGroups().add(g);
+                    }else{
+                        admin = 3;
+                        newUser = new User(username, password, admin);
+                        Group g = findGroup(1);
+                        g.addUser(newUser);
+                    }
+                    saveFile("src/Multicast/groups.obj", mainThread.getGroups());
                     return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered!";
 
                 }case "login": {
@@ -491,8 +493,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     mainThread.getLoggedOn().add(currentUser);
 
-                    saveFile("src/Multicast/logged.obj", mainThread.getLoggedOn());
-
                     int perks = currentUser.getPerks();
 
                     return "type | status ; operation | succeeded ; perks | " + perks;
@@ -503,19 +503,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     User current = findUser(username);
                     if(current != null) {
                         mainThread.getLoggedOn().remove(current);
-                        saveFile("src/Multicast/logged.obj", mainThread.getLoggedOn());
                     }
                     return "type | status ; operation | succeeded";
 
                 }case "perks":{
-                    String username = info[1][1];
-                    User current = findUser(username);
-                    if(current == null){
-                        return "type | status ; operation | failed";
-                    }
-                    return "type | perks ; user | " + current.getPerks();
-
-                }case "perks_group": {
                     User current = findUser(info[1][1]);
                     int groupID = Integer.parseInt(info[2][1]);
                     Group g = findGroup(groupID);
@@ -546,15 +537,18 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     int groupID = Integer.parseInt(info[2][1]);
                     User current = findUser(username);
                     Group g = findGroup(groupID);
-                    g.addRequest(current);
-                    saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
-                    return "type | join_group ; operation | succeeded";
+                    if(!g.isUser(current.getUsername())) {
+                        g.addRequest(current);
+                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                        return "type | join_group ; operation | succeeded";
+                    }
+                    return "type | join_group ; operation | failed";
                 }case "manage_request":{
                     String username = info[1][1];
                     User new_user = findUser(info[2][1]);
                     Group g = findGroup(Integer.parseInt(info[3][1]));
                     String request = info[4][1];
-                    if(g.isOwner(username)){
+                    if(g.isOwner(username) && g.getGroupID()!=1){
                         if(request.equals("accepted")){
                             g.addUser(new_user);
                             g.removeRequest(new_user.getUsername());
@@ -570,7 +564,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String username = info[1][1];
                     String expelled_user = info[2][1];
                     Group g = findGroup(Integer.parseInt(info[3][1]));
-                    if(g.isOwner(username) && !g.isOwner(expelled_user)){
+                    if(g.isOwner(username) && !g.isOwner(expelled_user) && g.getGroupID()!=1){
                         g.removeUser(expelled_user, g.getUsers());
                         if(g.isEditor(expelled_user)){
                             g.removeUser(expelled_user, g.getEditors());
@@ -596,11 +590,14 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }else{
                         return "type | leave_group ; operation | failed";
                     }
-                }case "grant_perks_group":{
-                    String username = info[1][1];
-                    String username2 = info[2][1];
-                    int groupID = Integer.parseInt(info[3][1]);
-                    int new_perks = Integer.parseInt(info[4][1]);
+                }case "grant_perks":{
+                    String perks = info[1][1];
+                    String username = info[2][1];
+                    String username2 = info[3][1];
+                    int groupID = Integer.parseInt(info[4][1]);
+                    int new_perks = 0;
+                    if(perks.equals("editor"))new_perks = 2;
+                    else if(perks.equals("owner"))new_perks = 1;
                     Group g = findGroup(groupID);
                     int old_perks = g.userPerks(username2);
                     int user_perks = g.userPerks(username);
@@ -611,9 +608,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             g.addOwner(new_user);
                         }
                         saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
-                        return "type | grant_perks_group ; operation | succeeded";
+                        return "type | grant_perks ; status | succeeded";
                     }else{
-                        return "type | grant_perks_group ; operation | failed";
+                        return "type | grant_perks ; status | failed";
                     }
                 }case "get_requests":{
                     String username = info[1][1];
@@ -670,8 +667,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     if (current.getPerks() < 3) { //se é editor ou owner
 
                         //questão dos grupos ainda tem que ser tratada antes------------------
-                        /*String groupIDs = info[2][1];
-                        String aux[] = groupIDs.split(",");----------------------------------*/
+                        String groupIDs = info[2][1];
+                        String aux[] = groupIDs.split(",");
 
                         String title = info[2][1];
                         String genre = info[4][1];
@@ -688,9 +685,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                             newMusic.add_editor(username);
 
-                            /*for(int i = 0; i < aux.length ; i++){
+                            for(int i = 0; i < aux.length ; i++){
                                 newMusic.add_groups(Integer.parseInt(aux[i]));
-                            }*/
+                            }
                             artist.addMusic(newMusic);
                             this.mainThread.getArtists().add(artist);
                             this.mainThread.getSongs().add(newMusic);
@@ -705,17 +702,21 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String username = info[1][1];
                     User current = findUser(username);
                     if (current.getPerks() < 3) {
-                        String name = info[2][1];
-                        String description = info[3][1];
-                        String concerts = info[4][1];
-                        Description desc = new Description(info[3][1], current);
-                        String genre = info[5][1];
+                        String groupIDs = info[2][1];
+                        String aux[] = groupIDs.split(",");
+                        String name = info[3][1];
+                        String description = info[4][1];
+                        String concerts = info[5][1];
+                        Description desc = new Description(description, current);
+                        String genre = info[6][1];
 
                         String conc[] = concerts.split(",");
 
                         if (findArtist(name) == null) {
                             Artist newArtist = new Artist(name, desc, new CopyOnWriteArrayList<>(Arrays.asList(conc)), genre);
-
+                            for(int i = 0; i < aux.length; i++){
+                                newArtist.add_groups(Integer.parseInt(aux[i]));
+                            }
                             this.mainThread.getArtists().add(newArtist);
                             saveFile("src/Multicast/artists.obj", mainThread.getArtists());
                             return "type | add_artist ; operation | succeeded";
@@ -726,18 +727,17 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String username = info[1][1];
                     User current = findUser(username);
                     if (current.getPerks() < 3) {
-                        String title = info[2][1];
-                        String genre = info[7][1];
-                        Artist artist = findArtist(info[3][1]);
+                        String title = info[3][1];
+                        String groupIDs = info[2][1];
+                        String aux[] = groupIDs.split(",");
+                        String genre = info[8][1];
+                        Artist artist = findArtist(info[4][1]);
                         if (artist == null) artist = new Artist(info[3][1], genre);
-                        int year = Integer.parseInt(info[5][1]);
-                        String musics = info[4][1];
-                        musics = musics.replace("<", "");
-                        musics = musics.replace(">", "");
+                        int year = Integer.parseInt(info[6] [1]);
+                        String musics = info[5][1];
                         String mus[] = musics.split(",");
-
-                        String publisher = info[6][1];
-                        String description = info[8][1];
+                        String publisher = info[7][1];
+                        String description = info[9][1];
                         Description desc = new Description(description, current);
                         CopyOnWriteArrayList<Music> musicList = new CopyOnWriteArrayList<>();
 
@@ -749,7 +749,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         if (findAlbum(title, info[3][1]) == null) {
 
                             Album newAlbum = new Album(artist, title, year, musicList, publisher, genre, desc);
-
+                            for(int i = 0; i < aux.length; i++){
+                                newAlbum.add_groups(Integer.parseInt(aux[i]));
+                            }
                             this.mainThread.getAlbums().add(newAlbum);
                             saveFile("src/Multicast/albums.obj", this.mainThread.getAlbums());
                             saveFile("src/Multicast/musics.obj", this.mainThread.getSongs());
@@ -788,21 +790,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     } else {
                         return "type | status ; command | invalid";
                     }
-                }case "grant_perks": {
-                    String username = info[2][1];
-                    String new_editor_username = info[3][1];
-
-                    User current = findUser(username);
-                    if(current.getPerks()<3){
-                        User new_editor = findUser(new_editor_username);
-                        if(new_editor == null){
-                            return "type | grant_perks ; status | failed";
-                        }
-                        new_editor.setPerks(2);
-                        saveFile("src/Multicast/users.obj", this.mainThread.getRegisteredUsers());
-                        return "type | grant_perks ; status | succeeded";
-                    }
-                    return "type | grant_perks ; status | failed";
                 }case "test": {
                     test();
                     return "type | status ; command | tested";
@@ -841,7 +828,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     User current = findUser(username);
                     Notification newNotif = new Notification(notif);
                     current.getNotifications().add(newNotif);
-                    saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
+                    saveFile("src/Multicast/groups.obj", findGroup(1).getUsers());
 
                     return "type | status ; operation | succeeded";
 
@@ -855,6 +842,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         for(Notification n : current.getNotifications()){
                             reply += n.getMessage() + "\n";
                             current.getNotifications().remove(n);
+                            saveFile("src/Multicast/groups.obj", findGroup(1).getUsers());
                         }
                         return reply;
                     }else{
