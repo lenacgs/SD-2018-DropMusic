@@ -9,13 +9,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
     private Artist artist;
     private String title;
     private int yearOfPublication;
-    private ArrayList<Music> musics;
+    private CopyOnWriteArrayList<Music> musics;
     private String publisher;
     private String genre;
     private Description description;
     private CopyOnWriteArrayList<Review> reviews;
     private CopyOnWriteArrayList<Integer> groups;
-    public Album(Artist artist, String title, int yearOfPublication, ArrayList<Music> musics, String publisher, String genre, Description description) {
+    public Album(Artist artist, String title, int yearOfPublication, CopyOnWriteArrayList<Music> musics, String publisher, String genre, Description description) {
         this.artist = artist;
         this.title = title;
         this.yearOfPublication = yearOfPublication;
@@ -51,11 +51,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
         this.artist = artist;
     }
 
-    public ArrayList<Music> getMusics() {
+    public CopyOnWriteArrayList<Music> getMusics() {
         return musics;
     }
 
-    public void setMusics(ArrayList<Music> musics) {
+    public void setMusics(CopyOnWriteArrayList<Music> musics) {
         this.musics = musics;
     }
 

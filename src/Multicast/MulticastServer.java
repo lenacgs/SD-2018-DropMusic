@@ -264,10 +264,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
     }
 
 
-    private ArrayList<Artist> searchForArtist(String keyword){
+    private CopyOnWriteArrayList<Artist> searchForArtist(String keyword){
         Iterator it = mainThread.getSongs().iterator();
 
-        ArrayList<Artist> toReturn = new ArrayList<>();
+        CopyOnWriteArrayList<Artist> toReturn = new CopyOnWriteArrayList<>();
         int i=0;
 
         while (it.hasNext()) {
@@ -381,7 +381,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         }
     }
 
-    private boolean verifyGroups(ArrayList<Integer> musicGroups, ArrayList<Group> userGroups){
+    private boolean verifyGroups(CopyOnWriteArrayList<Integer> musicGroups, CopyOnWriteArrayList<Group> userGroups){
         for(Integer i : musicGroups){
             for(Group g : userGroups){
                 if(g.getGroupID() == i){
@@ -392,10 +392,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return false;
     }
 
-    private ArrayList<Music> findMusic(String keyword, User user){
+    private CopyOnWriteArrayList<Music> findMusic(String keyword, User user){
         Iterator it = mainThread.getSongs().iterator();
 
-        ArrayList<Music> toReturn = new ArrayList<>();
+        CopyOnWriteArrayList<Music> toReturn = new CopyOnWriteArrayList<>();
         int i=0;
 
         while (it.hasNext()) {
@@ -421,11 +421,11 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return null;
     }
 
-    private ArrayList<Album> findAlbum(String keyword) {
+    private CopyOnWriteArrayList<Album> findAlbum(String keyword) {
 
         Iterator it = mainThread.getAlbums().iterator();
 
-        ArrayList<Album> toReturn = new ArrayList<>();
+        CopyOnWriteArrayList<Album> toReturn = new CopyOnWriteArrayList<>();
         int i=0;
 
         while (it.hasNext()) {
@@ -629,7 +629,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String toReturn = "type | ";
                     if(object.equals("music")){
                         toReturn += "music_list ; item_count | ";
-                        ArrayList<Music> m = findMusic(keyword, current);
+                        CopyOnWriteArrayList<Music> m = findMusic(keyword, current);
                         if(m==null)
                             toReturn += "0";
                         else {
@@ -640,7 +640,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         }
                     }else if(object.equals("album")){
                         toReturn += "album_list ; item_count | ";
-                        ArrayList<Album> a = findAlbum(keyword);
+                        CopyOnWriteArrayList<Album> a = findAlbum(keyword);
                         if(a==null)
                             toReturn += "0";
                         else {
@@ -651,7 +651,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         }
                     }else if(object.equals("artist")){
                         toReturn += "artist_list ; item_count | ";
-                        ArrayList<Artist> ar = searchForArtist(keyword);
+                        CopyOnWriteArrayList<Artist> ar = searchForArtist(keyword);
                         if(ar == null)
                             toReturn += "0";
                         else {
@@ -669,8 +669,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                         //questão dos grupos ainda tem que ser tratada antes------------------
                         /*String groupIDs = info[2][1];
-                        groupIDs.replace("<", "");
-                        groupIDs.replace(">", "");
                         String aux[] = groupIDs.split(",");----------------------------------*/
 
                         String title = info[2][1];
@@ -714,7 +712,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         String conc[] = concerts.split(",");
 
                         if (findArtist(name) == null) {
-                            Artist newArtist = new Artist(name, desc, new ArrayList<>(Arrays.asList(conc)), genre);
+                            Artist newArtist = new Artist(name, desc, new CopyOnWriteArrayList<>(Arrays.asList(conc)), genre);
 
                             this.mainThread.getArtists().add(newArtist);
                             saveFile("src/Multicast/artists.obj", mainThread.getArtists());
@@ -739,7 +737,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         String publisher = info[6][1];
                         String description = info[8][1];
                         Description desc = new Description(description, current);
-                        ArrayList<Music> musicList = new ArrayList<>();
+                        CopyOnWriteArrayList<Music> musicList = new CopyOnWriteArrayList<>();
 
                         for (String m: mus) {
                             Music newMusic = new Music(title, artist, genre);

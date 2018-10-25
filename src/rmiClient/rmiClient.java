@@ -61,6 +61,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         establishRMIConnection();
         setPort(getRmi().hello());
         firstMenu();
+        System.exit(0);
     }
 
     private static void establishRMIConnection(){
