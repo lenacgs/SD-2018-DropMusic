@@ -96,7 +96,7 @@ ANSWER: **type** | new\_group ; **object** | groupID ; **status** | succeeded ou
 
 ####Grant Perks
 
-REQUEST: **type** | grant\_perk ; **username** | username ; **new_editor/owner** | username ; **groupID** | groupID ; **new_perks** | 1 (owner) or 2 (editor) \n
+REQUEST: **type** | grant\_perks ; **perk** | perk ; **username** | username ; **new_user** | new_user ; **groupID** | groupID 
 
 ANSWER: **type** | grant\_perks; **operation** | succeeded/failed \n
 
