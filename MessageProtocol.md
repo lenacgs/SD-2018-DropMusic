@@ -94,11 +94,11 @@ REQUEST: **type** | new\_group ; **username** | username\n
 
 ANSWER: **type** | new\_group ; **object** | groupID ; **status** | succeeded ou failed\n
 
-####Grant Perks inside a group
+####Grant Perks
 
-REQUEST: **type** | grant\_perks\_group ; **username** | username ; **new_editor/owner** | username ; **groupID** | groupID ; **new_perks** | 1 (owner) or 2 (editor) \n
+REQUEST: **type** | grant\_perks ; **perk** | perk ; **username** | username ; **new_user** | new_user ; **groupID** | groupID 
 
-ANSWER: **type** | grant\_perks\_group ; **operation** | succeeded/failed \n
+ANSWER: **type** | grant\_perks; **operation** | succeeded/failed \n
 
 ####Get group requests
 
@@ -221,13 +221,6 @@ REQUEST: **type** | review ; **album\_title** | album title ; **username** | use
 
 ANSWER: **type** | review  ; **status** | success/fail \n
 
-
-
-###Dar privilégios de editor ou owner a um user
-
-REQUEST: **type** | grant\_perks ; **perk** | (editor / user) ; **username** | username proprio ; **new\_user** | username do novo editor ; **group** | groupID \n
-
-ANSWER: **type** | grant\_perks ; **status** | success/fail \n
 
 (Pode ser success ou fail, dependendo se o user que estiver a dar privilégios seja ou não editor ou owner
 

@@ -2,14 +2,10 @@ package rmiClient;
 
 import rmi.Services;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -22,10 +18,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     private static Scanner sc = new Scanner(System.in);
     private static Clients c;
     private static Services rmi;
-    // o que estou a pensar é, no ato do login e em cada alteração atualizar esta lista para ser mais simples enviar pedidos ao RMI
-    // um exemplo da lista podia ser [(<grupo> <role>) (<grupo> <role>) (...)]
-    // desta maneira quando formos fazer um pedido ao RMI para mexer em algum grupo, enviamos logo a informação do grupo que ele que alterar
-    // e sabemos logo a partir do role se ele pode fazer essas alterações ou não
     private static String user=null;
     private static int perk=0;
     private static int port;
@@ -129,10 +121,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     }
 
     private static void validationMenu(int modifier) {
-        String username, password = null;
+        String username, password;
         int verifier=0;
         boolean validation;
-        String ans = "";
         System.out.println("(you can type '0' at any time to exit)");
         while (true) {
             System.out.print("\nUsername: ");
@@ -145,8 +136,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 continue;
             }
             validation = stringChecker(username);
-            if (!validation)
+            if (!validation) {
                 continue;
+            }
             System.out.print("\nPassword: ");
             password = sc.nextLine().replaceAll("^[,\\s]+", "");
             if (password.equals("0")) {
@@ -178,9 +170,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                         perk = verifier;
                         try {
                             setC();
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
+                        } catch (RemoteException | InterruptedException e) {
                             e.printStackTrace();
                         }
                         mainMenu();
@@ -231,7 +221,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     }
 
                     if (option == 1) { //user wants to add a new music
-                        String title=null, artist=null, genre=null, duration=null;
+                        String title, artist=null, genre=null, duration=null;
                         while (true) {
                             System.out.println("Music title: ");
                             title = sc.nextLine();
@@ -283,7 +273,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     }
 
                     if (option == 2) { //user wants to add a new artist
-                        String name=null, description=null, concerts=null, genre=null;
+                        String name, description=null, concerts=null, genre=null;
 
                         while (true) {
                             System.out.println("Artist name: ");
@@ -335,7 +325,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     }
 
                     if (option == 3) { //user wants to add a new album
-                        String artist=null, title=null, musics=null, year=null, publisher=null, genre=null, description=null;
+                        String artist=null, title, musics=null, year=null, publisher=null, genre=null, description=null;
 
                         while (true) {
                             System.out.println("Album title: ");
@@ -562,15 +552,14 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     }
 
     //function to communicate with multicast server
-    private static void TCPServerConnection(String username, String music, String path) throws UnknownHostException, IOException {
+    private static void TCPServerConnection(String username, String music, String path) throws IOException {
         String serverIP = "127.0.0.1";
         int serverPort = 5000;
 
-        //opens a new socket in any avaliable port
+        //opens a new socket in any available port
         Socket sock = new Socket(serverIP, serverPort);
 
         File file = new File(path);
-        long length = file.length();
         byte[] bytes = new byte[16*1024];
         InputStream in = new FileInputStream(file);
         OutputStream out = sock.getOutputStream();
@@ -588,7 +577,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     private static void uploadFile(String username, String music) {
         boolean validation = false;
-        String path = null;
+        String path;
 
         while (!validation){
             System.out.println("-------------------| Search |-------------------");
@@ -653,7 +642,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     private static void detailsMenu(){
         int ob;
-        String object, title=null, answer=null;
+        String object, artist=null, title=null, answer=null;
         boolean validation=false;
         while(true) {
             System.out.println("----------------| Details |----------------");
@@ -680,9 +669,22 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     title = sc.nextLine().replaceAll("^[,\\s]+", "");
                     validation = stringChecker(title);
                 }
+                if(object.equals("album")){
+                    validation=false;
+                    while(!validation){
+                        System.out.println("----------------| Details |----------------");
+                        System.out.println("| Insert album artist:                    |");
+                        System.out.println("-------------------------------------------");
+                        artist = sc.nextLine().replaceAll("^[,\\s]+", "");
+                        validation = stringChecker(artist);
+                    }
+                }
                 while(answer==null) {
                     try {
-                        answer = rmi.details(object, title);
+                        if(object.equals("artist"))
+                            answer = rmi.details(object, title);
+                        else
+                            answer = rmi.details(object, title, artist);
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }
@@ -693,10 +695,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         }
     }
 
-
     private static void reviewMenu(){
         int rating;
-        String review=null, title=null;
+        String review=null, title=null, artist=null;
         boolean validation=false, verifier=false;
         while(!validation) {
             System.out.println("----------------| Reviews |----------------");
@@ -704,6 +705,14 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("-------------------------------------------");
             title=sc.nextLine().replaceAll("^[,\\s]+", "");
             validation = stringChecker(title);
+        }
+        validation=false;
+        while(!validation) {
+            System.out.println("----------------| Reviews |----------------");
+            System.out.println("| Insert album artist:                    |");
+            System.out.println("-------------------------------------------");
+            artist=sc.nextLine().replaceAll("^[,\\s]+", "");
+            validation = stringChecker(artist);
         }
         validation=false;
         while(!validation) {
@@ -732,7 +741,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         validation=false;
         while(!validation){
             try{
-                verifier=rmi.review(title,user,review,rating);
+                verifier=rmi.review(title,artist,user,review,rating);
                 validation=true;
             } catch (RemoteException e) {
                 retryRMIConnection();
