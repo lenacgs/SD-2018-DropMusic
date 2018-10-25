@@ -13,6 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import java.net.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RMIServer extends UnicastRemoteObject implements Services {
 
@@ -20,7 +21,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4322;
     private String name = "RMIServer";
-    private ArrayList<Clients> clientList = new ArrayList<>();
+    private CopyOnWriteArrayList<Clients> clientList = new CopyOnWriteArrayList<>();
     private int clientPort = 7000;
 
     private RMIServer() throws RemoteException {

@@ -2,6 +2,7 @@ package Multicast;
 
 import Interface.*;
 import FileHandling.*;
+//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.net.*;
@@ -256,7 +257,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
         while (it.hasNext()) {
             Group aux = (Group)it.next();
-
             if(aux.getGroupID() == id) return aux;
         }
 
@@ -317,8 +317,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         System.out.println("Groups:");
         Iterator it3 = mainThread.getGroups().iterator();
         while(it3.hasNext()){
-            User aux = (User)it3.next();
-            System.out.println(aux.getUsername());
+            Group aux = (Group)it3.next();
+            System.out.println(aux.getGroupID());
+            aux.printUsers();
         }
         System.out.println("Musics:");
         Iterator it4 = mainThread.getSongs().iterator();
@@ -476,7 +477,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     mainThread.getRegisteredUsers().add(newUser);
 
                     saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
-
                     return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered!";
 
                 }case "login": {
@@ -544,20 +544,83 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     int groupID = Integer.parseInt(info[2][1]);
                     User current = findUser(username);
                     Group g = findGroup(groupID);
-                    g.addUser(current);
+                    g.addRequest(current);
                     saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
                     return "type | join_group ; operation | succeeded";
-                }case "grant_perks_group": {
+                }case "manage_request":{
+                    String username = info[1][1];
+                    User new_user = findUser(info[2][1]);
+                    Group g = findGroup(Integer.parseInt(info[3][1]));
+                    String request = info[4][1];
+                    if(g.isOwner(username)){
+                        if(request.equals("accepted")){
+                            g.addUser(new_user);
+                            g.removeRequest(new_user.getUsername());
+                        }else{
+                            g.removeRequest(new_user.getUsername());
+                        }
+                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                        return "type | manage_request ; operation | succeeded";
+                    }else{
+                        return "type | manage_request ; operation | failed";
+                    }
+                }case "expell_user":{
+                    String username = info[1][1];
+                    String expelled_user = info[2][1];
+                    Group g = findGroup(Integer.parseInt(info[3][1]));
+                    if(g.isOwner(username) && !g.isOwner(expelled_user)){
+                        g.removeUser(expelled_user, g.getUsers());
+                        if(g.isEditor(expelled_user)){
+                            g.removeUser(expelled_user, g.getEditors());
+                        }
+                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                        return "type | expell_user ; operation | succeeded";
+                    }else{
+                        return "type | expell_user ; operation | failed";
+                    }
+                }case "leave_group":{
+                    String username = info[1][1];
+                    Group g = findGroup(Integer.parseInt(info[2][1]));
+                    if(g.isUser(username)){
+                        g.removeUser(username, g.getUsers());
+                        if(g.isEditor(username)){
+                            g.removeUser(username, g.getEditors());
+                            if(g.isOwner(username)){
+                                g.removeUser(username, g.getOwners());
+                            }
+                        }
+                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                        return "type | leave_group ; operation | succeeded";
+                    }else{
+                        return "type | leave_group ; operation | failed";
+                    }
+                }case "grant_perks_group":{
                     String username = info[1][1];
                     String username2 = info[2][1];
                     int groupID = Integer.parseInt(info[3][1]);
-                    User current = findUser(username);
-                    User new_editor = findUser(username2);
+                    int new_perks = Integer.parseInt(info[4][1]);
                     Group g = findGroup(groupID);
-                    if(g.isOwner(current) && g.isUser(new_editor)) {
-                        g.addEditor(new_editor);
+                    int old_perks = g.userPerks(username2);
+                    int user_perks = g.userPerks(username);
+                    if(new_perks >= user_perks && user_perks < 3 && new_perks < 3 && new_perks < old_perks){
+                        User new_user = findUser(username2);
+                        g.addEditor(new_user);
+                        if(new_perks == 1){
+                            g.addOwner(new_user);
+                        }
+                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                        return "type | grant_perks_group ; operation | succeeded";
+                    }else{
+                        return "type | grant_perks_group ; operation | failed";
                     }
-                    saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                }case "get_requests":{
+                    String username = info[1][1];
+                    Group g = findGroup(Integer.parseInt(info[2][1]));
+                    if(g.isOwner(username)){
+                        return "type | get_requests ; operation | succeeded ; list | " + g.getGroupRequests();
+                    }else{
+                        return "type | get_requests ; operation | failed";
+                    }
                 }case "search": {
                     String username = info[1][1];
                     User current = findUser(info[1][1]);
@@ -601,7 +664,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return toReturn;
                 }case "add_music": {
                     String username = info[1][1];
-
                     User current = findUser(username);
                     if (current.getPerks() < 3) { //se é editor ou owner
 
@@ -736,6 +798,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             return "type | grant_perks ; status | failed";
                         }
                         new_editor.setPerks(2);
+                        saveFile("src/Multicast/users.obj", this.mainThread.getRegisteredUsers());
                         return "type | grant_perks ; status | succeeded";
                     }
                     return "type | grant_perks ; status | failed";

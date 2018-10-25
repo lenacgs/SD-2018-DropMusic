@@ -106,7 +106,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
                 if (option == 1 || option == 2) {
                     validationMenu(option);
-                    break;
                 }
                 else if (option == 3){
                     if (user != null) {
@@ -120,6 +119,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     }
                     break;
                 }
+                else
                 System.out.println("Please select a valid option\n");
             }catch (NumberFormatException e) {
                 System.out.println("I only work with numbers bro! Try again...\n");
@@ -478,11 +478,13 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 while (!verifier) {
                     try {
                         verifier = rmi.logout(user);
+                        System.out.println("oi");
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }
                 }
-                break;
+                System.out.println("oi2");
+                return;
             }
             if (option == 1)
                 searchMenu();
