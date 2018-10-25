@@ -1,5 +1,6 @@
 package rmi;
 
+//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import rmiClient.Clients;
 import java.io.IOException;
 import java.rmi.AccessException;
@@ -13,6 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import java.net.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RMIServer extends UnicastRemoteObject implements Services {
 
@@ -20,7 +22,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4322;
     private String name = "RMIServer";
-    private ArrayList<Clients> clientList = new ArrayList<>();
+    private CopyOnWriteArrayList<Clients> clientList = new CopyOnWriteArrayList<>();
     private int clientPort = 7000;
 
     private RMIServer() throws RemoteException {
@@ -101,6 +103,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         while (true) {
             try {
                 c = (Clients) LocateRegistry.getRegistry(port).lookup("Benfica");
+                System.out.println(c==null);
                 break;
             } catch (ConnectException | NotBoundException exception) {
                 try {
@@ -110,7 +113,22 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                 }
             }
         }
+        System.out.println(c.getUsername()+" na lista de clientes");
         clientList.add(c);
+        String answer = dealWithRequest("type | get_notifications ; username | " +c.getUsername());
+        String tokens[] = answer.split(" ; ");
+        String mes[][] = new String[tokens.length][];
+        for (int i = 0; i < tokens.length; i++) {
+            mes[i] = tokens[i].split(" \\| ");
+        }
+
+        int counter = Integer.parseInt(mes[1][1]);
+        System.out.println("Counter: "+counter);
+        if(counter > 0){
+            System.out.println(mes[2][1]);
+            sendNotification(mes[2][1], c.getUsername());
+        }
+
     }
 
     public void ping() throws java.rmi.RemoteException {
@@ -170,14 +188,24 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         else return 3;
     }
 
-    public int login(String username, String password) throws java.rmi.RemoteException{
-        String request = "type | login ; username | "+username+" ; password | "+password;
-        //se o login foi aprovado
-        String perkRequest = "type | perks ; username | "+username;
+    public int login(String username, String password) throws java.rmi.RemoteException {
+        String request = "type | login ; username | " + username + " ; password | " + password;
+        String ans = dealWithRequest(request);
 
-        //se o login foi rejeitado return 4
-        return 1; //alterar quando comunicar com o multicast dependendo da resposta ao perkRequest
+
+        if (ans.equals("type | status ; operation | failed")) {
+            return 4;
+        }
+
+        //se o login foi aprovado
+        String tokens[] = ans.split(" ; ");
+        String mes[][] = new String[tokens.length][];
+        for (int i = 0; i < tokens.length; i++) {
+            mes[i] = tokens[i].split(" \\| ");
+        }
+        return Integer.parseInt(mes[2][1]);
     }
+
 
     public boolean logout(String username) throws java.rmi.RemoteException{
         //envia informação aos multicasts que este user já nao está online
@@ -189,6 +217,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                     clientList.remove(c);
             }catch (RemoteException e){
                 clientList.remove(c);
+                System.out.println(username+"saiu da lista");
             }
         }
         return true;
@@ -269,30 +298,44 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return request;
     }
 
-    public String givePermissions(String perk, String username, String newUser, String groupID)throws java.rmi.RemoteException{
-        String request = "type | grant_perks ; perk | "+perk+" ; username | "+username+" ; new_user | "+newUser+" ; group | "+groupID;
+    public boolean givePermissions(String perk, String username, String newUser, String groupID)throws java.rmi.RemoteException {
+        String request = "type | grant_perks ; perk | " + perk + " ; username | " + username + " ; new_user | " + newUser + " ; group | " + groupID;
         //multicasts tem que verificar se esse user é editor ou owner deste grupo e depois sim fazer as alteracoes.
         //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
         //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
-        String message = "Your permitions on group "+groupID+" have been updated";
-        sendNotification(message, newUser);
-        //processar a resposta e chamar o metodo para enviar notificacao ao cliente
 
-        return request;
+        String ans = dealWithRequest(request);
+        if (ans.equals("type | grant_perks ; status | succeeded \n")) {
+            String message = "Your permissions on group " + groupID + " have been updated!";
+            sendNotification(message, newUser);
+            return true;
+        }
+        return false;
     }
 
-
     private void sendNotification(String message, String user) {
+
+        System.out.println("Sending notification :" + message + ": to user " + user);
         for (Clients c : clientList) {
             try {
                 if (c.getUsername() == null)
                     continue;
-                if (c.getUsername().equals(user))
+                if (c.getUsername().equals(user)) {
                     c.notification(message);
+                    return;
+                }
             } catch (RemoteException e) {
                 clientList.remove(c);
+                System.out.println("saiu da lista");
             }
         }
+        System.out.println("Client isn't logged on, saving it for later");
+        //se chegou ao fim do for e não encontrou o user, significa que ele deu logout
+        //então, envia mensagem para o server para ele guardar a notificação para enviar quando o user se loggar de novo
+
+        String request = "type | notification ; username | " + user + " ; message | " + message;
+
+        dealWithRequest(request);
     }
 
     public boolean addInfo(String username, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
