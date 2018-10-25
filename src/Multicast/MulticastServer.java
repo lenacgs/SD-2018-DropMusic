@@ -2,7 +2,7 @@ package Multicast;
 
 import Interface.*;
 import FileHandling.*;
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.net.*;
@@ -394,7 +394,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         if(info[0][0].equals("type")){
             String command = info[0][1];
             switch(command) {
-                case "register":
+                case "register": {
                     String username = info[1][1];
                     String password = info[2][1];
                     if (findUser(username) != null) { //já existe este username
@@ -413,10 +413,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
                     return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered! \n";
-                case "login": {
+                }case "login": {
                     User currentUser;
-                    username = info[1][1];
-                    password = info[2][1];
+                    String username = info[1][1];
+                    String password = info[2][1];
                     if ((currentUser = findUser(username)) == null || !verifyPassword(currentUser, password)) {
                         return "type | status ; operation | failed";
                     }
@@ -427,17 +427,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     int perks = currentUser.getPerks();
 
-                    String notifications = ",";
-
-                    for (Notification notif : currentUser.getNotifications()){
-                        notifications += notif.getMessage() + "@" + notif.getTimeStamp() + ",";
-                        currentUser.getNotifications().remove(notif);
-                    }
-
-                    return "type | status ; operation | succeeded ; perks | " + perks + " ; notifications | " + notifications;
+                    return "type | status ; operation | succeeded ; perks | " + perks;
 
                 }case "logout":{
-                    username = info[1][1];
+                    String username = info[1][1];
                     User current = findUser(username);
                     if(current != null) {
                         mainThread.getLoggedOn().remove(current);
@@ -446,7 +439,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | status ; operation | succeeded \n";
 
                 }case "perks":{
-                    username = info[1][1];
+                    String username = info[1][1];
                     User current = findUser(username);
                     if(current == null){
                         return "type | status ; operation | failed \n";
@@ -470,17 +463,17 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | status ; operation | failed \n";
                     }
                 }case "groups": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     User current = findUser(username);
                     return "type | groups ; list ; " + getAvailableGroups(current) + " \n";
                 }case "new_group": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     User current = findUser(username);
                     mainThread.getGroups().add(new Group(current, mainThread.getGroups().size() + 1));
                     saveFile("src/Multicast/groups.obj", mainThread.getGroups());
                     return "type | new_group ; operation | succeeded \n";
                 }case "join_group": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     int groupID = Integer.parseInt(info[2][1]);
                     User current = findUser(username);
                     Group g = findGroup(groupID);
@@ -488,7 +481,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
                     return "type | join_group ; operation | succeeded \n";
                 }case "grant_perks_group": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     String username2 = info[2][1];
                     int groupID = Integer.parseInt(info[3][1]);
                     User current = findUser(username);
@@ -501,7 +494,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "search": {
 
                 }case "add_music": {
-                    username = info[1][1];
+                    String username = info[1][1];
 
                     User current = findUser(username);
                     if (current.getPerks() < 3) { //se é editor ou owner
@@ -541,7 +534,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | add_music ; operation | failed \n";
 
                 }case "add_artist" : {
-                    username = info[1][1];
+                    String username = info[1][1];
 
                     User current = findUser(username);
                     if (current.getPerks() < 3) {
@@ -563,7 +556,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                     return "type | add_artist ; operation | failed \n";
                 }case "add_album": {
-                    username = info[1][1];
+                    String username = info[1][1];
 
                     User current = findUser(username);
                     if (current.getPerks() < 3) {
@@ -640,7 +633,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | status ; command | invalid";
                     }
                 }case "grant_perks": {
-                    username = info[2][1];
+                    String username = info[2][1];
                     String new_editor_username = info[3][1];
                     User current = findUser(username);
                     if(current.getPerks()<3){
@@ -657,7 +650,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | status ; command | tested";
                 }case "upload": {
                     //há um user a querer fazer upload de um ficheiro
-                    username = info[1][1];
+                    String username = info[1][1];
                     String musicTitle = info[2][1];
                     ServerSocket welcomeSocket = null;
                     Socket connectionSocket = null;
@@ -685,9 +678,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         System.out.println("Exception: " + e.getStackTrace());
                     }
                 }case "notification": {
-                    username = info[1][1];
+                    String username = info[1][1];
                     String notif = info[2][1];
-
                     User current = findUser(username);
                     Notification newNotif = new Notification(notif);
                     current.getNotifications().add(newNotif);
@@ -695,7 +687,22 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     return "type | status ; operation | succeeded";
 
-                }default: {
+                }case "get_notifications":{
+                    String username = info[1][1];
+                    User current = findUser(username);
+                    System.out.println(current == null);
+                    int counter;
+                    if((counter = current.getNotifications().size())>0){
+                        String reply = "type | get_notifications ; item_count | " + counter + " ; notifications | ";
+                        for(Notification n : current.getNotifications()){
+                            reply += n.getMessage() + "\n";
+                            current.getNotifications().remove(n);
+                        }
+                        return reply;
+                    }else{
+                        return "type | get_notifications ; item_count | 0 ; notifications | ";
+                    }
+                } default:{
                     return "type | status ; command | invalid";
                 }
             }

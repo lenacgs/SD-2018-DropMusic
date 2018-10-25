@@ -1,6 +1,6 @@
 package rmi;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import rmiClient.Clients;
 import java.io.IOException;
 import java.rmi.AccessException;
@@ -112,7 +112,22 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                 }
             }
         }
+        System.out.println(c.getUsername()+" na lista de clientes");
         clientList.add(c);
+        String answer = dealWithRequest("type | get_notifications ; username | " +c.getUsername());
+        String tokens[] = answer.split(" ; ");
+        String mes[][] = new String[tokens.length][];
+        for (int i = 0; i < tokens.length; i++) {
+            mes[i] = tokens[i].split(" \\| ");
+        }
+
+        int counter = Integer.parseInt(mes[1][1]);
+        System.out.println("Counter: "+counter);
+        if(counter > 0){
+            System.out.println(mes[2][1]);
+            sendNotification(mes[2][1], c.getUsername());
+        }
+
     }
 
     public void ping() throws java.rmi.RemoteException {
@@ -187,23 +202,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         for (int i = 0; i < tokens.length; i++) {
             mes[i] = tokens[i].split(" \\| ");
         }
-
-        System.out.println("----" + ans);
-        if (!mes[3][1].equals(",")) {
-            String notifs[] = mes[3][1].split(",");
-            System.out.println("++++++++" +mes[3][1]);
-            for (String notif : notifs) {
-                System.out.println("NOTIFICATION: " + notif);
-                sendNotification(notif, username);
-            }
-        }
-
         return Integer.parseInt(mes[2][1]);
-
-
-
-
-
     }
 
 
@@ -217,6 +216,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                     clientList.remove(c);
             }catch (RemoteException e){
                 clientList.remove(c);
+                System.out.println(username+"saiu da lista");
             }
         }
         return true;
@@ -305,7 +305,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
         String ans = dealWithRequest(request);
         if (ans.equals("type | grant_perks ; status | succeeded \n")) {
-            String message = "Your permissions on group " + groupID + " have been updated";
+            String message = "Your permissions on group " + groupID + " have been updated!";
             sendNotification(message, newUser);
             return true;
         }
@@ -319,10 +319,13 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             try {
                 if (c.getUsername() == null)
                     continue;
-                if (c.getUsername().equals(user))
+                if (c.getUsername().equals(user)) {
                     c.notification(message);
+                    return;
+                }
             } catch (RemoteException e) {
                 clientList.remove(c);
+                System.out.println("saiu da lista");
             }
         }
         System.out.println("Client isn't logged on, saving it for later");
