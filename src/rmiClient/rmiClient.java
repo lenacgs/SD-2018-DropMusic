@@ -78,7 +78,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 Thread.sleep(1000);
                 rmi = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting");
                 port=rmi.hello();
-                setC();
+                if(user != null){
+                    setC();
+                }
                 break;
             }catch (RemoteException | NotBoundException e) {
                 System.out.print(".");

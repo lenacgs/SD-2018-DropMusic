@@ -256,7 +256,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
         while (it.hasNext()) {
             Group aux = (Group)it.next();
-
             if(aux.getGroupID() == id) return aux;
         }
 
@@ -300,8 +299,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         System.out.println("Groups:");
         Iterator it3 = mainThread.getGroups().iterator();
         while(it3.hasNext()){
-            User aux = (User)it3.next();
-            System.out.println(aux.getUsername());
+            Group aux = (Group)it3.next();
+            System.out.println(aux.getGroupID());
+            aux.printUsers();
         }
         System.out.println("Musics:");
         Iterator it4 = mainThread.getSongs().iterator();
@@ -412,13 +412,18 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     mainThread.getRegisteredUsers().add(newUser);
 
                     saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
-                    return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered! \n";
+                    return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered!";
+
                 }case "login": {
                     User currentUser;
                     String username = info[1][1];
                     String password = info[2][1];
-                    if ((currentUser = findUser(username)) == null || !verifyPassword(currentUser, password)) {
-                        return "type | status ; operation | failed";
+
+                    if ((currentUser = findUser(username)) == null) {
+                        return "type | status ; operation | failed ; message | This username doesn't exist!";
+                    }
+                    if (!verifyPassword(currentUser, password)) {
+                        return "type | status ; operation | failed ; message | Wrong password!";
                     }
 
                     mainThread.getLoggedOn().add(currentUser);
@@ -429,6 +434,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     return "type | status ; operation | succeeded ; perks | " + perks;
 
+
                 }case "logout":{
                     String username = info[1][1];
                     User current = findUser(username);
@@ -436,66 +442,127 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         mainThread.getLoggedOn().remove(current);
                         saveFile("src/Multicast/logged.obj", mainThread.getLoggedOn());
                     }
-                    return "type | status ; operation | succeeded \n";
+                    return "type | status ; operation | succeeded";
 
                 }case "perks":{
                     String username = info[1][1];
                     User current = findUser(username);
                     if(current == null){
-                        return "type | status ; operation | failed \n";
+                        return "type | status ; operation | failed";
                     }
-                    return "type | perks ; user | " + current.getPerks() + " \n";
+                    return "type | perks ; user | " + current.getPerks();
 
                 }case "perks_group": {
                     User current = findUser(info[1][1]);
                     int groupID = Integer.parseInt(info[2][1]);
                     Group g = findGroup(groupID);
                     if(g == null){
-                        return "type | status ; operation | failed \n";
+                        return "type | status ; operation | failed";
                     }
                     if(g.isOwner(current)){
-                        return "type | perks_group ; user | owner \n";
+                        return "type | perks_group ; user | owner";
                     } else if(g.isEditor(current)){
-                        return "type | perks_group ; user | editor \n";
+                        return "type | perks_group ; user | editor";
                     }else if(g.isUser(current)) {
-                        return "type | perks_group ; user | normal \n";
+                        return "type | perks_group ; user | normal";
                     }else{
-                        return "type | status ; operation | failed \n";
+                        return "type | status ; operation | failed";
                     }
                 }case "groups": {
                     String username = info[1][1];
                     User current = findUser(username);
-                    return "type | groups ; list ; " + getAvailableGroups(current) + " \n";
+                    return "type | groups ; list ; " + getAvailableGroups(current);
                 }case "new_group": {
                     String username = info[1][1];
                     User current = findUser(username);
                     mainThread.getGroups().add(new Group(current, mainThread.getGroups().size() + 1));
                     saveFile("src/Multicast/groups.obj", mainThread.getGroups());
-                    return "type | new_group ; operation | succeeded \n";
+                    return "type | new_group ; operation | succeeded";
                 }case "join_group": {
                     String username = info[1][1];
                     int groupID = Integer.parseInt(info[2][1]);
                     User current = findUser(username);
                     Group g = findGroup(groupID);
-                    g.addUser(current);
+                    g.addRequest(current);
                     saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
-                    return "type | join_group ; operation | succeeded \n";
-                }case "grant_perks_group": {
+                    return "type | join_group ; operation | succeeded";
+                }case "manage_request":{
+                    String username = info[1][1];
+                    User new_user = findUser(info[2][1]);
+                    Group g = findGroup(Integer.parseInt(info[3][1]));
+                    String request = info[4][1];
+                    if(g.isOwner(username)){
+                        if(request.equals("accepted")){
+                            g.addUser(new_user);
+                            g.removeRequest(new_user.getUsername());
+                        }else{
+                            g.removeRequest(new_user.getUsername());
+                        }
+                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                        return "type | manage_request ; operation | succeeded";
+                    }else{
+                        return "type | manage_request ; operation | failed";
+                    }
+                }case "expell_user":{
+                    String username = info[1][1];
+                    String expelled_user = info[2][1];
+                    Group g = findGroup(Integer.parseInt(info[3][1]));
+                    if(g.isOwner(username) && !g.isOwner(expelled_user)){
+                        g.removeUser(expelled_user, g.getUsers());
+                        if(g.isEditor(expelled_user)){
+                            g.removeUser(expelled_user, g.getEditors());
+                        }
+                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                        return "type | expell_user ; operation | succeeded";
+                    }else{
+                        return "type | expell_user ; operation | failed";
+                    }
+                }case "leave_group":{
+                    String username = info[1][1];
+                    Group g = findGroup(Integer.parseInt(info[2][1]));
+                    if(g.isUser(username)){
+                        g.removeUser(username, g.getUsers());
+                        if(g.isEditor(username)){
+                            g.removeUser(username, g.getEditors());
+                            if(g.isOwner(username)){
+                                g.removeUser(username, g.getOwners());
+                            }
+                        }
+                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                        return "type | leave_group ; operation | succeeded";
+                    }else{
+                        return "type | leave_group ; operation | failed";
+                    }
+                }case "grant_perks_group":{
                     String username = info[1][1];
                     String username2 = info[2][1];
                     int groupID = Integer.parseInt(info[3][1]);
-                    User current = findUser(username);
-                    User new_editor = findUser(username2);
+                    int new_perks = Integer.parseInt(info[4][1]);
                     Group g = findGroup(groupID);
-                    if(g.isOwner(current) && g.isUser(new_editor)) {
-                        g.addEditor(new_editor);
+                    int old_perks = g.userPerks(username2);
+                    int user_perks = g.userPerks(username);
+                    if(new_perks >= user_perks && user_perks < 3 && new_perks < 3 && new_perks < old_perks){
+                        User new_user = findUser(username2);
+                        g.addEditor(new_user);
+                        if(new_perks == 1){
+                            g.addOwner(new_user);
+                        }
+                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                        return "type | grant_perks_group ; operation | succeeded";
+                    }else{
+                        return "type | grant_perks_group ; operation | failed";
                     }
-                    saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                }case "get_requests":{
+                    String username = info[1][1];
+                    Group g = findGroup(Integer.parseInt(info[2][1]));
+                    if(g.isOwner(username)){
+                        return "type | get_requests ; operation | succeeded ; list | " + g.getGroupRequests();
+                    }else{
+                        return "type | get_requests ; operation | failed";
+                    }
                 }case "search": {
-
                 }case "add_music": {
                     String username = info[1][1];
-
                     User current = findUser(username);
                     if (current.getPerks() < 3) { //se é editor ou owner
 
@@ -528,10 +595,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             this.mainThread.getSongs().add(newMusic);
                             saveFile("src/Multicast/musics.obj", mainThread.getSongs());
                             saveFile("src/Multicast/artists.obj", mainThread.getArtists());
-                            return "type | add_music ; operation | succeeded \n";
+                            return "type | add_music ; operation | succeeded";
                         }
                     }
-                    return "type | add_music ; operation | failed \n";
+                    return "type | add_music ; operation | failed";
 
                 }case "add_artist" : {
                     String username = info[1][1];
@@ -551,10 +618,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                             this.mainThread.getArtists().add(newArtist);
                             saveFile("src/Multicast/artists.obj", mainThread.getArtists());
-                            return "type | add_artist ; operation | succeeded \n";
+                            return "type | add_artist ; operation | succeeded";
                         }
                     }
-                    return "type | add_artist ; operation | failed \n";
+                    return "type | add_artist ; operation | failed";
                 }case "add_album": {
                     String username = info[1][1];
 
@@ -587,10 +654,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             this.mainThread.getAlbums().add(newAlbum);
                             saveFile("src/Multicast/albums.obj", this.mainThread.getAlbums());
                             saveFile("src/Multicast/musics.obj", this.mainThread.getSongs());
-                            return "type | add_album ; operation | succeeded \n";
+                            return "type | add_album ; operation | succeeded";
                         }
                     }
-                    return "type | add_album ; operation | failed \n";
+                    return "type | add_album ; operation | failed";
 
                 }case "add_info": {
                     if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {
@@ -635,16 +702,19 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "grant_perks": {
                     String username = info[2][1];
                     String new_editor_username = info[3][1];
+
                     User current = findUser(username);
                     if(current.getPerks()<3){
                         User new_editor = findUser(new_editor_username);
                         if(new_editor == null){
-                            return "type | grant_perks ; status | failed \n";
+                            return "type | grant_perks ; status | failed";
                         }
                         new_editor.setPerks(2);
-                        return "type | grant_perks ; status | succeeded \n";
+                        saveFile("src/Multicast/users.obj", this.mainThread.getRegisteredUsers());
+
+                        return "type | grant_perks ; status | succeeded";
                     }
-                    return "type | grant_perks ; status | failed \n";
+                    return "type | grant_perks ; status | failed";
                 }case "test": {
                     test();
                     return "type | status ; command | tested";

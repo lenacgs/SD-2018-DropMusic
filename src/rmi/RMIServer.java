@@ -103,6 +103,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         while (true) {
             try {
                 c = (Clients) LocateRegistry.getRegistry(port).lookup("Benfica");
+                System.out.println(c==null);
                 break;
             } catch (ConnectException | NotBoundException exception) {
                 try {
