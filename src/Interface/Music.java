@@ -2,6 +2,7 @@ package Interface;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Music implements Serializable {
     private static final long serialVersionUID = 4L;
@@ -9,8 +10,8 @@ public class Music implements Serializable {
     private Artist artist;
     private String genre;
     private float duration;
-    private ArrayList<String> editors = new ArrayList<>();
-    private ArrayList<Integer> groups = new ArrayList<>();
+    private CopyOnWriteArrayList<String> editors = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
 
 
     public Music(String title, Artist artist, String genre, float duration) {
@@ -25,6 +26,8 @@ public class Music implements Serializable {
         this.artist = artist;
         this.genre = genre;
     }
+
+    public CopyOnWriteArrayList<Integer> getGroups() { return this.groups;  }
 
     public String getTitle() {
         return title;

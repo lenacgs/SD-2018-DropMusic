@@ -2,22 +2,23 @@ package Interface;
 
 import java.util.*;
 import java.io.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class User implements Serializable{
     private static final long serialVersionUID = 4L;
     private String username;
     private String password;
     private int perks;
-    private ArrayList<Group> defaultShareGroups; //lista de grupos a quem o utilizador partilha sempre por omissão
-    private ArrayList<Music> transferredMusics; //lista de musicas que o user transferiu para o servidor (e que pode enventualmente partilhar com outros userss/grupos)
+    private CopyOnWriteArrayList<Group> defaultShareGroups; //lista de grupos a quem o utilizador partilha sempre por omissão
+    private CopyOnWriteArrayList<Music> transferredMusics; //lista de musicas que o user transferiu para o servidor (e que pode enventualmente partilhar com outros userss/grupos)
 
     public User(String username, String password, int perks) {
         this.username = username;
         this.password = password;
         this.perks = perks;
-        this.defaultShareGroups = new ArrayList<>();
+        this.defaultShareGroups = new CopyOnWriteArrayList<>();
         //this.defaultShareGroups = public group;
-        this.transferredMusics = new ArrayList<>();
+        this.transferredMusics = new CopyOnWriteArrayList<>();
     }
 
     public String getUsername() {
@@ -40,11 +41,11 @@ public class User implements Serializable{
 
     public void setPerks(int perks) { this.perks = perks; }
 
-    public ArrayList<Group> getDefaultShareGroups() {
+    public CopyOnWriteArrayList<Group> getDefaultShareGroups() {
         return defaultShareGroups;
     }
 
-    public ArrayList<Music> getTransferredMusics() {
+    public CopyOnWriteArrayList<Music> getTransferredMusics() {
         return transferredMusics;
     }
 

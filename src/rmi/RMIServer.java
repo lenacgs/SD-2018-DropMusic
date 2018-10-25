@@ -13,6 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import java.net.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RMIServer extends UnicastRemoteObject implements Services {
 
@@ -20,7 +21,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4322;
     private String name = "RMIServer";
-    private ArrayList<Clients> clientList = new ArrayList<>();
+    private CopyOnWriteArrayList<Clients> clientList = new CopyOnWriteArrayList<>();
     private int clientPort = 7000;
 
     private RMIServer() throws RemoteException {
@@ -198,14 +199,17 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //faz request aos multicasts para Search
         String request = "type | search ; keyword | "+keyword+" ; object | "+object;
 
-        //envio do request
+        String ans = dealWithRequest(request);
 
-        //wait for answer
+        String[]splitted = ans.split(" ; ");
 
-        //execute operation
+        String count = splitted[1].split(" \\| ")[1];
 
-        //return to client
-        return request;
+        if (count.equals("0")){
+            return "No "+object+"s matching your keyword(s) were found";
+        }
+        String toReturn = splitted[2].split(" \\| ")[1];
+        return toReturn;
     }
 
     public String details(String object, String title) throws java.rmi.RemoteException{
@@ -305,10 +309,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String ans = dealWithRequest(request);
 
-            if (ans.equals("type | add_music ; operation | succeeded \n")) {
-                System.out.println("returning true!");
+            if (ans.equals("type | add_music ; operation | succeeded"))
                 return true;
-            }
 
             else return false;
         }

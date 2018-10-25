@@ -27,6 +27,7 @@ public class MulticastServer extends Thread {
     private ObjectFile albumsObjectFile;
     private CopyOnWriteArrayList<Music> songs;
     private CopyOnWriteArrayList<Artist> artists;
+    private CopyOnWriteArrayList<Album> albums;
 
     public void setGroups(CopyOnWriteArrayList<Group> groups) {
         this.groups = groups;
@@ -87,8 +88,6 @@ public class MulticastServer extends Thread {
     public void setAlbums(CopyOnWriteArrayList<Album> albums) {
         this.albums = albums;
     }
-
-    private CopyOnWriteArrayList<Album> albums;
 
     public void setUsersObjectFile(ObjectFile usersObjectFile) {
         this.usersObjectFile = usersObjectFile;
@@ -264,6 +263,23 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return null;
     }
 
+
+    private CopyOnWriteArrayList<Artist> searchForArtist(String keyword){
+        Iterator it = mainThread.getSongs().iterator();
+
+        CopyOnWriteArrayList<Artist> toReturn = new CopyOnWriteArrayList<>();
+        int i=0;
+
+        while (it.hasNext()) {
+            Artist aux = (Artist)it.next();
+            if(aux.getName().contains(keyword) || aux.getGenre().contains(keyword) || aux.checkIfContains(keyword)){
+                toReturn.add(aux);
+                i++;
+            }
+        }
+        return toReturn;
+    }
+
     private Artist findArtist (String artistName) {
         if(mainThread.getArtists().equals(null)) return null;
         for(Artist a : this.mainThread.getArtists()){
@@ -365,17 +381,64 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         }
     }
 
+    private boolean verifyGroups(CopyOnWriteArrayList<Integer> musicGroups, CopyOnWriteArrayList<Group> userGroups){
+        for(Integer i : musicGroups){
+            for(Group g : userGroups){
+                if(g.getGroupID() == i){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private CopyOnWriteArrayList<Music> findMusic(String keyword, User user){
+        Iterator it = mainThread.getSongs().iterator();
+
+        CopyOnWriteArrayList<Music> toReturn = new CopyOnWriteArrayList<>();
+        int i=0;
+
+        while (it.hasNext()) {
+            Music aux = (Music)it.next();
+            if((aux.getTitle().contains(keyword) || aux.getArtist().getName().contains(keyword) || aux.getGenre().contains(keyword)) && verifyGroups(aux.getGroups(), user.getDefaultShareGroups())) {
+                toReturn.add(aux);
+                i++;
+            }
+        }
+        return toReturn;
+    }
+
     private Music findMusic(String artist, String title) {
 
         Iterator it = mainThread.getSongs().iterator();
 
         while (it.hasNext()) {
             Music aux = (Music)it.next();
-            if (aux.getTitle().equals(title) && aux.getArtist().getName().equals(artist))
+            if (aux.getTitle().equals(title) && aux.getArtist().getName().equals(artist)) {
                 return aux;
+            }
         }
         return null;
     }
+
+    private CopyOnWriteArrayList<Album> findAlbum(String keyword) {
+
+        Iterator it = mainThread.getAlbums().iterator();
+
+        CopyOnWriteArrayList<Album> toReturn = new CopyOnWriteArrayList<>();
+        int i=0;
+
+        while (it.hasNext()) {
+            Album aux = (Album) it.next();
+            if(aux.getTitle().contains(keyword) || aux.getArtist().getName().contains(keyword) || aux.getGenre().contains(keyword)){
+                toReturn.add(aux);
+                i++;
+            }
+
+        }
+        return toReturn;
+    }
+
 
     private Album findAlbum(String title, String artist) {
 
@@ -400,7 +463,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String username = info[1][1];
                     String password = info[2][1];
                     if (findUser(username) != null) { //já existe este username
-                        return "type | status ; operation | failed ; message | This username already exists... Try a different one! \n";
+                        return "type | status ; operation | failed ; message | This username already exists... Try a different one!";
                     }
 
 
@@ -415,6 +478,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     saveFile("src/Multicast/users.obj", mainThread.getRegisteredUsers());
                     return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered!";
+
                 }case "login": {
                     User currentUser;
                     String username = info[1][1];
@@ -558,6 +622,46 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | get_requests ; operation | failed";
                     }
                 }case "search": {
+                    String username = info[1][1];
+                    User current = findUser(info[1][1]);
+                    String keyword = info[2][1];
+                    String object = info[3][1];
+                    String toReturn = "type | ";
+                    if(object.equals("music")){
+                        toReturn += "music_list ; item_count | ";
+                        CopyOnWriteArrayList<Music> m = findMusic(keyword, current);
+                        if(m==null)
+                            toReturn += "0";
+                        else {
+                            toReturn += m.size()+" ; item_list | ";
+                            for (Music music : m) {
+                                toReturn += music.getTitle()+", "+music.getArtist().getName();
+                            }
+                        }
+                    }else if(object.equals("album")){
+                        toReturn += "album_list ; item_count | ";
+                        CopyOnWriteArrayList<Album> a = findAlbum(keyword);
+                        if(a==null)
+                            toReturn += "0";
+                        else {
+                            toReturn += a.size() + " ; item_list | ";
+                            for (Album album : a) {
+                                toReturn += album.getTitle() + ", " + album.getArtist().getName();
+                            }
+                        }
+                    }else if(object.equals("artist")){
+                        toReturn += "artist_list ; item_count | ";
+                        CopyOnWriteArrayList<Artist> ar = searchForArtist(keyword);
+                        if(ar == null)
+                            toReturn += "0";
+                        else {
+                            toReturn += ar.size() + " ; item_list | ";
+                            for (Artist artist : ar) {
+                                toReturn += artist.getName();
+                            }
+                        }
+                    }
+                    return toReturn;
                 }case "add_music": {
                     String username = info[1][1];
                     User current = findUser(username);
@@ -565,8 +669,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                         //questão dos grupos ainda tem que ser tratada antes------------------
                         /*String groupIDs = info[2][1];
-                        groupIDs.replace("<", "");
-                        groupIDs.replace(">", "");
                         String aux[] = groupIDs.split(",");----------------------------------*/
 
                         String title = info[2][1];
@@ -599,7 +701,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                 }case "add_artist" : {
                     String username = info[1][1];
-
                     User current = findUser(username);
                     if (current.getPerks() < 3) {
                         String name = info[2][1];
@@ -611,7 +712,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         String conc[] = concerts.split(",");
 
                         if (findArtist(name) == null) {
-                            Artist newArtist = new Artist(name, desc, new ArrayList<>(Arrays.asList(conc)), genre);
+                            Artist newArtist = new Artist(name, desc, new CopyOnWriteArrayList<>(Arrays.asList(conc)), genre);
 
                             this.mainThread.getArtists().add(newArtist);
                             saveFile("src/Multicast/artists.obj", mainThread.getArtists());
@@ -621,7 +722,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | add_artist ; operation | failed";
                 }case "add_album": {
                     String username = info[1][1];
-
                     User current = findUser(username);
                     if (current.getPerks() < 3) {
                         String title = info[2][1];
@@ -637,7 +737,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         String publisher = info[6][1];
                         String description = info[8][1];
                         Description desc = new Description(description, current);
-                        ArrayList<Music> musicList = new ArrayList<>();
+                        CopyOnWriteArrayList<Music> musicList = new CopyOnWriteArrayList<>();
 
                         for (String m: mus) {
                             Music newMusic = new Music(title, artist, genre);
@@ -656,16 +756,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                     return "type | add_album ; operation | failed";
 
-                }case "add_info": {
-                    if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {
-                        if (true) {
-                            return "type | status ; add_info | successful";
-                        } else {
-                            return "type | status ; add_info | failed";
-                        }
-                    } else {
-                        return "type | status ; command | invalid";
-                    }
                 }case "change_info": {
                     if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {
                         if (true) {
@@ -707,7 +797,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         }
                         new_editor.setPerks(2);
                         saveFile("src/Multicast/users.obj", this.mainThread.getRegisteredUsers());
-
                         return "type | grant_perks ; status | succeeded";
                     }
                     return "type | grant_perks ; status | failed";
@@ -743,15 +832,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }catch(IOException e){
                         System.out.println("Exception: " + e.getStackTrace());
                     }
-
-
-
-
-
-
-
-
-
                 }default: {
                     return "type | status ; command | invalid";
                 }

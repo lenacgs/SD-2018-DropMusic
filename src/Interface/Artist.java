@@ -2,25 +2,26 @@ package Interface;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Artist implements Serializable {
     private String name;
     private Description description;
-    private ArrayList<Music> musics;
-    private ArrayList<Album> albums;
-    private ArrayList<String> concerts; //each concert should be "concertVenue-city-country-year-month-day-hour"
+    private CopyOnWriteArrayList<Music> musics;
+    private CopyOnWriteArrayList<Album> albums;
+    private CopyOnWriteArrayList<String> concerts; //each concert should be "concertVenue-city-country-year-month-day-hour"
     private String genre;
     private static final long serialVersionUID = 4L;
 
     public Artist(String name, String genre) {
-        albums = new ArrayList<>();
-        musics = new ArrayList<>();
-        concerts = new ArrayList<>();
+        albums = new CopyOnWriteArrayList<>();
+        musics = new CopyOnWriteArrayList<>();
+        concerts = new CopyOnWriteArrayList<>();
         this.genre = genre;
         this.name = name;
     }
 
-    public Artist(String name, Description description, ArrayList<String> concerts, String genre) {
+    public Artist(String name, Description description, CopyOnWriteArrayList<String> concerts, String genre) {
         this.name = name;
         this.description = description;
         this.concerts = concerts;
@@ -39,7 +40,7 @@ public class Artist implements Serializable {
         this.name = name;
     }
 
-    public ArrayList<Album> getAlbums() {
+    public CopyOnWriteArrayList<Album> getAlbums() {
         return albums;
     }
 
@@ -51,23 +52,23 @@ public class Artist implements Serializable {
         this.description = description;
     }
 
-    public ArrayList<Music> getMusics() {
+    public CopyOnWriteArrayList<Music> getMusics() {
         return musics;
     }
 
-    public void setMusics(ArrayList<Music> musics) {
+    public void setMusics(CopyOnWriteArrayList<Music> musics) {
         this.musics = musics;
     }
 
-    public void setAlbums(ArrayList<Album> albums) {
+    public void setAlbums(CopyOnWriteArrayList<Album> albums) {
         this.albums = albums;
     }
 
-    public ArrayList<String> getConcerts() {
+    public CopyOnWriteArrayList<String> getConcerts() {
         return concerts;
     }
 
-    public void setConcerts(ArrayList<String> concerts) {
+    public void setConcerts(CopyOnWriteArrayList<String> concerts) {
         this.concerts = concerts;
     }
 
@@ -77,5 +78,17 @@ public class Artist implements Serializable {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public boolean checkIfContains(String keyword){
+        for(Music m : musics){
+            if(m.getTitle().contains(keyword))
+                return true;
+        }
+        for(Album a : albums){
+            if(a.getTitle().contains(keyword))
+                return true;
+        }
+        return false;
     }
 }

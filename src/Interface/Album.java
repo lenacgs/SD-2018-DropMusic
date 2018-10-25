@@ -2,19 +2,20 @@
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Album implements Serializable{
+    public class Album implements Serializable{
     private static final long serialVersionUID = 4L;
     private Artist artist;
     private String title;
     private int yearOfPublication;
-    private ArrayList<Music> musics;
+    private CopyOnWriteArrayList<Music> musics;
     private String publisher;
     private String genre;
     private Description description;
-    private ArrayList<Review> reviews;
-
-    public Album(Artist artist, String title, int yearOfPublication, ArrayList<Music> musics, String publisher, String genre, Description description) {
+    private CopyOnWriteArrayList<Review> reviews;
+    private CopyOnWriteArrayList<Integer> groups;
+    public Album(Artist artist, String title, int yearOfPublication, CopyOnWriteArrayList<Music> musics, String publisher, String genre, Description description) {
         this.artist = artist;
         this.title = title;
         this.yearOfPublication = yearOfPublication;
@@ -22,7 +23,8 @@ public class Album implements Serializable{
         this.publisher = publisher;
         this.genre = genre;
         this.description = description;
-        this.reviews = new ArrayList<>();
+        this.reviews = new CopyOnWriteArrayList<>();
+        this.groups = new CopyOnWriteArrayList<>();
     }
 
     public int getYearOfPublication() {
@@ -49,11 +51,11 @@ public class Album implements Serializable{
         this.artist = artist;
     }
 
-    public ArrayList<Music> getMusics() {
+    public CopyOnWriteArrayList<Music> getMusics() {
         return musics;
     }
 
-    public void setMusics(ArrayList<Music> musics) {
+    public void setMusics(CopyOnWriteArrayList<Music> musics) {
         this.musics = musics;
     }
 
@@ -81,11 +83,11 @@ public class Album implements Serializable{
         this.description = description;
     }
 
-    public ArrayList<Review> getReviews() {
+    public CopyOnWriteArrayList<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(ArrayList<Review> reviews) {
+    public void setReviews(CopyOnWriteArrayList<Review> reviews) {
         this.reviews = reviews;
     }
 

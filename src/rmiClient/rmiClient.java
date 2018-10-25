@@ -46,7 +46,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         while(true) {
             try {
                 Registry registry = LocateRegistry.createRegistry(port);
-                System.out.println(c);
                 registry.rebind("Benfica", c);
                 rmi.newClient(port);
                 break;
@@ -62,6 +61,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         establishRMIConnection();
         setPort(getRmi().hello());
         firstMenu();
+        System.exit(0);
     }
 
     private static void establishRMIConnection(){
@@ -78,7 +78,8 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 Thread.sleep(1000);
                 rmi = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting");
                 port=rmi.hello();
-                setC();
+                if(user!=null)
+                    setC();
                 break;
             }catch (RemoteException | NotBoundException e) {
                 System.out.print(".");
@@ -106,7 +107,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
                 if (option == 1 || option == 2) {
                     validationMenu(option);
-                    break;
                 }
                 else if (option == 3){
                     if (user != null) {
@@ -120,6 +120,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     }
                     break;
                 }
+                else
                 System.out.println("Please select a valid option\n");
             }catch (NumberFormatException e) {
                 System.out.println("I only work with numbers bro! Try again...\n");
@@ -129,7 +130,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     private static void validationMenu(int modifier) {
         String username, password = null;
-        int verifier;
+        int verifier=0;
         boolean validation;
         System.out.println("(you can type '0' at any time to exit)");
         while (true) {
@@ -164,6 +165,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                         verifier = rmi.register(username, password);
                     else //login
                         verifier = rmi.login(username, password);
+                    } catch (RemoteException e) {
+                        retryRMIConnection();
+                    }
                     if (verifier <= 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-nao existe/credencias mal;
                         if (modifier == 1)
                             System.out.println("User registed successfully!");
@@ -171,7 +175,13 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             System.out.println("Logged in successfully!");
                         user = username;
                         perk = verifier;
-                        setC();
+                        try {
+                            setC();
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         mainMenu();
                         return;
                     } else {
@@ -180,11 +190,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                         else
                             System.out.println("Invalid Credentials!");
                     }
-                } catch (RemoteException e) {
-                    retryRMIConnection();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }
         }
     }
@@ -200,20 +205,16 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("1) Add new content (musics, albums or artists)");
             System.out.println("2) Change info of existing content");
             System.out.println("0) Go back");
-
             try {
                 option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
             } catch (NumberFormatException e) {
                 System.out.println("I can only work with numbers bro!");
                 continue;
             }
-
             if (option == 0) {
                 return;
             }
-
             if (option == 1) { //adding new content
-
                 while (true) {
                     System.out.println("What kind of content do you want to add?");
                     System.out.println("1) Music");
@@ -458,14 +459,13 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| 7) Create Group                           |");
             System.out.println("| 8) Join Group                             |");
             if (perk<3){ // se for editor ou owner
-                System.out.println("| 9) Manage Groups                          |");
-                System.out.println("| 10) Give 'Editor' privileges              |");
-                System.out.println("| 11) Add/change info                       |");
+                System.out.println("| 9) Give 'Editor' privileges               |");
+                System.out.println("| 10) Add/change info                       |");
 
             }
             if(perk<2){ // se for owner
-                System.out.println("| 12) Give 'Owner' privileges               |");
-                System.out.println("| 13) Manage group requests                 |");//falta
+                System.out.println("| 11) Give 'Owner' privileges               |");
+                System.out.println("| 12) Manage group requests                 |");//falta
             }
             System.out.println("| 0) Logout                                 |");
             System.out.println("---------------------------------------------");
@@ -479,11 +479,13 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 while (!verifier) {
                     try {
                         verifier = rmi.logout(user);
+                        System.out.println("oi");
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }
                 }
-                break;
+                System.out.println("oi2");
+                return;
             }
             if (option == 1)
                 searchMenu();
@@ -503,24 +505,22 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 createGroupMenu();
             else if(option == 8)
                 joinGroupMenu();
-            else if(option == 9 || option == 10 || option == 11){
+            else if(option == 9 || option == 10){
                 if(perk==3){
                     System.out.println("Please select one of the given options");
                     continue;
                 }
                 if(option == 9)
-                    manageGroup();
-                if(option == 10)
                     givePermissionsMenu("editor");
-                if (option == 11)
+                if (option == 10)
                     addChangeInfoMenu();
             }
-            else if(option == 12 || option == 13){
+            else if(option == 11 || option == 12){
                 if (perk>1){
                     System.out.println("Please select one of the given options");
                     continue;
                 }
-                if(option == 12)
+                if(option == 11)
                     givePermissionsMenu("owner");
                 //if(option == 12)
                 // continue
@@ -614,15 +614,14 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| What are you searching for:            |");
             System.out.println("| 1) Music                               |");
             System.out.println("| 2) Album                               |");
-            System.out.println("| 3) Genre                               |");
-            System.out.println("| 4) Artist                              |");
+            System.out.println("| 3) Artist                              |");
             System.out.println("| 0) Back                                |");
             System.out.println("------------------------------------------");
             ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
             if (ob == 0) {
                 break;
             }
-            else if (ob > 4 || ob < 0)
+            else if (ob > 3 || ob < 0)
                 System.out.println("Please select a valid option");
             else{
                 while(!validation){
@@ -636,8 +635,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     object="music";
                 else if(ob == 2)
                     object="album";
-                else if(ob == 3)
-                    object="genre";
                 else
                     object="artist";
                 while(answer==null) {
