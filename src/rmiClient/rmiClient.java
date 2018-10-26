@@ -744,9 +744,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 while(answer==null) {
                     try {
                         if(object.equals("artist"))
-                            answer = rmi.details(object, title);
+                            answer = rmi.details(user, object, title);
                         else
-                            answer = rmi.details(object, title, artist);
+                            answer = rmi.details(user, object, title, artist);
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }

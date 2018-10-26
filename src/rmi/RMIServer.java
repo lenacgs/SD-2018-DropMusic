@@ -233,8 +233,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return toReturn;
     }
 
-    public String details(String object, String title, String artist) throws java.rmi.RemoteException{
-        String request = "type | get_info ; object | "+object+" ; title | "+title+" ; artist_name | "+artist;
+    public String details(String username, String object, String title, String artist) throws java.rmi.RemoteException{
+        String request = "type | get_info ; username | "+username+" ; object | "+object+" ; title | "+title+" ; artist_name | "+artist;
         String answer = dealWithRequest(request);
         if(answer.equals("type | status ; command | invalid"))
             return "Malformed request, please try again!";
@@ -252,8 +252,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
-    public String details(String object, String title) throws java.rmi.RemoteException{
-        String request = "type | get_info ; object | "+object+" ; title | "+title;
+    public String details(String username, String object, String title) throws java.rmi.RemoteException{
+        String request = "type | get_info ; username | "+username+" ; object | "+object+" ; title | "+title;
         String answer = dealWithRequest(request);
         if(answer.equals("type | status ; command | invalid"))
             return "Malformed request, please try again!";
