@@ -48,11 +48,23 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     }
 
     public static void main(String[] args) throws IOException, NotBoundException, InterruptedException{
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            public void run() {
+                while(true) {
+                    try {
+                        if(user!=null)
+                            rmi.logout(user);
+                        break;
+                    } catch (RemoteException e) {
+                        retryRMIConnection();
+                    }
+                }
+            }
+        });
         c = new rmiClient();
         establishRMIConnection();
-        setPort(getRmi().hello());
         firstMenu();
-        System.exit(0);
+        System.exit(1);
     }
 
     private static void establishRMIConnection(){
@@ -150,36 +162,50 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             validation = stringChecker(password);
             if (!validation)
                 continue;
-            while (true) {
+            while(true) {
                 try {
                     //funcao de registar e login tem que devolver um boolean
                     if (modifier == 1) //registar
                         verifier = rmi.register(username, password);
                     else //login
                         verifier = rmi.login(username, password);
+                    break;
+                } catch (RemoteException e) {
+                    retryRMIConnection();
+                }
+            }
+            if (verifier < 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-ja existe/credencias mal, 5-user ja esta logado;
+                if (modifier == 1)
+                    System.out.println("User registed successfully!");
+                else
+                    System.out.println("Logged in successfully!");
+                user = username;
+                perk = verifier;
+                while(true) {
+                    try {
+                        port = rmi.hello();
+                        break;
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }
-                    if (verifier <= 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-nao existe/credencias mal;
-                        if (modifier == 1)
-                            System.out.println("User registed successfully!");
-                        else
-                            System.out.println("Logged in successfully!");
-                        user = username;
-                        perk = verifier;
-                        try {
-                            setC();
-                        } catch (RemoteException | InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        mainMenu();
-                        return;
-                    } else {
-                        if (modifier == 1)
-                            System.out.println("Username already exists. Please chose another one\n");
-                        else
-                            System.out.println("Invalid Credentials!");
-                    }
+                }
+                try {
+                    setC();
+                } catch (RemoteException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mainMenu();
+                return;
+            } else {
+                if(verifier==4) {
+                    if (modifier == 1)
+                        System.out.println("Username already exists. Please chose another one");
+                    else
+                        System.out.println("Invalid Credentials!");
+                }
+                else{
+                    System.out.println("User is already logged in!");
+                }
             }
         }
     }
@@ -496,12 +522,10 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 while (!verifier) {
                     try {
                         verifier = rmi.logout(user);
-                        System.out.println("oi");
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }
                 }
-                System.out.println("oi2");
                 return;
             }
             if (option == 1)
@@ -1041,7 +1065,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     System.out.println("Please type 'accept' or 'decline'");
                     continue;
                 }
-                if (!toDo.equals("accept") && !toDo.equals("delete")) {
+                if (!toDo.equals("accept") && !toDo.equals("decline")) {
                     System.out.println("Please type 'accept' or 'decline'");
                     continue;
                 }

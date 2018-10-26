@@ -1,6 +1,5 @@
 package rmi;
 
-//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import rmiClient.Clients;
 import java.io.IOException;
 import java.rmi.AccessException;
@@ -37,7 +36,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
-
     private static void createRegistry() throws RemoteException, InterruptedException {
         /*Creates registry of new RMI server on port 7000
         If AccessException happens => prints message
@@ -54,7 +52,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             secondaryRMI();
         }
     }
-
 
     private static void secondaryRMI() throws RemoteException, InterruptedException {
         /*This function is executed when a new RMI server is created but there's already a main one*/
@@ -95,7 +92,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         clientPort++;
         return clientPort;
     }
-
 
     public void newClient(int port) throws java.rmi.RemoteException{
         Clients c;
@@ -173,10 +169,10 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     public int register (String username, String password) throws java.rmi.RemoteException{
         String request = "type | register ; username | "+username+" ; password | "+password;
-        String ans = this.dealWithRequest(request);
+        String ans = dealWithRequest(request);
 
         //se o register não foi aprovado
-        if (ans.equals("type | status ; register | failed\n")) {
+        if (ans.equals("type | status ; operation | failed")) {
             return 4;
         }
         String tokens[] = ans.split(" ; ");
@@ -205,18 +201,16 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return Integer.parseInt(mes[2][1]);
     }
 
-
     public boolean logout(String username) throws java.rmi.RemoteException{
         //envia informação aos multicasts que este user já nao está online
         String request = "type | logout ; username | "+username;
-        //return true ou false consoante a resposta
+        dealWithRequest(request);
         for(Clients c : clientList ){
             try {
                 if (c.getUsername().equals(username))
                     clientList.remove(c);
             }catch (RemoteException e){
                 clientList.remove(c);
-                System.out.println(username+"saiu da lista");
             }
         }
         return true;
@@ -460,8 +454,14 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
         String answer = dealWithRequest(request);
 
-        if(answer.equals("type | manage_request ; operation | succeeded"))
+        if(answer.equals("type | manage_request ; status | succeeded ; operation | accept")) {
+            sendNotification("Your request to join group "+groupID+" has been accepted. Welcome!", newUser);
             return true;
+        }
+        else if (answer.equals("type | manage_request ; status | succeeded ; operation | decline")) {
+            sendNotification("Your request to join group "+groupID+" has been rejected", newUser);
+            return true;
+        }
         else
             return false;
 
