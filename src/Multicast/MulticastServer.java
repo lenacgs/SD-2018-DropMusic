@@ -356,7 +356,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         while(it.hasNext()) {
             Group aux = (Group)it.next();
             aux.printUsers();
-            if (!aux.isUser(user)) {
+            if (!aux.isUser(user.getUsername())) {
                 if (counter++ > 0) {
                     groups += ",";
                 }
@@ -548,23 +548,28 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     User current = findUser(username);
                     Group g = findGroup(groupID);
                     if(!g.isUser(current.getUsername())) {
+                        for(User request : g.getRequests()){
+                            if(request.getUsername().equals(username)){
+                                return "type | join_group ; status | failed";
+                            }
+                        }
                         g.addRequest(current);
                         saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
-                        ArrayList <User> owners = g.getOwners();
+                        CopyOnWriteArrayList <User> owners = g.getOwners();
                         String toReturn = "type | join_group ; status | succeeded ; owners | ";
                         for(User u : owners){
                             toReturn+=u.getUsername()+",";
                         }
                         return toReturn;
                     }
-                    return "type | join_group ; status | fail";
+                    return "type | join_group ; status | failed";
                 }case "manage_request":{
                     String username = info[1][1];
                     User new_user = findUser(info[2][1]);
                     Group g = findGroup(Integer.parseInt(info[3][1]));
                     String request = info[4][1];
                     if(g.isOwner(username) && g.getGroupID()!=1){
-                        if(request.equals("accepted")){
+                        if(request.equals("accept")){
                             new_user.getDefaultShareGroups().add(g);
                             g.addUser(new_user);
                             g.removeRequest(new_user.getUsername());

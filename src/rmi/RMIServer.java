@@ -333,8 +333,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     public String joinGroup(String username, String group)throws java.rmi.RemoteException{
         String request = "type | join_group ; username | "+username+" ; group | "+group;
         String answer = dealWithRequest(request);
-        if(answer.equals("type | join_group ; status | fail")){
-            return "fail";
+        if(answer.equals("type | join_group ; status | failed")){
+            return "failed";
         }
         else{
             String [] splitted = answer.split(" ; ");
