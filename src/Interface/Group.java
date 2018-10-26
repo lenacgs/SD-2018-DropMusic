@@ -51,6 +51,13 @@ public class Group implements Serializable {
         reply += ">";
         return reply;
     }
+    public boolean hasGroupRequests(User user){
+        for(User u : this.requests){
+            if (u==user)
+                return true;
+        }
+        return false;
+    }
 
     public void removeUser(String username, CopyOnWriteArrayList<User> users) {
         for(User u : users){

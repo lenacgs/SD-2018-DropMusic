@@ -12,27 +12,23 @@ Não podem haver "|", ";" nem "\n" nas chaves ou valores.
 
 ####User Registration
 
-REQUEST: **type** | register ; **username** | new\_username ; **password** | new password \n
+REQUEST: **type** | register ; **username** | new\_username ; **password** | new password
 
-ANSWER: **type** | status ; **register** | succeeded ou failed ; admin | 0 ou 1\n
-
-REQUEST: **type** | data\_count ; **object** | user\n
-
-ANSWER: **type** | data\_count ; **object** | user ; **count** | <n users>\n (isto para saber se é o primeiro para ficar owner da plataforma)
-
+ANSWER: **type** | status ; **operation** | failed
+or
+ANSWER: **type** | status ; **operation** | succeeded ; **message** | (1 or 3)
 
 ####User Login
 
-REQUEST: **type** | login ; **username** | username ; **password** | password \n
-
+REQUEST: **type** | login ; **username** | username ; **password** | password
 
 **Se falhar**
 
-ANSWER: **type** | login ; **operation** | failed
+ANSWER: **type** | login ; **operation** | failed ; **message** | (4 or 5)
 
 **Se tiver sucesso**
 
-ANSWER: **type** | status ; **operation** | succeeded ; **perks** | perks do user* ; **notifications** | todas as notificações pendentes para esse user
+ANSWER: **type** | status ; **operation** | succeeded ; **perks** | (1, 2 or 3)
 
 \* - 1: user é owner de algum grupo
 
@@ -49,13 +45,11 @@ Cada notificação segue a seguinte estrutura:
 "mensagem@timeStamp"
 
 
-
-
 ####User Logout
 
-REQUEST: **type** | logout ; **username** | username \n
+REQUEST: **type** | logout ; **username** | username
 
-ANSWER: **type** | status ; **logout** | succeeded ou failed \n
+ANSWER: **type** | status ; **logout** | succeeded or failed
 
 
 ####Check for user perks (Owner de algum grupo, Editor de algum grupo ou normal)

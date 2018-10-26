@@ -439,16 +439,12 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
     private Album findAlbum(String title, String artist) {
 
         Iterator it = mainThread.getAlbums().iterator();
-        System.out.println("\n---------------- Vou procurar o album: "+title+" do mano: "+artist);
         while (it.hasNext()) {
             Album aux = (Album)it.next();
-            System.out.println("verficar se "+aux.getTitle()+" = "+title+" && se "+aux.getArtist().getName()+" = "+artist);
             if (aux.getTitle().equals(title) && aux.getArtist().getName().equals(artist)){
-                System.out.println("E igual sim senhor, vou retornar este");
                 return aux;
             }
         }
-        System.out.println("nao encontrei nenhum, caguei");
         return null;
     }
 
@@ -463,7 +459,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String username = info[1][1];
                     String password = info[2][1];
                     if (mainThread.getGroups().size() > 0 && findUser(username) != null) { //já existe este username
-                        return "type | status ; operation | failed ; message | This username already exists... Try a different one!";
+                        return "type | status ; operation | failed";
                     }
 
                     //else, register the new user
@@ -484,7 +480,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                     newUser.addToDefaultShareGroups(g);
                     saveFile("src/Multicast/groups.obj", mainThread.getGroups());
-                    return "type | status ; operation | succeeded ; admin | " + admin + " ; message | User registered!";
+                    return "type | status ; operation | succeeded ; message | "+admin;
 
                 }case "login": {
                     User currentUser;
@@ -492,17 +488,20 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String password = info[2][1];
 
                     if ((currentUser = findUser(username)) == null) {
-                        return "type | status ; operation | failed ; message | This username doesn't exist!";
+                        return "type | status ; operation | failed ; message | 4";
                     }
                     if (!verifyPassword(currentUser, password)) {
-                        return "type | status ; operation | failed ; message | Wrong password!";
+                        return "type | status ; operation | failed ; message | 4";
+                    }
+                    if(mainThread.getLoggedOn().contains(currentUser)){
+                        return "type | status ; operation | failed ; message | 5";
                     }
 
                     mainThread.getLoggedOn().add(currentUser);
 
                     int perks = currentUser.getPerks();
 
-                    return "type | status ; operation | succeeded ; perks | " + perks;
+                    return "type | status ; operation | succeeded ; perks | " +perks;
 
 
                 }case "logout":{
@@ -539,6 +538,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     int groupID = mainThread.getGroups().size() + 1;
                     Group g = new Group(current, groupID);
                     current.getDefaultShareGroups().add(g);
+                    current.setPerks(1);
                     mainThread.getGroups().add(g);
                     saveFile("src/Multicast/groups.obj", mainThread.getGroups());
                     return "type | new_group ; groupID | " + groupID + " ; operation | succeeded";
@@ -560,7 +560,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         for(User u : owners){
                             toReturn+=u.getUsername()+",";
                         }
-                        return toReturn;
+                        return "type | join_group ; status | fail";
                     }
                     return "type | join_group ; status | failed";
                 }case "manage_request":{
@@ -573,11 +573,13 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             new_user.getDefaultShareGroups().add(g);
                             g.addUser(new_user);
                             g.removeRequest(new_user.getUsername());
+                            saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                            return "type | manage_request ; status | succeeded ; operation | accept";
                         }else{
                             g.removeRequest(new_user.getUsername());
+                            saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
+                            return "type | manage_request ; status | succeeded ; operation | decline";
                         }
-                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
-                        return "type | manage_request ; operation | succeeded";
                     }else{
                         return "type | manage_request ; operation | failed";
                     }
@@ -625,8 +627,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     if(new_perks >= user_perks && user_perks < 3 && new_perks < 3 && new_perks < old_perks){
                         User new_user = findUser(username2);
                         g.addEditor(new_user);
+                        new_user.setPerks(2);
                         if(new_perks == 1){
                             g.addOwner(new_user);
+                            new_user.setPerks(1);
                         }
                         saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
                         return "type | grant_perks ; status | succeeded";
