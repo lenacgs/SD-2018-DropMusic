@@ -312,10 +312,12 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     public String showGroups(String username)throws java.rmi.RemoteException{
         String request = "type | groups ; username | "+username;
-        //a resposta consiste em todos os grupo onde nao esta este user para este se poder juntar
-        //quando chega a resposta le a lista de grupos disponivel e envia.
-        //se a lista estiver vazia retorna null.
-        String groups="grupo1,grupo2,grupo3"; // fica com a lista de grupos para apresentar.
+        String answer = dealWithRequest(request);
+        String [] splitted = answer.split(" ; ");
+        if(splitted[1].split(" \\| ")[1].equals("0")){
+            return null;
+        }
+        String groups=splitted[2].split(" \\| ")[1]; // fica com a lista de grupos para apresentar.
         return groups;
     }
 
@@ -328,12 +330,23 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
-    public boolean joinGroup(String username, String group)throws java.rmi.RemoteException{
+    public String joinGroup(String username, String group)throws java.rmi.RemoteException{
         String request = "type | join_group ; username | "+username+" ; group | "+group;
-        //processar resposta e enviar notificação ao(s) owner(s) se online
-        String message = "You have a new request to join group: "+group;
-        //sendNotification(message,user);
-        return true;
+        String answer = dealWithRequest(request);
+        if(answer.equals("type | join_group ; status | fail")){
+            return "fail";
+        }
+        else{
+            String [] splitted = answer.split(" ; ");
+            String [] owners = splitted[2].split(" \\| ");
+
+            String message = "You have a new request to join group: "+group;
+            for(String s : owners[1].split(",")){
+                System.out.println("Enviar notificação para "+s);
+                sendNotification(message,s);
+            }
+            return "success";
+        }
     }
 
     public String changeInfo(String object, String objectName, String text, String username, String groupID)throws java.rmi.RemoteException{
@@ -443,7 +456,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     }
 
     public boolean manageRequests(String username, String newUser, String groupID, String toDo)throws java.rmi.RemoteException{
-        String request = "type | manage_request ; username | "+username+" ; new_user | "+newUser+" ; groupID | +"+groupID+" ; request | "+toDo;
+        String request = "type | manage_request ; username | "+username+" ; new_user | "+newUser+" ; groupID | "+groupID+" ; request | "+toDo;
 
         String answer = dealWithRequest(request);
 

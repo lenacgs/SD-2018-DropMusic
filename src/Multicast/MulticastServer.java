@@ -349,7 +349,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
     private String getAvailableGroups(User user){
         int counter = 0;
-        String reply = "<";
+        String groups="";
+        String reply;
         Iterator it = mainThread.getGroups().iterator();
 
         while(it.hasNext()) {
@@ -357,12 +358,12 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
             aux.printUsers();
             if (!aux.isUser(user)) {
                 if (counter++ > 0) {
-                    reply += ",";
+                    groups += ",";
                 }
-                reply += aux.getGroupID();
+                groups += aux.getGroupID();
             }
         }
-        reply += ">";
+        reply = counter+" ; list | "+groups;
         return reply;
     }
 
@@ -531,7 +532,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "groups": {
                     String username = info[1][1];
                     User current = findUser(username);
-                    return "type | groups ; list ; " + getAvailableGroups(current);
+                    return "type | groups ; item_count | "+ getAvailableGroups(current);
                 }case "new_group": {
                     String username = info[1][1];
                     User current = findUser(username);
@@ -549,9 +550,14 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     if(!g.isUser(current.getUsername())) {
                         g.addRequest(current);
                         saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
-                        return "type | join_group ; operation | succeeded";
+                        ArrayList <User> owners = g.getOwners();
+                        String toReturn = "type | join_group ; status | succeeded ; owners | ";
+                        for(User u : owners){
+                            toReturn+=u.getUsername()+",";
+                        }
+                        return toReturn;
                     }
-                    return "type | join_group ; operation | failed";
+                    return "type | join_group ; status | fail";
                 }case "manage_request":{
                     String username = info[1][1];
                     User new_user = findUser(info[2][1]);
@@ -1026,16 +1032,18 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     User current = findUser(username);
                     System.out.println(current == null);
                     int counter;
-                    if((counter = current.getNotifications().size())>0){
-                        String reply = "type | get_notifications ; item_count | " + counter + " ; notifications | ";
-                        for(Notification n : current.getNotifications()){
-                            reply += n.getMessage() + "\n";
-                            current.getNotifications().remove(n);
-                            saveFile("src/Multicast/groups.obj", findGroup(1).getUsers());
+                    if(current.getNotifications()!=null) {
+                        if ((counter = current.getNotifications().size()) > 0) {
+                            String reply = "type | get_notifications ; item_count | " + counter + " ; notifications | ";
+                            for (Notification n : current.getNotifications()) {
+                                reply += n.getMessage() + "\n";
+                                current.getNotifications().remove(n);
+                                saveFile("src/Multicast/groups.obj", findGroup(1).getUsers());
+                            }
+                            return reply;
+                        } else {
+                            return "type | get_notifications ; item_count | 0 ; notifications | ";
                         }
-                        return reply;
-                    }else{
-                        return "type | get_notifications ; item_count | 0 ; notifications | ";
                     }
                 } default:{
                     return "type | status ; command | invalid";

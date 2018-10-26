@@ -815,8 +815,8 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     private static void joinGroupMenu(){
         int option;
-        String groups=null;
-        boolean verifier=false, validation;
+        String groups=null, answer;
+        boolean verifier=false;
         while (!verifier) {
             try {
                 groups = rmi.showGroups(user);
@@ -848,19 +848,19 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 }
                 if (option == 0)
                     break;
-                else if (option > 0 && option < splitted.length) {
+                else if (option > 0 && option <= splitted.length) {
                     while (true) {
                         try {
-                            validation = rmi.joinGroup(user, splitted[option - 1]);
+                            answer = rmi.joinGroup(user, splitted[option - 1]);
                             break;
                         } catch (RemoteException e) {
                             retryRMIConnection();
                         }
                     }
-                    if (validation)
-                        System.out.println("Request successfully sent to group owner");
+                    if (answer.equals("success"))
+                        System.out.println("Request successfully sent to group owner(s)");
                     else
-                        System.out.println("Something went wrong, please try again later");
+                        System.out.println("Something went wrong, please try again");
                     break;
                 } else
                     System.out.println("Please select one of the given options");
@@ -1031,7 +1031,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 username = sc.nextLine().replaceAll("^[,\\s]+", "");
                 validation = stringChecker(username);
             }
-
+            validation = false;
             while (!validation) {
                 System.out.println("----------------| Accept Requests |----------------");
                 System.out.println("| What do you want to do: (accept/decline)         |");

@@ -77,7 +77,7 @@ ANSWER: **type** | perks_\group ; **user** | "normal" or "editor" or "owner" \n
 
 REQUEST: **type** | groups ; **username** | username\n	
 
-ANSWER: **type** | groups ; **list** | <group1,group2,...>\n
+ANSWER: **type** | groups ; **item_count** | counter ; **list** | <group1,group2,...>\n
 (isto para apresentar ao user todos os grupos aos quais ele pode juntar-se. É enviado o username para só devolver os grupos aos quais ele nao pertence)
 
 
@@ -241,9 +241,10 @@ Ainda não pensei como vai funcionar a questão das notificações caso o user n
 
 #### Join group
 
-REQUEST: **type** | join\_group ; **username** | username ; **group** | group\n
+REQUEST: **type** | join\_group ; **username** | username ; **group** | group
 
-ANSWER: **type** | join\_group ; **username** | username ; **group** | group ; **status** | success/fail\n
+ANSWER: **type** | join\_group ; **status** | succeeded ; **owners** | owner1,owner2,...
+ANSWER: **type** | join\_group ; **status** | fail
 
 ###
 
