@@ -252,15 +252,15 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
     }
 
 
-    private CopyOnWriteArrayList<Artist> searchForArtist(String keyword){
-        Iterator it = mainThread.getSongs().iterator();
+    private CopyOnWriteArrayList<Artist> searchForArtist(String keyword, User user){
+        Iterator it = mainThread.getArtists().iterator();
 
         CopyOnWriteArrayList<Artist> toReturn = new CopyOnWriteArrayList<>();
         int i=0;
 
         while (it.hasNext()) {
             Artist aux = (Artist)it.next();
-            if(aux.getName().contains(keyword) || aux.getGenre().contains(keyword) || aux.checkIfContains(keyword)){
+            if((aux.getName().contains(keyword) || aux.getGenre().contains(keyword) || aux.checkIfContains(keyword)) &&  verifyGroups(aux.getGroups(), user.getDefaultShareGroups())){
                 toReturn.add(aux);
                 i++;
             }
@@ -416,7 +416,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return null;
     }
 
-    private CopyOnWriteArrayList<Album> findAlbum(String keyword) {
+    private CopyOnWriteArrayList<Album> findAlbum(String keyword, User user) {
 
         Iterator it = mainThread.getAlbums().iterator();
 
@@ -425,7 +425,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
         while (it.hasNext()) {
             Album aux = (Album) it.next();
-            if(aux.getTitle().contains(keyword) || aux.getArtist().getName().contains(keyword) || aux.getGenre().contains(keyword)){
+            if((aux.getTitle().contains(keyword) || aux.getArtist().getName().contains(keyword) || aux.getGenre().contains(keyword)) && verifyGroups(aux.getGroups(), user.getDefaultShareGroups())){
                 toReturn.add(aux);
                 i++;
             }
@@ -535,9 +535,12 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "new_group": {
                     String username = info[1][1];
                     User current = findUser(username);
-                    mainThread.getGroups().add(new Group(current, mainThread.getGroups().size() + 1));
+                    int groupID = mainThread.getGroups().size() + 1;
+                    Group g = new Group(current, groupID);
+                    current.getDefaultShareGroups().add(g);
+                    mainThread.getGroups().add(g);
                     saveFile("src/Multicast/groups.obj", mainThread.getGroups());
-                    return "type | new_group ; operation | succeeded";
+                    return "type | new_group ; groupID | " + groupID + " ; operation | succeeded";
                 }case "join_group": {
                     String username = info[1][1];
                     int groupID = Integer.parseInt(info[2][1]);
@@ -556,6 +559,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String request = info[4][1];
                     if(g.isOwner(username) && g.getGroupID()!=1){
                         if(request.equals("accepted")){
+                            new_user.getDefaultShareGroups().add(g);
                             g.addUser(new_user);
                             g.removeRequest(new_user.getUsername());
                         }else{
@@ -640,12 +644,12 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         else {
                             toReturn += m.size()+" ; item_list | ";
                             for (Music music : m) {
-                                toReturn += music.getTitle()+", "+music.getArtist().getName();
+                                toReturn += music.getTitle()+", "+music.getArtist().getName() +"\n";
                             }
                         }
                     }else if(object.equals("album")){
                         toReturn += "album_list ; item_count | ";
-                        CopyOnWriteArrayList<Album> a = findAlbum(keyword);
+                        CopyOnWriteArrayList<Album> a = findAlbum(keyword, current);
                         if(a==null)
                             toReturn += "0";
                         else {
@@ -656,7 +660,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         }
                     }else if(object.equals("artist")){
                         toReturn += "artist_list ; item_count | ";
-                        CopyOnWriteArrayList<Artist> ar = searchForArtist(keyword);
+                        CopyOnWriteArrayList<Artist> ar = searchForArtist(keyword, current);
                         if(ar == null)
                             toReturn += "0";
                         else {
@@ -670,24 +674,37 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "add_music": {
                     String username = info[1][1];
                     User current = findUser(username);
-                    if (current.getPerks() < 3) { //se é editor ou owner
-
-                        //questão dos grupos ainda tem que ser tratada antes------------------
-                        String groupIDs = info[2][1];
-                        String aux[] = groupIDs.split(",");
-
-                        String title = info[2][1];
-                        String genre = info[4][1];
-                        Artist artist = findArtist(info[3][1]);
-                        if (artist == null) artist = new Artist(info[3][1], genre);
-                        float duration = Float.parseFloat(info[5][1]);
-
+                    String groupIDs = info[2][1];
+                    String aux[] = groupIDs.split(",");
+                    CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+                    for(int i = 0; i < aux.length; i++){
+                        for(Group g : current.getDefaultShareGroups()){
+                            if(g.getGroupID() == Integer.parseInt(aux[i])){
+                                if(g.isEditor(username))
+                                    groups.add(g.getGroupID());
+                            }
+                        }
+                    }
+                    if (groups.size()>0) { //se é editor ou owner
+                        String title = info[3][1];
+                        String genre = info[5][1];
+                        Artist artist = findArtist(info[4][1]);
+                        float duration = Float.parseFloat(info[6][1]);
+                        Music m;
+                        if ((m = findMusic(info[3][1], title)) == null) {
+                            if (artist == null){
+                                artist = new Artist(info[4][1], genre);
+                                for(Integer i : groups){
+                                    artist.add_groups(i);
+                                }
+                                mainThread.getArtists().add(artist);
+                                saveFile("src/Multicast/artists.obj", mainThread.getArtists());
+                            }
                         //se já houver uma música com o mesmo title e artist, não se pode adicionar
 
-                        if (findMusic(artist.getName(), title) == null) {
                             //caso este artista ainda não exista, cria-se um novo com a informação que já é dada
 
-                            Music newMusic = new Music(title, artist, genre, duration);
+                             Music newMusic = new Music(title, artist, genre, duration);
 
                             newMusic.add_editor(username);
 
@@ -698,7 +715,27 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             this.mainThread.getArtists().add(artist);
                             this.mainThread.getSongs().add(newMusic);
                             saveFile("src/Multicast/musics.obj", mainThread.getSongs());
-                            saveFile("src/Multicast/artists.obj", mainThread.getArtists());
+
+                            return "type | add_music ; operation | succeeded";
+                        }else{
+                            for(Integer i : m.getGroups()){
+                                if(i == 1){
+                                    return "type | add_music ; operation | failed";
+                                }
+                            }
+                            for(Integer i : groups){
+                                boolean isShared = false;
+                                for(Integer i2 : m.getGroups()){
+                                    if(i == i2){
+                                        isShared = true;
+                                        break;
+                                    }
+                                }
+                                if(!isShared){
+                                    m.add_groups(i);
+                                }
+                            }
+                            saveFile("src/Multicast/musics.obj", mainThread.getSongs());
                             return "type | add_music ; operation | succeeded";
                         }
                     }
@@ -707,23 +744,51 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "add_artist" : {
                     String username = info[1][1];
                     User current = findUser(username);
-                    if (current.getPerks() < 3) {
-                        String groupIDs = info[2][1];
-                        String aux[] = groupIDs.split(",");
+                    String groupIDs = info[2][1];
+                    String aux[] = groupIDs.split(",");
+                    CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+                    for(int i = 0; i < aux.length; i++){
+                        for(Group g : current.getDefaultShareGroups()){
+                            if(g.getGroupID() == Integer.parseInt(aux[i])){
+                                if(g.isEditor(username))
+                                    groups.add(g.getGroupID());
+                            }
+                        }
+                    }
+                    if (groups.size() > 0) {
                         String name = info[3][1];
                         String description = info[4][1];
                         String concerts = info[5][1];
                         Description desc = new Description(description, current);
                         String genre = info[6][1];
-
                         String conc[] = concerts.split(",");
-
-                        if (findArtist(name) == null) {
+                        Artist a;
+                        if ((a = findArtist(name)) == null) {
                             Artist newArtist = new Artist(name, desc, new CopyOnWriteArrayList<>(Arrays.asList(conc)), genre);
-                            for(int i = 0; i < aux.length; i++){
-                                newArtist.add_groups(Integer.parseInt(aux[i]));
+                            for(Integer i : groups){
+                                newArtist.add_groups(i);
                             }
                             this.mainThread.getArtists().add(newArtist);
+                            saveFile("src/Multicast/artists.obj", mainThread.getArtists());
+                            return "type | add_artist ; operation | succeeded";
+                        }else{
+                            for(Integer i : a.getGroups()){
+                                if(i == 1){
+                                    return "type | add_artist ; operation | failed";
+                                }
+                            }
+                            for(Integer i : groups){
+                                boolean isShared = false;
+                                for(Integer i2 : a.getGroups()){
+                                    if(i == i2){
+                                        isShared = true;
+                                        break;
+                                    }
+                                }
+                                if(!isShared){
+                                    a.add_groups(i);
+                                }
+                            }
                             saveFile("src/Multicast/artists.obj", mainThread.getArtists());
                             return "type | add_artist ; operation | succeeded";
                         }
@@ -738,50 +803,97 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     for(int i = 0; i < aux.length; i++){
                         for(Group g : current.getDefaultShareGroups()){
                             if(g.getGroupID() == Integer.parseInt(aux[i])){
+                                System.out.println(aux[i]);
                                 if(g.isEditor(username))
                                     groups.add(g.getGroupID());
                             }
                         }
                     }
                     if(groups.size() > 0) {
-                        String title = info[3][1];
+                        String title = info[4][1];
                         String genre = info[8][1];
-                        Artist artist = findArtist(info[4][1]);
-                        if (artist == null) {
-                            artist = new Artist(info[3][1], genre);
-                            for(Integer i : groups){
-                                artist.add_groups(i);
+                        Artist artist = findArtist(info[3][1]);
+                        Album a;
+                        if ((a = findAlbum(title, info[3][1])) == null) {
+                            if (artist == null) {
+                                artist = new Artist(info[3][1], genre);
+                                for(Integer i : groups){
+                                    artist.add_groups(i);
+                                }
+                                mainThread.getArtists().add(artist);
+                                saveFile("src/Multicast/artists.obj", this.mainThread.getArtists());
                             }
-                            mainThread.getArtists().add(artist);
-                            saveFile("src/Multicast/artists.obj", this.mainThread.getArtists());
-                        }
-                        int year = Integer.parseInt(info[6][1]);
-                        String musics = info[5][1];
-                        String mus[] = musics.split(",");
-                        String publisher = info[7][1];
-                        String description = info[9][1];
-                        Description desc = new Description(description, current);
-                        CopyOnWriteArrayList<Music> musicList = new CopyOnWriteArrayList<>();
-                        for (String m : mus) {
-                            Music newMusic = new Music(m, artist, genre);
-                            for(Integer i : groups){
-                                newMusic.add_groups(i);
+                            int year = Integer.parseInt(info[6][1]);
+                            String musics = info[5][1];
+                            String mus[] = musics.split(",");
+                            String publisher = info[7][1];
+                            String description = info[9][1];
+                            Description desc = new Description(description, current);
+                            CopyOnWriteArrayList<Music> musicList = new CopyOnWriteArrayList<>();
+                            for (String m : mus) {
+                                Music music;
+                                if ((music = findMusic(artist.getName(), m)) == null){
+                                    Music newMusic = new Music(m, artist, genre);
+                                    for(Integer i : groups){
+                                        newMusic.add_groups(i);
+                                    }
+                                    musicList.add(newMusic);
+                                    mainThread.getSongs().add(newMusic);
+                                }else {
+                                    boolean change = true;
+                                    for (Integer i : music.getGroups()) {
+                                        if (i == 1) {
+                                            change = false;
+                                        }
+                                    }
+                                    if (change) {
+                                        for (Integer i : groups) {
+                                            boolean isShared = false;
+                                            for (Integer i2 : music.getGroups()) {
+                                                if (i == i2) {
+                                                    isShared = true;
+                                                    break;
+                                                }
+                                            }
+                                            if (!isShared) {
+                                                music.add_groups(i);
+                                            }
+                                        }
+                                    }
+                                }
+                                saveFile("src/Multicast/musics.obj", mainThread.getSongs());
                             }
-                            musicList.add(newMusic);
-                            if (findMusic(artist.getName(), m) == null) mainThread.getSongs().add(newMusic);
-                        }
-                        if (findAlbum(title, info[3][1]) == null) {
-
                             Album newAlbum = new Album(artist, title, year, musicList, publisher, genre, desc);
-                            for (int i = 0; i < aux.length; i++) {
-                                newAlbum.add_groups(Integer.parseInt(aux[i]));
+                            for(Integer i : groups){
+                                newAlbum.add_groups(i);
                             }
                             this.mainThread.getAlbums().add(newAlbum);
                             saveFile("src/Multicast/albums.obj", this.mainThread.getAlbums());
-                            saveFile("src/Multicast/musics.obj", this.mainThread.getSongs());
+                            return "type | add_album ; operation | succeeded";
+                        }else{
+                            for(Integer i : a.getGroups()){
+                                if(i == 1){
+                                    System.out.println("Fodeu");
+                                    return "type | add_album ; operation | failed";
+                                }
+                            }
+                            for(Integer i : groups){
+                                boolean isShared = false;
+                                for(Integer i2 : a.getGroups()){
+                                    if(i == i2){
+                                        isShared = true;
+                                        break;
+                                    }
+                                }
+                                if(!isShared){
+                                    a.add_groups(i);
+                                }
+                            }
+                            saveFile("src/Multicast/albums.obj", mainThread.getAlbums());
                             return "type | add_album ; operation | succeeded";
                         }
                     }
+                    System.out.println("Fodeu geral|!");
                     return "type | add_album ; operation | failed";
 
                 }case "change_info": {

@@ -221,8 +221,14 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     }
 
                     if (option == 1) { //user wants to add a new music
-                        String title, artist=null, genre=null, duration=null;
+                        String groups, title = null, artist=null, genre=null, duration=null;
                         while (true) {
+                            System.out.println("Where you want to add the album (group ID): ");
+                            groups = sc.nextLine();
+                            if(groups.equals("0")){
+                                break;
+                            }
+
                             System.out.println("Music title: ");
                             title = sc.nextLine();
                             if (title.equals("0")) {
@@ -266,16 +272,22 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             break;
                         }
                         try{
-                            res = rmi.addInfo(user, "music", title, artist, genre, duration);
+                            res = rmi.addInfo(user, groups, "music", title, artist, genre, duration);
                         } catch (RemoteException e){
                             retryRMIConnection();
                         }
                     }
 
                     if (option == 2) { //user wants to add a new artist
-                        String name, description=null, concerts=null, genre=null;
+                        String groups, name = null, description=null, concerts=null, genre=null;
 
                         while (true) {
+                            System.out.println("Where you want to add the album (group ID): ");
+                            groups = sc.nextLine();
+                            if(groups.equals("0")){
+                                break;
+                            }
+
                             System.out.println("Artist name: ");
                             name = sc.nextLine();
                             if (name.equals("0")) {
@@ -318,7 +330,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             break;
                         }
                         try {
-                            res = rmi.addInfo(user, "artist", name, description, concerts, genre);
+                            res = rmi.addInfo(user, groups, "artist", name, description, concerts, genre);
                         }catch (RemoteException e){
                             retryRMIConnection();
                         }
@@ -622,7 +634,12 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| 3) Artist                              |");
             System.out.println("| 0) Back                                |");
             System.out.println("------------------------------------------");
-            ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            try {
+                ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            }catch(NumberFormatException e) {
+                System.out.println("I only work with numbers bro! Try again...");
+                continue;
+            }
             if (ob == 0) {
                 break;
             }
@@ -773,6 +790,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         while(true){
             try {
                 groupID = rmi.newGroup(user);
+                System.out.println(groupID == null);
                 break;
             } catch (RemoteException e){
                 retryRMIConnection();
@@ -950,8 +968,8 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("String is NULL. Please type something");
             return false;
         }
-        if (toCheck.contains("|") || toCheck.contains(";")) {
-            System.out.println("String contains forbidden characters ('|' or ';')\n");
+        if (toCheck.contains("|") || toCheck.contains(";") || toCheck.equals("")) {
+            System.out.println("String contains forbidden characters ('|' or ';' or '\\n')\n");
             return false;
         }
         return true;

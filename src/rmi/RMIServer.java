@@ -285,8 +285,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String[][] split = new String[splitted.length][];
         int i=0;
         for(String s : splitted){
-            split[i] = s.split(" \\| ");
-            i++;
+            split[i++] = s.split(" \\| ");
         }
         if(split[1][1].equals("successful"))
             return true;
@@ -295,9 +294,20 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     }
 
     public String newGroup(String username)throws java.rmi.RemoteException{
-        String request = "type | new_group ; username ! "+username;
+        String request = "type | new_group ; username | "+username;
+        String answer = dealWithRequest(request);
+
+        String[] splitted = answer.split(" ; ");
+        String[][] split = new String[splitted.length][];
+        int i = 0;
+        for(String s : splitted){
+            split[i++] = s.split(" \\| ");
+        }
+        if(split[2][1].equals("succeeded")){
+            return split[1][1];
+        }
         //return o Id do grupo que foi criado. Se deu merda return null
-        return request;
+        return null;
     }
 
     public String showGroups(String username)throws java.rmi.RemoteException{
@@ -382,12 +392,12 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         dealWithRequest(request);
     }
 
-    public boolean addInfo(String username, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
+    public boolean addInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
 
         if (type.equals("music")) {
             String title = s1, artist = s2, genre = s3, duration = s4;
 
-            String request = "type | add_music ; username | " + username + /*" ; groups | " + groups + */ " ; title | " + title + " ; artist | " + artist + " ; genre | " + genre
+            String request = "type | add_music ; username | " + username + " ; groups | " + groups +  " ; title | " + title + " ; artist | " + artist + " ; genre | " + genre
                     + " ; duration | " + duration;
 
             String ans = dealWithRequest(request);
@@ -412,7 +422,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return false;
     }
 
-    public boolean addInfo(String username, String groupIDs, String title, String artist, String musics, String year, String publisher, String genre, String description) { //used for albums
+    public boolean addInfo(String username, String groupIDs, String artist, String title, String musics, String year, String publisher, String genre, String description) { //used for albums
         String request = "type | add_album ; username | " + username + " ; groups | "+groupIDs+" ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
                 + publisher + " ; genre | " + genre + " ; description | " + description;
 

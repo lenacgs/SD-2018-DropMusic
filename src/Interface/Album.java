@@ -45,6 +45,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
         this.title = title;
     }
 
+    public CopyOnWriteArrayList<Integer> getGroups(){ return this.groups;}
+
     public Artist getArtist() {
         return artist;
     }
