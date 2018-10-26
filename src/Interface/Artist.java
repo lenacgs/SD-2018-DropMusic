@@ -32,6 +32,12 @@ public class Artist implements Serializable {
 
     public void add_groups(int group) { this.groups.add(group);}
 
+    public CopyOnWriteArrayList<Integer> getGroups()  { return this.groups;}
+
+    public void setGroups(CopyOnWriteArrayList <Integer> groups){
+        this.groups=groups;
+    }
+
     public void addMusic(Music m) {
         this.musics.add(m);
     }

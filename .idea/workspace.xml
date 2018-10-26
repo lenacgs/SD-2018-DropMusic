@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80c123d5-c966-4df5-a368-7ca9727665e8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Multicast/albums.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MessageProtocol.md" beforeDir="false" afterPath="$PROJECT_DIR$/MessageProtocol.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interface/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interface/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Multicast/artists.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/artists.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Multicast/logged.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/logged.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Multicast/musics.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/musics.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Multicast/users.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/users.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/groups.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/groups.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rmi/RMIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/RMIServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rmi/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/Services.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -25,44 +20,49 @@
     <session id="1212959648">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1487" />
+          <entry key="java" value="3966" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1487" />
+          <entry key="JAVA" value="3966" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="7" />
+          <entry key="java" value="16" />
           <entry key="obj" value="2" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="7" />
+          <entry key="JAVA" value="16" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="7" />
+          <entry key="project.open.time.16" value="2" />
+          <entry key="project.open.time.18" value="1" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.21" value="2" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="740" column="51" selection-start-line="740" selection-start-column="51" selection-end-line="740" selection-end-column="51" />
+            <state relative-caret-position="6370">
+              <caret line="548" column="49" selection-start-line="548" selection-start-column="49" selection-end-line="548" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1082#1083#0" expanded="true" />
@@ -121,19 +121,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Integer.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/ObjectStreamClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9877">
-              <caret line="614" selection-start-line="614" selection-end-line="614" />
+            <state relative-caret-position="37281">
+              <caret line="2286" selection-start-line="2286" selection-end-line="2286" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Interface/Music.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Interface/Group.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="37" selection-start-line="37" selection-end-line="38" />
+            <state relative-caret-position="2006">
+              <caret line="161" column="9" selection-start-line="161" selection-start-column="9" selection-end-line="161" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -141,8 +141,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Interface/Artist.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+            <state relative-caret-position="578">
+              <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Interface/Description.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="9" column="73" selection-start-line="9" selection-start-column="73" selection-end-line="9" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -150,23 +159,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Interface/Album.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="629">
+              <caret line="47" column="73" selection-start-line="47" selection-start-column="73" selection-end-line="47" selection-end-column="73" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
+        <entry file="file://$PROJECT_DIR$/src/Interface/Music.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="20" column="63" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="238">
+              <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -174,11 +177,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5780">
-              <caret line="353" column="107" selection-start-line="353" selection-start-column="107" selection-end-line="353" selection-end-column="107" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="5797">
+              <caret line="341" column="29" selection-start-line="341" selection-start-column="29" selection-end-line="341" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -186,11 +186,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15657">
-              <caret line="952" selection-start-line="952" selection-end-line="952" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="10421">
+              <caret line="625" column="5" selection-start-line="625" selection-start-column="5" selection-end-line="625" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -199,36 +196,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rmi.</find>
-      <find>users.obj</find>
-      <find>filehan</find>
-      <find>filehandler</find>
-      <find>getAvailableGroups</find>
-      <find>artists</find>
-      <find>albuns</find>
-      <find>.obj</find>
-      <find>null</find>
-      <find>addInf</find>
-      <find>test</find>
-      <find>dealwit</find>
-      <find>(musics, albums or artists</find>
-      <find>&lt;</find>
-      <find>login</find>
-      <find>add_music</find>
-      <find>saveFile</find>
-      <find>fileHandler</find>
-      <find>logged.obj</find>
-      <find>getRegisteredUSers</find>
-      <find>getRegisteredUsers</find>
-      <find>getReg</find>
       <find>grant_perks</find>
       <find>getregister</find>
       <find>notification</find>
       <find>notifi</find>
       <find>File has bee</find>
       <find>Your permiss</find>
-      <find>search</find>
       <find>here</find>
+      <find>addInfo</find>
+      <find>create</find>
+      <find>createGr</find>
+      <find>newGr</find>
+      <find>new_gr</find>
+      <find>sear</find>
+      <find>add_al</find>
+      <find>StringChecker</find>
+      <find>addinfo</find>
+      <find>add_musi</find>
+      <find>search</find>
+      <find>add</find>
+      <find>findAlbum</find>
+      <find>addInf</find>
+      <find>searchforArtist</find>
+      <find>findArtist</find>
+      <find>findUser</find>
+      <find>findartist</find>
+      <find>searchfor</find>
+      <find>findA</find>
+      <find>searchFor</find>
+      <find>join_gr</find>
+      <find>getAva</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -240,23 +237,24 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/rmi/Services.java" />
         <option value="$PROJECT_DIR$/src/FileHandling/ObjectFile.java" />
         <option value="$PROJECT_DIR$/src/Interface/Review.java" />
-        <option value="$PROJECT_DIR$/src/Interface/Description.java" />
-        <option value="$PROJECT_DIR$/src/Interface/Group.java" />
         <option value="$PROJECT_DIR$/src/Interface/Music.java" />
-        <option value="$PROJECT_DIR$/src/Interface/Album.java" />
-        <option value="$PROJECT_DIR$/src/Interface/Artist.java" />
         <option value="$PROJECT_DIR$/src/Interface/User.java" />
         <option value="$PROJECT_DIR$/src/Multicast/MulticastClient.java" />
-        <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Artist.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Album.java" />
+        <option value="$PROJECT_DIR$/src/rmi/Services.java" />
         <option value="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Description.java" />
+        <option value="$PROJECT_DIR$/src/Interface/Group.java" />
+        <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
         <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="5" />
     <option name="width" value="1920" />
     <option name="height" value="1080" />
   </component>
@@ -268,6 +266,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -278,29 +277,7 @@
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="FileHandling" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
@@ -318,6 +295,13 @@
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Multicast" type="462c0819:PsiDirectoryNode" />
+              <item name="MulticastServer.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="rmi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -330,12 +314,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540483671110" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540587884479" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -349,7 +333,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MulticastClient (1)">
+  <component name="RunManager" selected="Application.rmiClient">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HEIGHT" value="0" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
@@ -476,8 +460,8 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.18053691" />
-      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1885906" />
+      <window_info id="Structure" order="1" weight="0.24966443" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
@@ -485,15 +469,15 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32914045" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.44113475" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.3815603" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39937106" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.32907802" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50067115" side_tool="true" weight="0.32907802" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32914045" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32914045" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" visible="true" weight="0.32907802" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50067115" side_tool="true" weight="0.43120566" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32907802" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32907802" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -547,13 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/concurrent/CopyOnWriteArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -561,17 +538,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Downloads/Ficha2_Sockets/SocketsExamples/SocketsExamples/TCPClient.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Downloads/Ficha2_Sockets/SocketsExamples/SocketsExamples/TCPServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/NumberFormatException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
+        <state relative-caret-position="629">
           <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9282">
+          <caret line="579" selection-start-line="579" selection-end-line="579" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="740" column="51" selection-start-line="740" selection-start-column="51" selection-end-line="740" selection-end-column="51" />
+        <state relative-caret-position="6370">
+          <caret line="548" column="49" selection-start-line="548" selection-start-column="49" selection-end-line="548" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1082#1083#0" expanded="true" />
@@ -628,71 +643,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastClient.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/ObjectStreamClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Integer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9877">
-          <caret line="614" selection-start-line="614" selection-end-line="614" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Interface/Music.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="37" selection-start-line="37" selection-end-line="38" />
+        <state relative-caret-position="37281">
+          <caret line="2286" selection-start-line="2286" selection-end-line="2286" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Interface/Artist.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+        <state relative-caret-position="578">
+          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interface/Description.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="73" selection-start-line="9" selection-start-column="73" selection-end-line="9" selection-end-column="73" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Interface/Album.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="629">
+          <caret line="47" column="73" selection-start-line="47" selection-start-column="73" selection-end-line="47" selection-end-column="73" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Interface/User.java">
+    <entry file="file://$PROJECT_DIR$/src/Interface/Music.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="63" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5780">
-          <caret line="353" column="107" selection-start-line="353" selection-start-column="107" selection-end-line="353" selection-end-column="107" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="5797">
+          <caret line="341" column="29" selection-start-line="341" selection-start-column="29" selection-end-line="341" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15657">
-          <caret line="952" selection-start-line="952" selection-end-line="952" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="10421">
+          <caret line="625" column="5" selection-start-line="625" selection-start-column="5" selection-end-line="625" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interface/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2006">
+          <caret line="161" column="9" selection-start-line="161" selection-start-column="9" selection-end-line="161" selection-end-column="9" />
         </state>
       </provider>
     </entry>

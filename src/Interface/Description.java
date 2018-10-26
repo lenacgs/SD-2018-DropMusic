@@ -2,11 +2,12 @@ package Interface;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Description implements Serializable{
     private static final long serialVersionUID = 4L;
     private String text;
-    private ArrayList<User> editors = new ArrayList<>();
+    private CopyOnWriteArrayList<User> editors = new CopyOnWriteArrayList<>();
 
     public Description(String text, User editor) {
         this.text = text;
