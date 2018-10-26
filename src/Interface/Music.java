@@ -12,6 +12,9 @@ public class Music implements Serializable {
     private float duration;
     private CopyOnWriteArrayList<String> editors = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+    private String pathToFile; //é usado apenas quando alguém associa um ficheiro a esta música
+    private int[] accessToDownload; //guarda os groupIDs dos grupos que têm acesso ao download
+    private User whoShared; //user que deu upload do ficheiro, caso aplicável
 
 
     public Music(String title, Artist artist, String genre, float duration) {
@@ -25,6 +28,31 @@ public class Music implements Serializable {
         this.title = title;
         this.artist = artist;
         this.genre = genre;
+    }
+
+    public User getWhoShared() {
+        return whoShared;
+    }
+
+    public void setWhoShared(User whoShared) {
+        this.whoShared = whoShared;
+    }
+
+    public String getPathToFile() {
+
+        return pathToFile;
+    }
+
+    public void setPathToFile(String pathToFile) {
+        this.pathToFile = pathToFile;
+    }
+
+    public int[] getAccessToDownload() {
+        return accessToDownload;
+    }
+
+    public void setAccessToDownload(int[] accessToDownload) {
+        this.accessToDownload = accessToDownload;
     }
 
     public CopyOnWriteArrayList<Integer> getGroups() { return this.groups;  }

@@ -4,10 +4,7 @@ import rmi.Services;
 
 import javax.xml.bind.SchemaOutputResolver;
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -535,6 +532,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         System.out.println("You have to associate your music file with one of the musics info in our DB\n");
         boolean validation = false;
         String keyword = "", answer = "";
+        String artist = "", music = "";
 
         while (!validation){
             System.out.println("----------------| Search |----------------");
@@ -542,17 +540,33 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("------------------------------------------");
             keyword = sc.nextLine().replaceAll("^[,\\s]+", "");
             validation = stringChecker(keyword);
+
         }
         //search for the keyword
         try {
-            answer = rmi.search(keyword, "music");
+            answer = rmi.search(user, keyword, "music");
         } catch (RemoteException e) {
             retryRMIConnection();
         }
+        validation = false;
+        //get the name for the music and artist for the music the user wants to upload
+        while(!validation) {
+            System.out.print("Type and enter the title of the music you want to upload: ");
+            music = sc.nextLine();
+            validation = stringChecker(music);
+        }
 
-        //warn the server that you will be sending a music file to associate with a certain file
+        validation = false;
+
+        while(!validation) {
+            System.out.print("Type and enter the name of the artist to this music: ");
+            artist = sc.nextLine();
+            validation = stringChecker(artist);
+        }
+
+        //warn the server that you will be sending a music file to associate with a certain music in the DB
         try {
-            rmi.uploadFile(user, answer);
+            rmi.uploadFile(user, music, artist);
         }catch (RemoteException e) {
             retryRMIConnection();
         }
@@ -563,27 +577,72 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     //function to communicate with multicast server
     private static void TCPServerConnection(String username, String music, String path) throws UnknownHostException, IOException {
-        String serverIP = "127.0.0.1";
-        int serverPort = 5000;
+        int serverPort = 5500;
+        String serverAddress = "0.0.0.0/0.0.0.0";
 
-        //opens a new socket in any avaliable port
-        Socket sock = new Socket(serverIP, serverPort);
+        Socket socket = new Socket(serverAddress, serverPort);
 
-        File file = new File(path);
-        long length = file.length();
-        byte[] bytes = new byte[16*1024];
-        InputStream in = new FileInputStream(file);
-        OutputStream out = sock.getOutputStream();
+        System.out.println("SOCKET = " + socket);
 
-        //write file content to output stream
-        int count;
-        while ((count = in.read(bytes)) > 0) {
-            out.write(bytes, 0, count);
-        }
+        socket.close();
 
-        out.close();
-        in.close();
-        sock.close();
+
+
+
+
+
+
+        /*Socket socket;
+        File file;
+        FileInputStream fis;
+        BufferedInputStream bis;
+        OutputStream os;
+        byte[] contents;
+        long fileLength;
+        long current;
+        long start;
+
+        try {
+            socket = new Socket("127.0.0.1", 5010);
+
+            System.out.println("[TESTE] User ligou-se ao server");
+
+            file = new File(path);
+            fis = new FileInputStream(file);
+            bis = new BufferedInputStream(fis);
+
+            //get socket's output stream
+            os = socket.getOutputStream();
+
+            //read file contents into contents array
+            fileLength = file.length();
+            current = 0;
+            start = System.nanoTime();
+            while(current != fileLength) {
+                int size = 10000;
+                //changes reading head to 10000 positions ahead
+                if (fileLength - current >= size) {
+                    current += size;
+                }
+                else {
+                    //já não dá para ler 10000 positions
+                    size = (int)(fileLength - current);
+                    //anda até ao fim do ficheiro
+                    current = fileLength;
+                }
+
+                contents = new byte[size];
+                bis.read(contents, 0, size);
+                os.write(contents);
+                System.out.println("Sending file ... " + (current*100)/fileLength + "% complete!");
+            }
+
+            os.flush();
+            socket.close();
+            System.out.println("File sent successfully!");
+        }catch (IOException e){
+            System.out.println("Exception occurred in TCPServerConnection: " + e.getMessage());
+        }*/
     }
 
     private static void uploadFile(String username, String music) {
@@ -597,6 +656,11 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             path = sc.nextLine().replaceAll("^[,\\s]+", "");
             validation = stringChecker(path);
 
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             try {
                 TCPServerConnection(username, music, path);
             } catch (IOException e) {
@@ -640,7 +704,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     object="artist";
                 while(answer==null) {
                     try {
-                        answer = rmi.search(keyword, object);
+                        answer = rmi.search(user, keyword, object);
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }

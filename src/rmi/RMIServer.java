@@ -223,9 +223,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
-    public String search(String keyword, String object) throws java.rmi.RemoteException{
+    public String search(String username, String keyword, String object) throws java.rmi.RemoteException{
         //faz request aos multicasts para Search
-        String request = "type | search ; keyword | "+keyword+" ; object | "+object;
+        String request = "type | search ; username | " + username + " ; keyword | "+keyword+" ; object | "+object;
 
         String ans = dealWithRequest(request);
 
@@ -268,8 +268,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return groups;
     }
 
-    public boolean uploadFile (String username, String musicTitle) throws java.rmi.RemoteException{
-        String request = "type | upload ; username | " + username + " ; music_title | " + musicTitle + " \n";
+    public boolean uploadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException{
+        String request = "type | upload ; username | " + username + " ; music_title | " + musicTitle + " ; artistName | " + artistName;
         String ans = dealWithRequest(request);
 
         //a resposta é sempre positiva... o user pesquisou por músicas que apenas ele tinha acesso, só o pôde fazer depois de ter feito login, portanto tem sempre permissão

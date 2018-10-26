@@ -807,9 +807,45 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     test();
                     return "type | status ; command | tested";
                 }case "upload": {
+
+                    int port = 5500;
+                    ServerSocket listenSocket = null;
+                    Socket clientSocket = null;
+
+
+
+                    try {
+                        listenSocket = new ServerSocket(port);
+                        System.out.println("LISTEN SOCKET = " + listenSocket.getInetAddress());
+
+
+
+                        clientSocket = listenSocket.accept();
+                        clientSocket.close();
+                        listenSocket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     //há um user a querer fazer upload de um ficheiro
-                    String username = info[1][1];
+                    /*String username = info[1][1];
                     String musicTitle = info[2][1];
+                    String musicTitle2 = musicTitle.replaceAll(" ", "");
+                    String artistName = info[3][1];
+                    String artistName2 = artistName.replaceAll(" ", "");
                     ServerSocket welcomeSocket = null;
                     Socket connectionSocket = null;
                     InputStream is = null;
@@ -817,24 +853,51 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     BufferedOutputStream bos = null;
                     int bytesRead;
                     int current = 0;
+                    String path = "";
+
+                    Socket socket;
+
+                    System.out.println("[TESTE] a iniciar ligação TCP...");
 
                     //ligação TCP
                     try {
-                        welcomeSocket = new ServerSocket(5000);
-
+                        //initialize socket
+                        welcomeSocket = new ServerSocket(5010);
+                        System.out.println("[TESTE] Server socket criado. Waiting for client connection");
                         connectionSocket = welcomeSocket.accept();
-                        System.out.println("Accepted connection " + connectionSocket);
 
+                        System.out.println("[TESTE] client ligou-se por TCP ao server");
+
+                        byte[] contents = new byte[10000];
+
+                        //initialize the FileOutputStream to the output file's full path
+
+                        path = "src/Multicast/TransferredFiles/" + musicTitle2 + "_" + artistName2 + ".bin";
+
+                        fos = new FileOutputStream(path);
+                        bos = new BufferedOutputStream(fos);
                         is = connectionSocket.getInputStream();
 
-                        //fos = new FileOutputStream(path_to_file) - não sei como isto vai funcionar...
-                        //bos = new BufferedOutputStream(fos);
-                        byte[] file = new byte[16 * 1024];
-                        bytesRead = is.read(file, 0, file.length);
-                        current = bytesRead;
+                        bytesRead = 0;
+
+                        while((bytesRead=is.read(contents)) != -1){
+                            bos.write(contents, 0, bytesRead);
+                        }
+
+                        bos.flush();
+                        connectionSocket.close();
+                        welcomeSocket.close();
                     } catch (IOException e) {
                         System.out.println("Exception: " + e.getStackTrace());
                     }
+
+                    //guardar informações relativamente ao user, ficheiro e música
+                    Music thisMusic = findMusic(musicTitle, artistName);
+                    thisMusic.setPathToFile(path);
+                    thisMusic.setWhoShared(findUser(username));
+
+                    return "type | upload ; operation | succeeded";*/
+
                 }case "notification": {
                     String username = info[1][1];
                     String notif = info[2][1];
