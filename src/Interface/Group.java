@@ -37,13 +37,23 @@ public class Group implements Serializable {
         int counter = 0;
 
         for(User u : this.requests){
-            if(counter++ > 0){
+            if(counter > 0){
                 reply += ",";
+
             }
             reply += u.getUsername();
+            counter++;
         }
         reply += ">";
         return reply;
+    }
+
+    public boolean hasGroupRequests(User user){
+        for(User u : this.requests){
+            if (u==user)
+                return true;
+        }
+        return false;
     }
 
     public void removeUser(String username, ArrayList<User> users) {
