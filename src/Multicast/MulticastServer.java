@@ -929,49 +929,61 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                 }case "get_info": {
                     String answer = "type | get_info ;  info | ";
-                    if (info[1][0].equals("object") && info[2][0].equals("title") && info.length == 3) {
+                    if (info[1][0].equals("username") && info[2][0].equals("object") && info[3][0].equals("title") && info.length == 4) {
 
-                        if (info[1][1].equals("album")) {
+                        if (info[2][1].equals("album")) {
                             return "type | get_info ; status | failed";
                         }
                         else {
-                            Artist a = findArtist(info[2][1]);
+                            User u = findUser(info[1][1]);
+
+                            Artist a = findArtist(info[3][1]);
                             if(a==null)
                                 return "type | get_info ; status | failed";
-                            answer+="----------| Artist |----------\n"+a.getName();
-                            answer+="----------| Albums |----------\n";
-                            for(Album album : a.getAlbums()){
-                                answer+=album.getTitle()+"\n";
+                            for(int i=0 ; i<mainThread.getGroups().size();i++){
+                                if(a.getGroups().contains(mainThread.getGroups().get(i)) && mainThread.getGroups().get(i).getUsers().contains(u)){
+                                    answer+="----------| Artist |----------\n"+a.getName();
+                                    answer+="----------| Albums |----------\n";
+                                    for(Album album : a.getAlbums()){
+                                        answer+=album.getTitle()+"\n";
+                                    }
+                                    answer+="----------| Genre |----------\n"+a.getGenre();
+                                    answer+="----------| Biografy |----------\n"+a.getDescription().getText();
+                                    return answer;
+                                }
                             }
-                            answer+="----------| Genre |----------\n"+a.getGenre();
-                            answer+="----------| Biografy |----------\n"+a.getDescription().getText();
-                            return answer;
+                            return "type | get_info ; status | failed";
                         }
                     }
-                    else if (info[1][0].equals("object") && info[2][0].equals("title") && info[3][0].equals("artist_name") && info.length == 4){
-                        if (info[1][1].equals("artist")) {
+                    else if (info[1][0].equals("username") && info[2][0].equals("object") && info[3][0].equals("title") && info[4][0].equals("artist_name") && info.length == 5){
+                        if (info[2][1].equals("artist")) {
                             return "type | get_info ; status | failed";
                         }
                         else{
-                            Album a = findAlbum(info[2][1], info[3][1]);
+                            User u = findUser(info[1][1]);
+                            Album a = findAlbum(info[3][1], info[4][1]);
                             if(a==null) {
-                                System.out.println("bateu null");
                                 return "type | get_info ; status | failed";
                             }
-                            answer+="----------| Album |----------\n"+a.getTitle()+"\n";
-                            answer+="----------| Artist |----------\n"+a.getArtist().getName()+"\n";
-                            answer+="----------| Music List |----------\n";
-                            for(Music m : a.getMusics()){
-                                answer+=m.getTitle()+"\n";
+                            for(int i=0 ; i<mainThread.getGroups().size();i++) {
+                                if (a.getGroups().contains(mainThread.getGroups().get(i)) && mainThread.getGroups().get(i).getUsers().contains(u)) {
+                                    answer+="----------| Album |----------\n"+a.getTitle()+"\n";
+                                    answer+="----------| Artist |----------\n"+a.getArtist().getName()+"\n";
+                                    answer+="----------| Music List |----------\n";
+                                    for(Music m : a.getMusics()){
+                                        answer+=m.getTitle()+"\n";
+                                    }
+                                    answer+="----------| Genre |----------\n"+a.getGenre()+"\n";
+                                    answer+="----------| Year |----------\n"+a.getYearOfPublication()+"\n";
+                                    answer+="----------| Description |----------\n";
+                                    answer+=a.getDescription().getText()+"\n";
+                                    answer+="----------| Reviews |----------\n";
+                                    if(a.reviewsToString()!=null)
+                                        answer+=a.reviewsToString()+"\n";
+                                    return answer;
+                                }
                             }
-                            answer+="----------| Genre |----------\n"+a.getGenre()+"\n";
-                            answer+="----------| Year |----------\n"+a.getYearOfPublication()+"\n";
-                            answer+="----------| Description |----------\n";
-                            answer+=a.getDescription().getText()+"\n";
-                            answer+="----------| Reviews |----------\n";
-                            if(a.reviewsToString()!=null)
-                                answer+=a.reviewsToString()+"\n";
-                            return answer;
+                            return "type | get_info ; status | failed";
                         }
                     }
                     else

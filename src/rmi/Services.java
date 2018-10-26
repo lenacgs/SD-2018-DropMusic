@@ -10,8 +10,8 @@ public interface Services extends Remote {
     int login(String username, String password) throws java.rmi.RemoteException;
     boolean logout(String username) throws java.rmi.RemoteException;
     String search(String user, String keyword, String object) throws java.rmi.RemoteException;
-    String details(String object, String artist, String title) throws java.rmi.RemoteException;
-    String details(String object, String title) throws java.rmi.RemoteException;
+    String details(String username, String object, String artist, String title) throws java.rmi.RemoteException;
+    String details(String username, String object, String title) throws java.rmi.RemoteException;
     boolean review(String title,String artist,String user,String review,int rating) throws java.rmi.RemoteException;
     String showGroups(String username)throws java.rmi.RemoteException;
     String joinGroup(String username, String group)throws java.rmi.RemoteException;
