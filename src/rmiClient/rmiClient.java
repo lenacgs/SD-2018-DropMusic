@@ -4,7 +4,6 @@ import rmi.Services;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -528,8 +527,8 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 }
                 if(option == 11)
                     givePermissionsMenu("owner");
-                //if(option == 12)
-                // continue
+                if(option == 12)
+                    getRequests();
             }
              else
                 System.out.println("Please select one of the given options");
@@ -666,7 +665,14 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| 2) Artist                               |");
             System.out.println("| 0) Back                                 |");
             System.out.println("-------------------------------------------");
-            ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            while(true) {
+                try {
+                    ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("I can only work with numbers bro!");
+                }
+            }
             if (ob == 0) {
                 break;
             }
@@ -945,13 +951,129 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         }
     }
 
+    private static void getRequests(){
+        String toPrint;
+        System.out.println("----------------| Manage Requests |----------------");
+        while(true) {
+            try {
+                toPrint = rmi.showRequests(user);
+                break;
+            } catch (RemoteException e) {
+                retryRMIConnection();
+            }
+        }
+        if(toPrint==null) {
+            System.out.println("| There are no requests for you                   |");
+            System.out.println("---------------------------------------------------");
+        }
+        else {
+            String requests[] = toPrint.split(",");
+            for (String s : requests) {
+                System.out.println(s);
+            }
+            System.out.println("\n1) Accept / delete requests");
+            System.out.println("0) Back");
+            int ob;
+            while(true) {
+                try {
+                    ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("I can only work with numbers bro!");
+                }
+            }
+            if (ob == 0) {
+                return;
+            }
+            else if (ob != 1)
+                System.out.println("Please select a valid option");
+            else{
+                manageRequests();
+            }
+        }
+    }
+
+    private static void manageRequests(){
+        String groupID=null, username=null, toDo=null;
+        boolean validation=false, verifier;
+        int op;
+        while(true) {
+            while (!validation) {
+                System.out.println("----------------| Accept Requests |----------------");
+                System.out.println("| Insert group ID:                                |");
+                System.out.println("---------------------------------------------------");
+                groupID = sc.nextLine().replaceAll("^[,\\s]+", "");
+                validation = stringChecker(groupID);
+            }
+            validation = false;
+            while (!validation) {
+                System.out.println("----------------| Accept Requests |----------------");
+                System.out.println("| Insert user:                                    |");
+                System.out.println("---------------------------------------------------");
+                username = sc.nextLine().replaceAll("^[,\\s]+", "");
+                validation = stringChecker(username);
+            }
+
+            while (!validation) {
+                System.out.println("----------------| Accept Requests |----------------");
+                System.out.println("| What do you want to do: (accept/decline)         |");
+                System.out.println("---------------------------------------------------");
+                toDo = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (toDo == null) {
+                    System.out.println("Please type 'accept' or 'decline'");
+                    continue;
+                }
+                if (!toDo.equals("accept") && !toDo.equals("delete")) {
+                    System.out.println("Please type 'accept' or 'decline'");
+                    continue;
+                }
+                validation = true;
+            }
+
+            while (true) {
+                try {
+                    verifier = rmi.manageRequests(user, username, groupID, toDo);
+                    break;
+                } catch (RemoteException e) {
+                    retryRMIConnection();
+                }
+            }
+            if (verifier) {
+                if (toDo.equals("accept"))
+                    System.out.println("Request successfully accepted");
+                else
+                    System.out.println("Request successfully declined");
+            } else
+                System.out.println("Something went wrong, Please try again!");
+            while(true) {
+                System.out.println("----------------| Accept Requests |----------------");
+                System.out.println("| Do you want to manage other requests?           |");
+                System.out.println("| 1) Yes                                          |");
+                System.out.println("| 2) No                                           |");
+                System.out.println("---------------------------------------------------");
+                try {
+                    op = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+                } catch (NumberFormatException e) {
+                    System.out.println("I can only work with numbers bro!");
+                    continue;
+                }
+                if(op==1)
+                    break;
+                else if (op==2)
+                    return;
+                else
+                    System.out.println("Please chose one of the given options");
+            }
+        }
+    }
+
     private static boolean stringChecker (String toCheck){
         if(toCheck==null) {
             System.out.println("String is NULL. Please type something");
             return false;
         }
-        if (toCheck.contains("|") || toCheck.contains(";")) {
-            System.out.println("String contains forbidden characters ('|' or ';')\n");
+        if (toCheck.contains("|") || toCheck.contains(";") || toCheck.equals("")) {
+            System.out.println("String contains forbidden characters ('|' or ';' or '\\n')\n");
             return false;
         }
         return true;

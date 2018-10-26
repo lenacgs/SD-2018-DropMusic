@@ -342,7 +342,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return request;
     }
 
-    public boolean givePermissions(String perk, String username, String newUser, String groupID)throws java.rmi.RemoteException {
+    public boolean givePermissions(String perk, String username, String newUser, String groupID) throws java.rmi.RemoteException {
         String request = "type | grant_perks ; perk | " + perk + " ; username | " + username + " ; new_user | " + newUser + " ; group | " + groupID;
         //multicasts tem que verificar se esse user é editor ou owner deste grupo e depois sim fazer as alteracoes.
         //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
@@ -421,6 +421,27 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         if (ans.equals("type | add_album ; operation | succeeded"))
             return true;
         return false;
+    }
+
+    public String showRequests(String username) throws java.rmi.RemoteException{
+        String request = "type | get_requests ; username | "+username;
+        String answer = dealWithRequest(request);
+        String[] splitted = answer.split(" ; ");
+        if(splitted[2].split(" \\| ")[1].equals("empty"))
+            return null;
+        return splitted[2].split(" \\| ")[1].replaceAll("^[,\\s]+", "");
+    }
+
+    public boolean manageRequests(String username, String newUser, String groupID, String toDo)throws java.rmi.RemoteException{
+        String request = "type | manage_request ; username | "+username+" ; new_user | "+newUser+" ; groupID | +"+groupID+" ; request | "+toDo;
+
+        String answer = dealWithRequest(request);
+
+        if(answer.equals("type | manage_request ; operation | succeeded"))
+            return true;
+        else
+            return false;
+
     }
 
 }

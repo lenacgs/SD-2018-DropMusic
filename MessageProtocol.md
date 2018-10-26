@@ -102,13 +102,13 @@ ANSWER: **type** | grant\_perks; **operation** | succeeded/failed \n
 
 ####Get group requests
 
-REQUEST: **type** | get\_requests ; **username** | username ; **groupID** | groupID
+REQUEST: **type** | get\_requests ; **username** | username
 
-ANSWER: **type** | get\_requests; **operation** | succeeded/failed ; (if succeeded) **list** | <user1, user2,...>
+ANSWER: **type** | get\_requests; **operation** | succeeded/failed ; (if succeeded) **list** | 1 <user1,user2,...>,2 <user1,user2,...>
 
 ####Manage group requests
 
-REQUEST: **type** | manage\_request ; **username** | username ; **new_user** | username ; **groupID** | groupID ; **request** | accepted/declined \n
+REQUEST: **type** | manage\_request ; **username** | username ; **new_user** | username ; **groupID** | groupID ; **request** | accept/decline \n
 
 ANSWER: **type** | manage\_request ; **operation** | succeeded/failed \n
 
