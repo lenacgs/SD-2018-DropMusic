@@ -624,12 +624,20 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                 }case "get_requests":{
                     String username = info[1][1];
-                    Group g = findGroup(Integer.parseInt(info[2][1]));
-                    if(g.isOwner(username)){
-                        return "type | get_requests ; operation | succeeded ; list | " + g.getGroupRequests();
-                    }else{
-                        return "type | get_requests ; operation | failed";
+                    String list="";
+                    for(Group g : mainThread.getGroups()) {
+                        if(g.isOwner(username)) {
+                            String users = g.getGroupRequests();
+                            if(!users.equals("<>")){
+                                list+=g.getGroupID()+" "+users+",";
+                            }
+                        }
                     }
+                    if(!list.equals(""))
+                        return "type | get_requests ; operation | succeeded ; list | "+list;
+                    else
+                        return "type | get_requests ; operation | succeeded ; list | empty";
+
                 }case "search": {
                     String username = info[1][1];
                     User current = findUser(info[1][1]);

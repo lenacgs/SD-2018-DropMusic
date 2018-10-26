@@ -37,10 +37,12 @@ public class Group implements Serializable {
         int counter = 0;
 
         for(User u : this.requests){
-            if(counter++ > 0){
+            if(counter > 0){
                 reply += ",";
+
             }
             reply += u.getUsername();
+            counter++;
         }
         reply += ">";
         return reply;
