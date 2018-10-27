@@ -42,6 +42,10 @@ public class MulticastServer extends Thread {
         return this.writeRequests.size();
     }
 
+    public void addRequest(Request request){
+        this.requests.add(request);
+    }
+
     public int getServerNumber(){
         return this.serverNumber;
     }
@@ -237,6 +241,8 @@ public class MulticastServer extends Thread {
 
     public Request findRequest(String message){
         for(int i = requests.size()-1, k = 0; i >= 0 && k < 10; i--,k++){
+            System.out.println("Message: " + message);
+            System.out.println("Request: " + requests.get(i).getRequest());
             if(requests.get(i).compare(message)){
                 return requests.get(i);
             }
@@ -252,7 +258,7 @@ public class MulticastServer extends Thread {
         configuration.start();
         while(counter++ < 5){
             try{
-                Thread.sleep(200);
+                Thread.sleep(400);
                 System.out.print(".");
             }catch(Exception e){}
         }
@@ -276,17 +282,11 @@ public class MulticastServer extends Thread {
                 socket.receive(packet);
 
                 String message = new String(packet.getData(), 0, packet.getLength());
-                if(findRequest(message) != null){
-                    this.replyOrder[replyServer] = 0;
-                    this.replyServer = (this.replyServer+1)%3;
-                    this.serverCounter--;
-                }else{
-                    requests.add(new Request(message));
-                    System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + "with message: " + message);
-                    //creates new thread for handling the new request
-                    requestHandler newRequest = new requestHandler(requests.get(requests.size()-1), this);
-                    newRequest.start();
-                }
+                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + "with message: " + message);
+                //creates new thread for handling the new request
+                requestHandler newRequest = new requestHandler(new Request(message, replyServer), this);
+                newRequest.start();
+
             }
         }catch(IOException e){
             e.printStackTrace();
@@ -518,6 +518,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return null;
     }
 
+
     public String translation(String message){
         String tokens[] = message.split(" ; ");
         String info[][] = new String[tokens.length][];
@@ -531,9 +532,18 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         servercounter = 3;
                     }
                     this.mainThread.setServerCounter(servercounter);
-                    String reply = "type | config ; server_count | " + servercounter + " ; reply_server | " + this.mainThread.getReplyServer() + " ; item_count | ";
+                    String reply = "type | config ; server_order | ";
                     int configServer = Integer.parseInt(info[1][1]);
                     int currentRequest = Integer.parseInt(info[2][1]);
+                    this.mainThread.replyOrder[configServer%3] = 1;
+                    for(int i = 0; i < this.mainThread.replyOrder.length; i++){
+                        reply += this.mainThread.replyOrder[i];
+                        if(i != 3){
+                            reply += ",";                        }
+                    }
+                    int replyServer = (this.mainThread.getReplyServer()+1)%3;
+                    reply += " ; reply_server | " + replyServer + " ; item_count | ";
+
                     reply += (this.mainThread.getCurrentRequest() - currentRequest) + " ; requests | ";
                     if(currentRequest < this.mainThread.getCurrentRequest()){
                         CopyOnWriteArrayList<String> serverRequests = this.mainThread.getwriteRequests();
@@ -544,8 +554,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             }
                         }
                     }
-                    System.out.println(reply);
-                    this.PORT = 4330;
                     return reply;
                 }case "register": {
                     String username = info[1][1];
@@ -1148,38 +1156,49 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         MulticastSocket socket = null;
         try {
             socket = new MulticastSocket();  // create socket without binding it (only for sending)
-            String message = translation(this.request.getRequest());
-            String aux[] = message.split(" ; ");
-            if(aux[0].equals("type | config")){
-                InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
-                socket.joinGroup(group);
-                byte[] buffer = message.getBytes();
-                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, 4330);
-                socket.send(packet);
-                request.confirmReply();
+            Request r = this.mainThread.findRequest(this.request.getRequest());
+            String aux[] = this.request.getRequest().split(" ; ");
+            String message;
+            if(r != null && !aux[0].equals("type | config")){
+                System.out.println("Here1");
+                message = r.getReply();
+                this.mainThread.replyOrder[r.getReplyServer()] = 0;
+                this.mainThread.setServerCounter(this.mainThread.getServerCounter()-1);
             }else{
-                while(!request.replied()){
-                    int replyServer = this.mainThread.getReplyServer();
-                    if(this.mainThread.replyOrder[replyServer] != 0){
-                        if(this.mainThread.getServerNumber() == this.mainThread.getReplyServer()){
-                            byte[] buffer = message.getBytes();
-                            InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
-                            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);
-                            socket.send(packet);
-                            System.out.println("Sent to multicast address: " + message);
-                            request.confirmReply();
-                            this.mainThread.setReplyServer((replyServer+1)%3);
-                        }else{
-                            try{
-                                Thread.sleep(10000);
-                            }catch(Exception e){}
+                System.out.println("Here2");
+                 message = translation(this.request.getRequest());
+                 this.request.setReply(message);
+                 this.mainThread.addRequest(this.request);
+            }
+            int replyServer = this.mainThread.getReplyServer();
+            while(true){
+                if(this.mainThread.replyOrder[replyServer] != 0){
+                    System.out.println("Here3");
+                    System.out.println("Server number: " + this.mainThread.getServerNumber()%3);
+                    System.out.println("Reply server: " + this.mainThread.getReplyServer());
+                    System.out.println("Reply Order: " + this.mainThread.replyOrder[0] + this.mainThread.replyOrder[1] + this.mainThread.replyOrder[2]);
+                    if(this.mainThread.getServerNumber()%3 == this.mainThread.getReplyServer()){
+                        System.out.println("Here4");
+                        byte[] buffer = message.getBytes();
+                        DatagramPacket packet = null;
+                        InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
+                        if(aux[0].equals("type | config")){
+                            System.out.println("Here5");
+                            packet = new DatagramPacket(buffer, buffer.length, group, 4330);
+                        }else {
+                            System.out.println("Here6");
+                            packet = new DatagramPacket(buffer, buffer.length, group, PORT);
                         }
-                    }else{
-                        this.mainThread.setReplyServer((replyServer+1)%3);
+                        socket.send(packet);
+                        System.out.println("Sent to multicast address: " + message);
                     }
+                    break;
+                }else{
+                    replyServer++;
+                    this.mainThread.setReplyServer((replyServer)%3);
                 }
             }
-
+            this.mainThread.setReplyServer((replyServer+1)%3);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -1217,12 +1236,20 @@ class config extends Thread{
             packet = new DatagramPacket(buffer, buffer.length);
             socket.receive(packet);
             String reply = new String(packet.getData(), 0, buffer.length);
+            System.out.println(reply);
             String aux[] = reply.split(" ; ");
             String info[][] = new String[aux.length][];
             for(int i = 0; i < aux.length; i++){
                 info[i] = aux[i].split(" \\| ");
             }
-            int serverCount = Integer.parseInt(info[1][1]);
+            int serverCount = 0;
+            aux = info[1][1].split(",");
+            for(int  i = 0; i < 3; i++){
+                this.mainThread.replyOrder[i] = Integer.parseInt(aux[i]);
+                if(Integer.parseInt(aux[i])==1){
+                    serverCount++;
+                }
+            }
             this.mainThread.setServerCounter(serverCount);
             int replyServer = Integer.parseInt(info[2][1]);
             this.mainThread.setReplyServer(replyServer);
@@ -1230,7 +1257,7 @@ class config extends Thread{
             if(n > 0){
                 String[] requests = info[4][1].split(",");
                 for(int i = 0; i < n; i++){
-                    requestHandler newRequest = new requestHandler(new Request(requests[i]), mainThread);
+                    requestHandler newRequest = new requestHandler(new Request(requests[i], replyServer), mainThread);
                     newRequest.translation(requests[i]);
                 }
             }
