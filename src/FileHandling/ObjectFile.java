@@ -12,7 +12,6 @@ public class ObjectFile {
 
     public void openRead(String fileName) throws IOException{
         input_stream = new ObjectInputStream(new FileInputStream(fileName));
-        System.out.println("Opening file " + fileName);
     }
 
     public void openWrite(String fileName) throws IOException{

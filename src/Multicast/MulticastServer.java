@@ -175,21 +175,6 @@ public class MulticastServer extends Thread {
             this.setArtists((CopyOnWriteArrayList)this.getArtistsObjectFile().readsObject());
             this.getArtistsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-
-        System.out.println("File has been read... Registered users:");
-
-        if(this.getGroups().size()>0){
-            Group g = this.groups.get(0);
-            Iterator it = g.getUsers().iterator();
-
-
-            while (it.hasNext()){
-                User aux = (User)it.next();
-                System.out.println(aux.getUsername());
-            }
-
-        }
-
     }
 
     public void run(){
@@ -204,7 +189,6 @@ public class MulticastServer extends Thread {
             socket.joinGroup(group);
             socket.setLoopbackMode(false);
 
-            System.out.println("This is my address: " + socket.getInterface().getHostAddress());
 
             while(true){ //receiving
                 byte[] buffer = new byte[256];
@@ -213,7 +197,7 @@ public class MulticastServer extends Thread {
 
                 String message = new String(packet.getData(), 0, packet.getLength());
 
-                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + "with message: " + message);
+                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
 
                     //creates new thread for handling the new request
                     RequestHandler newRequest = new RequestHandler(message, this);
@@ -994,8 +978,6 @@ class RequestHandler extends Thread{ //handles request and sends answer back to 
                     //porém, este user pode não ter acesso à musica (não está num grupo onde esta tenha sido adicionada)
                     User user = findUser(username);
 
-                    System.out.println("found.getGroups = " + found.getGroups());
-                    System.out.println("user.getDefaultShareGroups = " + user.getDefaultShareGroups());
 
                     if (!verifyGroups(found.getGroups(), user.getDefaultShareGroups()))
                         return "type | upload ; operation | failed ; message | You don't have access to this music :(";
@@ -1030,6 +1012,7 @@ class RequestHandler extends Thread{ //handles request and sends answer back to 
 
                     TCPWorker newWorker = new TCPWorker("download",5500, user, found, this.mainThread, this);
                     newWorker.start();
+
                     return ans;
                 }case "get_musics": {
                     String username = info[1][1];
@@ -1063,15 +1046,23 @@ class RequestHandler extends Thread{ //handles request and sends answer back to 
 
                     Music toBeShared = findMusic(artistName, musicTitle);
 
+                    String list = "";
+                    int count = 0;
+
                     //percorrer todos os users de cada grupo, e adicionar a música às transferred musics
                     for (String ID : groupIDs) {
                         Group group = findGroup(Integer.parseInt(ID));
                         for (User user : group.getUsers()) {
-                            user.getTransferredMusics().add(toBeShared);
+                            if (!user.getTransferredMusics().contains(toBeShared)) {
+                                user.getTransferredMusics().add(toBeShared);
+                                count++;
+                                list += user.getUsername() + ",";
+                            }
                         }
                     }
 
-                    return "type | share_music ; operation | succeeded";
+                    String ans = "type | share_music ; item_count | " + count + " ; user_list | " + list;
+                    return ans;
                 }case "notification": {
                     String username = info[1][1];
                     String notif = info[2][1];
@@ -1156,10 +1147,7 @@ class TCPWorker extends Thread {
 
         try {
             serverSocket = new ServerSocket(5500);
-            System.out.println("ServerSocket is up");
             clientSocket = serverSocket.accept();
-
-            System.out.println("New connection");
 
             //all the code for the file download
             if (requestType.equals("upload")) saveFile(clientSocket);
@@ -1167,8 +1155,6 @@ class TCPWorker extends Thread {
 
             serverSocket.close();
             clientSocket.close();
-            System.out.println("Sockets were closed");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -1177,14 +1163,12 @@ class TCPWorker extends Thread {
     public void saveFile (Socket clientSocket) throws IOException {
         //first of all, "calculate" the path of the new file
         this.path = "src/Multicast/" + this.mainThread.getName() + "/TransferredFiles/" + this.music.getTitle().replaceAll(" ", "") + this.music.getArtist().replaceAll(" ", "") + ".mp3";
-        System.out.println("CALCULATED PATH = " + this.path);
 
         DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
         FileOutputStream fos = new FileOutputStream(this.path);
 
         //the first message the server receives is the file size
         int fileSize = dis.readInt();
-        System.out.println("Received file size = " + fileSize);
 
         byte[] buffer = new byte[fileSize];
 
@@ -1209,21 +1193,18 @@ class TCPWorker extends Thread {
 
     public void sendFile (Socket clientSocket) throws IOException {
 
-        System.out.println("on function sendFile");
         //the path of the file the user wants to download is in the Music object
         this.path = this.music.getPathToFile();
 
         DataOutputStream dos = new DataOutputStream(clientSocket.getOutputStream()); //stream for writing to client socket
         FileInputStream fis = new FileInputStream(this.path); //stream for reading from music file in the server
 
-        System.out.println("yo1");
 
         long len = fis.getChannel().size();
         byte [] buffer = new byte[toIntExact(len)];
 
         //sending the file size on a separate message
-        dos.write(toIntExact(len));
-        System.out.println("fileSize sent = " + len);
+        dos.writeInt(toIntExact(len));
 
         //writes the actual file to the clientSocket
         fis.read(buffer); //reads bytes from file into buffer
@@ -1231,6 +1212,5 @@ class TCPWorker extends Thread {
 
         fis.close();
         dos.close();
-        System.out.println("yo4");
     }
 }

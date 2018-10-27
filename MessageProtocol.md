@@ -275,7 +275,9 @@ ANSWER: **type** | get\_musics; **item\_count** | nº de músicas ; **music_list
 
 REQUEST: **type** | share_music ; **username** | username ; **musicTitle** | musicTitle ; **artistName** | artistName ; **groupIDs** | <ID1,ID2,ID3,...>
 
-ANSWER: **type** | share_music ; **operation** | failed/succeeded
+O servidor multicast retorna também a lista de users que têm acesso ao ficheiro pela primeira vez, para que o RMI possa enviar uma notificação para eles.
+
+ANSWER: **type** | share_music ; **item_count** | count ;  **user_list** | user1,user2,...
 
 
 

@@ -614,12 +614,13 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             break;
         }
 
-        String infos[] = ans2[option].split(":");
+        String infos[] = ans2[option-1].split(":");
         String musicTitle = infos[0];
         String artistName = infos[1];
 
+        int portTCP = 0;
         try {
-            int port = rmi.downloadFile(user, musicTitle, artistName);
+            portTCP = rmi.downloadFile(user, musicTitle, artistName);
         } catch (RemoteException e) {
             retryRMIConnection();
         }
@@ -636,7 +637,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             validation = stringChecker(path);
 
             try {
-                TCPDownload(path, port);
+                TCPDownload(path, portTCP);
             } catch (IOException e) {
                 System.out.println("There was an exception: " + e);
             }
@@ -646,20 +647,26 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     private static void TCPDownload(String path, int port) throws IOException{
         String serverAddress = "0.0.0.0";
         Socket socket = null;
+        DataInputStream dis = null;
+        FileOutputStream fos = null;
 
         try {
-            socket = new Socket(serverAddress, port);
+            socket = new Socket(serverAddress, 5500);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("socket opened");
 
-        DataInputStream dis = new DataInputStream(socket.getInputStream());
-        FileOutputStream fos = new FileOutputStream(path);
+        try {
+            dis = new DataInputStream(socket.getInputStream());
+            fos = new FileOutputStream(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("--------------------------");
 
         //the first message the client receives is the file size
         int fileSize = dis.readInt();
-        System.out.println("fileSize received = " + fileSize);
 
         byte[] buffer = new byte[fileSize];
 
@@ -699,7 +706,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
         //sending the file size on a separate message
         dos.writeInt(toIntExact(len));
-        System.out.println("Sent file size = " + toIntExact(len));
 
         fis.read(buffer); //reads bytes from file into buffer
         dos.write(buffer, 0, toIntExact(len)); //writes len bytes from buffer starting at position off to dataOutputStream (sends to socket)
@@ -708,6 +714,8 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         dos.close();
 
         socket.close();
+
+        System.out.println("Your file was uploaded with success!");
     }
 
     private static void shareMusicMenu() {
@@ -759,7 +767,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         String groupIDs = sc.nextLine();
 
         //send this info to the server
-        String aux[] = ans2[option].split(":");
+        String aux[] = ans2[option-1].split(":");
         String music = aux[0];
         String artist = aux[1];
 
@@ -769,7 +777,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         } catch (RemoteException e) {
             retryRMIConnection();
         }
-        //adiciona a música à lista transferredfiles de cada user nos grupos que vão ter acesso
     }
 
     private static void uploadMenu() {
@@ -778,7 +785,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         String keyword = "", answer = "";
         String artist = "", music = "";
 
-        while (!validation){
+        /*while (!validation){
             System.out.println("----------------| Search |----------------");
             System.out.println("| Insert your keyword(s):                |");
             System.out.println("------------------------------------------");
@@ -792,7 +799,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         } catch (RemoteException e) {
             retryRMIConnection();
         }
-        validation = false;
+        validation = false;*/
 
         int port = -1;
         while (port == -1) {
@@ -831,9 +838,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         String path;
 
         while (!validation){
-            System.out.println("-------------------| Search |-------------------");
-            System.out.println("| Insert the path to the file you want to upload |");
-            System.out.println("------------------------------------------------");
+            System.out.print("Insert the path to the file you want to upload: ");
             path = sc.nextLine().replaceAll("^[,\\s]+", "");
             validation = stringChecker(path);
 

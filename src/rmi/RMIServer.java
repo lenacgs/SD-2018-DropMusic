@@ -331,8 +331,15 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
         String ans = dealWithRequest(request);
 
-        if (ans.equals("type | share_music ; operation | succeeded")) return true;
-        return false;
+        String info[] = ans.split(" ; ");
+        if(Integer.parseInt(info[1].split(" \\| ")[1]) > 0) {
+            String list = info[2].split(" \\| ")[1];
+            for (String user : list.split(",")) {
+                sendNotification("You have access to new music files!", user);
+            }
+        }
+
+        return true;
     }
 
     public int uploadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException{
@@ -359,6 +366,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String[] splitted = ans.split(" ; ");
 
         String port = splitted[1].split(" \\| ")[1];
+
+        System.out.println("--"+port+"--");
 
         return Integer.parseInt(port);
     }

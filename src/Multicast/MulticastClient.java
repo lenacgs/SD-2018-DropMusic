@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> f197ab2a6ea933c5c59d48a5a1cf77a43f5f9773
 package Multicast;
 
 import java.net.MulticastSocket;
@@ -9,10 +5,7 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.io.IOException;
 import java.util.Scanner;
-<<<<<<< HEAD
 
-=======
->>>>>>> f197ab2a6ea933c5c59d48a5a1cf77a43f5f9773
 /**
  * The MulticastClient class joins a multicast group and loops receiving
  * messages from that group. The client also runs a MulticastUser thread that
