@@ -559,7 +559,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         for(User u : owners){
                             toReturn+=u.getUsername()+",";
                         }
-                        return "type | join_group ; status | fail";
+                        return toReturn;
                     }
                     return "type | join_group ; status | failed";
                 }case "manage_request":{
