@@ -5,11 +5,8 @@ import rmi.Services;
 import static java.lang.Math.toIntExact;
 
 import java.io.*;
-<<<<<<< HEAD
 import java.net.*;
-=======
 import java.net.Socket;
->>>>>>> f197ab2a6ea933c5c59d48a5a1cf77a43f5f9773
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -183,7 +180,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             }
             if (verifier < 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-ja existe/credencias mal, 5-user ja esta logado;
                 if (modifier == 1)
-                    System.out.println("User registed successfully!");
+                    System.out.println("User registered successfully!");
                 else
                     System.out.println("Logged in successfully!");
                 user = username;
@@ -208,7 +205,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     if (modifier == 1)
                         System.out.println("Username already exists. Please choose another one!");
                     else
-                        System.out.println("Invalid Credentials!");
+                        System.out.println("Username doesn't exist!");
                 }
                 else{
                     System.out.println("Wrong password!");
@@ -682,11 +679,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     }
     //function to communicate with multicast server
-<<<<<<< HEAD
-    private static void TCPServerConnection(String username, String music, String path) throws IOException {
-        String serverIP = "127.0.0.1";
-        int serverPort = 5000;
-=======
+
     private static void TCPUpload(String path, int port) throws IOException {
         String serverAddress = "0.0.0.0";
         Socket socket = null;
@@ -731,8 +724,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println(ans);
             return;
         }
-
->>>>>>> f197ab2a6ea933c5c59d48a5a1cf77a43f5f9773
 
         String ans1 = ans.replace("<", "");
         ans1 = ans1.replace(">", "");

@@ -211,17 +211,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
-<<<<<<< HEAD
-
     public String search(String username, String keyword, String object) throws java.rmi.RemoteException{
         //faz request aos multicasts para Search
         String request = "type | search ; username | " + username + " ; keyword | "+keyword+" ; object | "+object;
-=======
-    public String search(String user, String keyword, String object) throws java.rmi.RemoteException{
-        //faz request aos multicasts para Search
-        String request = "type | search ; username | "+user+" ; keyword | "+keyword+" ; object | "+object;
-
->>>>>>> f197ab2a6ea933c5c59d48a5a1cf77a43f5f9773
         String ans = dealWithRequest(request);
 
         String[]splitted = ans.split(" ; ");
