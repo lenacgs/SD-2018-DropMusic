@@ -5,12 +5,14 @@ import FileHandling.*;
 //import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
+import javax.xml.crypto.Data;
 import java.net.*;
 import java.io.*;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import static java.lang.Math.toIntExact;
 
 public class MulticastServer extends Thread {
     private ObjectFile usersObjectFile; //file for registered users
@@ -224,7 +226,7 @@ public class MulticastServer extends Thread {
                 System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + "with message: " + message);
 
                     //creates new thread for handling the new request
-                    requestHandler newRequest = new requestHandler(message, this);
+                    RequestHandler newRequest = new RequestHandler(message, this);
                     newRequest.start();
                 }
         }catch(IOException e){
@@ -238,13 +240,13 @@ public class MulticastServer extends Thread {
 }
 
 
-class requestHandler extends Thread{ //handles request and sends answer back to RMI
+class RequestHandler extends Thread{ //handles request and sends answer back to RMI
     private String request;
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4321;
     private MulticastServer mainThread;
 
-    public requestHandler(String request, MulticastServer mainThread){
+    public RequestHandler(String request, MulticastServer mainThread){
         super("Request");
         this.request = request;
         this.mainThread = mainThread;
@@ -369,7 +371,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return reply;
     }
 
-    private void saveFile(String filename, Object o){
+    public void saveFile(String filename, Object o){
         try {
             mainThread.getUsersObjectFile().openWrite(filename);
             mainThread.getUsersObjectFile().writesObject(o);
@@ -379,7 +381,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         }
     }
 
+    //verifica se a lista de grupos onde o user está coincide com a lista de grupos que têm acesso à música
     private boolean verifyGroups(CopyOnWriteArrayList<Integer> musicGroups, CopyOnWriteArrayList<Group> userGroups){
+        //userGroups is the groups a certain user is in (user.getDefaultShareGroups)
+        //musicGroups is the groups where a certain music was shared (musig.getGroups)
         for(Integer i : musicGroups){
             for(Group g : userGroups){
                 if(g.getGroupID() == i){
@@ -806,98 +811,77 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "test": {
                     test();
                     return "type | status ; command | tested";
-                }case "upload": {
+                }case "upload": { //quando o Multicast recebe um pedido para um client dar upload de uma música
 
-                    int port = 5500;
-                    ServerSocket listenSocket = null;
-                    Socket clientSocket = null;
-
-
-
-                    try {
-                        listenSocket = new ServerSocket(port);
-                        System.out.println("LISTEN SOCKET = " + listenSocket.getInetAddress());
-
-
-
-                        clientSocket = listenSocket.accept();
-                        clientSocket.close();
-                        listenSocket.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    //há um user a querer fazer upload de um ficheiro
-                    /*String username = info[1][1];
+                    String username = info[1][1];
                     String musicTitle = info[2][1];
-                    String musicTitle2 = musicTitle.replaceAll(" ", "");
+                    String musicTitle2 = musicTitle.replaceAll(" ", ""); //para fazer o path do ficheiro
                     String artistName = info[3][1];
-                    String artistName2 = artistName.replaceAll(" ", "");
-                    ServerSocket welcomeSocket = null;
-                    Socket connectionSocket = null;
-                    InputStream is = null;
-                    FileOutputStream fos = null;
-                    BufferedOutputStream bos = null;
-                    int bytesRead;
-                    int current = 0;
-                    String path = "";
+                    String artistName2 = artistName.replaceAll(" ", ""); //para fazer o path do ficheiro
+                    String ans = "";
 
-                    Socket socket;
+                    Music found = findMusic(artistName, musicTitle);
 
-                    System.out.println("[TESTE] a iniciar ligação TCP...");
+                    //porém, este user pode não ter acesso à musica (não está num grupo onde esta tenha sido adicionada)
+                    User user = findUser(username);
 
-                    //ligação TCP
-                    try {
-                        //initialize socket
-                        welcomeSocket = new ServerSocket(5010);
-                        System.out.println("[TESTE] Server socket criado. Waiting for client connection");
-                        connectionSocket = welcomeSocket.accept();
+                    if (!verifyGroups(found.getGroups(), user.getDefaultShareGroups())) return "type | upload ; operation | failed ; message | You don't have access to this music :(";
 
-                        System.out.println("[TESTE] client ligou-se por TCP ao server");
-
-                        byte[] contents = new byte[10000];
-
-                        //initialize the FileOutputStream to the output file's full path
-
-                        path = "src/Multicast/TransferredFiles/" + musicTitle2 + "_" + artistName2 + ".bin";
-
-                        fos = new FileOutputStream(path);
-                        bos = new BufferedOutputStream(fos);
-                        is = connectionSocket.getInputStream();
-
-                        bytesRead = 0;
-
-                        while((bytesRead=is.read(contents)) != -1){
-                            bos.write(contents, 0, bytesRead);
-                        }
-
-                        bos.flush();
-                        connectionSocket.close();
-                        welcomeSocket.close();
-                    } catch (IOException e) {
-                        System.out.println("Exception: " + e.getStackTrace());
+                    if (found != null) {
+                        //siginifica que a música existe e que efetivamente conseguimos associá-la com o ficheiro que aí vem
+                        ans = "type | upload ; port | 5500";
+                    } else { //findMusic = null => significa que a música não existe, e portanto o request tem que ser recusado
+                        return "type | upload ; operation | failed ; message | no such music";
                     }
 
-                    //guardar informações relativamente ao user, ficheiro e música
-                    Music thisMusic = findMusic(musicTitle, artistName);
-                    thisMusic.setPathToFile(path);
-                    thisMusic.setWhoShared(findUser(username));
 
-                    return "type | upload ; operation | succeeded";*/
 
+                    //create new thread
+                    TCPWorker newWorker = new TCPWorker(5500, user, found, this.mainThread, this);
+                    newWorker.start();
+
+                    return ans;
+                }case "get_musics": {
+                    String username = info[1][1];
+
+                    User thisUser = findUser(username);
+
+                    String list = "<";
+                    int count = 0;
+
+                    for (Music m : thisUser.getTransferredMusics()) {
+                        list += m.getTitle() + ":" + m.getArtist().getName() + ",";
+                        count++;
+                    }
+
+                    list = list.substring(0, list.length() - 1);
+                    list += ">";
+
+                    String ans = "type | get_musics ; item_count | " + count + " ; music_list | " + list;
+                    return ans;
+                }case "share_music": {
+                    String username = info[1][1];
+                    String musicTitle = info[2][1];
+                    String artistName = info[3][1];
+                    String groups = info[4][1];
+
+                    groups = groups.replace("<", "");
+                    groups = groups.replace (">", "");
+
+                    String [] groupIDs = groups.split(",");
+
+
+                    Music toBeShared = findMusic(artistName, musicTitle);
+
+                    //percorrer todos os users de cada grupo, e adicionar a música às transferred musics
+                    for (String ID : groupIDs) {
+                        Group group = findGroup(Integer.parseInt(ID));
+                        for (User user : group.getUsers()) {
+                            user.getTransferredMusics().add(toBeShared);
+                        }
+                    }
+
+                    return "type | share_music ; operation | succeeded";
                 }case "notification": {
                     String username = info[1][1];
                     String notif = info[2][1];
@@ -950,4 +934,79 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         }
     }
 
+}
+
+class TCPWorker extends Thread {
+    int port;
+    String serverAddress;
+    User user; //user que fez o upload do ficheiro
+    Music music;
+    MulticastServer mainThread;
+    String path;
+    RequestHandler thread;
+
+    public TCPWorker(int port, User user, Music music, MulticastServer mainThread, RequestHandler thread){
+        super();
+        this.port = port;
+        this.user = user;
+        this.music = music;
+        this.mainThread = mainThread;
+        this.thread = thread;
+    }
+
+    public void run() {
+        int port = 5500;
+        ServerSocket serverSocket = null;
+        Socket clientSocket = null;
+
+        try {
+            serverSocket = new ServerSocket(5500);
+            System.out.println("ServerSocket is up");
+            clientSocket = serverSocket.accept();
+
+            //all the code for the file download
+            saveFile(clientSocket);
+
+            serverSocket.close();
+            clientSocket.close();
+            System.out.println("Sockets were closed");
+
+            //associates this file with a certain music
+            this.music.setPathToFile(this.path);
+            this.user.getTransferredMusics().add(music);
+
+            this.thread.saveFile("users.obj", mainThread.getRegisteredUsers());
+            this.thread.saveFile("musics.obj", mainThread.getSongs());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveFile (Socket clientSocket) throws IOException {
+        //first of all, "calculate" the path of the new file
+        this.path = "src/Multicast/" + this.mainThread.getName() + "/TransferredFiles/" + this.music.getTitle().replaceAll(" ", "") + this.music.getArtist().getName().replaceAll(" ", "") + ".mp3";
+        System.out.println("CALCULATED PATH = " + this.path);
+
+        DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
+        FileOutputStream fos = new FileOutputStream(this.path);
+
+        //the first message the server receives is the file size
+        int fileSize = dis.readInt();
+        System.out.println("Received file size = " + fileSize);
+
+        byte[] buffer = new byte[fileSize];
+
+        int read = 0;
+        int totalRead = 0;
+        int remaining = fileSize;
+
+
+        while ((read = dis.read(buffer, 0, Math.min(buffer.length, remaining))) > 0) {
+            totalRead += read;
+            remaining -= read;
+            fos.write(buffer, 0, read);
+        }
+        //file has been written
+    }
 }

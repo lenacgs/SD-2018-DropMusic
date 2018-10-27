@@ -19,5 +19,7 @@ public interface Services extends Remote {
     boolean addInfo(String username, String type, String title, String artist, String genre, String duration)throws java.rmi.RemoteException; //used for musics and artists
     boolean addInfo(String username, String artist, String title, String musics, String year, String publisher, String genre, String description)throws java.rmi.RemoteException; //user for albums
     boolean givePermissions(String perk, String username, String newUser, String groupID)throws java.rmi.RemoteException;
-    boolean uploadFile(String username, String musicTitle, String artistName) throws java.rmi.RemoteException;
+    int uploadFile(String username, String musicTitle, String artistName) throws java.rmi.RemoteException;
+    String getMusics(String username) throws java.rmi.RemoteException;
+    boolean shareMusic(String username, String groupIDs, String music, String artist) throws java.rmi.RemoteException;
 }
