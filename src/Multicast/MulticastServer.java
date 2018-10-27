@@ -562,36 +562,6 @@ class RequestHandler extends Thread{ //handles request and sends answer back to 
                     }else{
                         return "type | manage_request ; operation | failed";
                     }
-                }case "expell_user":{
-                    String username = info[1][1];
-                    String expelled_user = info[2][1];
-                    Group g = findGroup(Integer.parseInt(info[3][1]));
-                    if(g.isOwner(username) && !g.isOwner(expelled_user) && g.getGroupID()!=1){
-                        g.removeUser(expelled_user, g.getUsers());
-                        if(g.isEditor(expelled_user)){
-                            g.removeUser(expelled_user, g.getEditors());
-                        }
-                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
-                        return "type | expell_user ; operation | succeeded";
-                    }else{
-                        return "type | expell_user ; operation | failed";
-                    }
-                }case "leave_group":{
-                    String username = info[1][1];
-                    Group g = findGroup(Integer.parseInt(info[2][1]));
-                    if(g.isUser(username)){
-                        g.removeUser(username, g.getUsers());
-                        if(g.isEditor(username)){
-                            g.removeUser(username, g.getEditors());
-                            if(g.isOwner(username)){
-                                g.removeUser(username, g.getOwners());
-                            }
-                        }
-                        saveFile("src/Multicast/groups.obj", this.mainThread.getGroups());
-                        return "type | leave_group ; operation | succeeded";
-                    }else{
-                        return "type | leave_group ; operation | failed ; error | You don't belong to group " + g.getGroupID() + "!";
-                    }
                 }case "grant_perks":{
                     String perks = info[1][1];
                     String username = info[2][1];
@@ -1117,13 +1087,13 @@ class RequestHandler extends Thread{ //handles request and sends answer back to 
 
 
                     if (!verifyGroups(found.getGroups(), user.getDefaultShareGroups()))
-                        return "type | upload ; operation | failed ; message | You don't have access to this music :(";
+                        return "type | upload ; operation | failed";
 
                     if (found != null) {
                         //siginifica que a música existe e que efetivamente conseguimos associá-la com o ficheiro que aí vem
                         ans = "type | upload ; port | 5500";
                     } else { //findMusic = null => significa que a música não existe, e portanto o request tem que ser recusado
-                        return "type | upload ; operation | failed ; message | no such music";
+                        return "type | upload ; operation | failed";
                     }
 
 

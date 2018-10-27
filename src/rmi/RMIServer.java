@@ -188,7 +188,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
         //se o register não foi aprovado
         String tokens[] = ans.split(" ; ");
-        if (ans.equals("type | register ; operation | failed")) {
+        if (ans.equals("type | register ; operation | fail")) {
             return 4;
         }
 
