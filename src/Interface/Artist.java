@@ -28,6 +28,9 @@ public class Artist implements Serializable {
         this.description = description;
         this.concerts = concerts;
         this.genre = genre;
+        albums = new CopyOnWriteArrayList<>();
+        musics = new CopyOnWriteArrayList<>();
+        groups = new CopyOnWriteArrayList<>();
     }
 
     public void add_groups(int group) { this.groups.add(group);}
