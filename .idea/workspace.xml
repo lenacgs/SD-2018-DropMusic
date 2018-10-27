@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46d5de6f-7512-4050-8380-b766da37a431" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/downloadFiles/testfile.mp3" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmi/RMIServer.class" afterPath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmi/RMIServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmi/Services.class" afterPath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmi/Services.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmiClient/rmiClient.class" afterPath="$PROJECT_DIR$/out/production/SD-2018-DropMusic/rmiClient/rmiClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MessageProtocol.md" afterPath="$PROJECT_DIR$/MessageProtocol.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musics.obj" afterPath="$PROJECT_DIR$/musics.obj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FileHandling/ObjectFile.java" afterPath="$PROJECT_DIR$/src/FileHandling/ObjectFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastClient.java" afterPath="$PROJECT_DIR$/src/Multicast/MulticastClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/artists.obj" afterPath="$PROJECT_DIR$/src/Multicast/artists.obj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/groups.obj" afterPath="$PROJECT_DIR$/src/Multicast/groups.obj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/musics.obj" afterPath="$PROJECT_DIR$/src/Multicast/musics.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmi/RMIServer.java" afterPath="$PROJECT_DIR$/src/rmi/RMIServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" afterPath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/users.obj" afterPath="$PROJECT_DIR$/users.obj" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +17,8 @@
       <file leaf-file-name="MulticastServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="158" column="42" lean-forward="false" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
+            <state relative-caret-position="105">
+              <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -52,8 +37,8 @@
       <file leaf-file-name="rmiClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="717" column="64" lean-forward="false" selection-start-line="717" selection-start-column="64" selection-end-line="717" selection-end-column="64" />
+            <state relative-caret-position="468">
+              <caret line="213" column="9" lean-forward="true" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -62,8 +47,8 @@
       <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="325" column="56" lean-forward="false" selection-start-line="325" selection-start-column="56" selection-end-line="325" selection-end-column="56" />
+            <state relative-caret-position="365">
+              <caret line="176" column="53" lean-forward="false" selection-start-line="176" selection-start-column="53" selection-end-line="176" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,8 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sear</find>
-      <find>search</find>
       <find>searc</find>
       <find>verifygrou</find>
       <find>tcp</find>
@@ -105,6 +88,8 @@
       <find>detail</find>
       <find>dealw</find>
       <find>filesiz</find>
+      <find>dealwith</find>
+      <find>dealwithrequest(St</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,10 +106,10 @@
         <option value="$PROJECT_DIR$/src/Interface/Album.java" />
         <option value="$PROJECT_DIR$/src/rmi/Services.java" />
         <option value="$PROJECT_DIR$/src/Multicast/MulticastClient.java" />
-        <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
-        <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
         <option value="$PROJECT_DIR$/src/FileHandling/ObjectFile.java" />
         <option value="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
+        <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
+        <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
       </list>
     </option>
   </component>
@@ -376,10 +361,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14451000" />
+    <option name="totallyTimeSpent" value="17097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -387,7 +373,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.502442" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4192872" sideWeight="0.497558" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4192872" sideWeight="0.497558" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -477,7 +463,7 @@
         <state relative-caret-position="30">
           <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -624,7 +610,7 @@
         <state relative-caret-position="300">
           <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -685,7 +671,7 @@
         <state relative-caret-position="300">
           <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -863,7 +849,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -905,24 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="325" column="56" lean-forward="false" selection-start-line="325" selection-start-column="56" selection-end-line="325" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="158" column="42" lean-forward="false" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/FileHandling/ObjectFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -931,10 +899,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="176" column="53" lean-forward="false" selection-start-line="176" selection-start-column="53" selection-end-line="176" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="717" column="64" lean-forward="false" selection-start-line="717" selection-start-column="64" selection-end-line="717" selection-end-column="64" />
+        <state relative-caret-position="468">
+          <caret line="213" column="9" lean-forward="true" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
           <folding />
         </state>
       </provider>

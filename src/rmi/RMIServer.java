@@ -132,39 +132,54 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     private String dealWithRequest(String request) {
         MulticastSocket socket = null;
-        String message = null;
+        String operationType = request.split(" ; ")[0].split(" \\| ")[1];
+        String message = "type | " + operationType + " ; operation | failed";
+        int count = 0;
 
-        try {
-            socket = new MulticastSocket(PORT);  // creates socket and binds it
-            InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
-            System.out.println("hello");
-            socket.joinGroup(group); //joins multicast group
-            socket.setLoopbackMode(false);
-            System.out.println("This is my address: " + socket.getInterface().getHostAddress());
-            //sends request to multicast address
-            byte[] buffer = request.getBytes();
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);
-            socket.send(packet);
+        //se não houver uma resposta em 5 segundos, há reenvio do request
+        //isto acontece
+        while (count < 6) {
+            try {
+                socket = new MulticastSocket(PORT);  // creates socket and binds it
+                InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
+                socket.joinGroup(group); //joins multicast group
+                socket.setLoopbackMode(false);
+                //sends request to multicast address
+                byte[] buffer = request.getBytes();
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);
+                socket.send(packet);
 
-            System.out.println("Sent to multicast address: " + request);
+                System.out.println("Sent to multicast address: " + request);
 
-            //waits for answer
-            buffer = new byte[8192];
-            packet = new DatagramPacket(buffer, buffer.length);
-            socket = new MulticastSocket(4324);
-            socket.joinGroup(group);
-            socket.receive(packet); //bloqueante
+                //waits for answer
+                buffer = new byte[8192];
+                packet = new DatagramPacket(buffer, buffer.length);
+                socket = new MulticastSocket(4324);
+                socket.joinGroup(group);
+                socket.setSoTimeout(5000);
+                socket.receive(packet); //bloqueante
 
-            //callback to client
-            message = new String(packet.getData(), 0, packet.getLength());
+                System.out.println("Do i get here?");
+                //answers to client
+                message = new String(packet.getData(), 0, packet.getLength());
 
-            System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            socket.close();
-            return message;
+                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
+                break;
+            }catch (SocketTimeoutException e) {
+                count ++;
+                continue;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                socket.close();
+            }
         }
+        System.out.println("MESSAGE =" + message + "-");
+        return message;
+
+
+
+
     }
 
     public int register (String username, String password) throws java.rmi.RemoteException{
@@ -172,10 +187,11 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String ans = dealWithRequest(request);
 
         //se o register não foi aprovado
-        if (ans.equals("type | status ; operation | failed")) {
+        String tokens[] = ans.split(" ; ");
+        if (ans.equals("type | register ; operation | failed")) {
             return 4;
         }
-        String tokens[] = ans.split(" ; ");
+
         String info[][] = new String[tokens.length][];
         for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
         int ret = Integer.parseInt(info[2][1]);
