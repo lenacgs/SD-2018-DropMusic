@@ -255,7 +255,28 @@ ANSWER: **type** | join\_group ; **username** | username ; **group** | group ; *
 ###
 
 ####Upload de ficheiros para um servidor
-REQUEST: **type** | upload ; **username** | username ; **music_title** | music title \n
+REQUEST: **type** | upload ; **username** | username ; **music_title** | music title ; artistName | artistName
+
+ANSWER (em caso de sucesso): **type** | upload ; **port** | port where the server is listening
+
+ANSWER: **type** | upload ; operation | failed
+
+
+####Partilha de um ficheiro musical de forma a permitir o seu download
+
+#####Obter a lista de músicas que o user tem no servidor associadas ao seu nome
+
+
+REQUEST: **type** | get_musics ; **username** | username ;
+
+ANSWER: **type** | get\_musics; **item\_count** | nº de músicas ; **music_list** | \<musica1:nomeArtista,musica2:nomeArtista,musica2:nomeArtista,...>
+
+#####Enviar a música e a lista de grupos que passarão a ter acesso ao ficheiro
+
+REQUEST: **type** | share_music ; **username** | username ; **musicTitle** | musicTitle ; **artistName** | artistName ; **groupIDs** | <ID1,ID2,ID3,...>
+
+ANSWER: **type** | share_music ; **operation** | failed/succeeded
+
 
 
 ####Guardar notificação porque o user não está loggado
