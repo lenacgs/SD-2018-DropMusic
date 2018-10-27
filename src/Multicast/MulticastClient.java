@@ -1,3 +1,4 @@
+
 package Multicast;
 
 import java.net.MulticastSocket;
@@ -5,7 +6,6 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.io.IOException;
 import java.util.Scanner;
-
 
 /**
  * The MulticastClient class joins a multicast group and loops receiving

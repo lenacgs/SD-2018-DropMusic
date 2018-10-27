@@ -7,10 +7,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Group implements Serializable {
     private static final long serialVersionUID = 4L;
-    private ArrayList<User> users = new ArrayList<>();
-    private ArrayList<User> editors = new ArrayList<>();
-    private ArrayList<User> owners = new ArrayList<>();
-    private ArrayList<User> requests = new ArrayList<>();
+    private CopyOnWriteArrayList<User> users = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<User> editors = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<User> owners = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<User> requests = new CopyOnWriteArrayList<>();
 
     private int groupID;
 
@@ -32,21 +32,34 @@ public class Group implements Serializable {
         }
     }
 
+    public CopyOnWriteArrayList<User> getRequests(){
+        return this.requests;
+    }
+
     public String getGroupRequests(){
         String reply = "<";
         int counter = 0;
 
         for(User u : this.requests){
-            if(counter++ > 0){
+            if(counter > 0){
                 reply += ",";
+
             }
             reply += u.getUsername();
+            counter++;
         }
         reply += ">";
         return reply;
     }
+    public boolean hasGroupRequests(User user){
+        for(User u : this.requests){
+            if (u==user)
+                return true;
+        }
+        return false;
+    }
 
-    public void removeUser(String username, ArrayList<User> users) {
+    public void removeUser(String username, CopyOnWriteArrayList<User> users) {
         for(User u : users){
             if(u.getUsername().equals(username)){
                 users.remove(u);
@@ -82,11 +95,11 @@ public class Group implements Serializable {
 
     public int getGroupID(){ return this.groupID;}
 
-    public ArrayList<User> getUsers(){ return this.users;}
+    public CopyOnWriteArrayList<User> getUsers(){ return this.users;}
 
-    public ArrayList<User> getEditors() { return this.editors;}
+    public CopyOnWriteArrayList<User> getEditors() { return this.editors;}
 
-    public ArrayList<User> getOwners() { return this.editors;}
+    public CopyOnWriteArrayList<User> getOwners() { return this.editors;}
 
     public boolean isUser(User user) {
         return this.users.contains(user);
@@ -148,9 +161,7 @@ public class Group implements Serializable {
     public boolean isUser(String name) {
         User aux = getUserByName(name);
 
-        if (aux != null)
-            return true;
-        return false;
+        return aux!= null;
     }
 
     public boolean isOwner(String name) {
