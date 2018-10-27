@@ -704,8 +704,9 @@ class RequestHandler extends Thread{ //handles request and sends answer back to 
                     String groupIDs = info[2][1];
                     String aux[] = groupIDs.split(",");
                     CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+
                     for(int i = 0; i < aux.length; i++){
-                        for(Group g : current.getDefaultShareGroups()){
+                        for(Group g : current.getDefaultShareGroups()){ //percorre os grupos em que o current está inserido
                             if(g.getGroupID() == Integer.parseInt(aux[i])){
                                 if(g.isEditor(username))
                                     groups.add(g.getGroupID());
@@ -1026,6 +1027,9 @@ class RequestHandler extends Thread{ //handles request and sends answer back to 
 
                     //porém, este user pode não ter acesso à musica (não está num grupo onde esta tenha sido adicionada)
                     User user = findUser(username);
+
+                    System.out.println("found.getGroups = " + found.getGroups());
+                    System.out.println("user.getDefaultShareGroups = " + user.getDefaultShareGroups());
 
                     if (!verifyGroups(found.getGroups(), user.getDefaultShareGroups()))
                         return "type | upload ; operation | failed ; message | You don't have access to this music :(";
