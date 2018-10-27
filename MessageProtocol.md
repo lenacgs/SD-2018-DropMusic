@@ -12,23 +12,27 @@ Não podem haver "|", ";" nem "\n" nas chaves ou valores.
 
 ####User Registration
 
-REQUEST: **type** | register ; **username** | new\_username ; **password** | new password
+REQUEST: **type** | register ; **username** | new\_username ; **password** | new password \n
 
-ANSWER: **type** | status ; **operation** | failed
-or
-ANSWER: **type** | status ; **operation** | succeeded ; **message** | (1 or 3)
+ANSWER: **type** | status ; **register** | succeeded ou failed ; admin | 0 ou 1\n
+
+REQUEST: **type** | data\_count ; **object** | user\n
+
+ANSWER: **type** | data\_count ; **object** | user ; **count** | <n users>\n (isto para saber se é o primeiro para ficar owner da plataforma)
+
 
 ####User Login
 
-REQUEST: **type** | login ; **username** | username ; **password** | password
+REQUEST: **type** | login ; **username** | username ; **password** | password \n
+
 
 **Se falhar**
 
-ANSWER: **type** | login ; **operation** | failed ; **message** | (4 or 5)
+ANSWER: **type** | login ; **operation** | failed
 
 **Se tiver sucesso**
 
-ANSWER: **type** | status ; **operation** | succeeded ; **perks** | (1, 2 or 3)
+ANSWER: **type** | status ; **operation** | succeeded ; **perks** | perks do user* ; **notifications** | todas as notificações pendentes para esse user
 
 \* - 1: user é owner de algum grupo
 
@@ -45,11 +49,13 @@ Cada notificação segue a seguinte estrutura:
 "mensagem@timeStamp"
 
 
+
+
 ####User Logout
 
-REQUEST: **type** | logout ; **username** | username
+REQUEST: **type** | logout ; **username** | username \n
 
-ANSWER: **type** | status ; **logout** | succeeded or failed
+ANSWER: **type** | status ; **logout** | succeeded ou failed \n
 
 
 ####Check for user perks (Owner de algum grupo, Editor de algum grupo ou normal)
@@ -71,7 +77,7 @@ ANSWER: **type** | perks_\group ; **user** | "normal" or "editor" or "owner" \n
 
 REQUEST: **type** | groups ; **username** | username\n	
 
-ANSWER: **type** | groups ; **item_count** | counter ; **list** | <group1,group2,...>\n
+ANSWER: **type** | groups ; **list** | <group1,group2,...>\n
 (isto para apresentar ao user todos os grupos aos quais ele pode juntar-se. É enviado o username para só devolver os grupos aos quais ele nao pertence)
 
 
@@ -88,21 +94,21 @@ REQUEST: **type** | new\_group ; **username** | username\n
 
 ANSWER: **type** | new\_group ; **object** | groupID ; **status** | succeeded ou failed\n
 
-####Grant Perks
+####Grant Perks inside a group
 
-REQUEST: **type** | grant\_perks ; **perk** | perk ; **username** | username ; **new_user** | new_user ; **groupID** | groupID 
+REQUEST: **type** | grant\_perks\_group ; **username** | username ; **new_editor/owner** | username ; **groupID** | groupID ; **new_perks** | 1 (owner) or 2 (editor) \n
 
-ANSWER: **type** | grant\_perks; **operation** | succeeded/failed \n
+ANSWER: **type** | grant\_perks\_group ; **operation** | succeeded/failed \n
 
 ####Get group requests
 
-REQUEST: **type** | get\_requests ; **username** | username
+REQUEST: **type** | get\_requests ; **username** | username ; **groupID** | groupID
 
-ANSWER: **type** | get\_requests; **operation** | succeeded/failed ; (if succeeded) **list** | 1 <user1,user2,...>,2 <user1,user2,...>
+ANSWER: **type** | get\_requests; **operation** | succeeded/failed ; (if succeeded) **list** | <user1, user2,...>
 
 ####Manage group requests
 
-REQUEST: **type** | manage\_request ; **username** | username ; **new_user** | username ; **groupID** | groupID ; **request** | accept/decline \n
+REQUEST: **type** | manage\_request ; **username** | username ; **new_user** | username ; **groupID** | groupID ; **request** | accepted/declined \n
 
 ANSWER: **type** | manage\_request ; **operation** | succeeded/failed \n
 
@@ -182,7 +188,7 @@ REQUEST: **type** | add\_artist ; **username** | username que vai ficar associad
 
 #####Add new album
 
-REQUEST: **type** | add\_album ; **username** | useername que vai ficar associado à adição ; **groups** | lista de grupos com quem é partilhada esta informação ; **artist** | artist ; **title** | title ; **musiclist** | lista de músicas do álbum ; **year** | ano de publicação ; **publisher** | editora ; **genre** | genre ; **description** | description \n
+REQUEST: **type** | add\_album ; **username** | useername que vai ficar associado à adição ; **groups** | lista de grupos com quem é partilhada esta informação ; **title** | title ; **artist** | artist ; **musiclist** | lista de músicas do álbum ; **year** | ano de publicação ; **publisher** | editora ; **genre** | genre ; **description** | description \n
 
 
 ANSWER: **type** | add ; **status** | success/fail ; **message** | message \n
@@ -216,6 +222,13 @@ REQUEST: **type** | review ; **album\_title** | album title ; **username** | use
 ANSWER: **type** | review  ; **status** | success/fail \n
 
 
+
+###Dar privilégios de editor ou owner a um user
+
+REQUEST: **type** | grant\_perks ; **perk** | (editor / user) ; **username** | username proprio ; **new\_user** | username do novo editor ; **group** | groupID \n
+
+ANSWER: **type** | grant\_perks ; **status** | success/fail \n
+
 (Pode ser success ou fail, dependendo se o user que estiver a dar privilégios seja ou não editor ou owner
 
 
@@ -235,15 +248,37 @@ Ainda não pensei como vai funcionar a questão das notificações caso o user n
 
 #### Join group
 
-REQUEST: **type** | join\_group ; **username** | username ; **group** | group
+REQUEST: **type** | join\_group ; **username** | username ; **group** | group\n
 
-ANSWER: **type** | join\_group ; **status** | succeeded ; **owners** | owner1,owner2,...
-ANSWER: **type** | join\_group ; **status** | fail
+ANSWER: **type** | join\_group ; **username** | username ; **group** | group ; **status** | success/fail\n
 
 ###
 
 ####Upload de ficheiros para um servidor
-REQUEST: **type** | upload ; **username** | username ; **music_title** | music title \n
+REQUEST: **type** | upload ; **username** | username ; **music_title** | music title ; artistName | artistName
+
+ANSWER (em caso de sucesso): **type** | upload ; **port** | port where the server is listening
+
+ANSWER: **type** | upload ; operation | failed
+
+
+####Partilha de um ficheiro musical de forma a permitir o seu download
+
+#####Obter a lista de músicas que o user tem no servidor associadas ao seu nome
+
+
+REQUEST: **type** | get_musics ; **username** | username ;
+
+ANSWER: **type** | get\_musics; **item\_count** | nº de músicas ; **music_list** | \<musica1:nomeArtista,musica2:nomeArtista,musica2:nomeArtista,...>
+
+#####Enviar a música e a lista de grupos que passarão a ter acesso ao ficheiro
+
+REQUEST: **type** | share_music ; **username** | username ; **musicTitle** | musicTitle ; **artistName** | artistName ; **groupIDs** | <ID1,ID2,ID3,...>
+
+O servidor multicast retorna também a lista de users que têm acesso ao ficheiro pela primeira vez, para que o RMI possa enviar uma notificação para eles.
+
+ANSWER: **type** | share_music ; **item_count** | count ;  **user_list** | user1,user2,...
+
 
 
 ####Guardar notificação porque o user não está loggado

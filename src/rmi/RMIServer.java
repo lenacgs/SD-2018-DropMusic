@@ -187,11 +187,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String request = "type | login ; username | " + username + " ; password | " + password;
         String ans = dealWithRequest(request);
 
-
-        if (ans.equals("type | status ; operation | failed")) {
-            return 4;
-        }
-
         //se o login foi aprovado
         String tokens[] = ans.split(" ; ");
         String mes[][] = new String[tokens.length][];
@@ -216,10 +211,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
-    public String search(String user, String keyword, String object) throws java.rmi.RemoteException{
+    public String search(String username, String keyword, String object) throws java.rmi.RemoteException{
         //faz request aos multicasts para Search
-        String request = "type | search ; username | "+user+" ; keyword | "+keyword+" ; object | "+object;
-
+        String request = "type | search ; username | " + username + " ; keyword | "+keyword+" ; object | "+object;
         String ans = dealWithRequest(request);
 
         String[]splitted = ans.split(" ; ");
@@ -315,20 +309,76 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return groups;
     }
 
-    public boolean uploadFile (String username, String musicTitle) throws java.rmi.RemoteException{
-        String request = "type | upload ; username | " + username + " ; music_title | " + musicTitle + " \n";
+    public String getMusics (String username) throws java.rmi.RemoteException{
+        String request = "type | get_musics ; username | " + username;
+
         String ans = dealWithRequest(request);
 
-        //a resposta é sempre positiva... o user pesquisou por músicas que apenas ele tinha acesso, só o pôde fazer depois de ter feito login, portanto tem sempre permissão
+        String tokens[] = ans.split(" ; ");
+        String info[][] = new String[tokens.length][];
+        for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
+
+        int itemCount = Integer.parseInt(info[1][1]);
+        if (itemCount > 0) {
+            return info[2][1];
+        }
+
+        return "You don't have access to any music files!...";
+    }
+
+    public boolean shareMusic (String username, String groupIDs, String music, String artist) throws java.rmi.RemoteException {
+        String request = "type | share_music ; username | " + username + " ; musicTitle | " + music + " ; artistName | " + artist + " ; groupIDs | <" + groupIDs + ">";
+
+        String ans = dealWithRequest(request);
+
+        String info[] = ans.split(" ; ");
+        if(Integer.parseInt(info[1].split(" \\| ")[1]) > 0) {
+            String list = info[2].split(" \\| ")[1];
+            for (String user : list.split(",")) {
+                sendNotification("You have access to new music files!", user);
+            }
+        }
 
         return true;
+    }
+
+    public int uploadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException{
+        String request = "type | upload ; username | " + username + " ; music_title | " + musicTitle + " ; artistName | " + artistName;
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | upload ; operation | failed")) {
+            return -1;
+        }
+
+        String[] splitted = ans.split(" ; ");
+
+        String port = splitted[1].split(" \\| ")[1];
+
+        return Integer.parseInt(port);
+    }
+
+    public int downloadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException {
+        String request = "type | download ; username | " + username + " ; music_title | " + musicTitle + " ; artistName | " + artistName;
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | download ; operation | failed"))
+            return -1;
+        String[] splitted = ans.split(" ; ");
+
+        String port = splitted[1].split(" \\| ")[1];
+
+        System.out.println("--"+port+"--");
+
+        return Integer.parseInt(port);
     }
 
     public String joinGroup(String username, String group)throws java.rmi.RemoteException{
         String request = "type | join_group ; username | "+username+" ; group | "+group;
         String answer = dealWithRequest(request);
-        if(answer.equals("type | join_group ; status | failed")){
-            return "failed";
+        String aux[] = answer.split(" ; ");
+        if(aux[1].equals("status | failed")){
+            String[] reply = aux[2].split(" \\| ");
+            return reply[1];
         }
         else{
             String [] splitted = answer.split(" ; ");
@@ -343,7 +393,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
-    public boolean changeInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) throws java.rmi.RemoteException{
+    public String changeInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) throws java.rmi.RemoteException{
         if (type.equals("music")) {
             String title = s1, artist = s2, genre = s3, duration = s4;
 
@@ -352,7 +402,16 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String ans = dealWithRequest(request);
 
-            return ans.equals("type | change_info ; operation | success");
+            String aux[] = ans.split(" ; ");
+
+            if (aux[1].equals("operation | fail")){
+                String[] reply = aux[2].split(" \\| ");
+                return reply[1];
+            }else if(aux[1].equals("command | invalid")){
+                return "Something went wrong!";
+            }else{
+                return "Music successfully edited!";
+            }
         }
 
         else if (type.equals("artist")) {
@@ -362,18 +421,36 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String ans = dealWithRequest(request);
 
-            return ans.equals("type | change_info ; operation | success");
+            String aux[] = ans.split(" ; ");
+
+            if (aux[1].equals("operation | fail")){
+                String[] reply = aux[2].split(" \\| ");
+                return reply[1];
+            }else if(aux[1].equals("command | invalid")){
+                return "Something went wrong!";
+            }else{
+                return "Artist successfully edited!";
+            }
         }
-        return false;
+        return "Something went wrong!";
     }
 
-    public boolean changeInfo(String username, String groupIDs, String artist, String title, String musics, String year, String publisher, String genre, String description) throws java.rmi.RemoteException{
+    public String changeInfo(String username, String groupIDs, String artist, String title, String musics, String year, String publisher, String genre, String description) throws java.rmi.RemoteException{
         String request = "type | change_info ;  username | " + username + " ; groups | "+groupIDs+" ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
                 + publisher + " ; genre | " + genre + " ; description | " + description;
 
         String ans = dealWithRequest(request);
 
-        return ans.equals("type | change_info ; operation | success");
+        String aux[] = ans.split(" ; ");
+
+        if (aux[1].equals("operation | fail")){
+            String[] reply = aux[2].split(" \\| ");
+            return reply[1];
+        }else if(aux[1].equals("command | invalid")){
+            return "Something went wrong!";
+        }else{
+            return "Album successfully edited!";
+        }
     }
 
 
@@ -417,7 +494,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         dealWithRequest(request);
     }
 
-    public boolean addInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
+    public String addInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
 
         if (type.equals("music")) {
             String title = s1, artist = s2, genre = s3, duration = s4;
@@ -427,35 +504,55 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String ans = dealWithRequest(request);
 
-            if (ans.equals("type | add_music ; operation | succeeded"))
-                return true;
+            String aux[] = ans.split(" ; ");
 
-            else return false;
+            if (aux[1].equals("operation | failed")){
+                String[] reply = aux[2].split(" \\| ");
+                return reply[1];
+            }else if(aux[1].equals("command | invalid")){
+                return "Something went wrong!";
+            }else{
+                return "New song successfully added!";
+
+            }
         }
 
         else if (type.equals("artist")) {
             String name = s1, description = s2, concerts = s3, genre = s4;
 
-            String request = "type | add_artist ; username | " + username + " ; groups | " + groups + " ; name | " + name + " ; description | " + description + " ; concerts | " + concerts + " ; genre | " + genre + " \n";
+            String request = "type | add_artist ; username | " + username + " ; groups | " + groups + " ; name | " + name + " ; description | " + description + " ; concerts | " + concerts + " ; genre | " + genre;
 
             String ans = dealWithRequest(request);
+            String aux[] = ans.split(" ; ");
 
-            if (ans.equals("type | add_artist ; operation | succeeded"))
-                return true;
-            else return false;
+            if (aux[1].equals("operation | fail")){
+                String[] reply = aux[2].split(" \\| ");
+                return reply[1];
+            }else if(aux[1].equals("command | invalid")){
+                return "Something went wrong!";
+            }else{
+                return "New artist successfully added!";
+            }
         }
-        return false;
+        return "Something went wrong! :(";
     }
 
-    public boolean addInfo(String username, String groupIDs, String artist, String title, String musics, String year, String publisher, String genre, String description) { //used for albums
+    public String addInfo(String username, String groupIDs, String artist, String title, String musics, String year, String publisher, String genre, String description) { //used for albums
         String request = "type | add_album ; username | " + username + " ; groups | "+groupIDs+" ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
                 + publisher + " ; genre | " + genre + " ; description | " + description;
 
         String ans = dealWithRequest(request);
 
-        if (ans.equals("type | add_album ; operation | succeeded"))
-            return true;
-        return false;
+        String aux[] = ans.split(" ; ");
+
+        if (aux[1].equals("operation | fail")){
+            String[] reply = aux[2].split(" \\| ");
+            return reply[1];
+        }else if(aux[1].equals("command | invalid")){
+            return "Something went wrong!";
+        }else{
+            return "New album successfully added!";
+        }
     }
 
     public String showRequests(String username) throws java.rmi.RemoteException{
