@@ -1,6 +1,5 @@
 package rmi;
 
-//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import rmiClient.Clients;
 import java.io.IOException;
 import java.rmi.AccessException;
@@ -13,14 +12,13 @@ import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 
 import java.net.*;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RMIServer extends UnicastRemoteObject implements Services {
 
     private static Services s;
     private String MULTICAST_ADDRESS = "224.0.224.0";
-    private int PORT = 4322;
+    private int PORT = 4323;
     private String name = "RMIServer";
     private CopyOnWriteArrayList<Clients> clientList = new CopyOnWriteArrayList<>();
     private int clientPort = 7000;
@@ -38,7 +36,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
-
     private static void createRegistry() throws RemoteException, InterruptedException {
         /*Creates registry of new RMI server on port 7000
         If AccessException happens => prints message
@@ -55,7 +52,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             secondaryRMI();
         }
     }
-
 
     private static void secondaryRMI() throws RemoteException, InterruptedException {
         /*This function is executed when a new RMI server is created but there's already a main one*/
@@ -96,7 +92,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         clientPort++;
         return clientPort;
     }
-
 
     public void newClient(int port) throws java.rmi.RemoteException{
         Clients c;
@@ -154,9 +149,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             System.out.println("Sent to multicast address: " + request);
 
             //waits for answer
-            buffer = new byte[256];
+            buffer = new byte[8192];
             packet = new DatagramPacket(buffer, buffer.length);
-            socket = new MulticastSocket(4321);
+            socket = new MulticastSocket(4324);
             socket.joinGroup(group);
             socket.receive(packet); //bloqueante
 
@@ -174,10 +169,10 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     public int register (String username, String password) throws java.rmi.RemoteException{
         String request = "type | register ; username | "+username+" ; password | "+password;
-        String ans = this.dealWithRequest(request);
+        String ans = dealWithRequest(request);
 
         //se o register não foi aprovado
-        if (ans.equals("type | status ; register | failed\n")) {
+        if (ans.equals("type | status ; operation | failed")) {
             return 4;
         }
         String tokens[] = ans.split(" ; ");
@@ -206,26 +201,24 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return Integer.parseInt(mes[2][1]);
     }
 
-
     public boolean logout(String username) throws java.rmi.RemoteException{
         //envia informação aos multicasts que este user já nao está online
         String request = "type | logout ; username | "+username;
-        //return true ou false consoante a resposta
+        dealWithRequest(request);
         for(Clients c : clientList ){
             try {
                 if (c.getUsername().equals(username))
                     clientList.remove(c);
             }catch (RemoteException e){
                 clientList.remove(c);
-                System.out.println(username+"saiu da lista");
             }
         }
         return true;
     }
 
-    public String search(String username, String keyword, String object) throws java.rmi.RemoteException{
+    public String search(String user, String keyword, String object) throws java.rmi.RemoteException{
         //faz request aos multicasts para Search
-        String request = "type | search ; username | " + username + " ; keyword | "+keyword+" ; object | "+object;
+        String request = "type | search ; username | "+user+" ; keyword | "+keyword+" ; object | "+object;
 
         String ans = dealWithRequest(request);
 
@@ -240,31 +233,85 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return toReturn;
     }
 
-    public String details(String object, String title) throws java.rmi.RemoteException{
-        String request = "type | get_info ; object | "+object+" ; title | "+title;
-        //return a info vinda do multicast
-
-        return request;
+    public String details(String username, String object, String title, String artist) throws java.rmi.RemoteException{
+        String request = "type | get_info ; username | "+username+" ; object | "+object+" ; title | "+title+" ; artist_name | "+artist;
+        String answer = dealWithRequest(request);
+        if(answer.equals("type | status ; command | invalid"))
+            return "Malformed request, please try again!";
+        else if (answer.equals("type | get_info ; status | failed"))
+            return "Something went wrong... maybe the "+object+" you entered does not exist!";
+        else{
+            String[] splitted = answer.split(" ; ");
+            String[][] split = new String[splitted.length][];
+            int i=0;
+            for(String s : splitted){
+                split[i] = s.split(" \\| ");
+                i++;
+            }
+            return split[1][1];
+        }
     }
 
-    public boolean review(String title,String user,String review,int rating) throws java.rmi.RemoteException{
-        String request = "type | review ; album_title | "+title+" ; username | "+user+" ; text | "+review+" ; rate | "+rating;
-        //return true ou false se bateu ou nao
-        return true;
+    public String details(String username, String object, String title) throws java.rmi.RemoteException{
+        String request = "type | get_info ; username | "+username+" ; object | "+object+" ; title | "+title;
+        String answer = dealWithRequest(request);
+        if(answer.equals("type | status ; command | invalid"))
+            return "Malformed request, please try again!";
+        else if (answer.equals("type | get_info ; status | failed"))
+            return "Something went wrong... maybe the "+object+" you entered does not exist!";
+        else{
+            String[] splitted = answer.split(" ; ");
+            String[][] split = new String[splitted.length][];
+            int i=0;
+            for(String s : splitted){
+                split[i] = s.split(" \\| ");
+                i++;
+            }
+            return split[1][1];
+        }
+    }
+
+    public boolean review(String title,String artist,String user,String review,int rating) throws java.rmi.RemoteException{
+        String request = "type | review ; album_title | "+title+" ; artist_name | "+artist+" ; username | "+user+" ; text | "+review+" ; rate | "+rating;
+        String answer = dealWithRequest(request);
+
+        String[] splitted = answer.split(" ; ");
+        String[][] split = new String[splitted.length][];
+        int i=0;
+        for(String s : splitted){
+            split[i++] = s.split(" \\| ");
+        }
+        if(split[1][1].equals("successful"))
+            return true;
+        else
+            return false;
     }
 
     public String newGroup(String username)throws java.rmi.RemoteException{
-        String request = "type | new_group ; username ! "+username;
+        String request = "type | new_group ; username | "+username;
+        String answer = dealWithRequest(request);
+
+        String[] splitted = answer.split(" ; ");
+        String[][] split = new String[splitted.length][];
+        int i = 0;
+        for(String s : splitted){
+            split[i++] = s.split(" \\| ");
+        }
+        if(split[2][1].equals("succeeded")){
+            return split[1][1];
+        }
         //return o Id do grupo que foi criado. Se deu merda return null
-        return request;
+        return null;
     }
 
     public String showGroups(String username)throws java.rmi.RemoteException{
         String request = "type | groups ; username | "+username;
-        //a resposta consiste em todos os grupo onde nao esta este user para este se poder juntar
-        //quando chega a resposta le a lista de grupos disponivel e envia.
-        //se a lista estiver vazia retorna null.
-        String groups="grupo1,grupo2,grupo3"; // fica com a lista de grupos para apresentar.
+        String answer = dealWithRequest(request);
+        String [] splitted = answer.split(" ; ");
+        if(splitted[1].split(" \\| ")[1].equals("0")){
+            return null;
+        }
+        String groups=splitted[2].split(" \\| ")[1]; // fica com a lista de grupos para apresentar.
         return groups;
     }
 
@@ -309,12 +356,36 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return Integer.parseInt(port);
     }
 
-    public boolean joinGroup(String username, String group)throws java.rmi.RemoteException{
+    public int downloadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException {
+        String request = "type | download ; username | " + username + " ; music_title | " + musicTitle + " ; artistName | " + artistName;
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | download ; operation | failed"))
+            return -1;
+        String[] splitted = ans.split(" ; ");
+
+        String port = splitted[1].split(" \\| ")[1];
+
+        return Integer.parseInt(port);
+    }
+
+    public String joinGroup(String username, String group)throws java.rmi.RemoteException{
         String request = "type | join_group ; username | "+username+" ; group | "+group;
-        //processar resposta e enviar notificação ao(s) owner(s) se online
-        String message = "You have a new request to join group: "+group;
-        //sendNotification(message,user);
-        return true;
+        String answer = dealWithRequest(request);
+        if(answer.equals("type | join_group ; status | failed")){
+            return "failed";
+        }
+        else{
+            String [] splitted = answer.split(" ; ");
+            String [] owners = splitted[2].split(" \\| ");
+
+            String message = "You have a new request to join group: "+group;
+            for(String s : owners[1].split(",")){
+                System.out.println("Enviar notificação para "+s);
+                sendNotification(message,s);
+            }
+            return "success";
+        }
     }
 
     public String changeInfo(String object, String objectName, String text, String username, String groupID)throws java.rmi.RemoteException{
@@ -333,15 +404,15 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return request;
     }
 
-    public boolean givePermissions(String perk, String username, String newUser, String groupID)throws java.rmi.RemoteException {
+    public boolean givePermissions(String perk, String username, String newUser, String groupID) throws java.rmi.RemoteException {
         String request = "type | grant_perks ; perk | " + perk + " ; username | " + username + " ; new_user | " + newUser + " ; group | " + groupID;
         //multicasts tem que verificar se esse user é editor ou owner deste grupo e depois sim fazer as alteracoes.
         //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
         //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
 
         String ans = dealWithRequest(request);
-        if (ans.equals("type | grant_perks ; status | succeeded \n")) {
-            String message = "Your permissions on group " + groupID + " have been updated!";
+        if (ans.equals("type | grant_perks ; status | succeeded")) {
+            String message = "Your permissions on group " + groupID + " have been updated to " + perk +"!";
             sendNotification(message, newUser);
             return true;
         }
@@ -373,13 +444,13 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         dealWithRequest(request);
     }
 
-    public boolean addInfo(String username, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
+    public boolean addInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
 
         if (type.equals("music")) {
             String title = s1, artist = s2, genre = s3, duration = s4;
 
-            String request = "type | add_music ; username | " + username + /*" ; groups | " + groups + */ " ; title | " + title + " ; artist | " + artist + " ; genre | " + genre
-                    + " ; duration | " + duration + " \n";
+            String request = "type | add_music ; username | " + username + " ; groups | " + groups +  " ; title | " + title + " ; artist | " + artist + " ; genre | " + genre
+                    + " ; duration | " + duration;
 
             String ans = dealWithRequest(request);
 
@@ -396,22 +467,49 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String ans = dealWithRequest(request);
 
-            if (ans.equals("type | add_artist ; operation | succeeded \n"))
+            if (ans.equals("type | add_artist ; operation | succeeded"))
                 return true;
             else return false;
         }
         return false;
     }
 
-    public boolean addInfo(String username, String artist, String title, String musics, String year, String publisher, String genre, String description) { //used for albums
-        String request = "type | add_album ; username | " + username + " ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
-                + publisher + " ; genre | " + genre + " ; description | " + description + " \n";
+    public boolean addInfo(String username, String groupIDs, String artist, String title, String musics, String year, String publisher, String genre, String description) { //used for albums
+        String request = "type | add_album ; username | " + username + " ; groups | "+groupIDs+" ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
+                + publisher + " ; genre | " + genre + " ; description | " + description;
 
         String ans = dealWithRequest(request);
 
-        if (ans.equals("type | add_album ; operation | succeeded \n"))
+        if (ans.equals("type | add_album ; operation | succeeded"))
             return true;
         return false;
+    }
+
+    public String showRequests(String username) throws java.rmi.RemoteException{
+        String request = "type | get_requests ; username | "+username;
+        String answer = dealWithRequest(request);
+        String[] splitted = answer.split(" ; ");
+        if(splitted[2].split(" \\| ")[1].equals("empty"))
+            return null;
+        return splitted[2].split(" \\| ")[1].replaceAll("^[,\\s]+", "");
+    }
+
+    public boolean manageRequests(String username, String newUser, String groupID, String toDo)throws java.rmi.RemoteException{
+        String request = "type | manage_request ; username | "+username+" ; new_user | "+newUser+" ; groupID | "+groupID+" ; request | "+toDo;
+
+        String answer = dealWithRequest(request);
+
+        if(answer.equals("type | manage_request ; status | succeeded ; operation | accept")) {
+            sendNotification("Your request to join group "+groupID+" has been accepted. Welcome!", newUser);
+            return true;
+        }
+        else if (answer.equals("type | manage_request ; status | succeeded ; operation | decline")) {
+            sendNotification("Your request to join group "+groupID+" has been rejected", newUser);
+            return true;
+        }
+        else
+            return false;
+
     }
 
 }

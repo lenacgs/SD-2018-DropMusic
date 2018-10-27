@@ -28,6 +28,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
         this.groups = new CopyOnWriteArrayList<>();
     }
 
+    public void add_groups(int group) { this.groups.add(group);}
+
     public int getYearOfPublication() {
         return yearOfPublication;
     }
@@ -43,6 +45,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public CopyOnWriteArrayList<Integer> getGroups(){ return this.groups;}
 
     public Artist getArtist() {
         return artist;

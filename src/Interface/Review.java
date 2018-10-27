@@ -39,6 +39,6 @@ public class Review implements Serializable {
     }
 
     public String toString() {
-        return "@" + user + "\n" + "Rate: " + rate + " " + text;
+        return "@" + user.getUsername() + "\n" + "Rate: " + rate + " " + text;
     }
 }

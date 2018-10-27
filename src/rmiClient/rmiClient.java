@@ -4,9 +4,8 @@ import Interface.Music;
 import rmi.Services;
 import static java.lang.Math.toIntExact;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.io.*;
-import java.net.*;
+import java.net.Socket;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -21,10 +20,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     private static Scanner sc = new Scanner(System.in);
     private static Clients c;
     private static Services rmi;
-    // o que estou a pensar é, no ato do login e em cada alteração atualizar esta lista para ser mais simples enviar pedidos ao RMI
-    // um exemplo da lista podia ser [(<grupo> <role>) (<grupo> <role>) (...)]
-    // desta maneira quando formos fazer um pedido ao RMI para mexer em algum grupo, enviamos logo a informação do grupo que ele que alterar
-    // e sabemos logo a partir do role se ele pode fazer essas alterações ou não
     private static String user=null;
     private static int perk=0;
     private static int port;
@@ -56,11 +51,23 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     }
 
     public static void main(String[] args) throws IOException, NotBoundException, InterruptedException{
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            public void run() {
+                while(true) {
+                    try {
+                        if(user!=null)
+                            rmi.logout(user);
+                        break;
+                    } catch (RemoteException e) {
+                        retryRMIConnection();
+                    }
+                }
+            }
+        });
         c = new rmiClient();
         establishRMIConnection();
-        setPort(getRmi().hello());
         firstMenu();
-        System.exit(0);
+        System.exit(1);
     }
 
     private static void establishRMIConnection(){
@@ -128,10 +135,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     }
 
     private static void validationMenu(int modifier) {
-        String username, password = null;
+        String username, password;
         int verifier=0;
         boolean validation;
-        String ans = "";
         System.out.println("(you can type '0' at any time to exit)");
         while (true) {
             System.out.print("\nUsername: ");
@@ -144,8 +150,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 continue;
             }
             validation = stringChecker(username);
-            if (!validation)
+            if (!validation) {
                 continue;
+            }
             System.out.print("\nPassword: ");
             password = sc.nextLine().replaceAll("^[,\\s]+", "");
             if (password.equals("0")) {
@@ -158,38 +165,50 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             validation = stringChecker(password);
             if (!validation)
                 continue;
-            while (true) {
+            while(true) {
                 try {
                     //funcao de registar e login tem que devolver um boolean
                     if (modifier == 1) //registar
                         verifier = rmi.register(username, password);
                     else //login
                         verifier = rmi.login(username, password);
+                    break;
+                } catch (RemoteException e) {
+                    retryRMIConnection();
+                }
+            }
+            if (verifier < 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-ja existe/credencias mal, 5-user ja esta logado;
+                if (modifier == 1)
+                    System.out.println("User registed successfully!");
+                else
+                    System.out.println("Logged in successfully!");
+                user = username;
+                perk = verifier;
+                while(true) {
+                    try {
+                        port = rmi.hello();
+                        break;
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }
-                    if (verifier <= 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-nao existe/credencias mal;
-                        if (modifier == 1)
-                            System.out.println("User registed successfully!");
-                        else
-                            System.out.println("Logged in successfully!");
-                        user = username;
-                        perk = verifier;
-                        try {
-                            setC();
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        mainMenu();
-                        return;
-                    } else {
-                        if (modifier == 1)
-                            System.out.println("Username already exists. Please chose another one\n");
-                        else
-                            System.out.println("Invalid Credentials!");
-                    }
+                }
+                try {
+                    setC();
+                } catch (RemoteException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mainMenu();
+                return;
+            } else {
+                if(verifier==4) {
+                    if (modifier == 1)
+                        System.out.println("Username already exists. Please chose another one");
+                    else
+                        System.out.println("Invalid Credentials!");
+                }
+                else{
+                    System.out.println("User is already logged in!");
+                }
             }
         }
     }
@@ -230,8 +249,14 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     }
 
                     if (option == 1) { //user wants to add a new music
-                        String title=null, artist=null, genre=null, duration=null;
+                        String groups, title = null, artist=null, genre=null, duration=null;
                         while (true) {
+                            System.out.println("Where you want to add the album (group ID): ");
+                            groups = sc.nextLine();
+                            if(groups.equals("0")){
+                                break;
+                            }
+
                             System.out.println("Music title: ");
                             title = sc.nextLine();
                             if (title.equals("0")) {
@@ -275,16 +300,22 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             break;
                         }
                         try{
-                            res = rmi.addInfo(user, "music", title, artist, genre, duration);
+                            res = rmi.addInfo(user, groups, "music", title, artist, genre, duration);
                         } catch (RemoteException e){
                             retryRMIConnection();
                         }
                     }
 
                     if (option == 2) { //user wants to add a new artist
-                        String name=null, description=null, concerts=null, genre=null;
+                        String groups, name = null, description=null, concerts=null, genre=null;
 
                         while (true) {
+                            System.out.println("Where you want to add the album (group ID): ");
+                            groups = sc.nextLine();
+                            if(groups.equals("0")){
+                                break;
+                            }
+
                             System.out.println("Artist name: ");
                             name = sc.nextLine();
                             if (name.equals("0")) {
@@ -327,16 +358,31 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             break;
                         }
                         try {
-                            res = rmi.addInfo(user, "artist", name, description, concerts, genre);
+                            res = rmi.addInfo(user, groups, "artist", name, description, concerts, genre);
                         }catch (RemoteException e){
                             retryRMIConnection();
                         }
                     }
 
                     if (option == 3) { //user wants to add a new album
-                        String artist=null, title=null, musics=null, year=null, publisher=null, genre=null, description=null;
+                        String group, artist=null, title=null, musics=null, year=null, publisher=null, genre=null, description=null;
 
                         while (true) {
+
+                            System.out.println("Where you want to add the album (group ID): ");
+                            group = sc.nextLine();
+
+                            if (group.equals(""))
+                                group="1";
+
+                            if (group.equals("0")) {
+                                break;
+                            }
+
+                            validation=stringChecker(group);
+                            if(!validation)
+                                continue;
+
                             System.out.println("Album title: ");
                             title = sc.nextLine();
                             if (title.equals("0")) {
@@ -410,7 +456,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                             break;
                         }
                         try {
-                            res = rmi.addInfo(user, artist, title, musics, year, publisher, genre, description);
+                            res = rmi.addInfo(user, group, artist, title, musics, year, publisher, genre, description);
                         }catch(RemoteException e){
                             retryRMIConnection();
                         }
@@ -479,12 +525,10 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 while (!verifier) {
                     try {
                         verifier = rmi.logout(user);
-                        System.out.println("oi");
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }
                 }
-                System.out.println("oi2");
                 return;
             }
             if (option == 1)
@@ -496,7 +540,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             else if(option == 4)
                 uploadMenu();
             else if(option == 5)
-                System.out.println();
+                downloadMenu();
                 // continue
             else if(option == 6)
                 shareMusicMenu();
@@ -522,17 +566,154 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 }
                 if(option == 11)
                     givePermissionsMenu("owner");
-                //if(option == 12)
-                // continue
+                if(option == 12)
+                    getRequests();
             }
              else
                 System.out.println("Please select one of the given options");
         }
     }
 
-    private static void shareMusicMenu() {
-        //listar todas os ficheiros a que este user tem acesso
+    private static void downloadMenu() {
+        //get transferredMusics from user
 
+        String ans = "";
+
+        try {
+            ans = rmi.getMusics(user);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+        if (ans.equals("You don't have access to any music files!...")) {
+            System.out.println(ans);
+            return;
+        }
+
+        String ans1 = ans.replace("<", "");
+        ans1 = ans1.replace(">", "");
+        String ans2[] = ans1.split(","); //contains the titles of the musics
+
+        String list = "";
+        int i=1;
+
+        for (String music : ans2) {
+            list += i + ") " + music;
+            i++;
+        }
+
+        int option;
+
+        while (true) {
+            System.out.println("Your files:");
+            System.out.println(list);
+            System.out.print("Insert the number of the file you want to download: ");
+
+            try {
+                option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+            } catch (NumberFormatException e) {
+                System.out.println("I can only work with numbers bro!");
+                continue;
+            }
+            break;
+        }
+
+        String infos[] = ans2[option].split(":");
+        String musicTitle = infos[0];
+        String artistName = infos[1];
+
+        try {
+            int port = rmi.downloadFile(user, musicTitle, artistName);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+
+        boolean validation = false;
+        String path;
+
+        while (!validation){
+            System.out.println("-------------------| Search |------------------------------------");
+            System.out.println("| Insert the path to where you want the file to be downloaded to |");
+            System.out.println("-----------------------------------------------------------------");
+            path = sc.nextLine().replaceAll("^[,\\s]+", "");
+            validation = stringChecker(path);
+
+            try {
+                TCPDownload(path, port);
+            } catch (IOException e) {
+                System.out.println("There was an exception: " + e);
+            }
+        }
+    }
+
+    private static void TCPDownload(String path, int port) throws IOException{
+        String serverAddress = "0.0.0.0";
+        Socket socket = null;
+
+        try {
+            socket = new Socket(serverAddress, port);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("socket opened");
+
+        DataInputStream dis = new DataInputStream(socket.getInputStream());
+        FileOutputStream fos = new FileOutputStream(path);
+
+        //the first message the client receives is the file size
+        int fileSize = dis.readInt();
+        System.out.println("fileSize received = " + fileSize);
+
+        byte[] buffer = new byte[fileSize];
+
+        int read = 0;
+        int totalRead = 0;
+        int remaining = fileSize;
+
+        while ((read = dis.read(buffer, 0, Math.min(buffer.length, remaining))) > 0) {
+            totalRead += read;
+            remaining -= read;
+            fos.write(buffer, 0, read);
+        }
+
+        //file has been read
+        System.out.println("Your file has been downloaded!");
+
+
+    }
+    //function to communicate with multicast server
+    private static void TCPUpload(String path, int port) throws IOException {
+        String serverAddress = "0.0.0.0";
+        Socket socket = null;
+
+        try {
+            socket = new Socket(serverAddress, port);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //all the code for the file upload
+        DataOutputStream dos = new DataOutputStream(socket.getOutputStream()); //stream for writing to socket
+        FileInputStream fis = new FileInputStream(path); //stream for reading from music file given by the user
+
+        long len = fis.getChannel().size();
+        byte[] buffer = new byte[toIntExact(len)];
+
+        //sending the file size on a separate message
+        dos.writeInt(toIntExact(len));
+        System.out.println("Sent file size = " + toIntExact(len));
+
+        fis.read(buffer); //reads bytes from file into buffer
+        dos.write(buffer, 0, toIntExact(len)); //writes len bytes from buffer starting at position off to dataOutputStream (sends to socket)
+
+        fis.close();
+        dos.close();
+
+        socket.close();
+    }
+
+    private static void shareMusicMenu() {
         //get list of music this user has access to from server
 
         String ans = "";
@@ -553,7 +734,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         String ans2[] = ans1.split(","); //contains the titles of the musics
 
         String list = "";
-        int i=0;
+        int i=1;
 
         for (String music : ans2) {
             list += i + ") " + music;
@@ -643,45 +824,15 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 retryRMIConnection();
             }
         }
-        uploadFile(user, music, artist, port);
+        uploadFile(port);
 
     }
 
-    //function to communicate with multicast server
-    private static void TCPServerConnection(String username, String music, String path) throws IOException {
-        int serverPort = 5500;
-        String serverAddress = "0.0.0.0";
-        Socket socket = null;
 
-        try {
-            socket = new Socket(serverAddress, serverPort);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        //all the code for the file upload
-        DataOutputStream dos = new DataOutputStream(socket.getOutputStream()); //stream for writing to socket
-        FileInputStream fis = new FileInputStream(path); //stream for reading from music file given by the user
-
-        long len = fis.getChannel().size();
-        byte[] buffer = new byte[toIntExact(len)];
-
-        //sending the file size on a separate message
-        dos.writeInt(toIntExact(len));
-        System.out.println("Sent file size = " + toIntExact(len));
-
-        fis.read(buffer); //reads bytes from file into buffer
-        dos.write(buffer, 0, toIntExact(len)); //writes len bytes from buffer starting at position off to dataOutputStream (sends to socket)
-
-        fis.close();
-        dos.close();
-
-        socket.close();
-    }
-
-    private static void uploadFile(String username, String music, String artist, int port) {
+    private static void uploadFile(int port) {
         boolean validation = false;
-        String path = null;
+        String path;
 
         while (!validation){
             System.out.println("-------------------| Search |-------------------");
@@ -691,7 +842,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             validation = stringChecker(path);
 
             try {
-                TCPServerConnection(username, music, path);
+                TCPUpload(path, port);
             } catch (IOException e) {
                 System.out.println("There was an exception: " + e);
             }
@@ -711,7 +862,12 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| 3) Artist                              |");
             System.out.println("| 0) Back                                |");
             System.out.println("------------------------------------------");
-            ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            try {
+                ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            }catch(NumberFormatException e) {
+                System.out.println("I only work with numbers bro! Try again...");
+                continue;
+            }
             if (ob == 0) {
                 break;
             }
@@ -746,7 +902,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     private static void detailsMenu(){
         int ob;
-        String object, title=null, answer=null;
+        String object, artist=null, title=null, answer=null;
         boolean validation=false;
         while(true) {
             System.out.println("----------------| Details |----------------");
@@ -755,7 +911,14 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| 2) Artist                               |");
             System.out.println("| 0) Back                                 |");
             System.out.println("-------------------------------------------");
-            ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+            while(true) {
+                try {
+                    ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("I can only work with numbers bro!");
+                }
+            }
             if (ob == 0) {
                 break;
             }
@@ -773,9 +936,22 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     title = sc.nextLine().replaceAll("^[,\\s]+", "");
                     validation = stringChecker(title);
                 }
+                if(object.equals("album")){
+                    validation=false;
+                    while(!validation){
+                        System.out.println("----------------| Details |----------------");
+                        System.out.println("| Insert album artist:                    |");
+                        System.out.println("-------------------------------------------");
+                        artist = sc.nextLine().replaceAll("^[,\\s]+", "");
+                        validation = stringChecker(artist);
+                    }
+                }
                 while(answer==null) {
                     try {
-                        answer = rmi.details(object, title);
+                        if(object.equals("artist"))
+                            answer = rmi.details(user, object, title);
+                        else
+                            answer = rmi.details(user, object, title, artist);
                     } catch (RemoteException e) {
                         retryRMIConnection();
                     }
@@ -786,10 +962,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         }
     }
 
-
     private static void reviewMenu(){
         int rating;
-        String review=null, title=null;
+        String review=null, title=null, artist=null;
         boolean validation=false, verifier=false;
         while(!validation) {
             System.out.println("----------------| Reviews |----------------");
@@ -797,6 +972,14 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("-------------------------------------------");
             title=sc.nextLine().replaceAll("^[,\\s]+", "");
             validation = stringChecker(title);
+        }
+        validation=false;
+        while(!validation) {
+            System.out.println("----------------| Reviews |----------------");
+            System.out.println("| Insert album artist:                    |");
+            System.out.println("-------------------------------------------");
+            artist=sc.nextLine().replaceAll("^[,\\s]+", "");
+            validation = stringChecker(artist);
         }
         validation=false;
         while(!validation) {
@@ -825,7 +1008,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         validation=false;
         while(!validation){
             try{
-                verifier=rmi.review(title,user,review,rating);
+                verifier=rmi.review(title,artist,user,review,rating);
                 validation=true;
             } catch (RemoteException e) {
                 retryRMIConnection();
@@ -842,6 +1025,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         while(true){
             try {
                 groupID = rmi.newGroup(user);
+                System.out.println(groupID == null);
                 break;
             } catch (RemoteException e){
                 retryRMIConnection();
@@ -860,8 +1044,8 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     private static void joinGroupMenu(){
         int option;
-        String groups=null;
-        boolean verifier=false, validation;
+        String groups=null, answer;
+        boolean verifier=false;
         while (!verifier) {
             try {
                 groups = rmi.showGroups(user);
@@ -893,19 +1077,19 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 }
                 if (option == 0)
                     break;
-                else if (option > 0 && option < splitted.length) {
+                else if (option > 0 && option <= splitted.length) {
                     while (true) {
                         try {
-                            validation = rmi.joinGroup(user, splitted[option - 1]);
+                            answer = rmi.joinGroup(user, splitted[option - 1]);
                             break;
                         } catch (RemoteException e) {
                             retryRMIConnection();
                         }
                     }
-                    if (validation)
-                        System.out.println("Request successfully sent to group owner");
+                    if (answer.equals("success"))
+                        System.out.println("Request successfully sent to group owner(s)");
                     else
-                        System.out.println("Something went wrong, please try again later");
+                        System.out.println("Something went wrong, please try again");
                     break;
                 } else
                     System.out.println("Please select one of the given options");
@@ -1014,13 +1198,129 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         }
     }
 
+    private static void getRequests(){
+        String toPrint;
+        System.out.println("----------------| Manage Requests |----------------");
+        while(true) {
+            try {
+                toPrint = rmi.showRequests(user);
+                break;
+            } catch (RemoteException e) {
+                retryRMIConnection();
+            }
+        }
+        if(toPrint==null) {
+            System.out.println("| There are no requests for you                   |");
+            System.out.println("---------------------------------------------------");
+        }
+        else {
+            String requests[] = toPrint.split(",");
+            for (String s : requests) {
+                System.out.println(s);
+            }
+            System.out.println("\n1) Accept / delete requests");
+            System.out.println("0) Back");
+            int ob;
+            while(true) {
+                try {
+                    ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("I can only work with numbers bro!");
+                }
+            }
+            if (ob == 0) {
+                return;
+            }
+            else if (ob != 1)
+                System.out.println("Please select a valid option");
+            else{
+                manageRequests();
+            }
+        }
+    }
+
+    private static void manageRequests(){
+        String groupID=null, username=null, toDo=null;
+        boolean validation=false, verifier;
+        int op;
+        while(true) {
+            while (!validation) {
+                System.out.println("----------------| Accept Requests |----------------");
+                System.out.println("| Insert group ID:                                |");
+                System.out.println("---------------------------------------------------");
+                groupID = sc.nextLine().replaceAll("^[,\\s]+", "");
+                validation = stringChecker(groupID);
+            }
+            validation = false;
+            while (!validation) {
+                System.out.println("----------------| Accept Requests |----------------");
+                System.out.println("| Insert user:                                    |");
+                System.out.println("---------------------------------------------------");
+                username = sc.nextLine().replaceAll("^[,\\s]+", "");
+                validation = stringChecker(username);
+            }
+            validation = false;
+            while (!validation) {
+                System.out.println("----------------| Accept Requests |----------------");
+                System.out.println("| What do you want to do: (accept/decline)         |");
+                System.out.println("---------------------------------------------------");
+                toDo = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (toDo == null) {
+                    System.out.println("Please type 'accept' or 'decline'");
+                    continue;
+                }
+                if (!toDo.equals("accept") && !toDo.equals("decline")) {
+                    System.out.println("Please type 'accept' or 'decline'");
+                    continue;
+                }
+                validation = true;
+            }
+
+            while (true) {
+                try {
+                    verifier = rmi.manageRequests(user, username, groupID, toDo);
+                    break;
+                } catch (RemoteException e) {
+                    retryRMIConnection();
+                }
+            }
+            if (verifier) {
+                if (toDo.equals("accept"))
+                    System.out.println("Request successfully accepted");
+                else
+                    System.out.println("Request successfully declined");
+            } else
+                System.out.println("Something went wrong, Please try again!");
+            while(true) {
+                System.out.println("----------------| Accept Requests |----------------");
+                System.out.println("| Do you want to manage other requests?           |");
+                System.out.println("| 1) Yes                                          |");
+                System.out.println("| 2) No                                           |");
+                System.out.println("---------------------------------------------------");
+                try {
+                    op = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+                } catch (NumberFormatException e) {
+                    System.out.println("I can only work with numbers bro!");
+                    continue;
+                }
+                if(op==1)
+                    break;
+                else if (op==2)
+                    return;
+                else
+                    System.out.println("Please chose one of the given options");
+            }
+        }
+    }
+
     private static boolean stringChecker (String toCheck){
         if(toCheck==null) {
             System.out.println("String is NULL. Please type something");
             return false;
         }
-        if (toCheck.contains("|") || toCheck.contains(";")) {
-            System.out.println("String contains forbidden characters ('|' or ';')\n");
+        if (toCheck.contains("|") || toCheck.contains(";") || toCheck.equals("")) {
+            System.out.println("String contains forbidden characters ('|' or ';' or '\\n')\n");
             return false;
         }
         return true;
@@ -1028,6 +1328,11 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     public void notification (String message) throws RemoteException{
         System.out.println("----------------| New Notification |----------------");
+        if(message.contains("editor")){
+            perk = 2;
+        }else if(message.contains("owner")){
+            perk = 1;
+        }
         System.out.println(message);
     }
 
