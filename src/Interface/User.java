@@ -25,6 +25,10 @@ public class User implements Serializable{
         this.notifications = new CopyOnWriteArrayList<>();
     }
 
+    public void setTransferredMusics(CopyOnWriteArrayList<Music> transferredMusics) {
+        this.transferredMusics = transferredMusics;
+    }
+
     public CopyOnWriteArrayList<Notification> getNotifications() {
         return notifications;
     }

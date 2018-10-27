@@ -1,10 +1,17 @@
 package rmiClient;
 
+import Interface.Music;
 import rmi.Services;
+import static java.lang.Math.toIntExact;
 
 import java.io.*;
+<<<<<<< HEAD
 import java.net.*;
+=======
+import java.net.Socket;
+>>>>>>> f197ab2a6ea933c5c59d48a5a1cf77a43f5f9773
 import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -532,10 +539,10 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             else if(option == 4)
                 uploadMenu();
             else if(option == 5)
-                System.out.println();
+                downloadMenu();
                 // continue
             else if(option == 6)
-                System.out.println();
+                shareMusicMenu();
                 // continue
             else if(option == 7)
                 createGroupMenu();
@@ -566,6 +573,214 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         }
     }
 
+    private static void downloadMenu() {
+        //get transferredMusics from user
+
+        String ans = "";
+
+        try {
+            ans = rmi.getMusics(user);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+        if (ans.equals("You don't have access to any music files!...")) {
+            System.out.println(ans);
+            return;
+        }
+
+        String ans1 = ans.replace("<", "");
+        ans1 = ans1.replace(">", "");
+        String ans2[] = ans1.split(","); //contains the titles of the musics
+
+        String list = "";
+        int i=1;
+
+        for (String music : ans2) {
+            list += i + ") " + music;
+            i++;
+        }
+
+        int option;
+
+        while (true) {
+            System.out.println("Your files:");
+            System.out.println(list);
+            System.out.print("Insert the number of the file you want to download: ");
+
+            try {
+                option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+            } catch (NumberFormatException e) {
+                System.out.println("I can only work with numbers bro!");
+                continue;
+            }
+            break;
+        }
+
+        String infos[] = ans2[option].split(":");
+        String musicTitle = infos[0];
+        String artistName = infos[1];
+
+        try {
+            int port = rmi.downloadFile(user, musicTitle, artistName);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+
+        boolean validation = false;
+        String path;
+
+        while (!validation){
+            System.out.println("-------------------| Search |------------------------------------");
+            System.out.println("| Insert the path to where you want the file to be downloaded to |");
+            System.out.println("-----------------------------------------------------------------");
+            path = sc.nextLine().replaceAll("^[,\\s]+", "");
+            validation = stringChecker(path);
+
+            try {
+                TCPDownload(path, port);
+            } catch (IOException e) {
+                System.out.println("There was an exception: " + e);
+            }
+        }
+    }
+
+    private static void TCPDownload(String path, int port) throws IOException{
+        String serverAddress = "0.0.0.0";
+        Socket socket = null;
+
+        try {
+            socket = new Socket(serverAddress, port);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("socket opened");
+
+        DataInputStream dis = new DataInputStream(socket.getInputStream());
+        FileOutputStream fos = new FileOutputStream(path);
+
+        //the first message the client receives is the file size
+        int fileSize = dis.readInt();
+        System.out.println("fileSize received = " + fileSize);
+
+        byte[] buffer = new byte[fileSize];
+
+        int read = 0;
+        int totalRead = 0;
+        int remaining = fileSize;
+
+        while ((read = dis.read(buffer, 0, Math.min(buffer.length, remaining))) > 0) {
+            totalRead += read;
+            remaining -= read;
+            fos.write(buffer, 0, read);
+        }
+
+        //file has been read
+        System.out.println("Your file has been downloaded!");
+
+
+    }
+    //function to communicate with multicast server
+<<<<<<< HEAD
+    private static void TCPServerConnection(String username, String music, String path) throws IOException {
+        String serverIP = "127.0.0.1";
+        int serverPort = 5000;
+=======
+    private static void TCPUpload(String path, int port) throws IOException {
+        String serverAddress = "0.0.0.0";
+        Socket socket = null;
+
+        try {
+            socket = new Socket(serverAddress, port);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //all the code for the file upload
+        DataOutputStream dos = new DataOutputStream(socket.getOutputStream()); //stream for writing to socket
+        FileInputStream fis = new FileInputStream(path); //stream for reading from music file given by the user
+
+        long len = fis.getChannel().size();
+        byte[] buffer = new byte[toIntExact(len)];
+
+        //sending the file size on a separate message
+        dos.writeInt(toIntExact(len));
+        System.out.println("Sent file size = " + toIntExact(len));
+
+        fis.read(buffer); //reads bytes from file into buffer
+        dos.write(buffer, 0, toIntExact(len)); //writes len bytes from buffer starting at position off to dataOutputStream (sends to socket)
+
+        fis.close();
+        dos.close();
+
+        socket.close();
+    }
+
+    private static void shareMusicMenu() {
+        //get list of music this user has access to from server
+
+        String ans = "";
+        try {
+            ans = rmi.getMusics(user);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+        if (ans.equals("You don't have access to any music files!...")) {
+            System.out.println(ans);
+            return;
+        }
+
+>>>>>>> f197ab2a6ea933c5c59d48a5a1cf77a43f5f9773
+
+        String ans1 = ans.replace("<", "");
+        ans1 = ans1.replace(">", "");
+        String ans2[] = ans1.split(","); //contains the titles of the musics
+
+        String list = "";
+        int i=1;
+
+        for (String music : ans2) {
+            list += i + ") " + music;
+            i++;
+        }
+
+        //chose one of the files to share
+        int option;
+
+        while (true) {
+            System.out.println("Your files:");
+            System.out.println(list);
+            System.out.print("Insert the number of the file you want to share: ");
+
+            try {
+                option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+            } catch (NumberFormatException e) {
+                System.out.println("I can only work with numbers bro!");
+                continue;
+            }
+            break;
+        }
+
+        //specify the group IDs the you want to share the file with
+        System.out.println("Insert the IDs for the groups you want this file to be shared with:\nNote: format should be \"ID1,ID2,ID2,...\"");
+        String groupIDs = sc.nextLine();
+
+        //send this info to the server
+        String aux[] = ans2[option].split(":");
+        String music = aux[0];
+        String artist = aux[1];
+
+        boolean res;
+        try {
+            res = rmi.shareMusic(user, groupIDs, music, artist);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+        //adiciona a música à lista transferredfiles de cada user nos grupos que vão ter acesso
+    }
+
     private static void uploadMenu() {
         System.out.println("You have to associate your music file with one of the musics info in our DB\n");
         boolean validation = false;
@@ -587,107 +802,40 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             retryRMIConnection();
         }
         validation = false;
-        //get the name for the music and artist for the music the user wants to upload
-        while(!validation) {
-            System.out.print("Type and enter the title of the music you want to upload: ");
-            music = sc.nextLine();
-            validation = stringChecker(music);
-        }
 
-        validation = false;
-
-        while(!validation) {
-            System.out.print("Type and enter the name of the artist to this music: ");
-            artist = sc.nextLine();
-            validation = stringChecker(artist);
-        }
-
-        //warn the server that you will be sending a music file to associate with a certain music in the DB
-        try {
-            rmi.uploadFile(user, music, artist);
-        }catch (RemoteException e) {
-            retryRMIConnection();
-        }
-
-        uploadFile(user, answer);
-
-    }
-
-    //function to communicate with multicast server
-    private static void TCPServerConnection(String username, String music, String path) throws IOException {
-        String serverIP = "127.0.0.1";
-        int serverPort = 5000;
-
-        //opens a new socket in any available port
-        Socket sock = new Socket(serverIP, serverPort);
-
-        File file = new File(path);
-        byte[] bytes = new byte[16*1024];
-        InputStream in = new FileInputStream(file);
-        OutputStream out = sock.getOutputStream();
-
-        //write file content to output stream
-        int count;
-        while ((count = in.read(bytes)) > 0) {
-            out.write(bytes, 0, count);
-        }
-
-
-
-        /*Socket socket;
-        File file;
-        FileInputStream fis;
-        BufferedInputStream bis;
-        OutputStream os;
-        byte[] contents;
-        long fileLength;
-        long current;
-        long start;
-
-        try {
-            socket = new Socket("127.0.0.1", 5010);
-
-            System.out.println("[TESTE] User ligou-se ao server");
-
-            file = new File(path);
-            fis = new FileInputStream(file);
-            bis = new BufferedInputStream(fis);
-
-            //get socket's output stream
-            os = socket.getOutputStream();
-
-            //read file contents into contents array
-            fileLength = file.length();
-            current = 0;
-            start = System.nanoTime();
-            while(current != fileLength) {
-                int size = 10000;
-                //changes reading head to 10000 positions ahead
-                if (fileLength - current >= size) {
-                    current += size;
-                }
-                else {
-                    //já não dá para ler 10000 positions
-                    size = (int)(fileLength - current);
-                    //anda até ao fim do ficheiro
-                    current = fileLength;
-                }
-
-                contents = new byte[size];
-                bis.read(contents, 0, size);
-                os.write(contents);
-                System.out.println("Sending file ... " + (current*100)/fileLength + "% complete!");
+        int port = -1;
+        while (port == -1) {
+            validation = false;
+            //get the name for the music and artist for the music the user wants to upload
+            while (!validation) {
+                System.out.print("Type and enter the title of the music you want to upload: ");
+                music = sc.nextLine();
+                validation = stringChecker(music);
             }
 
-            os.flush();
-            socket.close();
-            System.out.println("File sent successfully!");
-        }catch (IOException e){
-            System.out.println("Exception occurred in TCPServerConnection: " + e.getMessage());
-        }*/
+            validation = false;
+
+            while (!validation) {
+                System.out.print("Type and enter the name of the artist to this music: ");
+                artist = sc.nextLine();
+                validation = stringChecker(artist);
+            }
+
+            //warn the server that you will be sending a music file to associate with a certain music in the DB
+            try {
+                port = rmi.uploadFile(user, music, artist); //se port = -1 significa que o user deu input de uma música que não existe
+                if (port == -1) System.out.println("Music not found -- make sure you input the correct title and artist name :(");
+            } catch (RemoteException e) {
+                retryRMIConnection();
+            }
+        }
+        uploadFile(port);
+
     }
 
-    private static void uploadFile(String username, String music) {
+
+
+    private static void uploadFile(int port) {
         boolean validation = false;
         String path;
 
@@ -699,12 +847,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             validation = stringChecker(path);
 
             try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            try {
-                TCPServerConnection(username, music, path);
+                TCPUpload(path, port);
             } catch (IOException e) {
                 System.out.println("There was an exception: " + e);
             }
