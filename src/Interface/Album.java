@@ -15,6 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
     private Description description;
     private CopyOnWriteArrayList<Review> reviews;
     private CopyOnWriteArrayList<Integer> groups;
+
     public Album(Artist artist, String title, int yearOfPublication, CopyOnWriteArrayList<Music> musics, String publisher, String genre, Description description) {
         this.artist = artist;
         this.title = title;

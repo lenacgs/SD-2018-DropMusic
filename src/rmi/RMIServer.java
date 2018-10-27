@@ -211,10 +211,17 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
+<<<<<<< HEAD
+
+    public String search(String username, String keyword, String object) throws java.rmi.RemoteException{
+        //faz request aos multicasts para Search
+        String request = "type | search ; username | " + username + " ; keyword | "+keyword+" ; object | "+object;
+=======
     public String search(String user, String keyword, String object) throws java.rmi.RemoteException{
         //faz request aos multicasts para Search
         String request = "type | search ; username | "+user+" ; keyword | "+keyword+" ; object | "+object;
 
+>>>>>>> f197ab2a6ea933c5c59d48a5a1cf77a43f5f9773
         String ans = dealWithRequest(request);
 
         String[]splitted = ans.split(" ; ");
@@ -310,13 +317,58 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return groups;
     }
 
-    public boolean uploadFile (String username, String musicTitle) throws java.rmi.RemoteException{
-        String request = "type | upload ; username | " + username + " ; music_title | " + musicTitle + " \n";
+    public String getMusics (String username) throws java.rmi.RemoteException{
+        String request = "type | get_musics ; username | " + username;
+
         String ans = dealWithRequest(request);
 
-        //a resposta é sempre positiva... o user pesquisou por músicas que apenas ele tinha acesso, só o pôde fazer depois de ter feito login, portanto tem sempre permissão
+        String tokens[] = ans.split(" ; ");
+        String info[][] = new String[tokens.length][];
+        for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
 
-        return true;
+        int itemCount = Integer.parseInt(info[1][1]);
+        if (itemCount > 0) {
+            return info[2][1];
+        }
+
+        return "You don't have access to any music files!...";
+    }
+
+    public boolean shareMusic (String username, String groupIDs, String music, String artist) throws java.rmi.RemoteException {
+        String request = "type | share_music ; username | " + username + " ; musicTitle | " + music + " ; artistName | " + artist + " ; groupIDs | <" + groupIDs + ">";
+
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | share_music ; operation | succeeded")) return true;
+        return false;
+    }
+
+    public int uploadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException{
+        String request = "type | upload ; username | " + username + " ; music_title | " + musicTitle + " ; artistName | " + artistName;
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | upload ; operation | failed")) {
+            return -1;
+        }
+
+        String[] splitted = ans.split(" ; ");
+
+        String port = splitted[1].split(" \\| ")[1];
+
+        return Integer.parseInt(port);
+    }
+
+    public int downloadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException {
+        String request = "type | download ; username | " + username + " ; music_title | " + musicTitle + " ; artistName | " + artistName;
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | download ; operation | failed"))
+            return -1;
+        String[] splitted = ans.split(" ; ");
+
+        String port = splitted[1].split(" \\| ")[1];
+
+        return Integer.parseInt(port);
     }
 
     public String joinGroup(String username, String group)throws java.rmi.RemoteException{
