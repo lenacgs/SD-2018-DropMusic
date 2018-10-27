@@ -2,8 +2,7 @@ package Multicast;
 
 import Interface.*;
 import FileHandling.*;
-//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 
 import java.net.*;
 import java.io.*;
@@ -440,6 +439,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         Iterator it = mainThread.getAlbums().iterator();
         while (it.hasNext()) {
             Album aux = (Album)it.next();
+
             if (aux.getTitle().equals(title) && aux.getArtist().getName().equals(artist)){
                 return aux;
             }
@@ -713,7 +713,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         Artist artist = findArtist(info[4][1]);
                         float duration = Float.parseFloat(info[6][1]);
                         Music m;
-                        if ((m = findMusic(info[3][1], title)) == null) {
+                        if ((m = findMusic(info[4][1], title)) == null) {
                             if (artist == null){
                                 artist = new Artist(info[4][1], genre);
                                 for(Integer i : groups){
@@ -825,7 +825,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     for(int i = 0; i < aux.length; i++){
                         for(Group g : current.getDefaultShareGroups()){
                             if(g.getGroupID() == Integer.parseInt(aux[i])){
-                                System.out.println(aux[i]);
                                 if(g.isEditor(username))
                                     groups.add(g.getGroupID());
                             }
@@ -895,7 +894,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         }else{
                             for(Integer i : a.getGroups()){
                                 if(i == 1){
-                                    System.out.println("Fodeu");
                                     return "type | add_album ; operation | failed";
                                 }
                             }
@@ -915,19 +913,156 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             return "type | add_album ; operation | succeeded";
                         }
                     }
-                    System.out.println("Fodeu geral|!");
                     return "type | add_album ; operation | failed";
 
                 }case "change_info": {
-                    if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {
-                        if (true) {
-                            return "type | status ; change_info | successful";
-                        } else {
-                            return "type | status ; change_info | failed";
+                    if (info.length == 8) {
+                        if (info[1][1].equals("music")) {
+                            String username = info[2][1];
+                            User current = findUser(username);
+                            String groupID = info[3][1];
+                            CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+                            for (Group g : current.getDefaultShareGroups()) {
+                                if (g.getGroupID() == Integer.parseInt(groupID)) {
+                                    if (g.isEditor(username))
+                                        groups.add(g.getGroupID());
+                                }
+                            }
+                            if (groups.size() > 0) { //se é editor ou owner
+                                String title = info[4][1];
+                                String genre = info[6][1];
+                                Artist artist = findArtist(info[5][1]);
+                                float duration = Float.parseFloat(info[7][1]);
+                                Music m;
+                                if ((m = findMusic(info[5][1], title)) != null && m.getGroups().contains(Integer.parseInt(groupID))) {
+                                    if (artist == null) {
+                                        artist = new Artist(info[4][1], genre);
+                                        for (Integer i : groups) {
+                                            artist.add_groups(i);
+                                        }
+                                        mainThread.getArtists().add(artist);
+                                    }
+                                    m.setTitle(title);
+                                    m.setArtist(artist);
+                                    m.setGenre(genre);
+                                    m.setDuration(duration);
+
+                                    if (!m.getEditors().contains(username))
+                                        m.add_editor(username);
+                                    if (!artist.getMusics().contains(m))
+                                        artist.addMusic(m);
+
+                                    saveFile("src/Multicast/musics.obj", mainThread.getSongs());
+                                    saveFile("src/Multicast/artists.obj", mainThread.getArtists());
+
+                                    return "type | change_info ; operation | success";
+                                } else {
+                                    return "type | change_info ; operation | fail";
+                                }
+                            }
+                            return "type | change_info ; operation | failed";
+                        } else if (info[1][1].equals("artist")) {
+                            String username = info[2][1];
+                            User current = findUser(username);
+                            String groupID = info[3][1];
+                            CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+                            for (Group g : current.getDefaultShareGroups()) {
+                                if (g.getGroupID() == Integer.parseInt(groupID)) {
+                                    if (g.isEditor(username))
+                                        groups.add(g.getGroupID());
+                                }
+                            }
+                            if (groups.size() > 0) {
+                                String name = info[4][1];
+                                String description = info[5][1];
+                                String concerts = info[6][1];
+                                Description desc = new Description(description, current);
+                                String genre = info[7][1];
+                                String conc[] = concerts.split(",");
+                                Artist a;
+                                if ((a = findArtist(name)) != null && a.getGroups().contains(Integer.parseInt(groupID))) {
+                                    Artist newArtist = new Artist(name, desc, new CopyOnWriteArrayList<>(Arrays.asList(conc)), genre);
+                                    a.setName(name);
+                                    a.setDescription(desc);
+                                    a.setConcerts(new CopyOnWriteArrayList<>(Arrays.asList(conc)));
+                                    a.setGenre(genre);
+
+                                    saveFile("src/Multicast/artists.obj", mainThread.getArtists());
+                                    return "type | change_info ; operation | success";
+                                }
+                                else
+                                    return "type | change_info ; operation | fail";
+                            }
+                            return "type | change_info ; operation | fail";
                         }
-                    } else {
                         return "type | status ; command | invalid";
                     }
+                    else if (info.length == 10) {
+                        System.out.println("Entrou album");
+                        String username = info[1][1];
+                        User current = findUser(username);
+                        String groupID = info[2][1];
+                        CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+                        for (Group g : current.getDefaultShareGroups()) {
+                            if (g.getGroupID() == Integer.parseInt(groupID)) {
+                                if (g.isEditor(username))
+                                    groups.add(g.getGroupID());
+                            }
+                        }
+                        if(groups.size() > 0) {
+                            System.out.println("entrou grupos");
+                            String title = info[4][1];
+                            String genre = info[8][1];
+                            Artist artist = findArtist(info[3][1]);
+                            Album a;
+                            if ((a = findAlbum(title, info[3][1])) != null && a.getGroups().contains(Integer.parseInt(groupID))) {
+                                System.out.println("entrou if foda");
+                                if (artist == null) {
+                                    artist = new Artist(info[4][1], genre);
+                                    for (Integer i : groups) {
+                                        artist.add_groups(i);
+                                    }
+                                    mainThread.getArtists().add(artist);
+                                }
+                                int year = Integer.parseInt(info[6][1]);
+                                String musics = info[5][1];
+                                String mus[] = musics.split(",");
+                                String publisher = info[7][1];
+                                String description = info[9][1];
+                                CopyOnWriteArrayList<Music> musicList = new CopyOnWriteArrayList<>();
+                                for (String m : mus) {
+                                    Music music;
+                                    if ((music = findMusic(artist.getName(), m)) == null){
+                                        Music newMusic = new Music(m, artist, genre);
+                                        for(Integer i : groups){
+                                            newMusic.add_groups(i);
+                                        }
+                                        musicList.add(newMusic);
+                                        mainThread.getSongs().add(newMusic);
+                                    }
+                                    else
+                                        musicList.add(music);
+                                }
+                                saveFile("src/Multicast/musics.obj", mainThread.getSongs());
+                                a.setArtist(artist);
+                                a.setTitle(title);
+                                a.setYearOfPublication(year);
+                                a.setMusics(musicList);
+                                a.setPublisher(publisher);
+                                a.setGenre(genre);
+                                Description desc = new Description(description,current);
+                                a.setDescription(desc);
+
+                                saveFile("src/Multicast/albums.obj", this.mainThread.getAlbums());
+                                return "type | change_info ; operation | success";
+                            }
+                            else
+                                return "type | change_info ; operation | fail";
+
+                        }
+                        return "type | change_info ; operation | fail";
+                    }
+                    return "type | status ; command | invalid";
                 }case "get_info": {
                     String answer = "type | get_info ;  info | ";
                     if (info[1][0].equals("username") && info[2][0].equals("object") && info[3][0].equals("title") && info.length == 4) {
@@ -942,7 +1077,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             if(a==null)
                                 return "type | get_info ; status | failed";
                             for(int i=0 ; i<mainThread.getGroups().size();i++){
-                                if(a.getGroups().contains(mainThread.getGroups().get(i)) && mainThread.getGroups().get(i).getUsers().contains(u)){
+                                if(a.getGroups().contains(mainThread.getGroups().get(i).getGroupID()) && mainThread.getGroups().get(i).getUsers().contains(u)){
                                     answer+="----------| Artist |----------\n"+a.getName();
                                     answer+="----------| Albums |----------\n";
                                     for(Album album : a.getAlbums()){
@@ -966,8 +1101,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             if(a==null) {
                                 return "type | get_info ; status | failed";
                             }
+
                             for(int i=0 ; i<mainThread.getGroups().size();i++) {
-                                if (a.getGroups().contains(mainThread.getGroups().get(i)) && mainThread.getGroups().get(i).getUsers().contains(u)) {
+                                if (a.getGroups().contains(mainThread.getGroups().get(i).getGroupID()) && mainThread.getGroups().get(i).getUsers().contains(u)) {
                                     answer+="----------| Album |----------\n"+a.getTitle()+"\n";
                                     answer+="----------| Artist |----------\n"+a.getArtist().getName()+"\n";
                                     answer+="----------| Music List |----------\n";
@@ -981,6 +1117,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                     answer+="----------| Reviews |----------\n";
                                     if(a.reviewsToString()!=null)
                                         answer+=a.reviewsToString()+"\n";
+                                    answer+="\nAverage Rating: "+a.calcAverageRate();
                                     return answer;
                                 }
                             }
@@ -1050,7 +1187,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "get_notifications":{
                     String username = info[1][1];
                     User current = findUser(username);
-                    System.out.println(current == null);
                     int counter;
                     if(current.getNotifications()!=null) {
                         if ((counter = current.getNotifications().size()) > 0) {

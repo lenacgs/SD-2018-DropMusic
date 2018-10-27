@@ -343,21 +343,39 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
-    public String changeInfo(String object, String objectName, String text, String username, String groupID)throws java.rmi.RemoteException{
-        String request = "type | change_info ; object | "+object+" ; object_name | "+objectName+" ; new_info | "+text+" ; username | "+username+" ; group | "+groupID;
-        //multicasts tem que verificar se esse user é editor ou owner deste grupo e depois sim fazer as alteracoes.
-        //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
-        //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
+    public boolean changeInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) throws java.rmi.RemoteException{
+        if (type.equals("music")) {
+            String title = s1, artist = s2, genre = s3, duration = s4;
 
-        //processar resposta e enviar notificação a toda a gente do grupo
-        request = "type | group_users ; group | "+groupID;
+            String request = "type | change_info ; object | music ; username | " + username + " ; groups | " + groups +  " ; title | " + title + " ; artist | " + artist + " ; genre | " + genre
+                    + " ; duration | " + duration;
 
-        //for(percorre lista de users)
-        //if(user.equals(username) continue; //para nao enviar notificacao a quem fez as alteracoes
-        //sendNotification(message,user);
+            String ans = dealWithRequest(request);
 
-        return request;
+            return ans.equals("type | change_info ; operation | success");
+        }
+
+        else if (type.equals("artist")) {
+            String name = s1, description = s2, concerts = s3, genre = s4;
+
+            String request = "type | change_info ; object | artist ; username | " + username + " ; name | " + name + " ; description | " + description + " ; concerts | " + concerts + " ; genre | " + genre + " \n";
+
+            String ans = dealWithRequest(request);
+
+            return ans.equals("type | change_info ; operation | success");
+        }
+        return false;
     }
+
+    public boolean changeInfo(String username, String groupIDs, String artist, String title, String musics, String year, String publisher, String genre, String description) throws java.rmi.RemoteException{
+        String request = "type | change_info ;  username | " + username + " ; groups | "+groupIDs+" ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
+                + publisher + " ; genre | " + genre + " ; description | " + description;
+
+        String ans = dealWithRequest(request);
+
+        return ans.equals("type | change_info ; operation | success");
+    }
+
 
     public boolean givePermissions(String perk, String username, String newUser, String groupID) throws java.rmi.RemoteException {
         String request = "type | grant_perks ; perk | " + perk + " ; username | " + username + " ; new_user | " + newUser + " ; group | " + groupID;
@@ -404,7 +422,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         if (type.equals("music")) {
             String title = s1, artist = s2, genre = s3, duration = s4;
 
-            String request = "type | add_music ; username | " + username + " ; groups | " + groups +  " ; title | " + title + " ; artist | " + artist + " ; genre | " + genre
+            String request = "type | add_music ; username | " + username + " ; groups | " + groups + " ; title | " + title + " ; artist | " + artist + " ; genre | " + genre
                     + " ; duration | " + duration;
 
             String ans = dealWithRequest(request);
@@ -418,7 +436,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         else if (type.equals("artist")) {
             String name = s1, description = s2, concerts = s3, genre = s4;
 
-            String request = "type | add_artist ; username | " + username + " ; name | " + name + " ; description | " + description + " ; concerts | " + concerts + " ; genre | " + genre + " \n";
+            String request = "type | add_artist ; username | " + username + " ; groups | " + groups + " ; name | " + name + " ; description | " + description + " ; concerts | " + concerts + " ; genre | " + genre + " \n";
 
             String ans = dealWithRequest(request);
 

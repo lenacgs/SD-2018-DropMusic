@@ -146,9 +146,9 @@ Gerir artistas, álbuns e músicas
 
 ####Alterar informação de álbuns/artistas
 
-REQUEST: **type** | change\_info ; **object** | album/artist ; **new_info** | new\_text ; **username** | username ; **group** | group_name\n
+REQUEST: **type** | change_info ; **object** | music ; **username** | username ; **groups** | groups ; **title** | title ; **artist** | artist ; **genre** | genre ; **duration** | duration
 
-ANSWER: **type** | change\_info ; **status** | success/fail \n
+ANSWER: **type** | change_info ; **status** | success/fail
 
 O user só pode alterar informação se tiver privilégios
 

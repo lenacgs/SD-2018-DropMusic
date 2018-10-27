@@ -35,6 +35,10 @@ public class Music implements Serializable {
 
     public void add_editor(String editor){ this.editors.add(editor); }
 
+    public CopyOnWriteArrayList<String> getEditors(){
+        return editors;
+    }
+
     public void add_groups(int group) {
         if(!groups.contains(group))
             this.groups.add(group);
