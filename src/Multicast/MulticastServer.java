@@ -1040,7 +1040,7 @@ class RequestHandler extends Thread{ //handles request and sends answer back to 
                     int count = 0;
 
                     for (Music m : thisUser.getTransferredMusics()) {
-                        list += m.getTitle() + ":" + m.getArtist().getName() + ",";
+                        list += m.getTitle() + ":" + m.getArtist() + ",";
                         count++;
                     }
 
@@ -1176,7 +1176,7 @@ class TCPWorker extends Thread {
 
     public void saveFile (Socket clientSocket) throws IOException {
         //first of all, "calculate" the path of the new file
-        this.path = "src/Multicast/" + this.mainThread.getName() + "/TransferredFiles/" + this.music.getTitle().replaceAll(" ", "") + this.music.getArtist().getName().replaceAll(" ", "") + ".mp3";
+        this.path = "src/Multicast/" + this.mainThread.getName() + "/TransferredFiles/" + this.music.getTitle().replaceAll(" ", "") + this.music.getArtist().replaceAll(" ", "") + ".mp3";
         System.out.println("CALCULATED PATH = " + this.path);
 
         DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
