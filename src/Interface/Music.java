@@ -7,21 +7,21 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Music implements Serializable {
     private static final long serialVersionUID = 4L;
     private String title;
-    private Artist artist;
+    private String artist;
     private String genre;
     private float duration;
     private CopyOnWriteArrayList<String> editors = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
 
 
-    public Music(String title, Artist artist, String genre, float duration) {
+    public Music(String title, String artist, String genre, float duration) {
         this.title = title;
         this.artist = artist;
         this.genre = genre;
         this.duration = duration;
     }
 
-    public Music(String title, Artist artist, String genre) {
+    public Music(String title, String artist, String genre) {
         this.title = title;
         this.artist = artist;
         this.genre = genre;
@@ -50,11 +50,9 @@ public class Music implements Serializable {
         this.title = title;
     }
 
-    public Artist getArtist() {
-        return artist;
-    }
+    public String getArtist() { return artist; }
 
-    public void setArtist(Artist artist) {
+    public void setArtist(String artist) {
         this.artist = artist;
     }
 

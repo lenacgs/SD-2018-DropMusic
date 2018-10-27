@@ -199,12 +199,12 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             } else {
                 if(verifier==4) {
                     if (modifier == 1)
-                        System.out.println("Username already exists. Please chose another one");
+                        System.out.println("Username already exists. Please choose another one!");
                     else
                         System.out.println("Invalid Credentials!");
                 }
                 else{
-                    System.out.println("User is already logged in!");
+                    System.out.println("Wrong password!");
                 }
             }
         }
@@ -214,7 +214,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
         int option;
         boolean validation;
-        boolean res = false;
+        String res = "Something went wrong! :(";
 
         while (true) {
             System.out.println("Choose one of the following options: ");
@@ -461,12 +461,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
                     break;
                 }
-                if (res) {//success
-                    System.out.println("New information successfully added!");
-                    return;
-                }
-                else
-                    System.out.println("Could not add new information :(");
+                System.out.println(res);
             }
             //-----------------------NÃO ESTÁ FEITO PORQUE É PRECISO A FUNÇÃO DE SEARCH--------------------------------------------------------------------------------
             /*if (option == 2) { //changing existing content
@@ -820,7 +815,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         while(true){
             try {
                 groupID = rmi.newGroup(user);
-                System.out.println(groupID == null);
                 break;
             } catch (RemoteException e){
                 retryRMIConnection();
@@ -830,7 +824,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         if (groupID==null)
             System.out.println("| Something went wrong. Try again later.       |");
         else {
-            System.out.println("| Group " + groupID + " created successfully!           |");
+            System.out.println("| Group " + groupID + " created successfully!                |");
             if(perk!=1)
                 perk=1;
         }
@@ -1086,7 +1080,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 else
                     System.out.println("Request successfully declined");
             } else
-                System.out.println("Something went wrong, Please try again!");
+                System.out.println("You don't have enough permissions to accept or decline requests in group " + groupID + "!");
             while(true) {
                 System.out.println("----------------| Accept Requests |----------------");
                 System.out.println("| Do you want to manage other requests?           |");
