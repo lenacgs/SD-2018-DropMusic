@@ -1,10 +1,15 @@
 package rmiClient;
 
+import Interface.Music;
 import rmi.Services;
+import static java.lang.Math.toIntExact;
 
+import java.awt.font.NumericShaper;
 import java.io.*;
+import java.net.*;
 import java.net.Socket;
 import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -176,7 +181,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             }
             if (verifier < 4) { //1- owner de algum grupo, 2- editor de algum grupo, 3- normal, 4-ja existe/credencias mal, 5-user ja esta logado;
                 if (modifier == 1)
-                    System.out.println("User registed successfully!");
+                    System.out.println("User registered successfully!");
                 else
                     System.out.println("Logged in successfully!");
                 user = username;
@@ -201,7 +206,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     if (modifier == 1)
                         System.out.println("Username already exists. Please choose another one!");
                     else
-                        System.out.println("Invalid Credentials!");
+                        System.out.println("Username doesn't exist!");
                 }
                 else{
                     System.out.println("Wrong password!");
@@ -211,10 +216,10 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     }
 
     private static void addChangeInfoMenu() { //apenas os editors têm acesso a este menu
-
-        int option;
-        boolean validation;
-        String res = "Something went wrong! :(";
+        String object;
+        int op=0,option;
+        boolean validation=false;
+        String res;
 
         while (true) {
             System.out.println("Choose one of the following options: ");
@@ -222,264 +227,289 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("2) Change info of existing content");
             System.out.println("0) Go back");
             try {
-                option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+                op = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
             } catch (NumberFormatException e) {
                 System.out.println("I can only work with numbers bro!");
-                continue;
             }
-            if (option == 0) {
-                return;
-            }
-            if (option == 1) { //adding new content
-                while (true) {
-                    System.out.println("What kind of content do you want to add?");
-                    System.out.println("1) Music");
-                    System.out.println("2) Artist");
-                    System.out.println("3) Album");
-                    System.out.println("0) Go back");
+            if(op!=0 && op!=1 && op!=2)
+                System.out.println("Please chose one of the given options");
+            else
+                break;
+        }
+        if (op == 0) {
+            return;
+        }
+        while (true) {
+            if (op == 1)
+                System.out.println("What kind of content do you want to add?");
+            else
+                System.out.println("What kind of content do you want to change?");
+            System.out.println("1) Music");
+            System.out.println("2) Artist");
+            System.out.println("3) Album");
+            System.out.println("0) Go back");
 
+            try {
+                option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("I can only work with numbers bro!");
+            }
+        }
+
+        if (option == 1) { //user wants to add a new music
+            object = "music";
+            String groups=null, title = null, artist=null, genre=null, duration=null;
+            while (!validation) {
+                if (op == 1)
+                    System.out.println("Where you want to add the " + object + " (group IDs): ");
+                else
+                    System.out.println("Where you want to change the " + object + " (group ID): ");
+                groups = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if(op==2) {
                     try {
-                        option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+                        Integer.parseInt(groups);
                     } catch (NumberFormatException e) {
-                        System.out.println("I can only work with numbers bro!");
+                        System.out.println("Please insert a number");
                         continue;
                     }
-
-                    if (option == 1) { //user wants to add a new music
-                        String groups, title = null, artist=null, genre=null, duration=null;
-                        while (true) {
-                            System.out.println("Where you want to add the album (group ID): ");
-                            groups = sc.nextLine();
-                            if(groups.equals("0")){
-                                break;
-                            }
-
-                            System.out.println("Music title: ");
-                            title = sc.nextLine();
-                            if (title.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(title);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Artist: ");
-                            artist = sc.nextLine();
-                            if (artist.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(artist);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Music Genre: ");
-                            genre = sc.nextLine();
-                            if (genre.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(genre);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Duration: ");
-                            duration = sc.nextLine();
-                            if (duration.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(duration);
-                            if(!validation)
-                                continue;
-
-                            break;
-                        }
-                        try{
-                            res = rmi.addInfo(user, groups, "music", title, artist, genre, duration);
-                        } catch (RemoteException e){
-                            retryRMIConnection();
-                        }
-                    }
-
-                    if (option == 2) { //user wants to add a new artist
-                        String groups, name = null, description=null, concerts=null, genre=null;
-
-                        while (true) {
-                            System.out.println("Where you want to add the album (group ID): ");
-                            groups = sc.nextLine();
-                            if(groups.equals("0")){
-                                break;
-                            }
-
-                            System.out.println("Artist name: ");
-                            name = sc.nextLine();
-                            if (name.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(name);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Artist description: ");
-                            description = sc.nextLine();
-                            if (description.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(description);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Next concerts (separated by \",\", listed by month/day/year-concert_venue-city-country): ");
-                            concerts = sc.nextLine();
-                            if (concerts.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(concerts);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Genre: ");
-                            genre = sc.nextLine();
-                            if (genre.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(genre);
-                            if(!validation)
-                                continue;
-                            break;
-                        }
-                        try {
-                            res = rmi.addInfo(user, groups, "artist", name, description, concerts, genre);
-                        }catch (RemoteException e){
-                            retryRMIConnection();
-                        }
-                    }
-
-                    if (option == 3) { //user wants to add a new album
-                        String group, artist=null, title=null, musics=null, year=null, publisher=null, genre=null, description=null;
-
-                        while (true) {
-
-                            System.out.println("Where you want to add the album (group ID): ");
-                            group = sc.nextLine();
-
-                            if (group.equals(""))
-                                group="1";
-
-                            if (group.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(group);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Album title: ");
-                            title = sc.nextLine();
-                            if (title.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(title);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Album artist: ");
-                            artist = sc.nextLine();
-                            if (artist.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(artist);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Music list separated by commas:");
-                            musics = sc.nextLine();
-                            if (musics.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(musics);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Year of publication: ");
-                            year = sc.nextLine();
-                            if (year.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(year);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Publisher: ");
-                            publisher = sc.nextLine();
-                            if (publisher.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(publisher);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Genre: ");
-                            genre = sc.nextLine();
-                            if (genre.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(genre);
-                            if(!validation)
-                                continue;
-
-                            System.out.println("Album description: ");
-                            description = sc.nextLine();
-                            if (description.equals("0")) {
-                                break;
-                            }
-
-                            validation=stringChecker(description);
-                            if(!validation)
-                                continue;
-
-                            break;
-                        }
-                        try {
-                            res = rmi.addInfo(user, group, artist, title, musics, year, publisher, genre, description);
-                        }catch(RemoteException e){
-                            retryRMIConnection();
-                        }
-                    }
-
-                    break;
                 }
-                System.out.println(res);
+                validation = stringChecker(groups);
             }
-            //-----------------------NÃO ESTÁ FEITO PORQUE É PRECISO A FUNÇÃO DE SEARCH--------------------------------------------------------------------------------
-            /*if (option == 2) { //changing existing content
-
-                while (true) {
-                    System.out.println("What kind of content do you want to change?");
-                    System.out.println("1) Music");
-                    System.out.println("2) Artist");
-                    System.out.println("3) Album");
-                    System.out.println("0) Go back");
-
-
-                    //search for which object you want to change
+            if(groups.equals("0")){
+                return;
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Music title: ");
+                title = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (title.equals("0")) {
+                    return;
+                }
+                validation = stringChecker(title);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Artist: ");
+                artist = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (artist.equals("0")) {
+                    return;
                 }
 
-            }*/
+                validation = stringChecker(artist);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Music Genre: ");
+                genre = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (genre.equals("0")) {
+                    return;
+                }
 
-            //QUESTÃO DA PARTILHA POR GRUPOS
+                validation = stringChecker(genre);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Duration: ");
+                duration = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (duration.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(duration);
+            }
+            while(true) {
+                try {
+                    if(op==1)
+                        res = rmi.addInfo(user, groups, object, title, artist, genre, duration);
+                    else
+                        res = rmi.changeInfo(user, groups, object, title, artist, genre, duration);
+                    break;
+                } catch (RemoteException e) {
+                    retryRMIConnection();
+                }
+            }
+            System.out.println(res);
+        }
+        if (option == 2) { //user wants to add a new artist
+            String groups=null, name = null, description=null, concerts=null, genre=null;
+            object="artist";
+            while (!validation) {
+                if (op == 1)
+                    System.out.println("Where you want to add the " + object + " (group IDs): ");
+                else
+                    System.out.println("Where you want to change the " + object + " (group ID): ");
+                groups = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if(op==2) {
+                    try {
+                        Integer.parseInt(groups);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Please insert a number");
+                        continue;
+                    }
+                }
+                validation = stringChecker(groups);
+            }
+            if(groups.equals("0")){
+                return;
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Artist name: ");
+                name = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (name.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(name);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Artist description: ");
+                description = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (description.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(description);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Next concerts (separated by ','): ");
+                concerts = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (concerts.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(concerts);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Genre: ");
+                genre = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (genre.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(genre);
+            }
+            while(true) {
+                try {
+                    if(op==1)
+                        res = rmi.addInfo(user, groups, object, name, description, concerts, genre);
+                    else
+                        res = rmi.changeInfo(user, groups, object, name, description, concerts, genre);
+                    break;
+                } catch (RemoteException e) {
+                    retryRMIConnection();
+                }
+            }
+            System.out.println(res);
+        }
+        if (option == 3) { //user wants to add a new album
+            String groups=null, artist=null, title=null, musics=null, year=null, publisher=null, genre=null, description=null;
+            object="album";
+            while (!validation) {
+                if (op == 1)
+                    System.out.println("Where you want to add the " + object + " (group IDs): ");
+                else
+                    System.out.println("Where you want to change the " + object + " (group ID): ");
+                groups = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if(op==2) {
+                    try {
+                        Integer.parseInt(groups);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Please insert a number");
+                        continue;
+                    }
+                }
+                validation = stringChecker(groups);
+            }
+            if(groups.equals("0")){
+                return;
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Album title: ");
+                title = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (title.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(title);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Album artist: ");
+                artist = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (artist.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(artist);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Music list separated by commas:");
+                musics = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (musics.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(musics);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Year of publication: ");
+                year = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (year.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(year);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Publisher: ");
+                publisher = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (publisher.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(publisher);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Genre: ");
+                genre = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (genre.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(genre);
+            }
+            validation = false;
+            while(!validation) {
+                System.out.println("Album description: ");
+                description = sc.nextLine().replaceAll("^[,\\s]+", "");
+                if (description.equals("0")) {
+                    return;
+                }
+
+                validation = stringChecker(description);
+            }
+            while(true) {
+                try {
+                    if(op==1)
+                        res = rmi.addInfo(user, groups, artist, title, musics, year, publisher, genre, description);
+                    else
+                        res = rmi.changeInfo(user, groups, artist, title, musics, year, publisher, genre, description);
+                    break;
+                } catch (RemoteException e) {
+                    retryRMIConnection();
+                }
+            }
+            System.out.println(res);
         }
     }
 
@@ -491,9 +521,9 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| 1) Search                                 |");
             System.out.println("| 2) Album and Artist details               |");
             System.out.println("| 3) Album Review                           |");
-            System.out.println("| 4) Upload Music                           |");//falta
-            System.out.println("| 5) Download Music                         |");//falta
-            System.out.println("| 6) Share Music                            |");//falta
+            System.out.println("| 4) Upload Music                           |");
+            System.out.println("| 5) Download Music                         |");
+            System.out.println("| 6) Share Music                            |");
             System.out.println("| 7) Create Group                           |");
             System.out.println("| 8) Join Group                             |");
             if (perk<3){ // se for editor ou owner
@@ -503,7 +533,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             }
             if(perk<2){ // se for owner
                 System.out.println("| 11) Give 'Owner' privileges               |");
-                System.out.println("| 12) Manage group requests                 |");//falta
+                System.out.println("| 12) Manage group requests                 |");
             }
             System.out.println("| 0) Logout                                 |");
             System.out.println("---------------------------------------------");
@@ -532,10 +562,10 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             else if(option == 4)
                 uploadMenu();
             else if(option == 5)
-                System.out.println();
+                downloadMenu();
                 // continue
             else if(option == 6)
-                System.out.println();
+                shareMusicMenu();
                 // continue
             else if(option == 7)
                 createGroupMenu();
@@ -566,17 +596,228 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         }
     }
 
+    private static void downloadMenu() {
+        //get transferredMusics from user
+
+        String ans = "";
+
+        try {
+            ans = rmi.getMusics(user);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+        if (ans.equals("You don't have access to any music files!...")) {
+            System.out.println(ans);
+            return;
+        }
+
+        String ans1 = ans.replace("<", "");
+        ans1 = ans1.replace(">", "");
+        String ans2[] = ans1.split(","); //contains the titles of the musics
+
+        String list = "";
+        int i=1;
+
+        for (String music : ans2) {
+            list += i + ") " + music;
+            i++;
+        }
+
+        int option;
+
+        while (true) {
+            System.out.println("Your files:");
+            System.out.println(list);
+            System.out.print("Insert the number of the file you want to download: ");
+
+            try {
+                option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+            } catch (NumberFormatException e) {
+                System.out.println("I can only work with numbers bro!");
+                continue;
+            }
+            break;
+        }
+
+        String infos[] = ans2[option-1].split(":");
+        String musicTitle = infos[0];
+        String artistName = infos[1];
+
+        int portTCP = 0;
+        try {
+            portTCP = rmi.downloadFile(user, musicTitle, artistName);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+
+        boolean validation = false;
+        String path;
+
+        while (!validation){
+            System.out.println("-------------------| Search |------------------------------------");
+            System.out.println("| Insert the path to where you want the file to be downloaded to |");
+            System.out.println("-----------------------------------------------------------------");
+            path = sc.nextLine().replaceAll("^[,\\s]+", "");
+            validation = stringChecker(path);
+
+            try {
+                TCPDownload(path, portTCP);
+            } catch (IOException e) {
+                System.out.println("There was an exception: " + e);
+            }
+        }
+    }
+
+    private static void TCPDownload(String path, int port) throws IOException{
+        String serverAddress = "0.0.0.0";
+        Socket socket = null;
+        DataInputStream dis = null;
+        FileOutputStream fos = null;
+
+        try {
+            socket = new Socket(serverAddress, 5500);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            dis = new DataInputStream(socket.getInputStream());
+            fos = new FileOutputStream(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("--------------------------");
+
+        //the first message the client receives is the file size
+        int fileSize = dis.readInt();
+
+        byte[] buffer = new byte[fileSize];
+
+        int read = 0;
+        int totalRead = 0;
+        int remaining = fileSize;
+
+        while ((read = dis.read(buffer, 0, Math.min(buffer.length, remaining))) > 0) {
+            totalRead += read;
+            remaining -= read;
+            fos.write(buffer, 0, read);
+        }
+
+        //file has been read
+        System.out.println("Your file has been downloaded!");
+
+
+    }
+    //function to communicate with multicast server
+
+    private static void TCPUpload(String path, int port) throws IOException {
+        String serverAddress = "0.0.0.0";
+        Socket socket = null;
+
+        try {
+            socket = new Socket(serverAddress, port);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //all the code for the file upload
+        DataOutputStream dos = new DataOutputStream(socket.getOutputStream()); //stream for writing to socket
+        FileInputStream fis = new FileInputStream(path); //stream for reading from music file given by the user
+
+        long len = fis.getChannel().size();
+        byte[] buffer = new byte[toIntExact(len)];
+
+        //sending the file size on a separate message
+        dos.writeInt(toIntExact(len));
+
+        fis.read(buffer); //reads bytes from file into buffer
+        dos.write(buffer, 0, toIntExact(len)); //writes len bytes from buffer starting at position off to dataOutputStream (sends to socket)
+
+        fis.close();
+        dos.close();
+
+        socket.close();
+
+        System.out.println("Your file was uploaded with success!");
+    }
+
+    private static void shareMusicMenu() {
+        //get list of music this user has access to from server
+
+        String ans = "";
+        try {
+            ans = rmi.getMusics(user);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+
+        if (ans.equals("You don't have access to any music files!...")) {
+            System.out.println(ans);
+            return;
+        }
+
+        String ans1 = ans.replace("<", "");
+        ans1 = ans1.replace(">", "");
+        String ans2[] = ans1.split(","); //contains the titles of the musics
+
+        String list = "";
+        int i=1;
+
+        for (String music : ans2) {
+            list += i + ") " + music;
+            i++;
+        }
+
+        //chose one of the files to share
+        int option;
+
+        while (true) {
+            System.out.println("Your files:");
+            System.out.println(list);
+            System.out.print("Insert the number of the file you want to share: ");
+
+            try {
+                option = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", ""));
+            } catch (NumberFormatException e) {
+                System.out.println("I can only work with numbers bro!");
+                continue;
+            }
+            break;
+        }
+
+        //specify the group IDs the you want to share the file with
+        System.out.println("Insert the IDs for the groups you want this file to be shared with:\nNote: format should be \"ID1,ID2,ID2,...\"");
+        String groupIDs = sc.nextLine();
+
+        //send this info to the server
+        String aux[] = ans2[option-1].split(":");
+        String music = aux[0];
+        String artist = aux[1];
+
+        boolean res;
+        try {
+            res = rmi.shareMusic(user, groupIDs, music, artist);
+        } catch (RemoteException e) {
+            retryRMIConnection();
+        }
+    }
+
     private static void uploadMenu() {
         System.out.println("You have to associate your music file with one of the musics info in our DB\n");
         boolean validation = false;
         String keyword = "", answer = "";
+        String artist = "", music = "";
 
-        while (!validation){
+        /*while (!validation){
             System.out.println("----------------| Search |----------------");
             System.out.println("| Insert your keyword(s):                |");
             System.out.println("------------------------------------------");
             keyword = sc.nextLine().replaceAll("^[,\\s]+", "");
             validation = stringChecker(keyword);
+
         }
         //search for the keyword
         try {
@@ -584,55 +825,51 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         } catch (RemoteException e) {
             retryRMIConnection();
         }
+        validation = false;*/
 
-        //warn the server that you will be sending a music file to associate with a certain file
-        try {
-            rmi.uploadFile(user, answer);
-        }catch (RemoteException e) {
-            retryRMIConnection();
+        int port = -1;
+        while (port == -1) {
+            validation = false;
+            //get the name for the music and artist for the music the user wants to upload
+            while (!validation) {
+                System.out.print("Type and enter the title of the music you want to upload: ");
+                music = sc.nextLine();
+                validation = stringChecker(music);
+            }
+
+            validation = false;
+
+            while (!validation) {
+                System.out.print("Type and enter the name of the artist to this music: ");
+                artist = sc.nextLine();
+                validation = stringChecker(artist);
+            }
+
+            //warn the server that you will be sending a music file to associate with a certain music in the DB
+            try {
+                port = rmi.uploadFile(user, music, artist); //se port = -1 significa que o user deu input de uma música que não existe
+                if (port == -1) System.out.println("Music not found -- make sure you input the correct title and artist name :(");
+            } catch (RemoteException e) {
+                retryRMIConnection();
+            }
         }
-
-        uploadFile(user, answer);
+        uploadFile(port);
 
     }
 
-    //function to communicate with multicast server
-    private static void TCPServerConnection(String username, String music, String path) throws IOException {
-        String serverIP = "127.0.0.1";
-        int serverPort = 5000;
 
-        //opens a new socket in any available port
-        Socket sock = new Socket(serverIP, serverPort);
 
-        File file = new File(path);
-        byte[] bytes = new byte[16*1024];
-        InputStream in = new FileInputStream(file);
-        OutputStream out = sock.getOutputStream();
-
-        //write file content to output stream
-        int count;
-        while ((count = in.read(bytes)) > 0) {
-            out.write(bytes, 0, count);
-        }
-
-        out.close();
-        in.close();
-        sock.close();
-    }
-
-    private static void uploadFile(String username, String music) {
+    private static void uploadFile(int port) {
         boolean validation = false;
         String path;
 
         while (!validation){
-            System.out.println("-------------------| Search |-------------------");
-            System.out.println("| Insert the path to the file you want to upload |");
-            System.out.println("------------------------------------------------");
+            System.out.print("Insert the path to the file you want to upload: ");
             path = sc.nextLine().replaceAll("^[,\\s]+", "");
             validation = stringChecker(path);
 
             try {
-                TCPServerConnection(username, music, path);
+                TCPUpload(path, port);
             } catch (IOException e) {
                 System.out.println("There was an exception: " + e);
             }
@@ -882,68 +1119,6 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                     break;
                 } else
                     System.out.println("Please select one of the given options");
-            }
-        }
-    }
-
-    private static void manageGroup(){
-        String groupID=null, text=null, object, objectName=null;
-        int ob;
-        boolean validation=false;
-        String verifier;
-        while(true) {
-            System.out.println("----------------| Manage Group |----------------");
-            System.out.println("| Change information about:                    |");
-            System.out.println("| 1) Album                                     |");
-            System.out.println("| 2) Artist                                    |");
-            System.out.println("| 3) Music                                     |");
-            System.out.println("| 0) Back                                      |");
-            System.out.println("------------------------------------------------");
-            ob = Integer.parseInt(sc.nextLine().replaceAll("^[,\\s]+", "")); // tem que ser assim senao da bode
-            if (ob == 0) {
-                break;
-            } else if (ob > 3 || ob < 0)
-                System.out.println("Please select a valid option");
-            else {
-                if(ob==1)
-                    object = "album";
-                else if(ob==2)
-                    object = "artist";
-                else
-                    object = "music";
-                while(!validation){
-                    System.out.println("-----------------| Manage Group |-----------------");
-                    System.out.println("| Insert the name of the "+object+"                |");
-                    System.out.println("-------------------------------------------------");
-                    objectName = sc.nextLine().replaceAll("^[,\\s]+", "");
-                    validation = stringChecker(objectName);
-                }
-                validation=false;
-                while(!validation){
-                    System.out.println("-----------------| Manage Group |-----------------");
-                    System.out.println("| Insert new info about "+objectName+"             |");
-                    System.out.println("--------------------------------------------------");
-                    text = sc.nextLine().replaceAll("^[,\\s]+", "");
-                    validation = stringChecker(text);
-                }
-                validation=false;
-                while(!validation){
-                    System.out.println("-----------------| Manage Group |-----------------");
-                    System.out.println("| Group in which you want to make these changes? |");
-                    System.out.println("--------------------------------------------------");
-                    groupID = sc.nextLine().replaceAll("^[,\\s]+", "");
-                    validation = stringChecker(groupID);
-                }
-                while(true){
-                    try{
-                        verifier=rmi.changeInfo(object, objectName, text, user, groupID);
-                        break;
-                    }catch (RemoteException e){
-                        retryRMIConnection();
-                    }
-                }
-                System.out.println(verifier);
-                break;
             }
         }
     }

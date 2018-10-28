@@ -2,15 +2,16 @@ package Multicast;
 
 import Interface.*;
 import FileHandling.*;
-//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
+
+import javax.xml.crypto.Data;
 import java.net.*;
 import java.io.*;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import static java.lang.Math.toIntExact;
 
 public class MulticastServer extends Thread {
     private ObjectFile usersObjectFile; //file for registered users
@@ -222,21 +223,6 @@ public class MulticastServer extends Thread {
             this.setArtists((CopyOnWriteArrayList)this.getArtistsObjectFile().readsObject());
             this.getArtistsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
-
-        System.out.println("File has been read... Registered users:");
-
-        if(this.getGroups().size()>0){
-            Group g = this.groups.get(0);
-            Iterator it = g.getUsers().iterator();
-
-
-            while (it.hasNext()){
-                User aux = (User)it.next();
-                System.out.println(aux.getUsername());
-            }
-
-        }
-
     }
 
     public Request findRequest(String message){
@@ -269,7 +255,6 @@ public class MulticastServer extends Thread {
             socket.joinGroup(group);
             socket.setLoopbackMode(false);
 
-            System.out.println("This is my address: " + socket.getInterface().getHostAddress());
 
             while(true){ //receiving
                 byte[] buffer = new byte[256];
@@ -281,8 +266,8 @@ public class MulticastServer extends Thread {
                 //creates new thread for handling the new request
                 requestHandler newRequest = new requestHandler(new Request(message, replyServer), this);
                 newRequest.start();
+                }
 
-            }
         }catch(IOException e){
             e.printStackTrace();
         }finally{
@@ -294,11 +279,13 @@ public class MulticastServer extends Thread {
 }
 
 
+
 class requestHandler extends Thread{ //handles request and sends answer back to RMI
     private Request request;
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4324;
     private MulticastServer mainThread;
+
 
     public requestHandler(Request request, MulticastServer mainThread){
         super("Request");
@@ -306,7 +293,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         this.mainThread = mainThread;
     }
 
-    private Group findGroup(int id) {
+    public Group findGroup(int id) {
         Iterator it = mainThread.getGroups().iterator();
         while (it.hasNext()) {
             Group aux = (Group)it.next();
@@ -430,7 +417,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         return reply;
     }
 
-    private void saveFile(String filename, Object o){
+    public void saveFile(String filename, Object o){
         try {
             mainThread.getUsersObjectFile().openWrite(filename);
             mainThread.getUsersObjectFile().writesObject(o);
@@ -440,7 +427,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         }
     }
 
+    //verifica se a lista de grupos onde o user está coincide com a lista de grupos que têm acesso à música
     private boolean verifyGroups(CopyOnWriteArrayList<Integer> musicGroups, CopyOnWriteArrayList<Group> userGroups){
+        //userGroups is the groups a certain user is in (user.getDefaultShareGroups)
+        //musicGroups is the groups where a certain music was shared (musig.getGroups)
         for(Integer i : musicGroups){
             for(Group g : userGroups){
                 if(g.getGroupID() == i){
@@ -505,6 +495,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         Iterator it = mainThread.getAlbums().iterator();
         while (it.hasNext()) {
             Album aux = (Album)it.next();
+
             if (aux.getTitle().equals(title) && aux.getArtist().getName().equals(artist)){
                 return aux;
             }
@@ -792,8 +783,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String groupIDs = info[2][1];
                     String aux[] = groupIDs.split(",");
                     CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+
                     for(int i = 0; i < aux.length; i++){
-                        for(Group g : current.getDefaultShareGroups()){
+                        for(Group g : current.getDefaultShareGroups()){ //percorre os grupos em que o current está inserido
                             if(g.getGroupID() == Integer.parseInt(aux[i])){
                                 if(g.isEditor(username))
                                     groups.add(g.getGroupID());
@@ -900,7 +892,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     for(int i = 0; i < aux.length; i++){
                         for(Group g : current.getDefaultShareGroups()){
                             if(g.getGroupID() == Integer.parseInt(aux[i])){
-                                System.out.println(aux[i]);
                                 if(g.isEditor(username))
                                     groups.add(g.getGroupID());
                             }
@@ -984,15 +975,151 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | add_album ; operation | failed ; error | You don't have permission to add an album to this group!";
                     }
                 }case "change_info": {
-                    if (info[1][0].equals("object") && info[2][0].equals("new_info") && info[3][0].equals("username") && info.length == 4) {
-                        if (true) {
-                            return "type | status ; change_info | successful";
-                        } else {
-                            return "type | status ; change_info | failed";
+                    if (info.length == 8) {
+                        if (info[1][1].equals("music")) {
+                            String username = info[2][1];
+                            User current = findUser(username);
+                            String groupID = info[3][1];
+                            CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+                            for (Group g : current.getDefaultShareGroups()) {
+                                if (g.getGroupID() == Integer.parseInt(groupID)) {
+                                    if (g.isEditor(username))
+                                        groups.add(g.getGroupID());
+                                }
+                            }
+                            if (groups.size() > 0) { //se é editor ou owner
+                                String title = info[4][1];
+                                String genre = info[6][1];
+                                Artist artist = findArtist(info[5][1]);
+                                float duration = Float.parseFloat(info[7][1]);
+                                Music m;
+                                if ((m = findMusic(info[5][1], title)) != null && m.getGroups().contains(Integer.parseInt(groupID))) {
+                                    if (artist == null) {
+                                        artist = new Artist(info[4][1], genre);
+                                        for (Integer i : groups) {
+                                            artist.add_groups(i);
+                                        }
+                                        mainThread.getArtists().add(artist);
+                                    }
+                                    m.setTitle(title);
+                                    m.setArtist(info[5][1]);
+                                    m.setGenre(genre);
+                                    m.setDuration(duration);
+
+                                    if (!m.getEditors().contains(username))
+                                        m.add_editor(username);
+                                    if (!artist.getMusics().contains(m))
+                                        artist.addMusic(m);
+
+                                    saveFile("src/Multicast/musics.obj", mainThread.getSongs());
+                                    saveFile("src/Multicast/artists.obj", mainThread.getArtists());
+
+                                    return "type | change_info ; operation | success";
+                                }
+                                else
+                                    return "type | change_info ; operation | fail ; error | Either the music doesnt exist or you dont have permitions to edit it";
+                            }
+                            return "type | change_info ; operation | fail ; error ! You are not Editor or Owner og group "+groupID;
+                        } else if (info[1][1].equals("artist")) {
+                            String username = info[2][1];
+                            User current = findUser(username);
+                            String groupID = info[3][1];
+                            CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+                            for (Group g : current.getDefaultShareGroups()) {
+                                if (g.getGroupID() == Integer.parseInt(groupID)) {
+                                    if (g.isEditor(username))
+                                        groups.add(g.getGroupID());
+                                }
+                            }
+                            if (groups.size() > 0) {
+                                String name = info[4][1];
+                                String description = info[5][1];
+                                String concerts = info[6][1];
+                                Description desc = new Description(description, current);
+                                String genre = info[7][1];
+                                String conc[] = concerts.split(",");
+                                Artist a;
+                                if ((a = findArtist(name)) != null && a.getGroups().contains(Integer.parseInt(groupID))) {
+                                    Artist newArtist = new Artist(name, desc, new CopyOnWriteArrayList<>(Arrays.asList(conc)), genre);
+                                    a.setName(name);
+                                    a.setDescription(desc);
+                                    a.setConcerts(new CopyOnWriteArrayList<>(Arrays.asList(conc)));
+                                    a.setGenre(genre);
+
+                                    saveFile("src/Multicast/artists.obj", mainThread.getArtists());
+                                    return "type | change_info ; operation | success";
+                                }
+                                else
+                                    return "type | change_info ; operation | fail ; error | Either the artist doesnt exist or you dont have permitions to edit it";
+                            }
+                            return "type | change_info ; operation | fail ; error ! You are not Editor or Owner og group "+groupID;
                         }
-                    } else {
                         return "type | status ; command | invalid";
                     }
+                    else if (info.length == 10) {
+                        System.out.println("Entrou album");
+                        String username = info[1][1];
+                        User current = findUser(username);
+                        String groupID = info[2][1];
+                        CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
+                        for (Group g : current.getDefaultShareGroups()) {
+                            if (g.getGroupID() == Integer.parseInt(groupID)) {
+                                if (g.isEditor(username))
+                                    groups.add(g.getGroupID());
+                            }
+                        }
+                        if(groups.size() > 0) {
+                            String title = info[4][1];
+                            String genre = info[8][1];
+                            Artist artist = findArtist(info[3][1]);
+                            Album a;
+                            if ((a = findAlbum(title, info[3][1])) != null && a.getGroups().contains(Integer.parseInt(groupID))) {
+                                if (artist == null) {
+                                    artist = new Artist(info[4][1], genre);
+                                    for (Integer i : groups) {
+                                        artist.add_groups(i);
+                                    }
+                                    mainThread.getArtists().add(artist);
+                                }
+                                int year = Integer.parseInt(info[6][1]);
+                                String musics = info[5][1];
+                                String mus[] = musics.split(",");
+                                String publisher = info[7][1];
+                                String description = info[9][1];
+                                CopyOnWriteArrayList<Music> musicList = new CopyOnWriteArrayList<>();
+                                for (String m : mus) {
+                                    Music music;
+                                    if ((music = findMusic(artist.getName(), m)) == null){
+                                        Music newMusic = new Music(m, info[3][1], genre);
+                                        for(Integer i : groups){
+                                            newMusic.add_groups(i);
+                                        }
+                                        musicList.add(newMusic);
+                                        mainThread.getSongs().add(newMusic);
+                                    }
+                                    else
+                                        musicList.add(music);
+                                }
+                                saveFile("src/Multicast/musics.obj", mainThread.getSongs());
+                                a.setArtist(artist);
+                                a.setTitle(title);
+                                a.setYearOfPublication(year);
+                                a.setMusics(musicList);
+                                a.setPublisher(publisher);
+                                a.setGenre(genre);
+                                Description desc = new Description(description,current);
+                                a.setDescription(desc);
+
+                                saveFile("src/Multicast/albums.obj", this.mainThread.getAlbums());
+                                return "type | change_info ; operation | success";
+                            }
+                            else
+                                return "type | change_info ; operation | fail ; error | Either the album doesnt exist or you dont have permitions to edit it";
+
+                        }
+                        return "type | change_info ; operation | fail ; error ! You are not Editor or Owner og group "+groupID;
+                    }
+                    return "type | status ; command | invalid";
                 }case "get_info": {
                     String answer = "type | get_info ;  info | ";
                     System.out.println("Length: " + info.length);
@@ -1033,8 +1160,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             if(a==null) {
                                 return "type | get_info ; status | failed ; error | That album doesn't exist!";
                             }
+
                             for(int i=0 ; i<mainThread.getGroups().size();i++) {
-                                if (verifyGroups(a.getGroups(), u.getDefaultShareGroups())) {
+                                if (a.getGroups().contains(mainThread.getGroups().get(i).getGroupID()) && mainThread.getGroups().get(i).getUsers().contains(u)) {
                                     answer+="----------| Album |----------\n"+a.getTitle()+"\n";
                                     answer+="----------| Artist |----------\n"+a.getArtist().getName()+"\n";
                                     answer+="----------| Music List |----------\n";
@@ -1050,6 +1178,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                     answer+="----------| Reviews |----------\n";
                                     if(a.reviewsToString()!=null)
                                         answer+=a.reviewsToString()+"\n";
+                                    answer+="\nAverage Rating: "+a.calcAverageRate();
                                     return answer;
                                 }
                             }
@@ -1077,35 +1206,105 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "test": {
                     test();
                     return "type | status ; command | tested";
-                }case "upload": {
-                    //há um user a querer fazer upload de um ficheiro
+                }case "upload": { //quando o Multicast recebe um pedido para um client dar upload de uma música
+
                     String username = info[1][1];
                     String musicTitle = info[2][1];
-                    ServerSocket welcomeSocket = null;
-                    Socket connectionSocket = null;
-                    InputStream is = null;
-                    FileOutputStream fos = null;
-                    BufferedOutputStream bos = null;
-                    int bytesRead;
-                    int current = 0;
+                    String musicTitle2 = musicTitle.replaceAll(" ", ""); //para fazer o path do ficheiro
+                    String artistName = info[3][1];
+                    String artistName2 = artistName.replaceAll(" ", ""); //para fazer o path do ficheiro
+                    String ans = "";
 
-                    //ligação TCP
-                    try {
-                        welcomeSocket = new ServerSocket(5000);
+                    Music found = findMusic(artistName, musicTitle);
 
-                        connectionSocket = welcomeSocket.accept();
-                        System.out.println("Accepted connection " + connectionSocket);
+                    //porém, este user pode não ter acesso à musica (não está num grupo onde esta tenha sido adicionada)
+                    User user = findUser(username);
 
-                        is = connectionSocket.getInputStream();
 
-                        //fos = new FileOutputStream(path_to_file) - não sei como isto vai funcionar...
-                        //bos = new BufferedOutputStream(fos);
-                        byte[] file = new byte[16 * 1024];
-                        bytesRead = is.read(file, 0, file.length);
-                        current = bytesRead;
-                    } catch (IOException e) {
-                        System.out.println("Exception: " + e.getStackTrace());
+                    if (!verifyGroups(found.getGroups(), user.getDefaultShareGroups()))
+                        return "type | upload ; operation | failed";
+
+                    if (found != null) {
+                        //siginifica que a música existe e que efetivamente conseguimos associá-la com o ficheiro que aí vem
+                        ans = "type | upload ; port | 5500";
+                    } else { //findMusic = null => significa que a música não existe, e portanto o request tem que ser recusado
+                        return "type | upload ; operation | failed";
                     }
+
+
+                    //create new thread
+                    TCPWorker newWorker = new TCPWorker("upload",5500, user, found, this.mainThread, this);
+                    newWorker.start();
+
+                    return ans;
+                }case "download": {
+                    String username = info[1][1];
+                    String musicTitle = info[2][1];
+                    String musicTitle2 = musicTitle.replaceAll(" ", ""); //para fazer o path do ficheiro
+                    String artistName = info[3][1];
+                    String artistName2 = artistName.replaceAll(" ", ""); //para fazer o path do ficheiro
+                    String ans = "";
+
+                    Music found = findMusic(artistName, musicTitle);
+                    User user = findUser(username);
+
+                    //este user tem sempre acesso à música porque foi escolhida das suas transferredMusics
+
+                    ans = "type | download ; port | 5500";
+
+                    TCPWorker newWorker = new TCPWorker("download",5500, user, found, this.mainThread, this);
+                    newWorker.start();
+
+                    return ans;
+                }case "get_musics": {
+                    String username = info[1][1];
+
+                    User thisUser = findUser(username);
+
+                    String list = "<";
+                    int count = 0;
+
+                    for (Music m : thisUser.getTransferredMusics()) {
+                        list += m.getTitle() + ":" + m.getArtist() + ",";
+                        count++;
+                    }
+
+                    list = list.substring(0, list.length() - 1);
+                    list += ">";
+
+                    String ans = "type | get_musics ; item_count | " + count + " ; music_list | " + list;
+                    return ans;
+                }case "share_music": {
+                    String username = info[1][1];
+                    String musicTitle = info[2][1];
+                    String artistName = info[3][1];
+                    String groups = info[4][1];
+
+                    groups = groups.replace("<", "");
+                    groups = groups.replace (">", "");
+
+                    String [] groupIDs = groups.split(",");
+
+
+                    Music toBeShared = findMusic(artistName, musicTitle);
+
+                    String list = "";
+                    int count = 0;
+
+                    //percorrer todos os users de cada grupo, e adicionar a música às transferred musics
+                    for (String ID : groupIDs) {
+                        Group group = findGroup(Integer.parseInt(ID));
+                        for (User user : group.getUsers()) {
+                            if (!user.getTransferredMusics().contains(toBeShared)) {
+                                user.getTransferredMusics().add(toBeShared);
+                                count++;
+                                list += user.getUsername() + ",";
+                            }
+                        }
+                    }
+
+                    String ans = "type | share_music ; item_count | " + count + " ; user_list | " + list;
+                    return ans;
                 }case "notification": {
                     String username = info[1][1];
                     String notif = info[2][1];
@@ -1194,6 +1393,101 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
 }
 
+class TCPWorker extends Thread {
+    int port;
+    String serverAddress;
+    User user; //user que fez o upload do ficheiro
+    Music music;
+    MulticastServer mainThread;
+    String path;
+    requestHandler thread;
+    String requestType; //can be "download" or "upload"
+
+    public TCPWorker(String requestType, int port, User user, Music music, MulticastServer mainThread, requestHandler thread) {
+        super();
+        this.port = port;
+        this.user = user;
+        this.music = music;
+        this.mainThread = mainThread;
+        this.thread = thread;
+        this.requestType = requestType;
+    }
+
+    public void run() {
+        int port = 5500;
+        ServerSocket serverSocket = null;
+        Socket clientSocket = null;
+
+        try {
+            serverSocket = new ServerSocket(5500);
+            clientSocket = serverSocket.accept();
+
+            //all the code for the file download
+            if (requestType.equals("upload")) saveFile(clientSocket);
+            else sendFile(clientSocket);
+
+            serverSocket.close();
+            clientSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveFile(Socket clientSocket) throws IOException {
+        //first of all, "calculate" the path of the new file
+        this.path = "src/Multicast/" + this.mainThread.getName() + "/TransferredFiles/" + this.music.getTitle().replaceAll(" ", "") + this.music.getArtist().replaceAll(" ", "") + ".mp3";
+
+        DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
+        FileOutputStream fos = new FileOutputStream(this.path);
+
+        //the first message the server receives is the file size
+        int fileSize = dis.readInt();
+
+        byte[] buffer = new byte[fileSize];
+
+        int read = 0;
+        int totalRead = 0;
+        int remaining = fileSize;
+
+
+        while ((read = dis.read(buffer, 0, Math.min(buffer.length, remaining))) > 0) {
+            totalRead += read;
+            remaining -= read;
+            fos.write(buffer, 0, read);
+        }
+        //file has been written
+
+        this.music.setPathToFile(this.path);
+        this.user.getTransferredMusics().add(this.music);
+
+        this.thread.saveFile("users.obj", thread.findGroup(1).getUsers());
+        this.thread.saveFile("musics.obj", mainThread.getSongs());
+    }
+
+    public void sendFile(Socket clientSocket) throws IOException {
+
+        //the path of the file the user wants to download is in the Music object
+        this.path = this.music.getPathToFile();
+
+        DataOutputStream dos = new DataOutputStream(clientSocket.getOutputStream()); //stream for writing to client socket
+        FileInputStream fis = new FileInputStream(this.path); //stream for reading from music file in the server
+
+
+        long len = fis.getChannel().size();
+        byte[] buffer = new byte[toIntExact(len)];
+
+        //sending the file size on a separate message
+        dos.writeInt(toIntExact(len));
+
+        //writes the actual file to the clientSocket
+        fis.read(buffer); //reads bytes from file into buffer
+        dos.write(buffer, 0, toIntExact(len));
+
+        fis.close();
+        dos.close();
+    }
+}
+
 class config extends Thread{
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4323;
@@ -1251,6 +1545,5 @@ class config extends Thread{
         }finally {
             socket.close();
         }
-
     }
 }

@@ -12,7 +12,7 @@ public class Music implements Serializable {
     private float duration;
     private CopyOnWriteArrayList<String> editors = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
-
+    private String pathToFile; //é usado apenas quando alguém associa um ficheiro a esta música
 
     public Music(String title, String artist, String genre, float duration) {
         this.title = title;
@@ -27,6 +27,15 @@ public class Music implements Serializable {
         this.genre = genre;
     }
 
+    public String getPathToFile() {
+
+        return pathToFile;
+    }
+
+    public void setPathToFile(String pathToFile) {
+        this.pathToFile = pathToFile;
+    }
+
     public CopyOnWriteArrayList<Integer> getGroups() { return this.groups;  }
 
     public String getTitle() {
@@ -34,6 +43,10 @@ public class Music implements Serializable {
     }
 
     public void add_editor(String editor){ this.editors.add(editor); }
+
+    public CopyOnWriteArrayList<String> getEditors(){
+        return editors;
+    }
 
     public void add_groups(int group) {
         if(!groups.contains(group))
