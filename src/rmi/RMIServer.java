@@ -166,6 +166,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                 System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
                 break;
             }catch (SocketTimeoutException e) {
+                request = "type | resend ; " + request;
                 count ++;
                 continue;
             } catch (IOException e) {
