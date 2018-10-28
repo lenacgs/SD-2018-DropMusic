@@ -188,7 +188,7 @@ public class MulticastServer extends Thread {
         this.pathToObjectFiles = pathToObjectFiles;
         this.name = name;
         this.albums = new CopyOnWriteArrayList<>();
-        String aux = name.replaceAll("MulticastServer", "");
+        String aux = name.replace("MulticastServer", "");
         this.serverNumber = Integer.parseInt(aux);
         this.requests = new CopyOnWriteArrayList<>();
         this.serverCounter = 1;
@@ -241,8 +241,6 @@ public class MulticastServer extends Thread {
 
     public Request findRequest(String message){
         for(int i = requests.size()-1, k = 0; i >= 0 && k < 10; i--,k++){
-            System.out.println("Message: " + message);
-            System.out.println("Request: " + requests.get(i).getRequest());
             if(requests.get(i).compare(message)){
                 return requests.get(i);
             }
@@ -258,7 +256,7 @@ public class MulticastServer extends Thread {
         configuration.start();
         while(counter++ < 5){
             try{
-                Thread.sleep(400);
+                Thread.sleep(200);
                 System.out.print(".");
             }catch(Exception e){}
         }
@@ -274,15 +272,12 @@ public class MulticastServer extends Thread {
             System.out.println("This is my address: " + socket.getInterface().getHostAddress());
 
             while(true){ //receiving
-                System.out.println(serverNumber);
-                System.out.println(serverCounter);
-                System.out.println(replyServer);
                 byte[] buffer = new byte[256];
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
 
                 String message = new String(packet.getData(), 0, packet.getLength());
-                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + "with message: " + message);
+                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + " : " + packet.getPort() + " with message: " + message);
                 //creates new thread for handling the new request
                 requestHandler newRequest = new requestHandler(new Request(message, replyServer), this);
                 newRequest.start();
@@ -480,7 +475,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
         while (it.hasNext()) {
             Music aux = (Music)it.next();
             if (aux.getTitle().equals(title) && aux.getArtist().equals(artist)) {
-                System.out.println("What!");
                 return aux;
             }
         }
@@ -1010,13 +1004,11 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             User u = findUser(info[1][1]);
                             Artist a = findArtist(info[3][1]);
                             if (a == null) {
-                                System.out.println("Hello2");
                                 return "type | get_info ; status | failed ; error | That artist doesn't exist!\n";
                             }
                             for (int i = 0; i < mainThread.getGroups().size(); i++) {
                                 if (verifyGroups(a.getGroups(), u.getDefaultShareGroups())) {
                                     answer += "----------| Artist |----------\n" + a.getName();
-                                    System.out.println(a.getAlbums().size());
                                     if(a.getAlbums().size()>0){
                                         answer += "----------| Albums |----------\n";
                                         for (Album album : a.getAlbums()) {
@@ -1127,7 +1119,6 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "get_notifications":{
                     String username = info[1][1];
                     User current = findUser(username);
-                    System.out.println(current == null);
                     int counter;
                     if(current.getNotifications()!=null) {
                         if ((counter = current.getNotifications().size()) > 0) {
@@ -1142,7 +1133,13 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             return "type | get_notifications ; item_count | 0 ; notifications | ";
                         }
                     }
-                } default:{
+                }case "resend":{
+                    message = message.replace("type | resend ; ", "");
+                    Request r = this.mainThread.findRequest(message);
+                    this.mainThread.replyOrder[r.getReplyServer()] = 0;
+                    this.mainThread.setServerCounter(this.mainThread.getServerCounter()-1);
+                    return r.getReply();
+                }default:{
                     return "type | status ; command | invalid";
                 }
             }
@@ -1159,34 +1156,22 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
             Request r = this.mainThread.findRequest(this.request.getRequest());
             String aux[] = this.request.getRequest().split(" ; ");
             String message;
-            if(r != null && !aux[0].equals("type | config")){
-                System.out.println("Here1");
-                message = r.getReply();
-                this.mainThread.replyOrder[r.getReplyServer()] = 0;
-                this.mainThread.setServerCounter(this.mainThread.getServerCounter()-1);
-            }else{
-                System.out.println("Here2");
-                 message = translation(this.request.getRequest());
+            message = translation(this.request.getRequest());
+            if(!aux[0].equals("type | resend")){
                  this.request.setReply(message);
                  this.mainThread.addRequest(this.request);
             }
             int replyServer = this.mainThread.getReplyServer();
             while(true){
                 if(this.mainThread.replyOrder[replyServer] != 0){
-                    System.out.println("Here3");
-                    System.out.println("Server number: " + this.mainThread.getServerNumber()%3);
-                    System.out.println("Reply server: " + this.mainThread.getReplyServer());
-                    System.out.println("Reply Order: " + this.mainThread.replyOrder[0] + this.mainThread.replyOrder[1] + this.mainThread.replyOrder[2]);
                     if(this.mainThread.getServerNumber()%3 == this.mainThread.getReplyServer()){
-                        System.out.println("Here4");
                         byte[] buffer = message.getBytes();
                         DatagramPacket packet = null;
                         InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
                         if(aux[0].equals("type | config")){
-                            System.out.println("Here5");
                             packet = new DatagramPacket(buffer, buffer.length, group, 4330);
                         }else {
-                            System.out.println("Here6");
+
                             packet = new DatagramPacket(buffer, buffer.length, group, PORT);
                         }
                         socket.send(packet);
@@ -1195,7 +1180,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     break;
                 }else{
                     replyServer++;
-                    this.mainThread.setReplyServer((replyServer)%3);
+                    replyServer = replyServer%3;
+                    this.mainThread.setReplyServer((replyServer));
                 }
             }
             this.mainThread.setReplyServer((replyServer+1)%3);
@@ -1236,7 +1222,6 @@ class config extends Thread{
             packet = new DatagramPacket(buffer, buffer.length);
             socket.receive(packet);
             String reply = new String(packet.getData(), 0, buffer.length);
-            System.out.println(reply);
             String aux[] = reply.split(" ; ");
             String info[][] = new String[aux.length][];
             for(int i = 0; i < aux.length; i++){
