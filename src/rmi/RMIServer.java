@@ -118,7 +118,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
 
         int counter = Integer.parseInt(mes[1][1]);
-        System.out.println("Counter: "+counter);
         if(counter > 0){
             System.out.println(mes[2][1]);
             sendNotification(mes[2][1], c.getUsername());
@@ -159,13 +158,13 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                 socket.setSoTimeout(5000);
                 socket.receive(packet); //bloqueante
 
-                System.out.println("Do i get here?");
                 //answers to client
                 message = new String(packet.getData(), 0, packet.getLength());
 
                 System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
                 break;
             }catch (SocketTimeoutException e) {
+                request = "type | resend ; " + request;
                 count ++;
                 continue;
             } catch (IOException e) {
@@ -174,7 +173,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                 socket.close();
             }
         }
-        System.out.println("MESSAGE =" + message + "-");
         return message;
 
 

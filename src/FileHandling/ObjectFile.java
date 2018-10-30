@@ -34,7 +34,6 @@ public class ObjectFile {
     }
 
     public void writesObject(Object o) {
-        System.out.println("Object o: class: " + o.getClass());
         try {
             output_stream.writeObject(o);
         } catch (IOException e1) {
