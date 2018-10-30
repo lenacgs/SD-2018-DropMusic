@@ -219,7 +219,7 @@ public class MulticastServer extends Thread {
             socket = new MulticastSocket(CONFIG_PORT);
             socket.joinGroup(group);
             packet = new DatagramPacket(buffer, buffer.length);
-            socket.setSoTimeout(2000);
+            socket.setSoTimeout(1000);
             socket.receive(packet);
             String reply = new String(packet.getData(), 0, buffer.length);
             String aux[] = reply.split(" ; ");
@@ -658,7 +658,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
                     int perks = currentUser.getPerks();
                     this.mainThread.addwriteRequest(message);
-                    saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                    saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
                     return "type | status ; operation | succeeded ; perks | " +perks;
 
 
@@ -671,7 +671,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         }
                     }
                     this.mainThread.addwriteRequest(message);
-                    saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                    saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
                     return "type | status ; operation | succeeded";
 
                 }case "groups": {
@@ -741,7 +741,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     Group g = findGroup(Integer.parseInt(info[3][1]));
                     if(g.isOwner(username) && !g.isOwner(expelled_user) && g.getGroupID()!=1){
                         this.mainThread.addwriteRequest(message);
-                        saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                        saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
                         g.removeUser(expelled_user, g.getUsers());
                         if(g.isEditor(expelled_user)){
                             g.removeUser(expelled_user, g.getEditors());
@@ -763,8 +763,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                 g.removeUser(username, g.getOwners());
                             }
                         }
-                        saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
-                        saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
+                        saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                        saveFile("src/Multicast/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
                         return "type | leave_group ; operation | succeeded";
                     }else{
                         return "type | leave_group ; operation | failed ; error | You don't belong to group " + g.getGroupID() + "!";
