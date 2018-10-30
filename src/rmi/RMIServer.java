@@ -243,6 +243,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return toReturn;
     }
 
+    /* apresenta os detalhes do objeto requerido pelo client*/
     public String details(String username, String object, String title, String artist) throws java.rmi.RemoteException{
         String request = "type | get_info ; username | "+username+" ; object | "+object+" ; title | "+title+" ; artist_name | "+artist;
         String answer = dealWithRequest(request);
@@ -281,6 +282,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
+    /*escreve uma review a um album*/
     public boolean review(String title,String artist,String user,String review,int rating) throws java.rmi.RemoteException{
         String request = "type | review ; album_title | "+title+" ; artist_name | "+artist+" ; username | "+user+" ; text | "+review+" ; rate | "+rating;
         String answer = dealWithRequest(request);
@@ -297,6 +299,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             return false;
     }
 
+    /*cria um novo grupo*/
     public String newGroup(String username)throws java.rmi.RemoteException{
         String request = "type | new_group ; username | "+username;
         String answer = dealWithRequest(request);
@@ -314,6 +317,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return null;
     }
 
+    /*função utilizada para apresentar todos os grupos existentes, quando o client pede para se juntar a um grupo*/
     public String showGroups(String username)throws java.rmi.RemoteException{
         String request = "type | groups ; username | "+username;
         String answer = dealWithRequest(request);
@@ -325,6 +329,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return groups;
     }
 
+    /*apresenta todas as músicas "visíveis" para aquele user*/
     public String getMusics (String username) throws java.rmi.RemoteException{
         String request = "type | get_musics ; username | " + username;
 
@@ -342,6 +347,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return "You don't have access to any music files!...";
     }
 
+    /*função para partilhar um ficheiro com outros grupos, envia uma notificação para todos os users do grupo que recebeu acesso*/
     public boolean shareMusic (String username, String groupIDs, String music, String artist) throws java.rmi.RemoteException {
         String request = "type | share_music ; username | " + username + " ; musicTitle | " + music + " ; artistName | " + artist + " ; groupIDs | <" + groupIDs + ">";
 
@@ -358,6 +364,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
+    /*funcao para upload de um novo ficheiro musical. avisa os servidores e um deles responde com o seu porto, onde o client se vai ligar diretamente por TCP*/
     public int uploadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException{
         String request = "type | upload ; username | " + username + " ; music_title | " + musicTitle + " ; artistName | " + artistName;
         String ans = dealWithRequest(request);
