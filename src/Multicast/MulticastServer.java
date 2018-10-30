@@ -269,27 +269,27 @@ public class MulticastServer extends Thread {
 
     public void fileHandler() {
         try {
-            this.getGroupObjectFile().openRead("src/" + this.getName() + "/groups.obj");
+            this.getGroupObjectFile().openRead("src/Multicast/"+getName()+"/groups.obj");
             this.setGroups((CopyOnWriteArrayList)this.getGroupObjectFile().readsObject());
             this.getGroupObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
         try {
-            this.getSongsObjectFile().openRead("src/" + this.getName() + "/musics.obj");
+            this.getSongsObjectFile().openRead("src/Multicast/"+getName()+"/musics.obj");
             this.setSongs((CopyOnWriteArrayList)this.getSongsObjectFile().readsObject());
             this.getSongsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
         try {
-            this.getAlbumsObjectFile().openRead("src/" + this.getName() +"/albums.obj");
+            this.getAlbumsObjectFile().openRead("src/Multicast/"+getName()+"/albums.obj");
             this.setAlbums((CopyOnWriteArrayList)this.getAlbumsObjectFile().readsObject());
             this.getAlbumsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
         try {
-            this.getArtistsObjectFile().openRead("src/" + this.getName() + "/artists.obj");
+            this.getArtistsObjectFile().openRead("src/Multicast/"+getName()+"/artists.obj");
             this.setArtists((CopyOnWriteArrayList)this.getArtistsObjectFile().readsObject());
             this.getArtistsObjectFile().closeRead();
         } catch (IOException e) {/*if there's an exception => empty files => do nothing*/}
         try {
-            this.getWriteRequestsObjectFile().openRead("src/" + this.getName() + "/writeRequests.obj");
+            this.getWriteRequestsObjectFile().openRead("src/Multicast/" + this.getName() + "/writeRequests.obj");
             this.setWriteRequests((CopyOnWriteArrayList)this.getWriteRequestsObjectFile().readsObject());
             this.getWriteRequestsObjectFile().closeRead();
         }catch (IOException e){/*if there's an exception => empty files => do nothing*/}
@@ -630,8 +630,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                     newUser.addToDefaultShareGroups(g);
                     this.mainThread.addwriteRequest(message);
-                    saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
-                    saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
+                    saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                    saveFile("src/Multicast/"+mainThread.getName()+"/groups.obj", mainThread.getGroups());
                     return "type | status ; operation | succeeded ; message | "+admin;
 
                 }case "login": {
@@ -687,8 +687,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     current.getDefaultShareGroups().add(g);
                     current.setPerks(1);
                     mainThread.getGroups().add(g);
-                    saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
-                    saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
+                    saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                    saveFile("src/Multicast/"+mainThread.getName()+"/groups.obj", mainThread.getGroups());
                     return "type | new_group ; groupID | " + groupID + " ; operation | succeeded";
                 }case "join_group": {
                     String username = info[1][1];
@@ -703,8 +703,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         }
                         this.mainThread.addwriteRequest(message);
                         g.addRequest(current);
-                        saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
-                        saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
+                        saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                        saveFile("src/Multicast/"+mainThread.getName()+"/groups.obj", this.mainThread.getGroups());
                         CopyOnWriteArrayList <User> owners = g.getOwners();
                         String toReturn = "type | join_group ; status | succeeded ; owners | ";
                         for(User u : owners){
@@ -720,16 +720,16 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String request = info[4][1];
                     if(g.isOwner(username) && g.getGroupID()!=1){
                         this.mainThread.addwriteRequest(message);
-                        saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                        saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
                         if(request.equals("accept")){
                             new_user.getDefaultShareGroups().add(g);
                             g.addUser(new_user);
                             g.removeRequest(new_user.getUsername());
-                            saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
+                            saveFile("src/Multicast/"+mainThread.getName()+"/groups.obj", this.mainThread.getGroups());
                             return "type | manage_request ; status | succeeded ; operation | accept";
                         }else{
                             g.removeRequest(new_user.getUsername());
-                            saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
+                            saveFile("src/Multicast/"+mainThread.getName()+"/groups.obj", this.mainThread.getGroups());
                             return "type | manage_request ; status | succeeded ; operation | decline";
                         }
                     }else{
@@ -789,8 +789,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             g.addOwner(new_user);
                             new_user.setPerks(1);
                         }
-                        saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
-                        saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
+                        saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                        saveFile("src/Multicast/"+mainThread.getName()+"/groups.obj", this.mainThread.getGroups());
                         return "type | grant_perks ; status | succeeded";
                     }else{
                         return "type | grant_perks ; status | failed ; error | You don't have permission to give " + perks + "perks in group " + groupID + "!";
@@ -895,10 +895,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             artist.addMusic(newMusic);
                             this.mainThread.getArtists().add(artist);
                             this.mainThread.getSongs().add(newMusic);
-                            saveFile("src/" + this.mainThread.getName()+ "/artists.obj", mainThread.getArtists());
-                            saveFile("src/" + this.mainThread.getName()+ "/musics.obj", mainThread.getSongs());
-                            this.mainThread.addwriteRequest(message);
-                            saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                            saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                            saveFile("src/Multicast/"+mainThread.getName()+"/artists.obj", mainThread.getArtists());
+                            saveFile("src/Multicast/"+mainThread.getName()+"/musics.obj", mainThread.getSongs());
                             return "type | add_music ; operation | succeeded";
                         }else{
                             for(Integer i : m.getGroups()){
@@ -942,9 +941,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                 newArtist.add_groups(i);
                             }
                             this.mainThread.getArtists().add(newArtist);
-                            saveFile("src/" + this.mainThread.getName()+ "/artists.obj", mainThread.getArtists());
                             this.mainThread.addwriteRequest(message);
-                            saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                            saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                            saveFile("src/Multicast/"+mainThread.getName()+"/artists.obj", mainThread.getArtists());
                             return "type | add_artist ; operation | succeeded";
                         }else{
                             for(Integer i : a.getGroups()){
@@ -1025,7 +1024,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                         }
                                     }
                                 }
-                                saveFile("src/" + this.mainThread.getName()+ "/musics.obj", mainThread.getSongs());
+                                saveFile("src/Multicast/"+mainThread.getName()+"/musics.obj", mainThread.getSongs());
                             }
                             Album newAlbum = new Album(artist, title, year, musicList, publisher, genre, desc);
                             for (Integer i : groups) {
@@ -1033,10 +1032,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             }
                             artist.getAlbums().add(newAlbum);
                             this.mainThread.getAlbums().add(newAlbum);
-                            saveFile("src/" + this.mainThread.getName()+ "/artists.obj", mainThread.getArtists());
-                            saveFile("src/" + this.mainThread.getName()+ "/albums.obj", mainThread.getAlbums());
                             this.mainThread.addwriteRequest(message);
-                            saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                            saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                            saveFile("src/Multicast/"+mainThread.getName()+"/artists.obj", this.mainThread.getArtists());
+                            saveFile("src/Multicast/"+mainThread.getName()+"/albums.obj", this.mainThread.getAlbums());
                             return "type | add_album ; operation | succeeded";
                         }else{
                             for(Integer i : a.getGroups()){
@@ -1087,10 +1086,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                         m.add_editor(username);
                                     if (!artist.getMusics().contains(m))
                                         artist.addMusic(m);
-
-                                    saveFile("src/" + this.mainThread.getName()+ "/musics.obj", mainThread.getSongs());
-                                    saveFile("src/" + this.mainThread.getName()+ "/artists.obj", mainThread.getArtists());
-
+                                    saveFile("src/Multicast/"+mainThread.getName()+"/musics.obj", mainThread.getSongs());
+                                    saveFile("src/Multicast/"+mainThread.getName()+"/artists.obj", mainThread.getArtists());
                                     return "type | change_info ; operation | success";
                                 }
                                 else
@@ -1122,7 +1119,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                     a.setDescription(desc);
                                     a.setConcerts(new CopyOnWriteArrayList<>(Arrays.asList(conc)));
                                     a.setGenre(genre);
-                                    saveFile("src/" + this.mainThread.getName()+ "/artists.obj", mainThread.getArtists());
+                                    saveFile("src/Multicast/"+mainThread.getName()+"/artists.obj", mainThread.getArtists());
                                     return "type | change_info ; operation | success";
                                 }
                                 else
@@ -1175,7 +1172,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                     else
                                         musicList.add(music);
                                 }
-                                saveFile("src/" + this.mainThread.getName()+ "/musics.obj", mainThread.getSongs());
+                                saveFile("src/Multicast/"+mainThread.getName()+"/musics.obj", mainThread.getSongs());
                                 a.setArtist(artist);
                                 a.setTitle(title);
                                 a.setYearOfPublication(year);
@@ -1184,8 +1181,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                 a.setGenre(genre);
                                 Description desc = new Description(description,current);
                                 a.setDescription(desc);
-
-                                saveFile("src/" + this.mainThread.getName()+ "/albums.obj", mainThread.getAlbums());
+                                saveFile("src/Multicast/"+mainThread.getName()+"/albums.obj", this.mainThread.getAlbums());
                                 return "type | change_info ; operation | success";
                             }
                             else
@@ -1268,8 +1264,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             Review r = new Review(Integer.parseInt(info[5][1]), info[4][1], findUser(info[3][1]));
                             a.addReview(r);
                             this.mainThread.addwriteRequest(message);
-                            saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
-                            saveFile("src/" + this.mainThread.getName()+ "/albums.obj", mainThread.getAlbums());
+                            saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                            saveFile("src/Multicast/" + this.mainThread.getName()+ "/albums.obj", mainThread.getAlbums());
                             return "type | status ; review | successful";
                         }
                         else
@@ -1386,9 +1382,9 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     User current = findUser(username);
                     Notification newNotif = new Notification(notif);
                     current.getNotifications().add(newNotif);
-                    saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
+                    saveFile("src/Multicast/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
                     this.mainThread.addwriteRequest(message);
-                    saveFile("src/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
+                    saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
                     return "type | status ; operation | succeeded";
 
                 }case "get_notifications":{
@@ -1402,7 +1398,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                                 reply += n.getMessage() + "\n";
                                 current.getNotifications().remove(n);
                             }
-                            saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
+                            saveFile("src/Multicast/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());
                             return reply;
                         } else {
                             return "type | get_notifications ; item_count | 0 ; notifications | ";
@@ -1535,9 +1531,8 @@ class TCPWorker extends Thread {
 
         this.music.setPathToFile(this.path);
         this.user.getTransferredMusics().add(this.music);
-
-        this.thread.saveFile("src/" + this.mainThread.getName()+ "/groups.obj", mainThread.getGroups());;
-        this.thread.saveFile("src/" + this.mainThread.getName()+ "/musics.obj", mainThread.getSongs());
+        this.thread.saveFile("src/Multicast/"+this.mainThread.getName()+ "/users.obj", thread.findGroup(1).getUsers());
+        this.thread.saveFile("src/Multicast/"+this.mainThread.getName()+"musics.obj", mainThread.getSongs());
 
     }
 
