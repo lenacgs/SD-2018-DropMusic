@@ -25,6 +25,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     private static String user=null;
     private static int perk=0;
     private static int port;
+    private static String host;
 
     private rmiClient() throws RemoteException {
     }
@@ -53,6 +54,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
     }
 
     public static void main(String[] args) throws IOException, NotBoundException, InterruptedException{
+        host = args[0];
         Runtime.getRuntime().addShutdownHook(new Thread(){
             public void run() {
                 while(true) {
@@ -74,7 +76,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
 
     private static void establishRMIConnection(){
         try {
-            rmi = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting");
+            rmi = (Services) LocateRegistry.getRegistry(host, 7000).lookup("Sporting");
         }catch (RemoteException | NotBoundException e) {
             retryRMIConnection();
         }
@@ -84,7 +86,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         while(true){
             try {
                 Thread.sleep(1000);
-                rmi = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting");
+                rmi = (Services) LocateRegistry.getRegistry(host, 7000).lookup("Sporting");
                 port=rmi.hello();
                 if(user!=null)
                     setC();
