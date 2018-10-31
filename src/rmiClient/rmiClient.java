@@ -8,6 +8,7 @@ import java.awt.font.NumericShaper;
 import java.io.*;
 import java.net.*;
 import java.net.Socket;
+import java.rmi.NoSuchObjectException;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -49,8 +50,11 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 rmi.newClient(port, myHost);
                 break;
             } catch (ExportException e) {
-                UnicastRemoteObject.unexportObject(c, true);
-
+                try {
+                    UnicastRemoteObject.unexportObject(c, true);
+                }catch(NoSuchObjectException e1){
+                    System.out.println(e1.getMessage());
+                }
             }
         }
     }

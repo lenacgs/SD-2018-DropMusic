@@ -95,6 +95,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     public void newClient(int port, String clientIP) throws java.rmi.RemoteException{
         Clients c;
+        System.out.println("port: "+port+" | clientIP: "+clientIP);
         while (true) {
             try {
                 c = (Clients) LocateRegistry.getRegistry(clientIP, port).lookup("Benfica");
@@ -247,7 +248,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String answer = dealWithRequest(request);
         if(answer.equals("type | status ; command | invalid"))
             return "Malformed request, please try again!";
-        else if (answer.equals("type | get_info ; status | failed"))
+        else if (answer.equals("type | get_info ; operation | failed"))
             return "Something went wrong... maybe the "+object+" you entered does not exist!";
         else{
             String[] splitted = answer.split(" ; ");
@@ -266,7 +267,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String answer = dealWithRequest(request);
         if(answer.equals("type | status ; command | invalid"))
             return "Malformed request, please try again!";
-        else if (answer.equals("type | get_info ; status | failed"))
+        else if (answer.equals("type | get_info ; operation | failed"))
             return "Something went wrong... maybe the "+object+" you entered does not exist!";
         else{
             String[] splitted = answer.split(" ; ");
@@ -291,7 +292,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         for(String s : splitted){
             split[i++] = s.split(" \\| ");
         }
-        if(split[1][1].equals("successful"))
+        if(split[1][1].equals("succeeded"))
             return true;
         else
             return false;
@@ -330,7 +331,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     /*apresenta todas as músicas "visíveis" para aquele user*/
     public String getMusics (String username) throws java.rmi.RemoteException{
         String request = "type | get_musics ; username | " + username;
-
         String ans = dealWithRequest(request);
 
         String tokens[] = ans.split(" ; ");
@@ -397,7 +397,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String request = "type | join_group ; username | "+username+" ; group | "+group;
         String answer = dealWithRequest(request);
         String aux[] = answer.split(" ; ");
-        if(aux[1].equals("status | failed")){
+        if(aux[1].equals("operation | failed")){
             String[] reply = aux[2].split(" \\| ");
             return reply[1];
         }
@@ -425,7 +425,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String aux[] = ans.split(" ; ");
 
-            if (aux[1].equals("operation | fail")){
+            if (aux[1].equals("operation | failed")){
                 String[] reply = aux[2].split(" \\| ");
                 return reply[1];
             }else if(aux[1].equals("command | invalid")){
@@ -444,7 +444,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             String aux[] = ans.split(" ; ");
 
-            if (aux[1].equals("operation | fail")){
+            if (aux[1].equals("operation | failed")){
                 String[] reply = aux[2].split(" \\| ");
                 return reply[1];
             }else if(aux[1].equals("command | invalid")){
@@ -464,7 +464,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
         String aux[] = ans.split(" ; ");
 
-        if (aux[1].equals("operation | fail")){
+        if (aux[1].equals("operation | failed")){
             String[] reply = aux[2].split(" \\| ");
             return reply[1];
         }else if(aux[1].equals("command | invalid")){
@@ -482,7 +482,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
 
         String ans = dealWithRequest(request);
-        if (ans.equals("type | grant_perks ; status | succeeded")) {
+        if (ans.equals("type | grant_perks ; operation | succeeded")) {
             String message = "Your permissions on group " + groupID + " have been updated to " + perk +"!";
             sendNotification(message, newUser);
             return true;
@@ -546,7 +546,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             String ans = dealWithRequest(request);
             String aux[] = ans.split(" ; ");
 
-            if (aux[1].equals("operation | fail")){
+            if (aux[1].equals("operation | failed")){
                 String[] reply = aux[2].split(" \\| ");
                 return reply[1];
             }else if(aux[1].equals("command | invalid")){
@@ -566,7 +566,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
         String aux[] = ans.split(" ; ");
 
-        if (aux[1].equals("operation | fail")){
+        if (aux[1].equals("operation | failed")){
             String[] reply = aux[2].split(" \\| ");
             return reply[1];
         }else if(aux[1].equals("command | invalid")){
@@ -590,11 +590,11 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
         String answer = dealWithRequest(request);
 
-        if(answer.equals("type | manage_request ; status | succeeded ; operation | accept")) {
+        if(answer.equals("type | manage_request ; operation | succeeded ; operation | accept")) {
             sendNotification("Your request to join group "+groupID+" has been accepted. Welcome!", newUser);
             return true;
         }
-        else if (answer.equals("type | manage_request ; status | succeeded ; operation | decline")) {
+        else if (answer.equals("type | manage_request ; operation | succeeded ; operation | decline")) {
             sendNotification("Your request to join group "+groupID+" has been rejected", newUser);
             return true;
         }
