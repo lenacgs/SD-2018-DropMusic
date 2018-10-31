@@ -93,11 +93,11 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return clientPort;
     }
 
-    public void newClient(int port) throws java.rmi.RemoteException{
+    public void newClient(int port, String clientIP) throws java.rmi.RemoteException{
         Clients c;
         while (true) {
             try {
-                c = (Clients) LocateRegistry.getRegistry(port).lookup("Benfica");
+                c = (Clients) LocateRegistry.getRegistry(clientIP, port).lookup("Benfica");
                 System.out.println(c==null);
                 break;
             } catch (ConnectException | NotBoundException exception) {
@@ -186,7 +186,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
         //se o register não foi aprovado
         String tokens[] = ans.split(" ; ");
-        if (ans.equals("type | register ; operation | fail")) {
+        if (ans.equals("type | status ; operation | failed")) {
             return 4;
         }
 
