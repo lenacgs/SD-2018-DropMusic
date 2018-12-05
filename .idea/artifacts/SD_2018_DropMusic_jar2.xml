@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="SD-2018-DropMusic:jar2">
-    <output-path>$PROJECT_DIR$/out/artifacts/SD_2018_DropMusic_jar2</output-path>
-    <root id="archive" name="SD-2018-DropMusic.jar">
-      <element id="module-output" name="SD-2018-DropMusic" />
-    </root>
-  </artifact>
-</component>
