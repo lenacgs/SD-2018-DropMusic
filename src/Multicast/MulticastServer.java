@@ -2,7 +2,6 @@ package Multicast;
 
 import Interface.*;
 import FileHandling.*;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 
 import javax.xml.crypto.Data;
@@ -19,12 +18,15 @@ public class MulticastServer extends Thread {
     private ObjectFile usersObjectFile; //file for registered users
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int serverNumber;
+    private int serverCounter;
+    private int replyServer;
     private int PORT = 4323;
     private CopyOnWriteArrayList<Request> requests;
     private CopyOnWriteArrayList<String> writeRequests;
     private CopyOnWriteArrayList<User> loggedOn;
     private CopyOnWriteArrayList<Group> groups;
     private String pathToObjectFiles;
+    public int[] replyOrder = new int[]{0,0,0};
     private String name;
     private ObjectFile groupObjectFile;
     private ObjectFile songsObjectFile;
@@ -47,11 +49,29 @@ public class MulticastServer extends Thread {
         this.requests.add(request);
     }
 
+    public int getServerNumber(){
+        return this.serverNumber;
+    }
+
+    public int getReplyServer(){
+        return this.replyServer;
+    }
+
     public CopyOnWriteArrayList<String> getwriteRequests(){
         return this.writeRequests;
     }
 
-    public int getServerNumber() { return this.serverNumber;}
+    public void setServerCounter(int serverCounter){
+        this.serverCounter = serverCounter;
+    }
+
+    public int getServerCounter(){
+        return this.serverCounter;
+    }
+
+    public void setReplyServer(int replyServer){
+        this.replyServer = replyServer;
+    }
 
     public ObjectFile getGroupObjectFile() {
         return groupObjectFile;
@@ -179,7 +199,67 @@ public class MulticastServer extends Thread {
         String aux = name.replace("MulticastServer", "");
         this.serverNumber = Integer.parseInt(aux);
         this.requests = new CopyOnWriteArrayList<>();
+        this.serverCounter = 1;
+        this.replyServer = this.serverNumber%3;
+        this.replyOrder[this.getReplyServer()] = 1;
+    }
 
+    public void config(){
+        int CONFIG_PORT = 4330;
+        MulticastSocket socket = null;
+        try{
+            socket = new MulticastSocket();
+            InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
+            socket.joinGroup(group);
+            String message = "type | config ; server_number | " + this.getServerNumber() + " ; requestNumber | " + this.getCurrentRequest();
+            byte buffer[] = message.getBytes();
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);
+            socket.send(packet);
+            buffer = new byte[256];
+            socket = new MulticastSocket(CONFIG_PORT);
+            socket.joinGroup(group);
+            packet = new DatagramPacket(buffer, buffer.length);
+            socket.setSoTimeout(1000);
+            socket.receive(packet);
+            String reply = new String(packet.getData(), 0, buffer.length);
+            String aux[] = reply.split(" ; ");
+            String info[][] = new String[aux.length][];
+            for(int i = 0; i < aux.length; i++){
+                info[i] = aux[i].split(" \\| ");
+            }
+            int serverCount = 0;
+            aux = info[1][1].split(",");
+            for(int  i = 0; i < 3; i++){
+                this.replyOrder[i] = Integer.parseInt(aux[i]);
+                if(Integer.parseInt(aux[i])==1){
+                    serverCount++;
+                }
+            }
+            this.setServerCounter(serverCount);
+            int replyServer = Integer.parseInt(info[2][1]);
+            this.setReplyServer(replyServer);
+            int n = Integer.parseInt(info[3][1]);
+            if(n > 0){
+                aux = reply.split(" ; ");
+                String replaced = "";
+                for(int i = 0; i < 4; i++){
+                    replaced += aux[i];
+                    replaced += " ; ";
+                }
+                replaced += "requests | ";
+                reply = reply.replace(replaced, "");
+                String[] requests = reply.split(",");
+                requestHandler newRequest = new requestHandler(new Request(requests[0], replyServer), this);
+                for(int i = 0; i < n; i++){
+                    newRequest.translation(requests[i]);
+                }
+            }
+        }catch (SocketTimeoutException e1){
+        } catch (IOException e) {
+
+        } finally{
+            socket.close();
+        }
     }
 
     public ObjectFile getUsersObjectFile() {
@@ -227,9 +307,10 @@ public class MulticastServer extends Thread {
     public void run(){
         fileHandler();
         int counter = 0;
-        System.out.println("Waiting for configuration");
+        System.out.print("Waiting for configuration");
+        config();
         MulticastSocket socket = null;
-        System.out.println(this.getName() + " running...");
+        System.out.println("\n" + this.getName() + " running...");
 
         try{
             socket = new MulticastSocket(PORT);
@@ -246,7 +327,7 @@ public class MulticastServer extends Thread {
                 String message = new String(packet.getData(), 0, packet.getLength());
                 System.out.println("Received packet from " + packet.getAddress().getHostAddress() + " : " + packet.getPort() + " with message: " + message);
                 //creates new thread for handling the new request
-                requestHandler newRequest = new requestHandler(new Request(message), this);
+                requestHandler newRequest = new requestHandler(new Request(message, replyServer), this);
                 newRequest.start();
                 }
 
@@ -478,15 +559,53 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
 
     public String translation(String message){
-        if(message.equals("\n")) System.out.println(1);
-        System.out.println(message);
         String tokens[] = message.split(" ; ");
         String info[][] = new String[tokens.length][];
         for(int i = 0; i < tokens.length; i++) info[i] = tokens[i].split(" \\| ");
         if(info[0][0].equals("type")){
             String command = info[0][1];
             switch(command) {
-                case "register": {
+                case "config": {
+                    int servercounter = this.mainThread.getServerCounter() + 1;
+                    if(servercounter > 3){
+                        servercounter = 3;
+                    }
+                    this.mainThread.setServerCounter(servercounter);
+                    String reply = "type | config ; server_order | ";
+                    int configServer = Integer.parseInt(info[1][1]);
+                    int currentRequest = Integer.parseInt(info[2][1]);
+                    int replyServer = this.mainThread.getReplyServer();
+                    if(this.mainThread.replyOrder[configServer%3] == 1 && replyServer == configServer%3){
+                        if(this.mainThread.replyOrder[(replyServer+1)%3] == 1){
+                            this.mainThread.setReplyServer((replyServer+1)%3);
+                            replyServer = (replyServer+2)%3;
+                        }else{
+                            this.mainThread.setReplyServer((replyServer+2)%3);
+                        }
+                    }
+                    else{
+                        this.mainThread.replyOrder[configServer%3] = 1;
+                        replyServer = (replyServer+1)%3;
+                    }
+                    for(int i = 0; i < this.mainThread.replyOrder.length; i++){
+                        reply += this.mainThread.replyOrder[i];
+                        if(i != 3){
+                            reply += ",";                        }
+                    }
+                    reply += " ; reply_server | " + replyServer + " ; item_count | ";
+
+                    reply += (this.mainThread.getCurrentRequest() - currentRequest) + " ; requests | ";
+                    if(currentRequest < this.mainThread.getCurrentRequest()){
+                        CopyOnWriteArrayList<String> serverRequests = this.mainThread.getwriteRequests();
+                        for(int i = currentRequest; i < this.mainThread.getCurrentRequest(); i++){
+                            reply += serverRequests.get(i);
+                            if(i != mainThread.getCurrentRequest()){
+                                reply += ",";
+                            }
+                        }
+                    }
+                    return reply;
+                }case "register": {
                     String username = info[1][1];
                     String password = info[2][1];
                     if (mainThread.getGroups().size() > 0 && findUser(username) != null) { //já existe este username
@@ -526,8 +645,23 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     if (!verifyPassword(currentUser, password)) {
                         return "type | status ; operation | failed ; error | 5";
                     }
+
+                    boolean loggedForSomeReason = false;
+                    for(User u : mainThread.getLoggedOn()){
+                        if(u.getUsername().equals(username)){
+                            loggedForSomeReason = true;
+                            break;
+                        }
+                    }
+
+                    if(!loggedForSomeReason)mainThread.getLoggedOn().add(currentUser);
+
                     int perks = currentUser.getPerks();
+                    this.mainThread.addwriteRequest(message);
+                    saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
                     return "type | status ; operation | succeeded ; perks | " +perks;
+
+
                 }case "logout":{
                     String username = info[1][1];
                     for(User u : this.mainThread.getLoggedOn()){
@@ -536,6 +670,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                             break;
                         }
                     }
+                    this.mainThread.addwriteRequest(message);
+                    saveFile("src/Multicast/" + this.mainThread.getName()+ "/writeRequests.obj", mainThread.getwriteRequests());
                     return "type | status ; operation | succeeded";
 
                 }case "groups": {
@@ -1301,6 +1437,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                 }case "resend":{
                     message = message.replaceAll("type | resend ; ", "");
                     Request r = this.mainThread.findRequest(message);
+                    this.mainThread.replyOrder[r.getReplyServer()] = 0;
+                    this.mainThread.setServerCounter(this.mainThread.getServerCounter()-1);
                     return r.getReply();
                 }default:{
                     return "type | status ; command | invalid";
@@ -1324,25 +1462,30 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                  this.request.setReply(message);
                  this.mainThread.addRequest(this.request);
             }
-            byte[] buffer = message.getBytes();
-            DatagramPacket packet = null;
-            InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
-            if(aux[0].equals("type | config")){
-                String length = new String();
-                length += message.length();
-                byte[] buffer2 = length.getBytes();
-                packet = new DatagramPacket(buffer2, buffer2.length, group, 4330);
-                System.out.println("Sent to multicast address: " + length);
-                socket.send(packet);
-                packet = new DatagramPacket(buffer, buffer.length, group, 4330);
-            }else {
-                packet = new DatagramPacket(buffer, buffer.length, group, PORT);
+            int replyServer = this.mainThread.getReplyServer();
+            while(true){
+                if(this.mainThread.replyOrder[replyServer] != 0){
+                    if(this.mainThread.getServerNumber()%3 == this.mainThread.getReplyServer()){
+                        byte[] buffer = message.getBytes();
+                        DatagramPacket packet = null;
+                        InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
+                        if(aux[0].equals("type | config")){
+                            packet = new DatagramPacket(buffer, buffer.length, group, 4330);
+                        }else {
+
+                            packet = new DatagramPacket(buffer, buffer.length, group, PORT);
+                        }
+                        socket.send(packet);
+                        System.out.println("Sent to multicast address: " + message);
+                    }
+                    break;
+                }else{
+                    replyServer++;
+                    replyServer = replyServer%3;
+                    this.mainThread.setReplyServer((replyServer));
+                }
             }
-            try{
-                this.sleep(100);
-            }catch(Exception e){}
-            socket.send(packet);
-            System.out.println("Sent to multicast address: " + message);
+            this.mainThread.setReplyServer((replyServer+1)%3);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -1433,37 +1576,5 @@ class TCPWorker extends Thread {
 
         fis.close();
         dos.close();
-    }
-}
-
-class HeartBeat extends Thread{
-    private String UDP_ADDRESS = "224.0.244.1";
-    private int PORT = 4360;
-    MulticastServer mainThread;
-
-    public HeartBeat(MulticastServer mainThread){
-        super("HeartBeat");
-        this.mainThread = mainThread;
-    }
-
-
-    public void run(){
-        try{
-            DatagramSocket socket = new DatagramSocket(PORT);
-            InetAddress address = InetAddress.getByName(UDP_ADDRESS);
-            String serverNumber = "" + mainThread.getServerNumber();
-            byte[] buffer = serverNumber.getBytes();
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-            while(true){
-                socket.send(packet);
-                try{
-                    this.sleep(30000);
-                }catch(InterruptedException e){}
-            }
-        }catch(IOException e){
-
-        }finally {
-
-        }
     }
 }
