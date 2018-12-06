@@ -6,17 +6,9 @@ public class Request implements Serializable {
     private static final long serialVersionUID = 4L;
     private String request;
     private String reply;
-    private int replyServer;
 
-
-    public Request(String request, int replyServer){
+    public Request(String request){
         this.request = request;
-        this.replyServer = replyServer;
-    }
-
-
-    public int getReplyServer(){
-        return this.replyServer;
     }
 
     public void setReply(String reply){

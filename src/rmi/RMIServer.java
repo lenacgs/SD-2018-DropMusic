@@ -13,9 +13,10 @@ import java.rmi.server.UnicastRemoteObject;
 
 import java.net.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.TimeoutException;
 
 public class RMIServer extends UnicastRemoteObject implements Services {
-
+    private boolean[] servers = {false, false, false};
     private static Services s;
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4323;
@@ -128,6 +129,10 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     public void ping() throws java.rmi.RemoteException {
         //esta funcao nao precisa de fazer nada pois so serve para testar a ligacao entre o primario e o secundario
+    }
+
+    public boolean[] getServers(){
+        return this.servers;
     }
 
     private String dealWithRequest(String request) {
@@ -511,6 +516,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //então, envia mensagem para o server para ele guardar a notificação para enviar quando o user se loggar de novo
 
         String request = "type | notification ; username | " + user + " ; message | " + message;
+        System.out.println(request);
 
         dealWithRequest(request);
     }
@@ -603,4 +609,72 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     }
 
+}
+
+
+class MulticastChecker extends Thread{
+    private String UDP_ADDRESS = "224.0.224.1";
+    private int PORT = 4360;
+    RMIServer rmiServer;
+    int server1 = 0, server2 = 0, server3 = 0;
+
+    public MulticastChecker(RMIServer rmiserver){
+        super("RMIChecker");
+        this.rmiServer = rmiserver;
+    }
+
+    public void run(){
+        DatagramSocket socket = null;
+        try{
+            int serverNumber;
+            socket = new DatagramSocket(PORT);
+            InetAddress address = InetAddress.getByName(UDP_ADDRESS);
+            byte[] buffer = new byte[256];
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+            while(true){
+                try {
+                    socket.setSoTimeout(1000);
+                    socket.receive(packet);
+                    String message = new String(packet.getData(), 0, packet.getLength());
+                    serverNumber = Integer.parseInt(message.trim());
+                    if (!rmiServer.getServers()[serverNumber - 1]) {
+                        rmiServer.getServers()[serverNumber - 1] = true;
+                    }
+                    switch (serverNumber){
+                        case 1:{
+                            server1 = 0;
+                            break;
+                        }case 2:{
+                            server2 = 0;
+                            break;
+                        }case 3:{
+                            server3 = 0;
+                            break;
+                        }
+                    }
+                }catch(SocketTimeoutException e){
+                    for(int i = 0; i < rmiServer.getServers().length; i++){
+                        if(rmiServer.getServers()[i]){
+                            switch (i){
+                                case 0: {
+                                    server1++;
+                                    break;
+                                }case 1:{
+                                    server2++;
+                                    break;
+                                }case 2:{
+                                    server3++;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }catch(IOException e){
+
+        }finally {
+            socket.close();
+        }
+    }
 }
