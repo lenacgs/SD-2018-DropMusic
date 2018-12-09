@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="SD_DropMusic_Meta2:war exploded" />
+      <artifact name="SD-DropMusic" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05c8da56-e0ec-4f7e-abd5-3702d6e92b15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Interface/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/artists.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/musics.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer2/groups.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer2/groups.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer2/writeRequests.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer2/writeRequests.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rmi/RMIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/RMIServer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -31,39 +37,63 @@
     <session id="1212959648">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="9" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.23" value="2" />
+          <entry key="project.open.time.24" value="1" />
+          <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="4" />
+          <entry key="java" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="4" />
+          <entry key="JAVA" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1" />
+          <entry key="java" value="5726" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1" />
+          <entry key="JAVA" value="5726" />
         </counts>
       </usages-collector>
     </session>
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="SD-2018-DropMusic" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-23630">
-              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="3043">
+              <caret line="250" column="57" selection-start-line="250" selection-start-column="57" selection-end-line="250" selection-end-column="57" />
               <folding>
                 <element signature="e#1300#1301#0" expanded="true" />
                 <element signature="e#1336#1337#0" expanded="true" />
@@ -128,42 +158,22 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="679" column="1" selection-start-line="679" selection-start-column="1" selection-end-line="679" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5124#5125#0" expanded="true" />
-                <element signature="e#5159#5160#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Interface/Request.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-              <folding>
-                <element signature="e#239#240#0" expanded="true" />
-                <element signature="e#277#278#0" expanded="true" />
-                <element signature="e#318#319#0" expanded="true" />
-                <element signature="e#352#353#0" expanded="true" />
-                <element signature="e#383#384#0" expanded="true" />
-                <element signature="e#416#417#0" expanded="true" />
-                <element signature="e#449#450#0" expanded="true" />
-                <element signature="e#484#485#0" expanded="true" />
-                <element signature="e#529#530#0" expanded="true" />
-                <element signature="e#580#581#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>dealW</find>
+      <find>translation(S</find>
+      <find>dealwithRequest(S</find>
+      <find>trans</find>
+      <find>Dealwithrequest(S</find>
+      <find>dealWithRequest(S</find>
+      <find>dealWithRequest(St</find>
+      <find>config</find>
+      <find>dealWithRequest(Str</find>
+      <find>.send</find>
+      <find>.sleep</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -171,9 +181,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/Interface/Request.java" />
         <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
         <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
-        <option value="$PROJECT_DIR$/src/Interface/Request.java" />
       </list>
     </option>
   </component>
@@ -190,8 +200,14 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
     <option name="width" value="1920" />
     <option name="height" value="1040" />
   </component>
@@ -199,51 +215,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Interface" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Multicast" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Multicast" type="462c0819:PsiDirectoryNode" />
-              <item name="MulticastServer.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="rmi" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -251,11 +223,11 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544103192714" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544392176972" />
     <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/javax/websocket/javax.websocket-api/1.1/javax.websocket-api-1.1.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.20665902" />
     <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
@@ -272,14 +244,58 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MulticastServer">
-    <configuration name="MulticastServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.rmiClient">
+    <configuration name="MulticastServer1" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
       <module name="SD_DropMusic_Meta2" />
       <option name="PROGRAM_PARAMETERS" value="MulticastServer1 MulticastServer1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Multicast.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MulticastServer2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
+      <module name="SD_DropMusic_Meta2" />
+      <option name="PROGRAM_PARAMETERS" value="MulticastServer2 MulticastServer2" />
+      <option name="VM_PARAMETERS" value="-Xmx2048m" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MulticastServer3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
+      <module name="SD_DropMusic_Meta2" />
+      <option name="PROGRAM_PARAMETERS" value="MulticastServer3 MulticastServer3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RMIServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rmi.RMIServer" />
+      <module name="SD_DropMusic_Meta2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rmi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="rmiClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rmiClient.rmiClient" />
+      <module name="SD_DropMusic_Meta2" />
+      <option name="PROGRAM_PARAMETERS" value="localhost localhost" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rmiClient.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -359,12 +375,18 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.MulticastServer2" />
+      <item itemvalue="Application.MulticastServer3" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.12" />
-      <item itemvalue="Application.MulticastServer" />
+      <item itemvalue="Application.MulticastServer1" />
+      <item itemvalue="Application.RMIServer" />
+      <item itemvalue="Application.rmiClient" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MulticastServer" />
+        <item itemvalue="Application.MulticastServer1" />
+        <item itemvalue="Application.RMIServer" />
+        <item itemvalue="Application.rmiClient" />
       </list>
     </recent_temporary>
   </component>
@@ -380,32 +402,42 @@
       <updated>1544030045975</updated>
       <workItem from="1544030049836" duration="559000" />
       <workItem from="1544032158215" duration="1709000" />
+      <workItem from="1544109896714" duration="20000" />
+      <workItem from="1544109950917" duration="157000" />
+      <workItem from="1544110720501" duration="607000" />
+      <workItem from="1544126798435" duration="4389000" />
+      <workItem from="1544219944935" duration="8032000" />
+      <workItem from="1544240582112" duration="599000" />
+      <workItem from="1544284333137" duration="10526000" />
+      <workItem from="1544298076413" duration="1883000" />
+      <workItem from="1544382023895" duration="1771000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3099000" />
+    <option name="totallyTimeSpent" value="32682000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49565217" weight="0.27651006" />
+      <window_info id="Structure" order="1" sideWeight="0.505423" side_tool="true" weight="0.27651006" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Favorites" order="5" side_tool="true" weight="0.3295302" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.1529745" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.04957507" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32857144" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
@@ -416,11 +448,44 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.3295302" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49565217" visible="true" weight="0.27651006" />
+      <window_info id="Structure" order="1" sideWeight="0.505423" side_tool="true" visible="true" weight="0.27651006" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34702548" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32857144" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.3299458" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -429,46 +494,77 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../Desktop/SD_DropMusic_Meta2/src/rmi/RMIServer.java">
+    <entry file="file://$PROJECT_DIR$/../../../Desktop/SD_DropMusic_Meta2/src/rmi/RMIServer.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/net/DatagramSocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8397" />
+        <state relative-caret-position="138">
+          <caret line="391" selection-start-line="391" selection-end-line="391" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+    <entry file="file://$PROJECT_DIR$/../../../Downloads/Ficha2_Sockets/SocketsExamples/SocketsExamples/UDPClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="679" column="1" selection-start-line="679" selection-start-column="1" selection-end-line="679" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5124#5125#0" expanded="true" />
-            <element signature="e#5159#5160#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="527">
+          <caret line="32" column="40" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Downloads/Ficha2_Sockets/SocketsExamples/SocketsExamples/UDPServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileHandling/ObjectFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-20834">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/NumberFormatException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="51" column="19" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Interface/Request.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
+        <state relative-caret-position="330">
           <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
           <folding>
-            <element signature="e#239#240#0" expanded="true" />
-            <element signature="e#277#278#0" expanded="true" />
-            <element signature="e#318#319#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#383#384#0" expanded="true" />
-            <element signature="e#416#417#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#580#581#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23630">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="3043">
+          <caret line="250" column="57" selection-start-line="250" selection-start-column="57" selection-end-line="250" selection-end-column="57" />
           <folding>
             <element signature="e#1300#1301#0" expanded="true" />
             <element signature="e#1336#1337#0" expanded="true" />
@@ -610,7 +706,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>javax.websocket-api-1.1</last-edited>
+          <last-edited>javax.websocket:javax.websocket-api:1.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
