@@ -6,11 +6,8 @@
         <element id="directory" name="classes">
           <element id="module-output" name="SD_DropMusic_Meta2" />
         </element>
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="javax.websocket:javax.websocket-api:1.1" />
-        </element>
       </element>
-      <element id="javaee-facet-resources" facet="SD_DropMusic_Meta2/web/Web" />
+      <element id="javaee-facet-resources" facet="SD_DropMusic_Meta2/web/SD_DropMusic" />
     </root>
   </artifact>
 </component>

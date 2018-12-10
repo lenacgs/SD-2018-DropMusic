@@ -1,6 +1,9 @@
 package rmi;
 
 import rmiClient.Clients;
+
+import javax.sql.rowset.serial.SQLOutputImpl;
+import javax.sql.rowset.serial.SerialStruct;
 import java.io.IOException;
 import java.rmi.AccessException;
 import java.rmi.ConnectException;
@@ -13,18 +16,20 @@ import java.rmi.server.UnicastRemoteObject;
 
 import java.net.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.TimeoutException;
 
 public class RMIServer extends UnicastRemoteObject implements Services {
-
+    private boolean[] servers = {false, false, false};
+    int replyServer = 0;
     private static Services s;
     private String MULTICAST_ADDRESS = "224.0.224.0";
     private int PORT = 4323;
     private String name = "RMIServer";
     private CopyOnWriteArrayList<Clients> clientList = new CopyOnWriteArrayList<>();
     private int clientPort = 7000;
+    private  MulticastChecker checker = new MulticastChecker(this);
 
     private RMIServer() throws RemoteException {
-
     }
 
     public static void main(String[] args) throws RemoteException {
@@ -35,6 +40,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             e.printStackTrace();
         }
     }
+
 
     private static void createRegistry() throws RemoteException, InterruptedException {
         /*Creates registry of new RMI server on port 7000
@@ -130,12 +136,40 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //esta funcao nao precisa de fazer nada pois so serve para testar a ligacao entre o primario e o secundario
     }
 
+    public boolean[] getServers(){
+        return this.servers;
+    }
+
+    protected String setReplyServer(String request, String operationType){
+       if(operationType.equals("download") || operationType.equals("upload") || operationType.equals("get_musics") || operationType.equals("share_music")){
+           request = "server | 1 ; " + request;
+           return request;
+       }
+        int counter = 0, counter2 = 0;
+        while(!this.servers[replyServer]){
+            if(counter++ == 3){
+                try{
+                    Thread.sleep(5000);
+                    if(++counter2 > 6){
+                        return "type | " + operationType + " ; operation | failed";
+                    }
+                }catch(InterruptedException e){}
+                counter = 0;
+            }
+            replyServer++;
+            replyServer = replyServer%3;
+        }
+        request = "server | " + (replyServer++ + 1) + " ; " + request;
+        replyServer = replyServer%3;
+        return request;
+    }
+
     private String dealWithRequest(String request) {
         MulticastSocket socket = null;
         String operationType = request.split(" ; ")[0].split(" \\| ")[1];
+        request = setReplyServer(request, operationType);
         String message = "type | " + operationType + " ; operation | failed";
         int count = 0;
-
         //se não houver uma resposta em 5 segundos, há reenvio do request
         //isto acontece
         while (count < 6) {
@@ -145,14 +179,20 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                 socket.joinGroup(group); //joins multicast group
                 socket.setLoopbackMode(false);
                 //sends request to multicast address
-                byte[] buffer = request.getBytes();
+                String length = "" + request.length();
+                byte[] buffer = length.getBytes();
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, PORT);
                 socket.send(packet);
-
+                try{
+                    Thread.sleep(100);
+                }catch (InterruptedException e){}
+                buffer = request.getBytes();
+                packet = new DatagramPacket(buffer, buffer.length, group, PORT);
+                socket.send(packet);
                 System.out.println("Sent to multicast address: " + request);
 
                 //waits for answer
-                buffer = new byte[8192];
+                buffer = new byte[8];
                 packet = new DatagramPacket(buffer, buffer.length);
                 socket = new MulticastSocket(4324);
                 socket.joinGroup(group);
@@ -161,12 +201,17 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
                 //answers to client
                 message = new String(packet.getData(), 0, packet.getLength());
-
+                int bufferlength = Integer.parseInt(message.trim());
+                buffer = new byte[bufferlength];
+                packet = new DatagramPacket(buffer, bufferlength);
+                socket.receive(packet);
                 System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
+                message = new String(packet.getData(),0,packet.getLength());
                 break;
             }catch (SocketTimeoutException e) {
-                request = "type | resend ; " + request;
-                count ++;
+                if(count++ < 0){
+                    request = "type | resend ; " + request;
+                }
                 continue;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -511,6 +556,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         //então, envia mensagem para o server para ele guardar a notificação para enviar quando o user se loggar de novo
 
         String request = "type | notification ; username | " + user + " ; message | " + message;
+        System.out.println(request);
 
         dealWithRequest(request);
     }
@@ -603,4 +649,92 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     }
 
+}
+
+
+class MulticastChecker extends Thread{
+    private int PORT = 4360;
+    RMIServer rmiServer;
+    int[] servers = {0,0,0};
+    int serverCounter = 0;
+
+    public MulticastChecker(RMIServer rmiserver){
+        super("RMIChecker");
+        this.rmiServer = rmiserver;
+    }
+
+    public void run(){
+        System.out.println("Heartbeat receiver is up!");
+        DatagramSocket socket = null;
+        try{
+            int currentRequest, serverNumber;
+            socket = new DatagramSocket(PORT);
+            byte[] buffer = new byte[32];
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+            while(true){
+                try {
+                    socket.setSoTimeout(1000);
+                    socket.receive(packet);
+                    String message = new String(packet.getData(), 0, packet.getLength());
+                    System.out.println("Received heartbeat from server " + message);
+                    String aux[] = message.split(" ; ");
+                    String info[][] = new String[2][];
+                    info[0] = aux[0].split(" \\| ");
+                    info[1] = aux[1].split( " \\| ");
+                    serverNumber = Integer.parseInt(info[0][1].trim());
+                    currentRequest = Integer.parseInt(info[1][1].trim());
+                    if((rmiServer.getServers()[serverNumber-1]) && this.servers[serverNumber-1] < 28){
+                        rmiServer.getServers()[serverNumber-1] = false;
+                    }
+                    if (!rmiServer.getServers()[serverNumber - 1]) {
+                        if(serverCounter++ > 0){
+                            String request = "type | config ; currentRequest | " + currentRequest;
+                            request = rmiServer.setReplyServer(request, "config");
+                            MulticastSocket multicastSocket = null;
+                            try{
+                                multicastSocket = new MulticastSocket();
+                                InetAddress address = InetAddress.getByName("224.0.224.0");
+                                String length = request.length() + "";
+                                buffer = length.getBytes();
+                                packet = new DatagramPacket(buffer, buffer.length, address, 4323);
+                                multicastSocket.send(packet);
+                                try{
+                                    Thread.sleep(100);
+                                }catch (InterruptedException e){
+
+                                }
+                                System.out.println("Sent to multicast: " + length);
+                                buffer = request.getBytes();
+                                packet = new DatagramPacket(buffer, buffer.length, address, 4323);
+                                multicastSocket.send(packet);
+                                System.out.println("Sent to multicast: " + request);
+                            }catch(IOException e){
+                                e.printStackTrace();
+                            }finally {
+                                multicastSocket.close();
+                            }
+                        }
+                        rmiServer.getServers()[serverNumber-1] = true;
+                        System.out.println("Server " + serverNumber + " is up!");
+
+                    }
+                    this.servers[serverNumber -1] = 0;
+                }catch(SocketTimeoutException e){
+                    for(int i = 0; i < rmiServer.getServers().length; i++){
+                        if(rmiServer.getServers()[i]){
+                            if(++this.servers[i] > 35){
+                                System.out.println("Server " + (i+1) + " is dead!");
+                                rmiServer.getServers()[i] = false;
+                                this.serverCounter--;
+                            }
+                        }
+                    }
+                }
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally {
+            socket.close();
+        }
+    }
 }
