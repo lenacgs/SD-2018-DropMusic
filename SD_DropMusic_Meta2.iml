@@ -20,7 +20,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.12" level="application_server_libraries" />
+<<<<<<< HEAD
     <orderEntry type="library" name="javax.websocket-api-1.1" level="project" />
     <orderEntry type="library" name="lib" level="project" />
+=======
+    <orderEntry type="library" name="javax.websocket:javax.websocket-api:1.1" level="project" />
+    <orderEntry type="library" name="com.github.scribejava:scribejava-apis:3.1.0" level="project" />
+>>>>>>> 1fe4eb2ae5c8f07a565c59d84d671de01a70158f
   </component>
 </module>

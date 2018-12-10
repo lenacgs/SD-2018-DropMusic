@@ -6,6 +6,12 @@
         <element id="directory" name="classes">
           <element id="module-output" name="SD_DropMusic_Meta2" />
         </element>
+<<<<<<< HEAD
+=======
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="javax.websocket-api-1.1" />
+        </element>
+>>>>>>> 1fe4eb2ae5c8f07a565c59d84d671de01a70158f
       </element>
       <element id="javaee-facet-resources" facet="SD_DropMusic_Meta2/web/SD_DropMusic" />
     </root>
