@@ -1,5 +1,6 @@
 package rmi;
 
+import Dropbox_RESTAPI.DropboxConnection;
 import rmiClient.Clients;
 
 import javax.sql.rowset.serial.SQLOutputImpl;
@@ -32,6 +33,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     private RMIServer() throws RemoteException {
         MulticastChecker checker = new MulticastChecker(this);
         checker.start();
+
     }
 
     public static void main(String[] args) throws RemoteException {
@@ -98,6 +100,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
     public int hello() throws java.rmi.RemoteException {
         clientPort++;
+        System.out.println("New client connected!");
         return clientPort;
     }
 
@@ -166,7 +169,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return request;
     }
 
-    private String dealWithRequest(String request) {
+    private String dealWithRequest(String request) { //função que envia um request para os servidores
         MulticastSocket socket = null;
         String operationType = request.split(" ; ")[0].split(" \\| ")[1];
         request = setReplyServer(request, operationType);
@@ -207,8 +210,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                 buffer = new byte[bufferlength];
                 packet = new DatagramPacket(buffer, bufferlength);
                 socket.receive(packet);
-                message = new String(packet.getData(),0,packet.getLength());
                 System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
+                message = new String(packet.getData(),0,packet.getLength());
                 break;
             }catch (SocketTimeoutException e) {
                 if(count++ < 0){
@@ -222,13 +225,10 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             }
         }
         return message;
-
-
-
-
     }
 
     public int register (String username, String password) throws java.rmi.RemoteException{
+        System.out.println("Trying to register " + username + " with p: "+password);
         String request = "type | register ; username | "+username+" ; password | "+password;
         String ans = dealWithRequest(request);
 
@@ -519,6 +519,11 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }else{
             return "Album successfully edited!";
         }
+    }
+
+    public boolean associateDropboxAccount(String username) {
+        DropboxConnection dropbox = new DropboxConnection();
+        return true;
     }
 
 

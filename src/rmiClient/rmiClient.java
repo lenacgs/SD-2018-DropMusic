@@ -181,8 +181,10 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             while(true) {
                 try {
                     //funcao de registar e login tem que devolver um boolean
-                    if (modifier == 1) //registar
+                    if (modifier == 1) {//registar
+                        System.out.println("Sending register information to RMIServer");
                         verifier = rmi.register(username, password);
+                    }
                     else //login
                         verifier = rmi.login(username, password);
                     break;
@@ -538,14 +540,15 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
             System.out.println("| 6) Share Music                            |");
             System.out.println("| 7) Create Group                           |");
             System.out.println("| 8) Join Group                             |");
+            System.out.println("| 9) Associate Dropbox account              |");
             if (perk<3){ // se for editor ou owner
-                System.out.println("| 9) Give 'Editor' privileges               |");
-                System.out.println("| 10) Add/change info                       |");
+                System.out.println("| 10) Give 'Editor' privileges              |");
+                System.out.println("| 11) Add/change info                       |");
 
             }
             if(perk<2){ // se for owner
-                System.out.println("| 11) Give 'Owner' privileges               |");
-                System.out.println("| 12) Manage group requests                 |");
+                System.out.println("| 12) Give 'Owner' privileges               |");
+                System.out.println("| 13) Manage group requests                 |");
             }
             System.out.println("| 0) Logout                                 |");
             System.out.println("---------------------------------------------");
@@ -583,24 +586,31 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 createGroupMenu();
             else if(option == 8)
                 joinGroupMenu();
-            else if(option == 9 || option == 10){
+            else if (option == 9) {
+                try {
+                    rmi.associateDropboxAccount(user);
+                } catch (RemoteException e) {
+                    retryRMIConnection();
+                }
+            }
+            else if(option == 10 || option == 11){
                 if(perk==3){
                     System.out.println("Please select one of the given options");
                     continue;
                 }
-                if(option == 9)
+                if(option == 10)
                     givePermissionsMenu("editor");
-                if (option == 10)
+                if (option == 11)
                     addChangeInfoMenu();
             }
-            else if(option == 11 || option == 12){
+            else if(option == 12 || option == 13){
                 if (perk>1){
                     System.out.println("Please select one of the given options");
                     continue;
                 }
-                if(option == 11)
-                    givePermissionsMenu("owner");
                 if(option == 12)
+                    givePermissionsMenu("owner");
+                if(option == 13)
                     getRequests();
             }
              else

@@ -2,33 +2,546 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="SD-2018-DropMusic" />
+      <artifact name="WebArchive" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4181b51b-9eb8-417c-a84a-b7699f18d9f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dropmusic/action/LoginAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dropmusic/action/RegisterAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dropmusic/model/login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dropmusic/model/register.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SD_2018_DropMusic.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/SD_2018_DropMusic.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SD-2018-DropMusic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SD-2018-DropMusic.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SD-2018-DropMusic/web/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SD-2018-DropMusic/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/menu.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/struts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rmi/RMIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/RMIServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/struts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
+    <list default="true" id="07d2612a-7c3d-4edd-a90d-db2906a33ebf" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/SD_2018_DropMusic.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/BUILDING.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/NOTICE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/RELEASE-NOTES" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/RUNNING.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/catalina-tasks.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/catalina.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/catalina.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/ciphers.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/ciphers.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/configtest.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/configtest.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/daemon.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/digest.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/digest.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/makebase.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/makebase.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/setclasspath.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/setclasspath.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/shutdown.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/shutdown.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/startup.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/startup.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/tool-wrapper.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/tool-wrapper.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/version.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/bin/version.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/catalina.policy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/catalina.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/context.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/jaspic-providers.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/jaspic-providers.xsd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/logging.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/server.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/tomcat-users.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/tomcat-users.xsd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/conf/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/temp/safeToDelete.tmp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/META-INF/war-tracker" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/groups.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/writeRequests.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer2/groups.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer2/writeRequests.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer3/groups.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer3/writeRequests.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/log4j.dtd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/log4j.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/struts.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/login.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/menu.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/register.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/WebSocket/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/WebSocket/META-INF/war-tracker" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/WebSocket/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/WebSocket/chat.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/WebSocket/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/BUILDING.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/RELEASE-NOTES.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/RUNNING.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/aio.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/api/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/build.xml.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/deployment.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/installation.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/introduction.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/processes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/sample/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/sample/docs/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/sample/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/sample/src/mypackage/Hello.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/sample/web/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/sample/web/hello.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/sample/web/images/tomcat.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/sample/web/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/source.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/appdev/web.xml.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/apr.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/architecture/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/architecture/overview.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/architecture/requestProcess.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/architecture/requestProcess/authentication-process.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/architecture/requestProcess/request-process.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/architecture/startup.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/architecture/startup/serverStartup.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/architecture/startup/serverStartup.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/balancer-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/building.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/cgi-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/changelog.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/class-loader-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/cluster-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/comments.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/ajp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/automatic-deployment.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster-channel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster-deployer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster-interceptor.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster-listener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster-manager.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster-membership.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster-receiver.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster-sender.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster-valve.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cluster.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/context.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/cookie-processor.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/credentialhandler.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/engine.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/executor.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/filter.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/globalresources.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/host.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/http.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/http2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/jar-scan-filter.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/jar-scanner.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/jaspic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/listeners.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/loader.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/manager.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/realm.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/resources.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/server.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/service.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/sessionidgenerator.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/systemprops.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/config/valve.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/connectors.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/default-servlet.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/deployer-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/developers.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/elapi/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/extras.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/funcspecs/fs-admin-apps.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/funcspecs/fs-admin-objects.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/funcspecs/fs-admin-opers.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/funcspecs/fs-default.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/funcspecs/fs-jdbc-realm.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/funcspecs/fs-jndi-realm.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/funcspecs/fs-memory-realm.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/funcspecs/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/funcspecs/mbean-names.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/host-manager-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/html-host-manager-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/html-manager-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/add.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/asf-logo.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/code.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/cors-flowchart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/design.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/docs-stylesheet.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/docs.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/fix.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/fonts/OpenSans400.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/fonts/OpenSans400italic.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/fonts/OpenSans600.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/fonts/OpenSans600italic.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/fonts/OpenSans700.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/fonts/OpenSans700italic.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/fonts/fonts.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/tomcat.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/tomcat.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/update.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/images/void.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/introduction.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/jasper-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/jdbc-pool.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/jndi-datasource-examples-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/jndi-resources-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/jspapi/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/logging.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/manager-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/maven-jars.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/mbeans-descriptors-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/mbeans-descriptors.dtd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/monitoring.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/proxy-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/realm-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/rewrite.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/security-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/security-manager-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/servletapi/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/setup.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/ssi-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/ssl-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/tribes/developers.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/tribes/faq.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/tribes/interceptors.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/tribes/introduction.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/tribes/membership.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/tribes/setup.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/tribes/status.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/tribes/transport.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/virtual-hosting-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/web-socket-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/websocketapi/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/windows-auth-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/docs/windows-service-howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/CookieExample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/HelloWorldExample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/LocalStrings.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/LocalStrings_en.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/LocalStrings_es.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/LocalStrings_fr.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/LocalStrings_pt.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/RequestHeaderExample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/RequestInfoExample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/RequestParamExample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/ServletToJsp.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/SessionExample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/async/Async0.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/async/Async1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/async/Async2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/async/Async3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/async/AsyncStockContextListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/async/AsyncStockServlet.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/async/Stockticker.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/cal/Entries.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/cal/Entry.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/cal/JspCalendar.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/cal/TableBean.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/checkbox/CheckTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/colors/ColorGameBean.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/compressionFilters/CompressionFilter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/compressionFilters/CompressionFilterTestServlet.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/compressionFilters/CompressionResponseStream.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/compressionFilters/CompressionServletResponseWrapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/dates/JspCalendar.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/error/Smart.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/examples/ExampleTagBase.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/examples/FooTag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/examples/FooTagExtraInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/examples/LogTag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/examples/ShowSource.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/examples/ValuesTag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/filters/ExampleFilter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/http2/SimpleImagePush.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/BookBean.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/FooBean.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/ValuesBean.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/el/Functions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/simpletag/EchoAttributesTag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/simpletag/FindBookSimpleTag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/simpletag/HelloWorldSimpleTag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/simpletag/RepeatSimpleTag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/simpletag/ShuffleSimpleTag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/jsp2/examples/simpletag/TileSimpleTag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/listeners/ContextListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/listeners/SessionListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/nonblocking/ByteCounter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/nonblocking/NumberWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/num/NumberGuessBean.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/sessions/DummyCart.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/trailers/ResponseTrailers.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/util/CookieFilter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/util/HTMLFilter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/validators/DebugValidator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/ExamplesConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/chat/ChatAnnotation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/drawboard/Client.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/drawboard/DrawMessage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/drawboard/DrawboardContextListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/drawboard/DrawboardEndpoint.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/drawboard/Room.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/drawboard/wsmessages/AbstractWebsocketMessage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/drawboard/wsmessages/BinaryWebsocketMessage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/drawboard/wsmessages/CloseWebsocketMessage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/drawboard/wsmessages/StringWebsocketMessage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/echo/EchoAnnotation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/echo/EchoAsyncAnnotation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/echo/EchoEndpoint.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/echo/EchoStreamAnnotation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/echo/servers.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/snake/Direction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/snake/Location.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/snake/Snake.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/snake/SnakeAnnotation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/classes/websocket/snake/SnakeTimer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/jsp/applet/Clock2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/jsp/debug-taglib.tld" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/jsp/example-taglib.tld" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/jsp2/jsp2-example-taglib.tld" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/tags/displayProducts.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/tags/helloWorld.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/tags/panel.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/async/async1.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/async/async1.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/async/async3.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/async/async3.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/async/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/async/index.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/Entries.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/Entry.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/JspCalendar.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/TableBean.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/cal1.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/cal1.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/cal2.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/cal2.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/calendar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/cal/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/checkbox/CheckTest.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/checkbox/check.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/checkbox/checkresult.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/checkbox/checkresult.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/checkbox/cresult.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/colors/ColorGameBean.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/colors/clr.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/colors/colors.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/colors/colrs.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/colors/colrs.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/dates/date.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/dates/date.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/dates/date.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/error/er.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/error/err.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/error/err.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/error/error.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/error/errorpge.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/error/errorpge.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/forward/forward.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/forward/forward.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/forward/fwd.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/forward/one.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/forward/one.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/forward/two.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/images/code.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/images/execute.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/images/return.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/include/foo.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/include/foo.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/include/foo.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/include/inc.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/include/include.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/include/include.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/Functions.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/ValuesBean.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/ValuesTag.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/basic-arithmetic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/basic-arithmetic.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/basic-arithmetic.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/basic-comparisons.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/basic-comparisons.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/basic-comparisons.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/composite.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/composite.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/composite.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/functions.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/functions.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/functions.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/implicit-objects.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/implicit-objects.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/el/implicit-objects.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/FooBean.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/HelloWorldSimpleTag.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/ShuffleSimpleTag.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/TileSimpleTag.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/jspattribute.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/jspattribute.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/jspattribute.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/shuffle.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/shuffle.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspattribute/shuffle.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspx/basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspx/basic.jspx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspx/basic.jspx.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspx/svgexample.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspx/textRotate.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspx/textRotate.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspx/textRotate.jspx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/jspx/textRotate.jspx.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/EchoAttributesTag.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/coda.jspf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/coda.jspf.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/config.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/config.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/config.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/dynamicattrs.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/dynamicattrs.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/dynamicattrs.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/prelude.jspf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/misc/prelude.jspf.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/BookBean.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/FindBookSimpleTag.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/Functions.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/HelloWorldSimpleTag.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/RepeatSimpleTag.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/book.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/book.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/book.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/hello.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/hello.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/hello.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/repeat.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/repeat.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/simpletag/repeat.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/displayProducts.tag.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/hello.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/hello.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/hello.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/helloWorld.tag.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/panel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/panel.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/panel.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/panel.tag.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/products.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/products.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsp2/tagfiles/products.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsptoserv/ServletToJsp.java.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsptoserv/hello.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsptoserv/hello.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsptoserv/jsptoservlet.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsptoserv/jsptoservlet.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/jsptoserv/jts.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/num/numguess.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/num/numguess.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/num/numguess.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/plugin/applet/Clock2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/plugin/plugin.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/plugin/plugin.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/plugin/plugin.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/security/protected/error.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/security/protected/error.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/security/protected/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/security/protected/index.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/security/protected/login.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/security/protected/login.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/sessions/DummyCart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/sessions/carts.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/sessions/carts.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/sessions/carts.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/sessions/crt.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/simpletag/foo.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/simpletag/foo.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/simpletag/foo.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/snp/snoop.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/snp/snoop.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/snp/snoop.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/source.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/source.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/choose.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/choose.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/choose.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/foreach.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/foreach.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/foreach.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/howto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/if.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/if.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/if.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/tagplugin/notes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/xml/xml.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/xml/xml.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/jsp/xml/xml.jsp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/cookies.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/helloworld.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/images/code.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/images/execute.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/images/return.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/nonblocking/bytecounter.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/reqheaders.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/reqinfo.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/reqparams.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/servlets/sessions.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/websocket/chat.xhtml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/websocket/drawboard.xhtml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/websocket/echo.xhtml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/websocket/index.xhtml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/examples/websocket/snake.xhtml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/host-manager/META-INF/context.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/host-manager/WEB-INF/jsp/401.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/host-manager/WEB-INF/jsp/403.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/host-manager/WEB-INF/jsp/404.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/host-manager/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/host-manager/images/asf-logo.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/host-manager/images/tomcat.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/host-manager/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/host-manager/manager.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/META-INF/context.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/WEB-INF/jsp/401.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/WEB-INF/jsp/403.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/WEB-INF/jsp/404.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/WEB-INF/jsp/connectorCerts.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/WEB-INF/jsp/connectorCiphers.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/WEB-INF/jsp/connectorTrustedCerts.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/WEB-INF/jsp/sessionDetail.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/WEB-INF/jsp/sessionsList.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/images/asf-logo.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/images/tomcat.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/status.xsd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/manager/xform.xsl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/dropmusic/action/LoginAction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/dropmusic/action/RegisterAction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/dropmusic/model/login.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/dropmusic/model/register.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/menu.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/register.jsp" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SD-2018-DropMusic.iml" afterPath="$PROJECT_DIR$/SD-2018-DropMusic.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer2/groups.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer2/groups.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer2/writeRequests.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer2/writeRequests.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer3/groups.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer3/groups.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer3/writeRequests.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer3/writeRequests.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmi/RMIServer.java" afterPath="$PROJECT_DIR$/src/rmi/RMIServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmi/Services.java" afterPath="$PROJECT_DIR$/src/rmi/Services.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" afterPath="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struts.xml" afterPath="$PROJECT_DIR$/src/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.jsp" afterPath="$PROJECT_DIR$/web/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/login.jsp" afterPath="$PROJECT_DIR$/web/login.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,86 +595,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dropmusic/model/login.java">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="165">
+              <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dropmusic/model/register.java">
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="45">
+              <caret line="3" column="80" lean-forward="false" selection-start-line="3" selection-start-column="80" selection-end-line="3" selection-end-column="80" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="log4j.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/log4j.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="33" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="struts.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/struts.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+            <state relative-caret-position="0">
+              <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dropmusic/action/LoginAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1069#1070#0" expanded="true" />
-                <element signature="e#1109#1110#0" expanded="true" />
-                <element signature="e#1156#1157#0" expanded="true" />
-                <element signature="e#1196#1197#0" expanded="true" />
-                <element signature="e#1411#1412#0" expanded="true" />
-                <element signature="e#1459#1460#0" expanded="true" />
-                <element signature="e#1532#1533#0" expanded="true" />
-                <element signature="e#1570#1571#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/dropmusic/action/RegisterAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#337#338#0" expanded="true" />
-                <element signature="e#377#378#0" expanded="true" />
-                <element signature="e#424#425#0" expanded="true" />
-                <element signature="e#464#465#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/register.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,34 +650,40 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>login</find>
+      <find>main</find>
+      <find>static void</find>
+      <find>register</find>
+      <find>new client conn</find>
+      <find>PORT</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Dropbox" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/SD_DropMusic_Meta2.iml" />
-        <option value="$PROJECT_DIR$/web/register.jsp" />
-        <option value="$PROJECT_DIR$/web/index.jsp" />
-        <option value="$PROJECT_DIR$/src/struts.xml" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/web/menu.jsp" />
-        <option value="$PROJECT_DIR$/web/login.jsp" />
+        <option value="$PROJECT_DIR$/src/Dropbox_RESTAPI/org/apache/commons/codec/net/Utils.java" />
+        <option value="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
         <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/model/register.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/model/login.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/action/LoginAction.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/action/RegisterAction.java" />
+        <option value="$PROJECT_DIR$/src/rmi/Services.java" />
+        <option value="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java" />
+        <option value="$PROJECT_DIR$/web/index.jsp" />
+        <option value="$PROJECT_DIR$/src/apis/DropBoxApi2.java" />
+        <option value="$PROJECT_DIR$/src/lib/com/github/scribejava/core/builder/ServiceBuilder.java" />
+        <option value="$PROJECT_DIR$/src/Dropbox_RESTAPI/DropboxConnection.java" />
+        <option value="$PROJECT_DIR$/web/login.jsp" />
       </list>
     </option>
   </component>
@@ -215,18 +700,26 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="width" value="1920" />
-    <option name="height" value="1040" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -237,52 +730,96 @@
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="apache-tomcat-9.0.13" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dropmusic" type="462c0819:PsiDirectoryNode" />
+              <item name="scribejava" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dropmusic" type="462c0819:PsiDirectoryNode" />
-              <item name="action" type="462c0819:PsiDirectoryNode" />
+              <item name="scribejava" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dropmusic" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="scribejava" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="scribejava" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="codec" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544491718220" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.16292682" />
-    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/WEB-INF" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -296,56 +833,90 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MulticastServer1">
-    <configuration name="MulticastServer1" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
+  <component name="RunManager" selected="Tomcat Server.WebServer">
+    <configuration name="Client" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="rmiClient.rmiClient" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="localhost localhost" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
       <module name="SD-2018-DropMusic" />
+      <envs />
+    </configuration>
+    <configuration name="MulticastServer1" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
+      <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="MulticastServer1 MulticastServer1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Multicast.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SD-2018-DropMusic" />
+      <envs />
     </configuration>
     <configuration name="MulticastServer2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
-      <module name="SD-2018-DropMusic" />
+      <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="MulticastServer2 MulticastServer2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SD-2018-DropMusic" />
+      <envs />
     </configuration>
     <configuration name="MulticastServer3" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
-      <module name="SD-2018-DropMusic" />
+      <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="MulticastServer3 MulticastServer3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SD-2018-DropMusic" />
+      <envs />
     </configuration>
-    <configuration name="RMIServer" type="Application" factoryName="Application">
+    <configuration name="RMIServer1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="rmi.RMIServer" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
       <module name="SD-2018-DropMusic" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <envs />
     </configuration>
-    <configuration name="rmiClient" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="rmiClient.rmiClient" />
+    <configuration name="RMIServer2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="rmi.RMIServer" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
       <module name="SD-2018-DropMusic" />
-      <option name="PROGRAM_PARAMETERS" value="localhost localhost" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <envs />
     </configuration>
-    <configuration name="SD-2018-DropMusic" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.12" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="WebServer" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.12" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="BROWSER_ID" value="e5120d43-2c3f-47ef-9f26-65e539e05186" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="SD-2018-DropMusic">
+        <artifact name="WebArchive">
           <settings>
             <option name="CONTEXT_PATH" value="/" />
           </settings>
@@ -360,23 +931,8 @@
       <predefined_log_file id="Tomcat Host Manager" enabled="false" />
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="57211" />
+        <option name="DEBUG_PORT" value="60156" />
       </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -407,178 +963,122 @@
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
       </ConfigurationWrapper>
-      <method v="2">
+      <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="SD-2018-DropMusic" />
+          <artifact name="WebArchive" />
         </option>
       </method>
     </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.121" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment />
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="_SD-2018-DropMusic" />
-      </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="57211" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
     </configuration>
-    <list>
-      <item itemvalue="Application.RMIServer" />
-      <item itemvalue="Application.MulticastServer2" />
-      <item itemvalue="Application.MulticastServer3" />
-      <item itemvalue="Application.rmiClient" />
-      <item itemvalue="Tomcat Server.SD-2018-DropMusic" />
-      <item itemvalue="Application.MulticastServer1" />
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+    </configuration>
+    <list size="7">
+      <item index="0" class="java.lang.String" itemvalue="Application.MulticastServer1" />
+      <item index="1" class="java.lang.String" itemvalue="Application.MulticastServer3" />
+      <item index="2" class="java.lang.String" itemvalue="Application.RMIServer1" />
+      <item index="3" class="java.lang.String" itemvalue="Application.RMIServer2" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Client" />
+      <item index="5" class="java.lang.String" itemvalue="Application.MulticastServer2" />
+      <item index="6" class="java.lang.String" itemvalue="Tomcat Server.WebServer" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.MulticastServer1" />
-      </list>
-    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4181b51b-9eb8-417c-a84a-b7699f18d9f5" name="Default Changelist" comment="" />
-      <created>1544448868369</created>
+      <changelist id="07d2612a-7c3d-4edd-a90d-db2906a33ebf" name="Default" comment="" />
+      <created>1544451208183</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1544448868369</updated>
-      <workItem from="1544448870608" duration="12477000" />
-      <workItem from="1544487956523" duration="3584000" />
+      <updated>1544451208183</updated>
+      <workItem from="1544451209990" duration="10333000" />
+      <workItem from="1544480855592" duration="2029000" />
+      <workItem from="1544529714597" duration="878000" />
+      <workItem from="1544532006448" duration="209000" />
+      <workItem from="1544534237782" duration="2552000" />
+      <workItem from="1544543062640" duration="2226000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16061000" />
+    <option name="totallyTimeSpent" value="18227000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25302014" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3286119" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.3286119" />
-      <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3286119" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.3286119" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.3286119" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4811321" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2924298" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Designer" order="0" />
-      <window_info id="Image Layers" order="1" />
-      <window_info id="UI Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="Web" order="5" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.24966443" />
-      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Application Servers" order="0" weight="0.3286119" />
-      <window_info anchor="bottom" id="Spring" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.3286119" />
-      <window_info anchor="bottom" id="Java Enterprise" order="5" />
-      <window_info anchor="bottom" id="Database Changes" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Message" order="8" />
-      <window_info anchor="bottom" id="Find" order="9" />
-      <window_info anchor="bottom" id="Run" order="10" visible="true" weight="0.3286119" />
-      <window_info anchor="bottom" id="Debug" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="14" />
-      <window_info anchor="right" id="Palette" order="0" />
-      <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Maven Projects" order="2" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -586,86 +1086,47 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SD_DropMusic_Meta2.iml" />
-    <entry file="file://$PROJECT_DIR$/SD-2018-DropMusic.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/LoginAction.java" />
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+        <state relative-caret-position="30">
+          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        <state relative-caret-position="15">
+          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+    <entry file="file://$PROJECT_DIR$/src/log4j.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="210" column="154" selection-start-line="210" selection-start-column="154" selection-end-line="210" selection-end-column="154" />
+        <state relative-caret-position="45">
+          <caret line="3" column="33" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+    <entry file="file://$PROJECT_DIR$/src/struts.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="158" selection-start-line="158" selection-end-line="158" />
+        <state relative-caret-position="0">
+          <caret line="0" column="38" lean-forward="true" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+    <entry file="file://$PROJECT_DIR$/src/Dropbox_RESTAPI/DropboxConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="97" column="52" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/menu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="15" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileHandling/ObjectFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dropmusic/model/login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/register.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dropmusic/model/register.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+        <state relative-caret-position="585">
+          <caret line="39" column="43" lean-forward="true" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -674,57 +1135,273 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/log4j.dtd">
+    <entry file="file://$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3538" />
+        <state relative-caret-position="30">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/log4j.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-138" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21765">
+          <caret line="1451" column="14" lean-forward="false" selection-start-line="1451" selection-start-column="14" selection-end-line="1451" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8850">
+          <caret line="590" column="19" lean-forward="false" selection-start-line="590" selection-start-column="19" selection-end-line="590" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="11" lean-forward="false" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7875">
+          <caret line="525" column="20" lean-forward="false" selection-start-line="525" selection-start-column="20" selection-end-line="525" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dropbox_RESTAPI/DropboxConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="70" lean-forward="true" selection-start-line="42" selection-start-column="70" selection-end-line="42" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21465">
+          <caret line="1431" column="0" lean-forward="false" selection-start-line="1431" selection-start-column="0" selection-end-line="1431" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9045">
+          <caret line="603" column="31" lean-forward="false" selection-start-line="603" selection-start-column="31" selection-end-line="603" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7845">
+          <caret line="523" column="15" lean-forward="false" selection-start-line="523" selection-start-column="15" selection-end-line="523" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dropbox_RESTAPI/DropboxConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="3" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dropbox_RESTAPI/org/apache/commons/codec/net/Utils.java" />
+    <entry file="file://$PROJECT_DIR$/src/Interface/Album.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/github/scribejava/core/services/CommonsEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="11" lean-forward="false" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7590">
+          <caret line="525" column="20" lean-forward="false" selection-start-line="525" selection-start-column="20" selection-end-line="525" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="590" column="19" lean-forward="false" selection-start-line="590" selection-start-column="19" selection-end-line="590" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="315" column="20" lean-forward="false" selection-start-line="315" selection-start-column="16" selection-end-line="315" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SD_DropMusic_Meta2.iml" />
+    <entry file="file://$PROJECT_DIR$/src/action/LoginAction.java" />
+    <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-118">
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="210" column="154" lean-forward="false" selection-start-line="210" selection-start-column="154" selection-end-line="210" selection-end-column="154" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="158" column="0" lean-forward="false" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="97" column="52" lean-forward="false" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/menu.jsp" />
+    <entry file="file://$PROJECT_DIR$/src/FileHandling/ObjectFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dropmusic/model/login.java" />
+    <entry file="file://$PROJECT_DIR$/web/register.jsp" />
+    <entry file="file://$PROJECT_DIR$/src/dropmusic/model/register.java" />
+    <entry file="file://$PROJECT_DIR$/src/dropmusic/action/LoginAction.java" />
+    <entry file="file://$PROJECT_DIR$/src/dropmusic/action/RegisterAction.java" />
+    <entry file="file://$PROJECT_DIR$/src/log4j.dtd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/apis/DropBoxApi2.java" />
+    <entry file="file://$PROJECT_DIR$/src/uc/sd/apis/DropBoxApi2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="64" lean-forward="false" selection-start-line="4" selection-start-column="64" selection-end-line="4" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/com/github/scribejava/core/builder/ServiceBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/uc/sd/apis/FacebookApi2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-415">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dropbox_RESTAPI/DropboxConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="39" column="43" lean-forward="false" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/struts.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+        <state relative-caret-position="0">
+          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dropmusic/action/LoginAction.java">
+    <entry file="file://$PROJECT_DIR$/src/log4j.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1069#1070#0" expanded="true" />
-            <element signature="e#1109#1110#0" expanded="true" />
-            <element signature="e#1156#1157#0" expanded="true" />
-            <element signature="e#1196#1197#0" expanded="true" />
-            <element signature="e#1411#1412#0" expanded="true" />
-            <element signature="e#1459#1460#0" expanded="true" />
-            <element signature="e#1532#1533#0" expanded="true" />
-            <element signature="e#1570#1571#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="45">
+          <caret line="3" column="33" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dropmusic/action/RegisterAction.java">
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#337#338#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#464#465#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="45">
+          <caret line="3" column="80" lean-forward="false" selection-start-line="3" selection-start-column="80" selection-end-line="3" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -734,7 +1411,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>SD-2018-DropMusic</last-edited>
+          <last-edited>WebArchive</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

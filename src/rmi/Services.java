@@ -27,4 +27,5 @@ public interface Services extends Remote {
     String showRequests(String username) throws java.rmi.RemoteException;
     boolean manageRequests(String username, String newUser, String groupID, String toDo)throws java.rmi.RemoteException;
     int downloadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException;
+    boolean associateDropboxAccount(String username) throws java.rmi.RemoteException;
 }
