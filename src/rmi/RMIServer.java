@@ -30,6 +30,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     private  MulticastChecker checker = new MulticastChecker(this);
 
     private RMIServer() throws RemoteException {
+        MulticastChecker checker = new MulticastChecker(this);
+        checker.start();
     }
 
     public static void main(String[] args) throws RemoteException {
@@ -205,8 +207,8 @@ public class RMIServer extends UnicastRemoteObject implements Services {
                 buffer = new byte[bufferlength];
                 packet = new DatagramPacket(buffer, bufferlength);
                 socket.receive(packet);
-                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
                 message = new String(packet.getData(),0,packet.getLength());
+                System.out.println("Received packet from " + packet.getAddress().getHostAddress() + ":" + packet.getPort() + " with message: " + message);
                 break;
             }catch (SocketTimeoutException e) {
                 if(count++ < 0){

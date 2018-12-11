@@ -5,8 +5,6 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="lib">
           <element id="library" level="project" name="javax.websocket:javax.websocket-api:1.1" />
-          <element id="library" level="project" name="lib" />
-          <element id="library" level="project" name="org.apache.struts:struts2-spring-plugin:2.5.14.1" />
         </element>
         <element id="directory" name="classes">
           <element id="module-output" name="SD-2018-DropMusic" />
