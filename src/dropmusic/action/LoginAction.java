@@ -6,17 +6,17 @@ import java.util.Map;
 import dropmusic.model.login;
 
 public class LoginAction extends ActionSupport implements SessionAware {
-    private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String username = null, password = null;
     private int perks;
 
     @Override
     public String execute() throws Exception{
-        if(this.username != null && !username.equals("")){
+        if(this.username != null && this.password != null && !this.username.equals("") && !this.password.equals("")){
             perks = this.getLogin().login(username,password);
-            if(perks < 3 && perks > 0){
+            if(perks < 4 && perks > 0){
                 session.put("username", username);
+                session.put("perks", perks);
                 session.put("loggedin", true);
                 return SUCCESS;
             }else if(perks == 4){

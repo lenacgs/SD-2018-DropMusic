@@ -30,21 +30,23 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     private  MulticastChecker checker = new MulticastChecker(this);
 
     private RMIServer() throws RemoteException {
-        MulticastChecker checker = new MulticastChecker(this);
-        checker.start();
+
     }
 
     public static void main(String[] args) throws RemoteException {
         try {
             s = new RMIServer();
-            createRegistry();
-        } catch (RemoteException | InterruptedException e) {
+            ((RMIServer) s).createRegistry();
+            MulticastChecker checker = new MulticastChecker((RMIServer) s);
+            checker.start();
+        } catch (RemoteException | InterruptedException e
+        ) {
             e.printStackTrace();
         }
     }
 
 
-    private static void createRegistry() throws RemoteException, InterruptedException {
+    private void createRegistry() throws RemoteException, InterruptedException {
         /*Creates registry of new RMI server on port 7000
         If AccessException happens => prints message
         If ExportException happens => There is already a RMI server, then changes to backup RMI server*/
@@ -61,11 +63,11 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
-    private static void secondaryRMI() throws RemoteException, InterruptedException {
+    private void secondaryRMI() throws RemoteException, InterruptedException {
         /*This function is executed when a new RMI server is created but there's already a main one*/
 
         try {
-            s = (Services) LocateRegistry.getRegistry(7000).lookup("Sporting"); // liga-se ao RMI Primário
+            s = (Services)LocateRegistry.getRegistry(7000).lookup("Sporting"); // liga-se ao RMI Primário
             System.out.println("Backup RMI ready!");
         } catch (ConnectException | NotBoundException e) {
             System.out.println("Attempting to become primary RMI server...");

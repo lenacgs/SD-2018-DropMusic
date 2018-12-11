@@ -9,6 +9,14 @@
     <title>DropMusic</title>
 </head>
 <body>
-
+<s:form action="register" method="post">
+    <s:text name = "Username:" />
+    <s:textfield name="username" /><br>
+    <s:text name = "Password: " />
+    <s:password name="password" /><br><br>
+    <s:submit type = "button">
+        <s:text name="Register"></s:text>
+    </s:submit>
+</s:form>
 </body>
 </html>
