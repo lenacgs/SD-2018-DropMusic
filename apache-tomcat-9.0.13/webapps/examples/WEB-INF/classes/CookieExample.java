@@ -116,7 +116,7 @@ public class CookieExample extends HttpServlet {
 
         out.println("<P>");
         out.println(RB.getString("cookies.make-cookie") + "<br>");
-        out.print("<form action=\"");
+        out.print("<form Actions=\"");
         out.println("CookieExample\" method=POST>");
         out.print(RB.getString("cookies.name") + "  ");
         out.println("<input type=text length=20 name=cookiename><br>");

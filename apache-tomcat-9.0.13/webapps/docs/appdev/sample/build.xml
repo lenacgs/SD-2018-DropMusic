@@ -110,7 +110,7 @@
                        distribution files are created.
                        Defaults to "dist".
 
-  manager.password     The login password of a user that is assigned the
+  manager.password     The LoginBean password of a user that is assigned the
                        "manager-script" role (so that he or she can execute
                        commands via the "/manager" web application)
 
@@ -118,7 +118,7 @@
                        Tomcat installation to which we will deploy web
                        applications and web services.
 
-  manager.username     The login username of a user that is assigned the
+  manager.username     The LoginBean username of a user that is assigned the
                        "manager-script" role (so that he or she can execute
                        commands via the "/manager" web application)
 
@@ -209,7 +209,7 @@
     installation into the "lib" directory of your Ant installation.
 
   - Create a "build.properties" file in your application's top-level
-    source directory (or your user login home directory) that defines
+    source directory (or your user LoginBean home directory) that defines
     appropriate values for the "manager.password", "manager.url", and
     "manager.username" properties described above.
 

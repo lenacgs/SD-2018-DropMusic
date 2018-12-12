@@ -148,10 +148,10 @@
   </security-constraint>
 
   <!-- Define the Login Configuration for this Application -->
-  <login-config>
+  <LoginBean-config>
     <auth-method>BASIC</auth-method>
     <realm-name>Tomcat Manager Application</realm-name>
-  </login-config>
+  </LoginBean-config>
 
   <!-- Security roles referenced by this web application -->
   <security-role>

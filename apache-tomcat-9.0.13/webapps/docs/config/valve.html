@@ -1320,11 +1320,11 @@
         <code>true</code> will be used.</p>
       </td></tr><tr><td><code class="attributeName">landingPage</code></td><td>
         <p>Controls the behavior of the FORM authentication process if the
-        process is misused, for example by directly requesting the login page
+        process is misused, for example by directly requesting the LoginBean page
         or delaying logging in for so long that the session expires. If this
         attribute is set, rather than returning an error response code, Tomcat
-        will redirect the user to the specified landing page if the login form
-        is submitted with valid credentials. For the login to be processed, the
+        will redirect the user to the specified landing page if the LoginBean form
+        is submitted with valid credentials. For the LoginBean to be processed, the
         landing page must be a protected resource (i.e. one that requires
         authentication). If the landing page does not require authentication
         then the user will not be logged in and will be prompted for their
@@ -1518,7 +1518,7 @@
         workaround for browser caching issues. If not set, the default value of
         <code>true</code> will be used.</p>
       </td></tr><tr><td><code class="attributeName">loginConfigName</code></td><td>
-        <p>The name of the JAAS login configuration to be used to login as the
+        <p>The name of the JAAS LoginBean configuration to be used to LoginBean as the
         service. If not specified, the default of
         <code>com.sun.security.jgss.krb5.accept</code> is used.</p>
       </td></tr><tr><td><code class="attributeName">noKeepAliveUserAgents</code></td><td>

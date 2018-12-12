@@ -146,7 +146,7 @@ dev.local= DEV.LOCAL
 .dev.local= DEV.LOCAL</code></pre></div>
   The location of this file can be changed by setting the
   <code>java.security.krb5.conf</code> system property.</li>
-  <li>Create the JAAS login configuration file
+  <li>Create the JAAS LoginBean configuration file
   <code>$CATALINA_BASE/conf/jaas.conf</code>. The file used in this how-to
   contained:<div class="codeBox"><pre><code>com.sun.security.jgss.krb5.initiate {
     com.sun.security.auth.module.Krb5LoginModule required
@@ -166,9 +166,9 @@ com.sun.security.jgss.krb5.accept {
     storeKey=true;
 };</code></pre></div>
   The location of this file can be changed by setting the
-  <code>java.security.auth.login.config</code> system property. The LoginModule
+  <code>java.security.auth.LoginBean.config</code> system property. The LoginModule
   used is a JVM specific one so ensure that the LoginModule specified matches
-  the JVM being used. The name of the login configuration must match the
+  the JVM being used. The name of the LoginBean configuration must match the
   value used by the <a href="config/valve.html#SPNEGO_Valve">authentication
   valve</a>.</li>
   </ul>

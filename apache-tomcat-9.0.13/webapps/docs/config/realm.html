@@ -750,7 +750,7 @@
     authentication mechanisms whose implementations would be
     container-independent.</p>
 
-    <p>Based on the JAAS login module and principal
+    <p>Based on the JAAS LoginBean module and principal
     (see <code>javax.security.auth.spi.LoginModule</code> and
     <code>javax.security.Principal</code>), you can develop your own security
     mechanism or wrap another third-party mechanism for integration with the CMA
@@ -775,7 +775,7 @@
         are defined in web.xml in which case the user must be assigned at least
         one of those roles.</p>
       </td></tr><tr><td><code class="attributeName">appName</code></td><td>
-       <p>The name of the application as configured in your login configuration
+       <p>The name of the application as configured in your LoginBean configuration
        file
        (<a href="http://docs.oracle.com/javase/1.4.2/docs/guide/security/jaas/tutorials/LoginConfigFile.html">JAAS LoginConfig</a>).</p>
        <p>If not specified <code>appName</code> is derived from the Container's

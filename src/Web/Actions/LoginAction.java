@@ -1,36 +1,31 @@
-package dropmusic.action;
+package Web.Actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
-import dropmusic.model.login;
+import Web.Beans.LoginBean;
 
 public class LoginAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String username = null, password = null;
-    private int perks;
 
     @Override
-    public String execute() throws Exception{
+    public String execute() throws Exception{ //function that is to be executed when user presses button to submit LoginBean credentials
         if(this.username != null && !username.equals("")){
-            perks = this.getLogin().login(username,password);
-            if(perks < 3 && perks > 0){
+            int perks = this.getLoginBean().loginUser(username,password); //LoginBean.loginUser(username, password) returns perks of this user
+            if (perks <= 3 && perks > 0){
                 session.put("username", username);
-                session.put("loggedin", true);
+                session.put("password", password);
+                session.put("loggedIn", true);
+                session.put("perks", perks);
                 return SUCCESS;
-            }else if(perks == 4){
-                return LOGIN;
-            }else if(perks == 5){
-                return LOGIN;
-            }else{
+            } else {
                 return LOGIN;
             }
-
-        }else{
+        } else {
             return LOGIN;
         }
-
     }
 
     public void setUsername(String username){
@@ -42,15 +37,15 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
 
-    public login getLogin(){
-        if(!session.containsKey("login")){
-            this.setLogin(new login());
+    public LoginBean getLoginBean(){
+        if(!session.containsKey("loginBean")){
+            this.setLoginBean(new LoginBean());
         }
-        return (login) session.get("login");
+        return (LoginBean) session.get("loginBean");
     }
 
-    public void setLogin(login login){
-        this.session.put("login", login);
+    public void setLoginBean(LoginBean loginBean){
+        this.session.put("loginBean", loginBean);
     }
 
     @Override

@@ -525,12 +525,12 @@
     <h3>Using JAAS</h3>
 
     <p>If we use the following system properties instead:</p>
-  <div class="codeBox"><pre><code>  -Dcom.sun.management.jmxremote.login.config=Tomcat
-  -Djava.security.auth.login.config=$CATALINA_BASE/conf/login.config
+  <div class="codeBox"><pre><code>  -Dcom.sun.management.jmxremote.LoginBean.config=Tomcat
+  -Djava.security.auth.LoginBean.config=$CATALINA_BASE/conf/LoginBean.config
   -Dcom.sun.management.jmxremote.access.file=$CATALINA_BASE/conf/jmxremote.access
   -Dcom.sun.management.jmxremote.ssl=false</code></pre></div>
-    <p>$CATALINA_BASE/conf/login.config containing your choice of JAAS LoginModule implementation, for example:</p>
-  <div class="codeBox"><pre><code>  Tomcat { /* should match to the com.sun.management.jmxremote.login.config property */
+    <p>$CATALINA_BASE/conf/LoginBean.config containing your choice of JAAS LoginModule implementation, for example:</p>
+  <div class="codeBox"><pre><code>  Tomcat { /* should match to the com.sun.management.jmxremote.LoginBean.config property */
 
     /* for illustration purposes only */
     com.sun.security.auth.module.LdapLoginModule REQUIRED

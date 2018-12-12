@@ -540,7 +540,7 @@
     <li>As soon as the user accesses a protected resource in
         <strong>any</strong> web application associated with this virtual
         host, the user will be challenged to authenticate himself or herself,
-        using the login method defined for the web application currently
+        using the LoginBean method defined for the web application currently
         being accessed.</li>
     <li>Once authenticated, the roles associated with this user will be
         utilized for access control decisions across <strong>all</strong>
@@ -548,7 +548,7 @@
         to authenticate themselves to each application individually.</li>
     <li>As soon as the user logs out of one web application (for example,
         by invalidating the corresponding session if form
-        based login is used), the user's sessions in <strong>all</strong>
+        based LoginBean is used), the user's sessions in <strong>all</strong>
         web applications will be invalidated.  Any subsequent attempt to
         access a protected resource in any application will require the
         user to authenticate himself or herself again.</li>

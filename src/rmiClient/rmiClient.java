@@ -63,7 +63,7 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
         RMIhost = args[0]; //host do RMI, IP da máquina onde está a correr o RMI server
         myHost = args[1];
 
-
+        //when client program is shut down, logout
         Runtime.getRuntime().addShutdownHook(new Thread(){
             public void run() {
                 while(true) {
@@ -180,10 +180,10 @@ public class rmiClient extends UnicastRemoteObject implements Clients  {
                 continue;
             while(true) {
                 try {
-                    //funcao de registar e login tem que devolver um boolean
+                    //funcao de registar e LoginBean tem que devolver um boolean
                     if (modifier == 1) //registar
                         verifier = rmi.register(username, password);
-                    else //login
+                    else //LoginBean
                         verifier = rmi.login(username, password);
                     break;
                 } catch (RemoteException e) {

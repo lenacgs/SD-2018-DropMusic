@@ -244,15 +244,15 @@
       <auth-constraint />
     </security-constraint>
 
-    <!-- Default login configuration uses form-based authentication -->
-    <login-config>
+    <!-- Default LoginBean configuration uses form-based authentication -->
+    <LoginBean-config>
       <auth-method>FORM</auth-method>
       <realm-name>Example Form-Based Authentication Area</realm-name>
-      <form-login-config>
-        <form-login-page>/jsp/security/protected/login.jsp</form-login-page>
+      <form-LoginBean-config>
+        <form-LoginBean-page>/jsp/security/protected/LoginBean.jsp</form-LoginBean-page>
         <form-error-page>/jsp/security/protected/error.jsp</form-error-page>
-      </form-login-config>
-    </login-config>
+      </form-LoginBean-config>
+    </LoginBean-config>
 
     <!-- Security roles referenced by this web application -->
     <security-role>

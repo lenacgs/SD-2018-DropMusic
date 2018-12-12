@@ -134,7 +134,7 @@
     <ul>
     <li>Interactions with <code>JNDIRealm</code> will be initiated by
         the appropriate <code>Authenticator</code> implementation, based
-        on the login method that is selected.</li>
+        on the LoginBean method that is selected.</li>
     </ul>
 
   </div></div>
@@ -147,7 +147,7 @@
 
     <p>The completed <code>JNDIRealm</code> must support two major operational
     modes in order to support all of the required use cases.  For the purposes
-    of this document, the modes are called <em>administrator login</em> and
+    of this document, the modes are called <em>administrator LoginBean</em> and
     <em>Username Login</em>.  They are described further in the following
     paragraphs.</p>
 
@@ -174,7 +174,7 @@
     connection is then broken.</p>
 
     <p><strong>NOTE</strong> - <em>Username Login</em> mode cannot be used
-    if you have selected login method <code>DIGEST</code> in your web
+    if you have selected LoginBean method <code>DIGEST</code> in your web
     application deployment descriptor (<code>web.xml</code>) file.  This
     restriction exists because the cleartext password is never available
     to the container, so it is not possible to bind to the directory server

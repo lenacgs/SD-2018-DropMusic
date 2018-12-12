@@ -113,7 +113,7 @@ public class NumberWriter extends HttpServlet {
             readFinished = true;
 
             // If sos is not ready to write data, the call to isReady() will
-            // register the socket with the poller which will trigger a call to
+            // RegisterBean the socket with the poller which will trigger a call to
             // onWritePossible() when the socket is ready to have data written
             // to it.
             if (sos.isReady()) {

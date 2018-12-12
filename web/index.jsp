@@ -10,7 +10,8 @@
 </head>
 <body>
   <p>DropMusic</p>
-  <a href = "login.jsp"> Login</a><br>
-  <a href = "register.jsp"> Register</a>
+  <a href = "login.jsp">Login</a><br>
+  <a href = "register.jsp">Register</a><br>
+  <a href = "loginDropbox.jsp">Login with Dropbox</a>
 </body>
 </html>

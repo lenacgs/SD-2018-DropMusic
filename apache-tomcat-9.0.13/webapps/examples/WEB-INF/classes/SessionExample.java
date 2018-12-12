@@ -101,7 +101,7 @@ public class SessionExample extends HttpServlet {
         }
 
         out.println("<P>");
-        out.print("<form action=\"");
+        out.print("<form Actions=\"");
         out.print(response.encodeURL("SessionExample"));
         out.print("\" ");
         out.println("method=POST>");
@@ -115,7 +115,7 @@ public class SessionExample extends HttpServlet {
         out.println("</form>");
 
         out.println("<P>GET based form:<br>");
-        out.print("<form action=\"");
+        out.print("<form Actions=\"");
         out.print(response.encodeURL("SessionExample"));
         out.print("\" ");
         out.println("method=GET>");

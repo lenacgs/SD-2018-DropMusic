@@ -24,7 +24,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
 /**
- * A message that represents a drawing action.
+ * A message that represents a drawing Actions.
  * Note that we use primitive types instead of Point, Color etc.
  * to reduce object allocation.<br><br>
  *

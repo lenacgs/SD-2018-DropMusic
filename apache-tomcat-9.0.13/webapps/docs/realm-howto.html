@@ -40,7 +40,7 @@ managed security</em>, by connecting to an existing "database" of usernames,
 passwords, and user roles.  You only need to care about this if you are using
 a web application that includes one or more
 <code>&lt;security-constraint&gt;</code> elements, and a
-<code>&lt;login-config&gt;</code> element defining how users are required
+<code>&lt;LoginBean-config&gt;</code> element defining how users are required
 to authenticate themselves.  If you are not utilizing these features, you can
 safely skip this document.</p>
 
@@ -200,7 +200,7 @@ techniques are supported:</p>
    development environment this might take the form
    <code>testUser:Authentication required:testPassword</code>. The value for
    <code>{realm}</code> is taken from the <code>&lt;realm-name&gt;</code>
-   element of the web application's <code>&lt;login-config&gt;</code>. If
+   element of the web application's <code>&lt;LoginBean-config&gt;</code>. If
    not specified in web.xml, the default value of <code>Authentication
    required</code> is used.</p>
 
@@ -251,7 +251,7 @@ simplified to <code>{digest}</code>.</p>
 <div class="subsection"><h4 id="Example_Application">Example Application</h4><div class="text">
 
 <p>The example application shipped with Tomcat includes an area that is
-protected by a security constraint, utilizing form-based login.  To access it,
+protected by a security constraint, utilizing form-based LoginBean.  To access it,
 point your browser at
 <a href="http://localhost:8080/examples/jsp/security/protected/">http://localhost:8080/examples/jsp/security/protected/</a>
 and log on with one of the usernames and passwords described for the default
@@ -383,7 +383,7 @@ described above, and accessed with username "dbuser" and password "dbpass":</p>
     directly (new users, changed passwords or roles, etc.) will be immediately
     reflected.</li>
 <li>Once a user has been authenticated, the user (and his or her associated
-    roles) are cached within Tomcat for the duration of the user's login.
+    roles) are cached within Tomcat for the duration of the user's LoginBean.
     (For FORM-based authentication, that means until the session times out or
     is invalidated; for BASIC authentication, that means until the user
     closes their browser).  The cached user is <strong>not</strong> saved and
@@ -493,7 +493,7 @@ name "java:/comp/env/jdbc/authority".</p>
     directly (new users, changed passwords or roles, etc.) will be immediately
     reflected.</li>
 <li>Once a user has been authenticated, the user (and his or her associated
-    roles) are cached within Tomcat for the duration of the user's login.
+    roles) are cached within Tomcat for the duration of the user's LoginBean.
     (For FORM-based authentication, that means until the session times out or
     is invalidated; for BASIC authentication, that means until the user
     closes their browser).  The cached user is <strong>not</strong> saved and
@@ -782,7 +782,7 @@ uniqueMember: uid=fbloggs,ou=people,dc=mycompany,dc=com</code></pre></div>
 
 <p>An example <code>Realm</code> element for the OpenLDAP directory
 server configured as described above might look like this, assuming
-that users use their uid (e.g. jjones) to login to the
+that users use their uid (e.g. jjones) to LoginBean to the
 application and that an anonymous connection is sufficient to search
 the directory and retrieve role information:</p>
 
@@ -869,7 +869,7 @@ authentication is usually to be preferred.</p>
     (new users, changed passwords or roles, etc.) will be immediately
     reflected.</li>
 <li>Once a user has been authenticated, the user (and his or her associated
-    roles) are cached within Tomcat for the duration of the user's login.
+    roles) are cached within Tomcat for the duration of the user's LoginBean.
     (For FORM-based authentication, that means until the session times out or
     is invalidated; for BASIC authentication, that means until the user
     closes their browser).  The cached user is <strong>not</strong> saved and
@@ -936,7 +936,7 @@ to all virtual hosts and web applications.  The default contents of the
     Tomcat will call the <code>authenticate()</code> method of this
     <code>Realm</code>.</li>
 <li>Once a user has been authenticated, the user (and his or her associated
-    roles) are cached within Tomcat for the duration of the user's login.
+    roles) are cached within Tomcat for the duration of the user's LoginBean.
     (For FORM-based authentication, that means until the session times out or
     is invalidated; for BASIC authentication, that means until the user
     closes their browser).  The cached user is <strong>not</strong> saved and
@@ -994,7 +994,7 @@ valid user, consisting of the following attributes:</p>
     Tomcat will call the <code>authenticate()</code> method of this
     <code>Realm</code>.</li>
 <li>Once a user has been authenticated, the user (and his or her associated
-    roles) are cached within Tomcat for the duration of the user's login.
+    roles) are cached within Tomcat for the duration of the user's LoginBean.
     (For FORM-based authentication, that means until the session times out or
     is invalidated; for BASIC authentication, that means until the user
     closes their browser).  The cached user is <strong>not</strong> saved and
@@ -1024,14 +1024,14 @@ Request 196</a> to enhance container-managed security and promote
 'pluggable' authentication mechanisms whose implementations would be
 container-independent.
         </p>
-        <p>Based on the JAAS login module and principal (see <code>javax.security.auth.spi.LoginModule</code>
+        <p>Based on the JAAS LoginBean module and principal (see <code>javax.security.auth.spi.LoginModule</code>
 and <code>javax.security.Principal</code>), you can develop your own
 security mechanism or wrap another third-party mechanism for
 integration with the CMA as implemented by Tomcat.
         </p>
 
         <h5>Quick Start</h5>
-        <p>To set up Tomcat to use JAASRealm with your own JAAS login module,
+        <p>To set up Tomcat to use JAASRealm with your own JAAS LoginBean module,
  you will need to follow these steps:</p>
         <ol>
           <li>Write your own LoginModule, User and Role classes based
@@ -1040,22 +1040,22 @@ on JAAS (see
 the JAAS Authentication Tutorial</a> and
 <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/jaas/JAASLMDevGuide.html">
 the JAAS Login Module Developer's Guide</a>) to be managed by the JAAS Login
-Context (<code>javax.security.auth.login.LoginContext</code>)
+Context (<code>javax.security.auth.LoginBean.LoginContext</code>)
 When developing your LoginModule, note that JAASRealm's built-in <code>CallbackHandler</code>
 only recognizes the <code>NameCallback</code> and <code>PasswordCallback</code> at present.
           </li>
           <li>Although not specified in JAAS, you should create
 separate classes to distinguish between users and roles, extending <code>javax.security.Principal</code>,
-so that Tomcat can tell which Principals returned from your login
+so that Tomcat can tell which Principals returned from your LoginBean
 module are users and which are roles (see <code>org.apache.catalina.realm.JAASRealm</code>).
 Regardless, the first Principal returned is <em>always</em> treated as the user Principal.
           </li>
           <li>Place the compiled classes on Tomcat's classpath
           </li>
-          <li>Set up a login.config file for Java (see <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/jaas/tutorials/LoginConfigFile.html">
+          <li>Set up a LoginBean.config file for Java (see <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/jaas/tutorials/LoginConfigFile.html">
 JAAS LoginConfig file</a>) and tell Tomcat where to find it by specifying
 its location to the JVM, for instance by setting the environment
-variable: <code>JAVA_OPTS=$JAVA_OPTS -Djava.security.auth.login.config==$CATALINA_BASE/conf/jaas.config</code></li>
+variable: <code>JAVA_OPTS=$JAVA_OPTS -Djava.security.auth.LoginBean.config==$CATALINA_BASE/conf/jaas.config</code></li>
 
           <li>Configure your security-constraints in your web.xml for
 the resources you want to protect</li>
@@ -1079,10 +1079,10 @@ configuration documentation.</p>
     userClassNames="org.foobar.realm.FooUser"
      roleClassNames="org.foobar.realm.FooRole"/&gt;</code></pre></div>
 
-<p>It is the responsibility of your login module to create and save User and
+<p>It is the responsibility of your LoginBean module to create and save User and
 Role objects representing Principals for the user
-(<code>javax.security.auth.Subject</code>). If your login module doesn't
-create a user object but also doesn't throw a login exception, then the
+(<code>javax.security.auth.Subject</code>). If your LoginBean module doesn't
+create a user object but also doesn't throw a LoginBean exception, then the
 Tomcat CMA will break and you will be left at the
 http://localhost:8080/myapp/j_security_check URI or at some other
 unspecified location.</p>
@@ -1090,7 +1090,7 @@ unspecified location.</p>
         <p>The flexibility of the JAAS approach is two-fold: </p>
         <ul>
           <li>you can carry out whatever processing you require behind
-the scenes in your own login module.</li>
+the scenes in your own LoginBean module.</li>
           <li>you can plug in a completely different LoginModule by changing the configuration
 and restarting the server, without any code changes to your application.</li>
         </ul>
@@ -1104,7 +1104,7 @@ and restarting the server, without any code changes to your application.</li>
               roles, etc.) will be immediately reflected.</li>
           <li>Once a user has been authenticated, the user (and his or
               her associated roles) are cached within Tomcat for the duration of
-              the user's login.  For FORM-based authentication, that means until
+              the user's LoginBean.  For FORM-based authentication, that means until
               the session times out or is invalidated; for BASIC authentication,
               that means until the user closes their browser.  Any changes to the
               security information for an already authenticated user will <strong>not</strong>

@@ -84,7 +84,7 @@ public class RequestParamExample extends HttpServlet {
             out.println(RB.getString("requestparams.no-params"));
         }
         out.println("<P>");
-        out.print("<form action=\"");
+        out.print("<form Actions=\"");
         out.print("RequestParamExample\" ");
         out.println("method=POST>");
         out.println(RB.getString("requestparams.firstname"));
