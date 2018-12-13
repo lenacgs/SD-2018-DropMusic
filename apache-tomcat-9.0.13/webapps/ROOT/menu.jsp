@@ -27,8 +27,6 @@
     <s:form action="manageGroups"><s:submit value="MANAGE GROUPS"/></s:form>
     <s:form action="associateButton"><s:submit value="LINK DROPBOX ACCOUNT"/></s:form>
 
-    <s:if test="hasActionMessages()">
-        <s:actionmessage/>
-    </s:if>
+    <h4>${session.message}</h4>
 </body>
 </html>

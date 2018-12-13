@@ -15,21 +15,22 @@ import java.util.Map;
 public class AssociateDropboxAction extends ActionSupport implements SessionAware{
     private Map<String, Object> session;
     private OAuth20ServiceImpl service;
-    private String code, state;
+    private String code;
 
 
     public String execute() {
         this.service = (OAuth20ServiceImpl) session.get("service");
-        System.out.println("associatedropbox");
 
         //exchange code given by dropbox to get an accessToken for this user
         Verifier codeV = new Verifier(code);
         Token accessToken = service.getAccessToken(null, codeV);
-        session.put("accessToken", accessToken);
+
         if(accessToken.isEmpty()) {
-            addActionMessage("Error linking Dropbox Account");
+            session.put("message", "Error linking Dropbox account :(");
             return "FAIL";
         }
+        session.put("accessToken", accessToken);
+        session.put("message", "Success linking Dropbox account!");
         return "SUCCESS";
     }
 
@@ -39,13 +40,6 @@ public class AssociateDropboxAction extends ActionSupport implements SessionAwar
 
     public void setCode(String code) {
         this.code = code;
-    }
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     @Override

@@ -64,7 +64,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name="FAIL">/index.jsp</result>
     </action>
 
-    <action name="asssociateDropbox" class="Web.Actions.AssociateDropboxAction" method="execute">
+    <action name="associateDropbox" class="Web.Actions.AssociateDropboxAction" method="execute">
         <result name="SUCCESS">/menu.jsp</result>
         <result name="FAIL">/menu.jsp</result>
     </action>
