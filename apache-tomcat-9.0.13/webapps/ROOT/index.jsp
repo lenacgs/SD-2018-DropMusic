@@ -10,8 +10,9 @@
 </head>
 <body>
   <p>DropMusic</p>
-  <a href = "login.jsp">Login</a><br>
-  <a href = "register.jsp">Register</a><br>
-  <a href = "loginDropbox.jsp">Login with Dropbox</a>
+
+  <s:form action="loginMenu"><s:submit value="LOGIN"/></s:form>
+  <s:form action="registerMenu"><s:submit value="REGISTER"/></s:form>
+  <s:form action="loginDropbox"><s:submit value="LOGIN WITH DROPBOX"/></s:form>
 </body>
 </html>

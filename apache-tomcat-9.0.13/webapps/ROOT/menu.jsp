@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: João Silva
@@ -12,18 +13,20 @@
 </head>
 <body>
     <p>MENU</p>
-    <a href="search.jsp">SEARCH</a><br>
-    <a href="details.jsp">ALBUM & ARTIST DETAILS</a><br>
-    <a href="review.jsp">ALBUM REVIEW</a><br>
-    <a href="uploadFile.jsp">LINK MUSIC TO DROPBOX FILE</a><br>
-    <a href="download.jsp">DOWNLOAD MUSIC FILE</a><br>
-    <a href="createGroup.jsp">CREATE GROUP</a><br>
-    <a href="joinGroup.jsp">JOIN GROUP</a><br>
-    <a href="editorPrivileges.jsp">GRANT EDITOR PRIVILEGES</a><br>
-    <a href="ownerPrivileges.jsp">GRANT OWNER PRIVILEGES</a><br>
-    <a href="addInfor.jsp">ADD INFO</a><br>
-    <a href="changeInfo.jsp">CHANGE INFO</a><br>
-    <a href="manageGroup.jsp">MANAGE GROUP</a><br>
-    <a href="linkDropboxAccount.jsp">LINK DROPBOX ACCOUNT</a><br>
+    <s:form action="search"><s:submit value="SEARCH"/></s:form>
+    <s:form action="details"><s:submit value="ALBUM & ARTIST DETAILS"/></s:form>
+    <s:form action="review"><s:submit value="ALBUM REVIEW"/></s:form>
+    <s:form action="upload"><s:submit value="UPLOAD MUSIC FILE"/></s:form>
+    <s:form action="download"><s:submit value="DOWNLOAD MUSIC FILE"/></s:form>
+    <s:form action="createGroup"><s:submit value="CREATE GROUP"/></s:form>
+    <s:form action="joinGroup"><s:submit value="JOIN GROUP"/></s:form>
+    <s:form action="editorPrivileges"><s:submit value="GRANT EDITOR PRIVILEGES"/></s:form>
+    <s:form action="ownerPrivileges"><s:submit value="GRANT OWNER PRIVILEGES"/></s:form>
+    <s:form action="addInfo"><s:submit value="ADD INFO"/></s:form>
+    <s:form action="changeInfo"><s:submit value="CHANGE INFO"/></s:form>
+    <s:form action="manageGroups"><s:submit value="MANAGE GROUPS"/></s:form>
+    <s:form action="associateButton"><s:submit value="LINK DROPBOX ACCOUNT"/></s:form>
+
+    <h4>${session.message}</h4>
 </body>
 </html>
