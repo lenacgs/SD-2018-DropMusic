@@ -26,5 +26,9 @@
     <s:form action="changeInfo"><s:submit value="CHANGE INFO"/></s:form>
     <s:form action="manageGroups"><s:submit value="MANAGE GROUPS"/></s:form>
     <s:form action="associateButton"><s:submit value="LINK DROPBOX ACCOUNT"/></s:form>
+
+    <s:if test="hasActionMessages()">
+        <s:actionmessage/>
+    </s:if>
 </body>
 </html>

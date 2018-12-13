@@ -36,26 +36,43 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name="SUCCESS">/menu.jsp</result>
         <result name="LOGIN">/login.jsp</result>
     </action>
+    <action name="loginMenu">
+        <result>/login.jsp</result>
+    </action>
 
     <action name="register" class="Web.Actions.RegisterAction" method="execute">
         <result name="SUCCESS">/menu.jsp</result>
         <result name="REGISTER">/register.jsp</result>
     </action>
+    <action name="registerMenu">
+        <result>/register.jsp</result>
+    </action>
 
-    <!--<action name="search" class="Web.Actions.SearchAction" method="execute">
-        <result name="SUCCESS">/menu.jsp</result>
-        <result name="REGISTER">/register.jsp</result>
-    </action>-->
+    <action name="loginDropbox" class="Web.Actions.LoginDropboxAction" method="execute">
+        <result name="REDIRECT" type="redirect">${authorization}</result>
+    </action>
+
+
 
     <!--redirects user to dropbox website when execute() returns "REDIRECT"-->
     <action name="associateButton" class="Web.Actions.AssociateButtonAction" method="execute">
         <result name="REDIRECT" type="redirect">${authorization}</result>
     </action>
 
+    <action name="loginDropboxSuccess" class="Web.Actions.LoginDropboxSuccessAction" method="execute">
+        <result name="SUCCESS">/menu.jsp</result>
+        <result name="FAIL">/index.jsp</result>
+    </action>
+
     <action name="asssociateDropbox" class="Web.Actions.AssociateDropboxAction" method="execute">
         <result name="SUCCESS">/menu.jsp</result>
         <result name="FAIL">/menu.jsp</result>
     </action>
+
+    <!--<action name="addInfo" class="Web.Actions.AddInfoAction" method="execute">
+        <result name="SUCCESS">/menu.jsp</result>
+        <result name="FAIL">/menu.jsp</result>
+    </action>-->
 
 
   </package>
