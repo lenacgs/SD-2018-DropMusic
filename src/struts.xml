@@ -47,6 +47,16 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name="REGISTER">/register.jsp</result>
     </action>-->
 
+    <!--redirects user to dropbox website when execute() returns "REDIRECT"-->
+    <action name="associateButton" class="Web.Actions.AssociateButtonAction" method="execute">
+        <result name="REDIRECT" type="redirect">${authorization}</result>
+    </action>
+
+    <action name="asssociateDropbox" class="Web.Actions.AssociateDropboxAction" method="execute">
+        <result name="SUCCESS">/menu.jsp</result>
+        <result name="FAIL">/menu.jsp</result>
+    </action>
+
 
   </package>
 
