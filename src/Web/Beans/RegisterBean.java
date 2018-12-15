@@ -1,5 +1,7 @@
 package Web.Beans;
 
+import rmi.Services;
+
 import java.rmi.RemoteException;
 
 public class RegisterBean extends RMIBean {

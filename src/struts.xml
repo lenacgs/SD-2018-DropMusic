@@ -48,6 +48,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result>/register.jsp</result>
     </action>
 
+    <action name="searchMenu">
+        <result>/search.jsp</result>
+    </action>
+
     <action name="loginDropbox" class="Web.Actions.LoginDropboxAction" method="execute">
         <result name="REDIRECT" type="redirect">${authorization}</result>
     </action>

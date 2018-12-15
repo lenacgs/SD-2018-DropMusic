@@ -9,11 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Menu</title>
+    <title>DropMusic</title>
 </head>
 <body>
     <p>MENU</p>
-    <s:form action="search"><s:submit value="SEARCH"/></s:form>
+    <s:form action="searchMenu"><s:submit value="SEARCH"/></s:form>
     <s:form action="details"><s:submit value="ALBUM & ARTIST DETAILS"/></s:form>
     <s:form action="review"><s:submit value="ALBUM REVIEW"/></s:form>
     <s:form action="upload"><s:submit value="UPLOAD MUSIC FILE"/></s:form>

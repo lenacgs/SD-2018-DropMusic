@@ -8,7 +8,7 @@
 </head>
 <body>
     <s:form action="login" method="post">
-        <s:text name = "Username:" />
+        <s:text name = "Username: " />
         <s:textfield name="username" /><br>
         <s:text name = "Password: " />
         <s:password name="password" /><br><br>

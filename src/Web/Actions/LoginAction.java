@@ -16,7 +16,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
             int perks = this.getLoginBean().loginUser(username,password); //LoginBean.loginUser(username, password) returns perks of this user
             if (perks <= 3 && perks > 0){
                 session.put("username", username);
-                session.put("password", password);
                 session.put("loggedIn", true);
                 session.put("perks", perks);
                 return SUCCESS;

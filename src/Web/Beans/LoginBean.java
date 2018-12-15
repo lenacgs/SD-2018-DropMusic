@@ -1,5 +1,7 @@
 package Web.Beans;
 
+import rmi.Services;
+
 import java.rmi.RemoteException;
 
 public class LoginBean extends RMIBean {
@@ -18,5 +20,9 @@ public class LoginBean extends RMIBean {
             return -1;
         }
 
+    }
+
+    public Services getRMIServer(){
+        return this.server;
     }
 }
