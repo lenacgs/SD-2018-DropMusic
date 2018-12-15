@@ -1,5 +1,6 @@
 package Web.Actions;
 
+import Web.Beans.UserBean;
 import com.opensymphony.xwork2.ActionSupport;
 import Web.Beans.RegisterBean;
 import org.apache.struts2.interceptor.SessionAware;
@@ -17,8 +18,11 @@ public class RegisterAction extends ActionSupport implements SessionAware{
             if(perks <= 3 && perks > 0){
                 session.put("username", username);
                 session.put("password", password);
-                session.put("loggedin", true);
+                session.put("loggedIn", true);
                 session.put("perks", perks);
+                this.getUserBean().setUsername(username);
+                this.getUserBean().setPassword(password);
+                this.getUserBean().setPerks(perks);
                 return SUCCESS;
             }else{
                 return LOGIN;
@@ -26,6 +30,17 @@ public class RegisterAction extends ActionSupport implements SessionAware{
         }else{
             return LOGIN;
         }
+    }
+
+    public UserBean getUserBean() {
+        if (!session.containsKey("userBean")) {
+            this.setUserBean(new UserBean());
+        }
+        return (UserBean) session.get("userBean");
+    }
+
+    public void setUserBean(UserBean userBean) {
+        this.session.put("userBean", userBean);
     }
 
     public RegisterBean getRegisterBean() {

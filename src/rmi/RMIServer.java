@@ -1,5 +1,6 @@
 package rmi;
 
+import com.github.scribejava.core.model.Token;
 import rmiClient.Clients;
 
 import javax.sql.rowset.serial.SQLOutputImpl;
@@ -222,10 +223,20 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             }
         }
         return message;
+    }
 
+    public String loginDropbox(String accessToken) {
+        String request = "type | loginDropbox ; token | " + accessToken+";";
+        String ans = dealWithRequest(request);
+        if (ans.equals("type | status ; operation | failed ;")) return "0";
+        String []ans1 = ans.split(";");
+        return ans1[2];
+    }
 
-
-
+    public int saveToken(String username, String accessToken) {
+        String request = "type | token ; username | "+username+" ; token | "+accessToken;
+        String ans = dealWithRequest(request);
+        return 1;
     }
 
     public int register (String username, String password) throws java.rmi.RemoteException{
@@ -577,6 +588,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             if (aux[1].equals("operation | failed")){
                 String[] reply = aux[2].split(" \\| ");
+                System.out.println("returning="+ reply[1]);
                 return reply[1];
             }else if(aux[1].equals("command | invalid")){
                 return "Something went wrong!";

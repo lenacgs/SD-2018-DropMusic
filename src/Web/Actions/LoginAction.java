@@ -1,5 +1,6 @@
 package Web.Actions;
 
+import Web.Beans.UserBean;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
@@ -19,11 +20,19 @@ public class LoginAction extends ActionSupport implements SessionAware {
                 session.put("password", password);
                 session.put("loggedIn", true);
                 session.put("perks", perks);
+                session.put("message", "Login successful!");
+
+                this.getUserBean().setUsername(username);
+                this.getUserBean().setPassword(password);
+                this.getUserBean().setPerks(perks);
+
                 return SUCCESS;
             } else {
+                session.put("message", "Could not login :(");
                 return LOGIN;
             }
         } else {
+            session.put("message", "Could not login :(");
             return LOGIN;
         }
     }
@@ -46,6 +55,17 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     public void setLoginBean(LoginBean loginBean){
         this.session.put("loginBean", loginBean);
+    }
+
+    public UserBean getUserBean() {
+        if (!session.containsKey("userBean")) {
+            this.setUserBean(new UserBean());
+        }
+        return (UserBean) session.get("userBean");
+    }
+
+    public void setUserBean(UserBean userBean) {
+        this.session.put("userBean", userBean);
     }
 
     @Override

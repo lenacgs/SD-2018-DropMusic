@@ -1,5 +1,7 @@
 package Interface;
 
+import com.github.scribejava.core.model.Token;
+
 import java.util.*;
 import java.io.*;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -9,6 +11,16 @@ public class User implements Serializable{
     private String username;
     private String password;
     private int perks;
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    private String accessToken;
 
     private CopyOnWriteArrayList<Group> defaultShareGroups; //lista de grupos a quem o utilizador partilha sempre por omissão
     private CopyOnWriteArrayList<Music> transferredMusics; //lista de musicas que o user transferiu para o servidor (e que pode enventualmente partilhar com outros userss/grupos)
