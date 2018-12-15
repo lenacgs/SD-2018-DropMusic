@@ -30,7 +30,7 @@
     <s:form action="ownerPrivileges"><s:submit value="GRANT OWNER PRIVILEGES"/></s:form>
     <s:form action="addInfo"><s:submit value="ADD INFO"/></s:form>
     <s:form action="changeInfo"><s:submit value="CHANGE INFO"/></s:form>
-    <s:form action="manageGroups"><s:submit value="MANAGE GROUPS"/></s:form>
+    <s:form action="manageGroupsMenu"><s:submit value="MANAGE GROUPS"/></s:form>
     <s:form action="associateButton"><s:submit value="LINK DROPBOX ACCOUNT"/></s:form>
 
     <h4>${session.message}</h4>

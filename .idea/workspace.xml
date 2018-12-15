@@ -6,138 +6,33 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/struts.xml" line="81" mnemonic="8" />
+    <bookmark url="file://$PROJECT_DIR$/src/struts.xml" line="99" mnemonic="8" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4181b51b-9eb8-417c-a84a-b7699f18d9f5" name="Default Changelist" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/JoinGroupAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/createGroup.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/joinGroup.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/ManageGroupRequestsAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/ManageGroupsMenuAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/ManageRequestsAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/ManageGroupBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/manageGroup.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/manageRequests.jsp" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/groups.obj" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/groups.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/writeRequests.obj" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/writeRequests.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/WebArchive.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/WebArchive.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" afterPath="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Beans/LoginBean.java" afterPath="$PROJECT_DIR$/src/Web/Beans/LoginBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/struts.xml" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/joinGroup.jsp" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/joinGroup.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/menu.jsp" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/menu.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java" afterPath="$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java" afterPath="$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java" afterPath="$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java" afterPath="$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" afterPath="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" afterPath="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/AWeberApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/AWeberApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi2.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/DiggApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/DiggApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/DoktornaraboteApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/DoktornaraboteApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/DropBoxApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/DropBoxApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/EvernoteApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/EvernoteApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FacebookApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FacebookApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FlickrApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FlickrApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/Foursquare2Api.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/Foursquare2Api.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FoursquareApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FoursquareApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FreelancerApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FreelancerApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GetGlueApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GetGlueApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GitHubApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GitHubApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi20.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/HHApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/HHApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ImgUrApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ImgUrApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/InstagramApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/InstagramApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/KaixinApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/KaixinApi20.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi20.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LiveApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LiveApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LoveFilmApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LoveFilmApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MailruApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MailruApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MeetupApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MeetupApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MendeleyApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MendeleyApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MisoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MisoApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/NetProspexApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/NetProspexApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/NeteaseWeibooApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/NeteaseWeibooApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/OdnoklassnikiApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/OdnoklassnikiApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/PlurkApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/PlurkApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/Px500Api.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/Px500Api.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/RenrenApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/RenrenApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SapoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SapoApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SimpleGeoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SimpleGeoApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi20.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SkyrockApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SkyrockApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SohuWeiboApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SohuWeiboApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TrelloApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TrelloApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TumblrApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TumblrApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TutByApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TutByApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TwitterApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TwitterApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/UbuntuOneApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/UbuntuOneApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ViadeoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ViadeoApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/VimeoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/VimeoApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/VkontakteApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/VkontakteApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/XingApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/XingApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/YahooApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/YahooApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/YammerApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/YammerApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleJsonTokenExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleJsonTokenExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleToken.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/DoktornaraboteOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/DoktornaraboteOAuthServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/GoogleOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/GoogleOAuthServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/HHOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/HHOAuthServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/LinkedIn20ServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/LinkedIn20ServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/MailruOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/MailruOAuthServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/OdnoklassnikiServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/OdnoklassnikiServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/TutByOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/TutByOAuthServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/AbstractServiceBuilder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/AbstractServiceBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilderAsync.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilderAsync.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/Api.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/Api.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi10a.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi10a.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi20.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthConnectionException.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthConnectionException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthException.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthParametersMissingException.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthParametersMissingException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthSignatureException.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthSignatureException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/AccessTokenExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/AccessTokenExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractorImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractorImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractorImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractorImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/JsonTokenExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/JsonTokenExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/RequestTokenExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/RequestTokenExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractor20Impl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractor20Impl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractorImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractorImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/AbstractRequest.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/AbstractRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ForceTypeOfHttpRequest.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ForceTypeOfHttpRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthAsyncRequestCallback.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthAsyncRequestCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfig.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfigAsync.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfigAsync.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConstants.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequest.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequestAsync.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequestAsync.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Parameter.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Parameter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ParameterList.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ParameterList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Response.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Response.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ScribeJavaConfig.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ScribeJavaConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/SignatureType.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/SignatureType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Token.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Token.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verb.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verifier.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verifier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth10aServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth10aServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth20ServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth20ServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/Base64Encoder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/Base64Encoder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/CommonsEncoder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/CommonsEncoder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/DatatypeConverterEncoder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/DatatypeConverterEncoder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/HMACSha1SignatureService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/HMACSha1SignatureService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/PlaintextSignatureService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/PlaintextSignatureService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/RSASha1SignatureService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/RSASha1SignatureService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/SignatureService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/SignatureService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/MapUtils.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/MapUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/OAuthEncoder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/OAuthEncoder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/Preconditions.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/Preconditions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/StreamUtils.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/StreamUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmi/RMIServer.java" afterPath="$PROJECT_DIR$/src/rmi/RMIServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struts.xml" afterPath="$PROJECT_DIR$/src/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/joinGroup.jsp" afterPath="$PROJECT_DIR$/web/joinGroup.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/menu.jsp" afterPath="$PROJECT_DIR$/web/menu.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -196,21 +91,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <file leaf-file-name="ManageGroupRequestsAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Actions/ManageGroupRequestsAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="437" column="9" lean-forward="false" selection-start-line="437" selection-start-column="9" selection-end-line="437" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="struts.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/struts.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="72" column="51" lean-forward="true" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
+            <state relative-caret-position="525">
+              <caret line="25" column="82" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -219,78 +104,52 @@
       <file leaf-file-name="JoinGroupAction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Web/Actions/JoinGroupAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+            <state relative-caret-position="196">
+              <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1169#1170#0" expanded="true" />
                 <element signature="e#1195#1196#0" expanded="true" />
-                <element signature="e#1223#1224#0" expanded="true" />
-                <element signature="e#1248#1249#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JoinGroupBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="18" column="54" lean-forward="false" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="createGroup.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/createGroup.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="15" column="52" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JoinGroupMenuAction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="16" column="72" lean-forward="true" selection-start-line="16" selection-start-column="72" selection-end-line="16" selection-end-column="72" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateGroupAction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="17" column="76" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="76" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JoinGroupMenuBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/menu.jsp">
+      <file leaf-file-name="ManageRequestsAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Actions/ManageRequestsAction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="525">
-              <caret line="21" column="63" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="63" />
+              <caret line="29" column="64" lean-forward="false" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1482#1483#0" expanded="true" />
+                <element signature="e#1512#1513#0" expanded="true" />
+                <element signature="e#1556#1557#0" expanded="true" />
+                <element signature="e#1592#1593#0" expanded="true" />
+                <element signature="e#1622#1623#0" expanded="true" />
+                <element signature="e#1649#1650#0" expanded="true" />
+                <element signature="e#1687#1688#0" expanded="true" />
+                <element signature="e#1717#1718#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="649" column="25" lean-forward="true" selection-start-line="649" selection-start-column="25" selection-end-line="649" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rmiClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="1247" column="17" lean-forward="true" selection-start-line="1247" selection-start-column="17" selection-end-line="1247" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -299,8 +158,38 @@
       <file leaf-file-name="joinGroup.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/joinGroup.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+            <state relative-caret-position="302">
+              <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MulticastServer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="536" column="29" lean-forward="true" selection-start-line="536" selection-start-column="29" selection-end-line="536" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="struts.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/struts.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="477">
+              <caret line="90" column="32" lean-forward="false" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manageRequests.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/manageRequests.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -324,6 +213,8 @@
       <find>loginMenu</find>
       <find>redirect</find>
       <find>authorization</find>
+      <find>CreateGroupBean</find>
+      <find>newGro</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -337,17 +228,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/lib/com/github/scribejava/core/builder/ServiceBuilder.java" />
-        <option value="$PROJECT_DIR$/src/Dropbox_RESTAPI/DropboxConnection.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/action/LoginAction.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/action/RegisterAction.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/action/Setup.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/action/SetupAction.java" />
-        <option value="$PROJECT_DIR$/src/Web/model/login.java" />
-        <option value="$PROJECT_DIR$/src/Web/Beans/login.java" />
-        <option value="$PROJECT_DIR$/web/register.jsp" />
         <option value="$PROJECT_DIR$/web/error.jsp" />
-        <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
         <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
         <option value="$PROJECT_DIR$/src/Web/Actions/RegisterAction.java" />
         <option value="$PROJECT_DIR$/web/login.jsp" />
@@ -374,20 +255,30 @@
         <option value="$PROJECT_DIR$/src/Web/Actions/AssociateButtonAction.java" />
         <option value="$PROJECT_DIR$/src/Web/Actions/AssociateDropboxAction.java" />
         <option value="$PROJECT_DIR$/web/createGroup.jsp" />
-        <option value="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" />
-        <option value="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" />
         <option value="$PROJECT_DIR$/src/Web/Beans/LoginBean.java" />
-        <option value="$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java" />
         <option value="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" />
-        <option value="$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java" />
         <option value="$PROJECT_DIR$/src/Web/Beans/joinGroupMenuBean.java" />
-        <option value="$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java" />
-        <option value="$PROJECT_DIR$/web/menu.jsp" />
-        <option value="$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java" />
-        <option value="$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java" />
-        <option value="$PROJECT_DIR$/web/joinGroup.jsp" />
-        <option value="$PROJECT_DIR$/src/struts.xml" />
         <option value="$PROJECT_DIR$/src/Web/Actions/JoinGroupAction.java" />
+        <option value="$PROJECT_DIR$/web/menu.jsp" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/ManageGroupsMenuBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/ManageGroupsMenuAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/ManageGroupRequestsBean.java" />
+        <option value="$PROJECT_DIR$/web/manageGroup.jsp" />
+        <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java" />
+        <option value="$PROJECT_DIR$/web/joinGroup.jsp" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/ManageGroupBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/ManageGroupRequestsAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/manageRequestsAction.java" />
+        <option value="$PROJECT_DIR$/src/struts.xml" />
+        <option value="$PROJECT_DIR$/web/manageRequests.jsp" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/ManageRequestsAction.java" />
       </list>
     </option>
   </component>
@@ -424,6 +315,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -435,6 +329,19 @@
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Multicast" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Multicast" type="462c0819:PsiDirectoryNode" />
+              <item name="MulticastServer.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
@@ -484,9 +391,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -791,12 +695,14 @@
       <workItem from="1544661395087" duration="13006000" />
       <workItem from="1544826216891" duration="7229000" />
       <workItem from="1544834033311" duration="6980000" />
-      <workItem from="1544868849010" duration="3934000" />
+      <workItem from="1544868849010" duration="8948000" />
+      <workItem from="1544883941227" duration="507000" />
+      <workItem from="1544884608907" duration="7197000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73266000" />
+    <option name="totallyTimeSpent" value="85984000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -804,7 +710,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31276152" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -845,33 +751,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/FileHandling/ObjectFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/log4j.dtd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3538">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dropmusic/action/Setup.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/SetupAction.java" />
-    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7260">
-          <caret line="555" column="36" lean-forward="false" selection-start-line="555" selection-start-column="36" selection-end-line="555" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uc/sd/apis/FacebookApi2.java" />
-    <entry file="file://$PROJECT_DIR$/src/com2/github/scribejava/core/oauth/OAuthService.java" />
-    <entry file="file://$PROJECT_DIR$/src/lib/com/github/scribejava/core/oauth/OAuthService.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/apis/AWeberApi.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/apis/ConstantContactApi.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/core/model/OAuthConfig.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/core/model/SignatureType.java" />
@@ -911,9 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="89" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="89" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -960,38 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RegisterBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RMIBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/LoginBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="22" column="9" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="22" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginDropboxAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1004,13 +848,6 @@
         <state relative-caret-position="250">
           <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="14" column="136" lean-forward="false" selection-start-line="14" selection-start-column="136" selection-end-line="14" selection-end-column="136" />
         </state>
       </provider>
     </entry>
@@ -1030,92 +867,200 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/menu.jsp">
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/ManageGroupsMenuBean.java" />
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java" />
+    <entry file="file://$PROJECT_DIR$/web/manageGroup.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="21" column="63" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="63" />
+        <state relative-caret-position="400">
+          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/createGroup.jsp">
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/ManageGroupsMenuAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="52" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/joinGroup.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="17" column="76" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="76" />
+        <state relative-caret-position="250">
+          <caret line="13" column="45" lean-forward="false" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java">
+    <entry file="file://$PROJECT_DIR$/web/menu.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        <state relative-caret-position="450">
+          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="16" column="72" lean-forward="true" selection-start-line="16" selection-start-column="72" selection-end-line="16" selection-end-column="72" />
+        <state relative-caret-position="450">
+          <caret line="22" column="14" lean-forward="false" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="18" column="54" lean-forward="false" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+        <state relative-caret-position="200">
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RegisterBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RMIBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/LoginBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="19" column="50" lean-forward="true" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/createGroup.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="1247" column="17" lean-forward="true" selection-start-line="1247" selection-start-column="17" selection-end-line="1247" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="649" column="25" lean-forward="true" selection-start-line="649" selection-start-column="25" selection-end-line="649" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="21" column="49" lean-forward="true" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/ManageGroupBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="29" column="17" lean-forward="true" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Web/Actions/JoinGroupAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        <state relative-caret-position="196">
+          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1169#1170#0" expanded="true" />
             <element signature="e#1195#1196#0" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1248#1249#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+    <entry file="file://$PROJECT_DIR$/web/joinGroup.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="437" column="9" lean-forward="false" selection-start-line="437" selection-start-column="9" selection-end-line="437" selection-end-column="9" />
+        <state relative-caret-position="302">
+          <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/struts.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="72" column="51" lean-forward="true" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
+        <state relative-caret-position="477">
+          <caret line="90" column="32" lean-forward="false" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/manageRequests.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/ManageGroupRequestsAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="82" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/ManageRequestsAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="29" column="64" lean-forward="false" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1482#1483#0" expanded="true" />
+            <element signature="e#1512#1513#0" expanded="true" />
+            <element signature="e#1556#1557#0" expanded="true" />
+            <element signature="e#1592#1593#0" expanded="true" />
+            <element signature="e#1622#1623#0" expanded="true" />
+            <element signature="e#1649#1650#0" expanded="true" />
+            <element signature="e#1687#1688#0" expanded="true" />
+            <element signature="e#1717#1718#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="536" column="29" lean-forward="true" selection-start-line="536" selection-start-column="29" selection-end-line="536" selection-end-column="29" />
           <folding />
         </state>
       </provider>

@@ -62,6 +62,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
     <action name="createGroup" class="Web.Actions.CreateGroupAction" method="execute">
         <result name="YES">/menu.jsp</result>
+        <result name="NO">/menu.jsp</result>
     </action>
     <!-- _______________________________________________________________________________________ -->
     <action name="joinGroupMenu" class="Web.Actions.JoinGroupMenuAction" method="execute">
@@ -73,8 +74,25 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name = "FAILED">/error.jsp</result>
         <result name = "SUCCEED">/menu.jsp</result>
     </action>
-
-
+    <!-- _______________________________________________________________________________________ -->
+    <action name="manageGroupsMenu" class="Web.Actions.ManageGroupsMenuAction" method="execute">
+        <result name = "SUCCEED">/manageGroup.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+    </action>
+    <action name="manageGroupRequests" class="Web.Actions.ManageGroupRequestsAction" method="execute">
+        <result name = "SUCCEED">/manageRequests.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+    </action>
+    <action name="acceptRequest" class="Web.Actions.ManageRequestsAction" method="execute">
+        <result name = "SUCCEED">/menu.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+        <param name = "toDo"> accept</param>
+    </action>
+    <action name="declineRequest" class="Web.Actions.ManageRequestsAction" method="execute">
+        <result name = "SUCCEED">/menu.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+        <param name = "toDo"> decline</param>
+    </action>
     <!-- _______________________________________________________________________________________ -->
 
     <!--redirects user to dropbox website when execute() returns "REDIRECT"-->

@@ -16,7 +16,6 @@ public class RMIBean {
     void lookup() {
         try {
             server = (Services) LocateRegistry.getRegistry(RMIPort).lookup(RMIName);
-            System.out.println("fez lookup");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -32,4 +31,5 @@ public class RMIBean {
         }
         return trys;
     }
+
 }

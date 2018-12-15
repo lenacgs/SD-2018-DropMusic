@@ -1,6 +1,6 @@
 package Web.Actions;
 
-import Web.Beans.JoinGroupMenuBean;
+import Web.Beans.JoinGroupBean;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -11,10 +11,10 @@ public class JoinGroupMenuAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
 
     @Override
-    public String execute() throws Exception{ //function that is to be executed when user presses button to submit LoginBean credentials
+    public String execute() throws Exception{
 
         String username = (String)session.get("username");
-        String group = this.getJoinGroupMenuBean().showGroups(username);
+        String group = this.getJoinGroupBean().showGroups(username);
         String groups[] = group.split(",");
         if(group==null) {
             addActionError("There are no groups available for you to join");
@@ -26,8 +26,8 @@ public class JoinGroupMenuAction extends ActionSupport implements SessionAware {
         }
     }
 
-    public JoinGroupMenuBean getJoinGroupMenuBean(){
-        JoinGroupMenuBean bean = new JoinGroupMenuBean();
+    public JoinGroupBean getJoinGroupBean(){
+        JoinGroupBean bean = new JoinGroupBean();
         return bean;
     }
 

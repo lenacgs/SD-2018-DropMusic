@@ -17,7 +17,7 @@
     <s:iterator var="group" value="#session.groups">
         <s:form action="joinGroup" method="post">
             <s:hidden name="id" value="%{group}" />
-            <s:submit value="%{group}" action="joinGroup"/>
+            <s:submit value="%{group}"/>
         </s:form>
     </s:iterator>
 </body>

@@ -6,6 +6,7 @@ public class CreateGroupBean extends RMIBean {
 
     public CreateGroupBean(){
         super();
+        lookup();
     }
 
     public String createGroup(String username) {

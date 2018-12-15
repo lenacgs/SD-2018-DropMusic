@@ -10,7 +10,7 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
 
     @Override
-    public String execute() throws Exception{ //function that is to be executed when user presses button to submit LoginBean credentials
+    public String execute() throws Exception{
 
         String username = (String)session.get("username");
         String groupID = this.getCreateGroupBean().createGroup(username);
@@ -18,7 +18,6 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
             addActionError("Couldn't create new group. Try again later...");
             return "NO";
         }
-
         else {
             addActionMessage("New group created: "+groupID);
             return "YES";

@@ -2,36 +2,35 @@ package Web.Beans;
 
 import java.rmi.RemoteException;
 
-public class JoinGroupBean extends RMIBean {
-
-    public JoinGroupBean(){
+public class ManageGroupBean extends RMIBean {
+    public ManageGroupBean(){
         super();
         lookup();
     }
 
-    public String showGroups(String username){
-        String groups;
+    public String showRequests(String username){
         int trys=0;
+        String requests;
         while(true) {
             try {
                 if(trys>=30)
                     return null;
-                groups = server.showGroups(username);
-                return groups;
+                requests = server.showRequests(username);
+                return requests;
             } catch (RemoteException e) {
                 trys=reestablishConnection(trys);
             }
         }
     }
 
-    public String joinGroup (String username, String id){
-        String reply;
+    public boolean manageRequest(String username, String newUser, String groupID, String toDo){
+        boolean reply;
         int trys=0;
         while(true) {
             try {
                 if(trys>=30)
-                    return null;
-                reply = server.joinGroup(username,id);
+                    return false;
+                reply = server.manageRequests(username, newUser, groupID, toDo);
                 return reply;
             } catch (RemoteException e) {
                 trys=reestablishConnection(trys);
