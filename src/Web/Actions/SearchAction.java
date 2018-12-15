@@ -2,6 +2,7 @@ package Web.Actions;
 
 import Web.Beans.SearchBean;
 import Web.Services.SearchService;
+import Web.models.ArtistResultModel;
 import Web.models.SearchModel;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -21,7 +22,11 @@ public class SearchAction extends ActionSupport implements SessionAware {
     @Override
     public String execute(){
         getSearchBean();
+        System.out.println(this.getInputObject().keyword + " - " + this.getInputObject().option);
         setResults(getService().search(this.getInputObject(), session));
+        for(Object o : results){
+            System.out.println(o.toString());
+        }
         return SUCCESS;
     }
 

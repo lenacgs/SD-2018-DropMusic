@@ -11,21 +11,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4181b51b-9eb8-417c-a84a-b7699f18d9f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Web/models/AlbumResultModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/models/ArtistResultModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/models/MusicResultModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/models/SearchModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SD-2018-DropMusic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SD-2018-DropMusic.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/Services/AlbumSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/Services/SearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/Services/ArtistSearchModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/Services/MusicSearchModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/models/AlbumSearchModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/models/ArtistSearchModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/models/MusicSearchModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/struts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/search.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/models/AlbumResultModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/models/AlbumResultModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/models/ArtistResultModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/models/ArtistResultModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/models/MusicResultModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/models/MusicResultModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/models/SearchModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/models/SearchModel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,12 +29,14 @@
     <session id="1212959648">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.31" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -51,7 +44,7 @@
           <entry key="class" value="1" />
           <entry key="dtd" value="1" />
           <entry key="iml" value="2" />
-          <entry key="java" value="57" />
+          <entry key="java" value="59" />
           <entry key="jsp" value="12" />
           <entry key="xml" value="10" />
         </counts>
@@ -61,7 +54,7 @@
           <entry key="CLASS" value="1" />
           <entry key="DTD" value="1" />
           <entry key="IDEA_MODULE" value="2" />
-          <entry key="JAVA" value="57" />
+          <entry key="JAVA" value="59" />
           <entry key="JSP" value="12" />
           <entry key="XML" value="10" />
         </counts>
@@ -70,7 +63,7 @@
         <counts>
           <entry key="dummy" value="14" />
           <entry key="iml" value="1" />
-          <entry key="java" value="5770" />
+          <entry key="java" value="5975" />
           <entry key="jsp" value="1362" />
           <entry key="xml" value="347" />
         </counts>
@@ -78,7 +71,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="5770" />
+          <entry key="JAVA" value="5975" />
           <entry key="JSP" value="1362" />
           <entry key="PLAIN_TEXT" value="14" />
           <entry key="XML" value="347" />
@@ -94,40 +87,39 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Services/SearchService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#394#402#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Actions/RegisterAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="30" selection-start-line="30" selection-end-line="39" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistResultModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="68">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
               <folding>
-                <element signature="e#110#111#0" expanded="true" />
-                <element signature="e#135#136#0" expanded="true" />
-                <element signature="e#117#118#0" expanded="true" />
-                <element signature="e#144#145#0" expanded="true" />
+                <element signature="e#263#264#0" expanded="true" />
+                <element signature="e#290#291#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/models/AlbumResultModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+              <folding>
+                <element signature="e#415#416#0" expanded="true" />
+                <element signature="e#458#459#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Web/models/MusicResultModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+              <folding>
+                <element signature="e#415#416#0" expanded="true" />
+                <element signature="e#458#459#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/struts.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="75" column="58" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
+            <state relative-caret-position="116">
+              <caret line="71" column="49" lean-forward="true" selection-start-line="71" selection-start-column="49" selection-end-line="71" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -145,22 +137,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Web/Actions/SearchAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
+            <state relative-caret-position="201">
+              <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1198#1199#0" expanded="true" />
-                <element signature="e#1236#1237#0" expanded="true" />
-                <element signature="e#1277#1278#0" expanded="true" />
-                <element signature="e#1307#1308#0" expanded="true" />
-                <element signature="e#1360#1361#0" expanded="true" />
-                <element signature="e#1398#1399#0" expanded="true" />
-                <element signature="e#1189#1190#0" expanded="true" />
-                <element signature="e#1223#1224#0" expanded="true" />
-                <element signature="e#1656#1657#0" expanded="true" />
-                <element signature="e#1700#1701#0" expanded="true" />
-                <element signature="e#1607#1608#0" expanded="true" />
-                <element signature="e#1653#1654#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -169,8 +149,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Web/Beans/SearchBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+            <state relative-caret-position="221">
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
               <folding>
                 <element signature="e#119#120#0" expanded="true" />
                 <element signature="e#142#143#0" expanded="true" />
@@ -194,8 +174,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/search.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="27" column="29" lean-forward="true" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+            <state relative-caret-position="459">
+              <caret line="27" column="29" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -204,16 +184,16 @@
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Web/models/SearchModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+            <state relative-caret-position="272">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -286,15 +266,15 @@
         <option value="$PROJECT_DIR$/src/Web/Beans/SearchBean.java" />
         <option value="$PROJECT_DIR$/src/Web/Services/AlbumSearchService.java" />
         <option value="$PROJECT_DIR$/src/Web/models/AlbumSearchModel.java" />
+        <option value="$PROJECT_DIR$/src/Web/Services/SearchService.java" />
+        <option value="$PROJECT_DIR$/src/struts.xml" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/web/search.jsp" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/models/SearchModel.java" />
         <option value="$PROJECT_DIR$/src/Web/models/ArtistResultModel.java" />
         <option value="$PROJECT_DIR$/src/Web/models/AlbumResultModel.java" />
         <option value="$PROJECT_DIR$/src/Web/models/MusicResultModel.java" />
-        <option value="$PROJECT_DIR$/src/Web/Services/SearchService.java" />
-        <option value="$PROJECT_DIR$/src/struts.xml" />
-        <option value="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" />
-        <option value="$PROJECT_DIR$/src/Web/models/SearchModel.java" />
-        <option value="$PROJECT_DIR$/web/search.jsp" />
       </list>
     </option>
   </component>
@@ -307,13 +287,13 @@
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
+    <option name="FILTER_INFO" value="false" />
+    <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="width" value="1915" />
-    <option name="height" value="1039" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -413,11 +393,11 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544838964978" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544885532658" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
@@ -630,17 +610,18 @@
       <workItem from="1544726544264" duration="885000" />
       <workItem from="1544729894233" duration="2823000" />
       <workItem from="1544807967215" duration="14924000" />
+      <workItem from="1544839013263" duration="29000" />
+      <workItem from="1544884936369" duration="537000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74077000" />
+    <option name="totallyTimeSpent" value="74643000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1532" height="830" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1532" height="832" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49292928" visible="true" weight="0.17391305" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49292928" visible="true" weight="0.17934783" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -648,10 +629,9 @@
       <window_info id="Web" order="5" sideWeight="0.5070707" side_tool="true" weight="0.33882785" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Capture Tool" order="7" />
-      <window_info anchor="bottom" id="Spring" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32914045" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3739255" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37285715" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39937106" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -659,10 +639,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.3371105" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3374317" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.33571428" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Application Servers" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Spring" order="14" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -788,63 +769,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Services/MusicSearchModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/models/MusicSearchModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#146#147#0" expanded="true" />
-            <element signature="e#182#183#0" expanded="true" />
-            <element signature="e#224#225#0" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#320#321#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Services/ArtistSearchModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistSearchModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Services/MusicSearchModel.java" />
+    <entry file="file://$PROJECT_DIR$/src/Web/models/MusicSearchModel.java" />
+    <entry file="file://$PROJECT_DIR$/src/Web/Services/ArtistSearchModel.java" />
+    <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistSearchModel.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateDropboxAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1321#1322#0" expanded="true" />
-            <element signature="e#1348#1349#0" expanded="true" />
-            <element signature="e#1388#1389#0" expanded="true" />
-            <element signature="e#1420#1421#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-            <element signature="e#1523#1524#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -852,9 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="8" column="89" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="89" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -879,20 +811,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Services/interfaces/SearchService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Services/interfaces/SearchService.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateButtonAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
           <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -907,9 +830,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -930,32 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/models/MusicResultModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#266#267#0" expanded="true" />
-            <element signature="e#298#299#0" expanded="true" />
-            <element signature="e#342#343#0" expanded="true" />
-            <element signature="e#378#379#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/models/AlbumResultModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="e#143#144#0" expanded="true" />
-            <element signature="e#175#176#0" expanded="true" />
-            <element signature="e#219#220#0" expanded="true" />
-            <element signature="e#255#256#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -963,9 +857,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Services/SearchService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Web/Actions/RegisterAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
+        <state relative-caret-position="442">
           <caret line="30" selection-start-line="30" selection-end-line="39" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -973,45 +877,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistResultModel.java">
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/SearchBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="221">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
-            <element signature="e#110#111#0" expanded="true" />
-            <element signature="e#135#136#0" expanded="true" />
-            <element signature="e#117#118#0" expanded="true" />
-            <element signature="e#144#145#0" expanded="true" />
+            <element signature="e#119#120#0" expanded="true" />
+            <element signature="e#142#143#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/search.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="29" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/struts.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="75" column="58" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/SearchAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
-            <element signature="e#1236#1237#0" expanded="true" />
-            <element signature="e#1277#1278#0" expanded="true" />
-            <element signature="e#1307#1308#0" expanded="true" />
-            <element signature="e#1360#1361#0" expanded="true" />
-            <element signature="e#1398#1399#0" expanded="true" />
-            <element signature="e#1189#1190#0" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1656#1657#0" expanded="true" />
-            <element signature="e#1700#1701#0" expanded="true" />
-            <element signature="e#1607#1608#0" expanded="true" />
-            <element signature="e#1653#1654#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="116">
+          <caret line="71" column="49" lean-forward="true" selection-start-line="71" selection-start-column="49" selection-end-line="71" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1025,46 +919,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Services/SearchService.java">
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/SearchAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="201">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#394#402#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/search.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="27" column="29" lean-forward="true" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/SearchBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding>
-            <element signature="e#119#120#0" expanded="true" />
-            <element signature="e#142#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Web/models/SearchModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        <state relative-caret-position="272">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistResultModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#290#291#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/models/AlbumResultModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <folding>
+            <element signature="e#415#416#0" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/models/MusicResultModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <folding>
+            <element signature="e#415#416#0" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

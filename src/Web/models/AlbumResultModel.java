@@ -17,4 +17,8 @@ public class AlbumResultModel {
         this.artist = artist;
     }
 
+    @Override
+    public String toString() {
+        return name + " - " + artist;
+    }
 }

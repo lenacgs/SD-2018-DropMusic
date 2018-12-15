@@ -1,13 +1,18 @@
 package Web.models;
 
 public class ArtistResultModel {
-    private String Name;
+    private String name;
 
     public ArtistResultModel(String name){
         setName(name);
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

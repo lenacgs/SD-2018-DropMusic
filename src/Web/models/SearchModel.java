@@ -4,11 +4,6 @@ public class SearchModel {
     public String keyword = null;
     public String option = null;
 
-    public SearchModel(String keyword, String option){
-        setKeyword(keyword);
-        setOption(option);
-    }
-
     public SearchModel() { }
 
     public String getKeyword() {
@@ -26,4 +21,6 @@ public class SearchModel {
     public void setOption(String option) {
         this.option = option;
     }
+
+
 }
