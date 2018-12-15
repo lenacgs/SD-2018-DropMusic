@@ -5,6 +5,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
 import Web.Beans.LoginBean;
 
+
 public class LoginAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;

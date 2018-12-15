@@ -6,14 +6,137 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/struts.xml" line="58" mnemonic="8" />
+    <bookmark url="file://$PROJECT_DIR$/src/struts.xml" line="81" mnemonic="8" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4181b51b-9eb8-417c-a84a-b7699f18d9f5" name="Default Changelist" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/JoinGroupAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/createGroup.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/joinGroup.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/WebArchive.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/WebArchive.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.13/webapps/ROOT/WEB-INF/classes/struts.xml" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.13/webapps/ROOT/WEB-INF/classes/struts.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.13/webapps/ROOT/menu.jsp" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.13/webapps/ROOT/menu.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Actions/AssociateDropboxAction.java" afterPath="$PROJECT_DIR$/src/Web/Actions/AssociateDropboxAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" afterPath="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Beans/LoginBean.java" afterPath="$PROJECT_DIR$/src/Web/Beans/LoginBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" afterPath="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" afterPath="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/AWeberApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/AWeberApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi2.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/DiggApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/DiggApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/DoktornaraboteApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/DoktornaraboteApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/DropBoxApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/DropBoxApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/EvernoteApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/EvernoteApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FacebookApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FacebookApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FlickrApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FlickrApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/Foursquare2Api.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/Foursquare2Api.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FoursquareApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FoursquareApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FreelancerApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FreelancerApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GetGlueApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GetGlueApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GitHubApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GitHubApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi20.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/HHApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/HHApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ImgUrApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ImgUrApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/InstagramApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/InstagramApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/KaixinApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/KaixinApi20.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi20.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LiveApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LiveApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LoveFilmApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LoveFilmApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MailruApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MailruApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MeetupApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MeetupApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MendeleyApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MendeleyApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MisoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MisoApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/NetProspexApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/NetProspexApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/NeteaseWeibooApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/NeteaseWeibooApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/OdnoklassnikiApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/OdnoklassnikiApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/PlurkApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/PlurkApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/Px500Api.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/Px500Api.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/RenrenApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/RenrenApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SapoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SapoApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SimpleGeoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SimpleGeoApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi20.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SkyrockApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SkyrockApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SohuWeiboApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SohuWeiboApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TrelloApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TrelloApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TumblrApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TumblrApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TutByApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TutByApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TwitterApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TwitterApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/UbuntuOneApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/UbuntuOneApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ViadeoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ViadeoApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/VimeoApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/VimeoApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/VkontakteApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/VkontakteApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/XingApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/XingApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/YahooApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/YahooApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/YammerApi.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/YammerApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleJsonTokenExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleJsonTokenExtractor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleToken.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/DoktornaraboteOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/DoktornaraboteOAuthServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/GoogleOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/GoogleOAuthServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/HHOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/HHOAuthServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/LinkedIn20ServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/LinkedIn20ServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/MailruOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/MailruOAuthServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/OdnoklassnikiServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/OdnoklassnikiServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/TutByOAuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/TutByOAuthServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/AbstractServiceBuilder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/AbstractServiceBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilderAsync.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilderAsync.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/Api.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/Api.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi10a.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi10a.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi20.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi20.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthConnectionException.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthConnectionException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthException.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthParametersMissingException.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthParametersMissingException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthSignatureException.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthSignatureException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/AccessTokenExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/AccessTokenExtractor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractorImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractorImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractorImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractorImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/JsonTokenExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/JsonTokenExtractor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/RequestTokenExtractor.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/RequestTokenExtractor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractor20Impl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractor20Impl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractorImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractorImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/AbstractRequest.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/AbstractRequest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ForceTypeOfHttpRequest.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ForceTypeOfHttpRequest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthAsyncRequestCallback.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthAsyncRequestCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfig.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfigAsync.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfigAsync.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConstants.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequest.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequestAsync.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequestAsync.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Parameter.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Parameter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ParameterList.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ParameterList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Response.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Response.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ScribeJavaConfig.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ScribeJavaConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/SignatureType.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/SignatureType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Token.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Token.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verb.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verb.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verifier.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verifier.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth10aServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth10aServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth20ServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth20ServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/Base64Encoder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/Base64Encoder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/CommonsEncoder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/CommonsEncoder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/DatatypeConverterEncoder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/DatatypeConverterEncoder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/HMACSha1SignatureService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/HMACSha1SignatureService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/PlaintextSignatureService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/PlaintextSignatureService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/RSASha1SignatureService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/RSASha1SignatureService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/SignatureService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/SignatureService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampService.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/MapUtils.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/MapUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/OAuthEncoder.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/OAuthEncoder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/Preconditions.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/Preconditions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/StreamUtils.java" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/StreamUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struts.xml" afterPath="$PROJECT_DIR$/src/struts.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/menu.jsp" afterPath="$PROJECT_DIR$/web/menu.jsp" />
     </list>
@@ -72,12 +195,68 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AssociateButtonAction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateButtonAction.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="65" lean-forward="true" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+            <state relative-caret-position="-20">
+              <caret line="437" column="9" lean-forward="false" selection-start-line="437" selection-start-column="9" selection-end-line="437" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="struts.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/struts.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="402">
+              <caret line="72" column="51" lean-forward="true" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JoinGroupAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Actions/JoinGroupAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1169#1170#0" expanded="true" />
+                <element signature="e#1195#1196#0" expanded="true" />
+                <element signature="e#1223#1224#0" expanded="true" />
+                <element signature="e#1248#1249#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JoinGroupBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="18" column="54" lean-forward="false" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createGroup.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/createGroup.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="15" column="52" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JoinGroupMenuAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="16" column="72" lean-forward="true" selection-start-line="16" selection-start-column="72" selection-end-line="16" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,14 +264,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DropBoxApi2.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/DropBoxApi2.java">
+      <file leaf-file-name="CreateGroupAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="89" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="89" />
+            <state relative-caret-position="350">
+              <caret line="17" column="76" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JoinGroupMenuBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,67 +289,19 @@
       <file leaf-file-name="menu.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/menu.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+            <state relative-caret-position="525">
+              <caret line="21" column="63" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <file leaf-file-name="joinGroup.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/joinGroup.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+            <state relative-caret-position="227">
+              <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="struts.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/struts.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="66" column="21" lean-forward="true" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="log4j.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/log4j.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/login.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AssociateDropboxAction.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateDropboxAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1321#1322#0" expanded="true" />
-                <element signature="e#1348#1349#0" expanded="true" />
-                <element signature="e#1388#1389#0" expanded="true" />
-                <element signature="e#1420#1421#0" expanded="true" />
-                <element signature="e#1489#1490#0" expanded="true" />
-                <element signature="e#1523#1524#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -181,18 +322,21 @@
       <find>register</find>
       <find>registerb</find>
       <find>loginMenu</find>
+      <find>redirect</find>
+      <find>authorization</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Dropbox_RESTAPI/org/apache/commons/codec/net/Utils.java" />
-        <option value="$PROJECT_DIR$/src/rmiClient/rmiClient.java" />
-        <option value="$PROJECT_DIR$/src/rmi/Services.java" />
-        <option value="$PROJECT_DIR$/src/apis/DropBoxApi2.java" />
         <option value="$PROJECT_DIR$/src/lib/com/github/scribejava/core/builder/ServiceBuilder.java" />
         <option value="$PROJECT_DIR$/src/Dropbox_RESTAPI/DropboxConnection.java" />
         <option value="$PROJECT_DIR$/src/dropmusic/action/LoginAction.java" />
@@ -201,15 +345,11 @@
         <option value="$PROJECT_DIR$/src/dropmusic/action/SetupAction.java" />
         <option value="$PROJECT_DIR$/src/Web/model/login.java" />
         <option value="$PROJECT_DIR$/src/Web/Beans/login.java" />
-        <option value="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" />
-        <option value="$PROJECT_DIR$/src/Web/Beans/LoginBean.java" />
-        <option value="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" />
         <option value="$PROJECT_DIR$/web/register.jsp" />
         <option value="$PROJECT_DIR$/web/error.jsp" />
         <option value="$PROJECT_DIR$/src/rmi/RMIServer.java" />
         <option value="$PROJECT_DIR$/src/Multicast/MulticastServer.java" />
         <option value="$PROJECT_DIR$/src/Web/Actions/RegisterAction.java" />
-        <option value="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" />
         <option value="$PROJECT_DIR$/web/login.jsp" />
         <option value="$PROJECT_DIR$/src/com2/github/scribejava/core/oauth/OAuthService.java" />
         <option value="$PROJECT_DIR$/src/lib/com/github/scribejava/core/oauth/OAuthService.java" />
@@ -232,9 +372,22 @@
         <option value="$PROJECT_DIR$/src/Web/Actions/LoginDropboxSuccessAction.java" />
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/src/Web/Actions/AssociateButtonAction.java" />
-        <option value="$PROJECT_DIR$/src/struts.xml" />
-        <option value="$PROJECT_DIR$/web/menu.jsp" />
         <option value="$PROJECT_DIR$/src/Web/Actions/AssociateDropboxAction.java" />
+        <option value="$PROJECT_DIR$/web/createGroup.jsp" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/LoginBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/joinGroupMenuBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java" />
+        <option value="$PROJECT_DIR$/web/menu.jsp" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java" />
+        <option value="$PROJECT_DIR$/web/joinGroup.jsp" />
+        <option value="$PROJECT_DIR$/src/struts.xml" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/JoinGroupAction.java" />
       </list>
     </option>
   </component>
@@ -251,12 +404,10 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
-  </component>
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="width" value="1920" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -273,7 +424,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -284,33 +434,26 @@
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="scribejava" type="462c0819:PsiDirectoryNode" />
+              <item name="rmi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="scribejava" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="rmi" type="462c0819:PsiDirectoryNode" />
+              <item name="RMIServer.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="scribejava" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth" type="462c0819:PsiDirectoryNode" />
+              <item name="rmiClient" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
@@ -343,6 +486,8 @@
       </pane>
       <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -355,7 +500,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
@@ -379,6 +524,7 @@
   </component>
   <component name="RunManager" selected="Tomcat Server.WebServer">
     <configuration name="Client" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="rmiClient.rmiClient" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="localhost localhost" />
@@ -392,6 +538,7 @@
       <envs />
     </configuration>
     <configuration name="MulticastServer1" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="MulticastServer1 MulticastServer1" />
@@ -405,6 +552,7 @@
       <envs />
     </configuration>
     <configuration name="MulticastServer2" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="MulticastServer2 MulticastServer2" />
@@ -418,6 +566,7 @@
       <envs />
     </configuration>
     <configuration name="MulticastServer3" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Multicast.MulticastServer" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="MulticastServer3 MulticastServer3" />
@@ -431,6 +580,7 @@
       <envs />
     </configuration>
     <configuration name="RMIServer1" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="rmi.RMIServer" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -444,6 +594,7 @@
       <envs />
     </configuration>
     <configuration name="RMIServer2" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="rmi.RMIServer" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -456,8 +607,7 @@
       <module name="SD-2018-DropMusic" />
       <envs />
     </configuration>
-    <configuration name="WebServer" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.13" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="BROWSER_ID" value="e5120d43-2c3f-47ef-9f26-65e539e05186" />
+    <configuration name="WebServer" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.12" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="WebArchive">
@@ -474,9 +624,25 @@
       <predefined_log_file id="Tomcat Manager" enabled="false" />
       <predefined_log_file id="Tomcat Host Manager" enabled="false" />
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="49755" />
       </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -521,6 +687,7 @@
       <module />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
@@ -532,6 +699,26 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
@@ -546,17 +733,32 @@
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
     </configuration>
-    <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
       <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
     </configuration>
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Application.MulticastServer1" />
@@ -587,88 +789,50 @@
       <workItem from="1544568761368" duration="4310000" />
       <workItem from="1544629846156" duration="6104000" />
       <workItem from="1544661395087" duration="13006000" />
+      <workItem from="1544826216891" duration="7229000" />
+      <workItem from="1544834033311" duration="6980000" />
+      <workItem from="1544868849010" duration="3934000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49243000" />
+    <option name="totallyTimeSpent" value="73266000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35849056" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16971917" sideWeight="0.49292928" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33882785" sideWeight="0.5070707" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33577406" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16770834" sideWeight="0.49292928" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33882785" sideWeight="0.5070707" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937106" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35849056" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16971917" sideWeight="0.49292928" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33882785" sideWeight="0.5070707" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35849056" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16971917" sideWeight="0.49292928" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33882785" sideWeight="0.5070707" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -681,58 +845,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="80" lean-forward="false" selection-start-line="3" selection-start-column="80" selection-end-line="3" selection-end-column="80" />
-          <folding>
-            <marker date="1544548175850" expanded="true" signature="1083:1094" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SD_DropMusic_Meta2.iml" />
-    <entry file="file://$PROJECT_DIR$/src/action/LoginAction.java" />
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="80" lean-forward="false" selection-start-line="11" selection-start-column="80" selection-end-line="11" selection-end-column="80" />
-          <folding>
-            <marker date="1544548175850" expanded="true" signature="1083:1094" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/Services.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="97" column="52" lean-forward="false" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/FileHandling/ObjectFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -749,59 +861,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dropmusic/action/Setup.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/Actions/SetupAction.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RegisterBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/register.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="29" lean-forward="false" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7260">
           <caret line="555" column="36" lean-forward="false" selection-start-line="555" selection-start-column="36" selection-end-line="555" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3180">
-          <caret line="230" column="74" lean-forward="false" selection-start-line="230" selection-start-column="74" selection-end-line="230" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RMIBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/RegisterAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/LoginBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/error.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -828,50 +891,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/struts2-core-2.3.16.3.jar!/org/apache/struts2/interceptor/SessionAware.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="26" column="24" lean-forward="false" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/struts2-core-2.3.16.3.jar!/org/apache/struts2/interceptor/SessionAware.class" />
     <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginDropboxSuccessAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginDropboxAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -888,7 +912,7 @@
         <state relative-caret-position="120">
           <caret line="8" column="89" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="89" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -897,9 +921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -907,35 +928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-228">
           <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/struts.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="66" column="21" lean-forward="true" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/menu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateButtonAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="65" lean-forward="true" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -943,15 +935,188 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateButtonAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="21" column="46" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/RegisterAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="13" column="45" lean-forward="false" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RegisterBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RMIBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/LoginBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="22" column="9" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="22" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginDropboxAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="24" column="63" lean-forward="false" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/error.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="14" column="136" lean-forward="false" selection-start-line="14" selection-start-column="136" selection-end-line="14" selection-end-column="136" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/menu.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="21" column="63" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/createGroup.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="52" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/joinGroup.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="17" column="76" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1321#1322#0" expanded="true" />
-            <element signature="e#1348#1349#0" expanded="true" />
-            <element signature="e#1388#1389#0" expanded="true" />
-            <element signature="e#1420#1421#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-            <element signature="e#1523#1524#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupMenuBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/JoinGroupMenuAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="16" column="72" lean-forward="true" selection-start-line="16" selection-start-column="72" selection-end-line="16" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="54" lean-forward="false" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/JoinGroupAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1169#1170#0" expanded="true" />
+            <element signature="e#1195#1196#0" expanded="true" />
+            <element signature="e#1223#1224#0" expanded="true" />
+            <element signature="e#1248#1249#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-20">
+          <caret line="437" column="9" lean-forward="false" selection-start-line="437" selection-start-column="9" selection-end-line="437" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/struts.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="72" column="51" lean-forward="true" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1014,6 +1179,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
