@@ -26,8 +26,7 @@
     <s:form action="download"><s:submit value="DOWNLOAD MUSIC FILE"/></s:form>
     <s:form action="createGroupMenu"><s:submit value="CREATE GROUP"/></s:form>
     <s:form action="joinGroupMenu"><s:submit value="JOIN GROUP"/></s:form>
-    <s:form action="editorPrivileges"><s:submit value="GRANT EDITOR PRIVILEGES"/></s:form>
-    <s:form action="ownerPrivileges"><s:submit value="GRANT OWNER PRIVILEGES"/></s:form>
+    <s:form action="permissionsMenu"><s:submit value="GRANT PRIVILEGES TO ANOTHER USER"/></s:form>
     <s:form action="addInfo"><s:submit value="ADD INFO"/></s:form>
     <s:form action="changeInfo"><s:submit value="CHANGE INFO"/></s:form>
     <s:form action="manageGroupsMenu"><s:submit value="MANAGE GROUPS"/></s:form>

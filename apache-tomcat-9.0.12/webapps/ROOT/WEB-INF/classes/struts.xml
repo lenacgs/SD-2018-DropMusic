@@ -95,6 +95,14 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
     <!-- _______________________________________________________________________________________ -->
 
+    <action name="permissionsMenu">
+        <result>/permissions.jsp</result>
+    </action>
+
+    <action name="givePermissions" class="Web.Actions.GivePermissionsAction" method="execute">
+        <result name = "SUCCEED">/menu.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+    </action>
     <!--redirects user to dropbox website when execute() returns "REDIRECT"-->
     <action name="associateButton" class="Web.Actions.AssociateButtonAction" method="execute">
         <result name="REDIRECT" type="redirect">${authorization}</result>
@@ -110,6 +118,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name="FAIL">/menu.jsp</result>
     </action>
     <!-- _______________________________________________________________________________________ -->
+
 
     <!--<action name="addInfo" class="Web.Actions.AddInfoAction" method="execute">
         <result name="SUCCESS">/menu.jsp</result>
