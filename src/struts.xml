@@ -73,6 +73,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name="FAIL">/menu.jsp</result>
     </action>
 
+    <action name="search" class="Web.Actions.SearchAction" method="execute">
+        <result name="success">/search.jsp</result>
+    </action>
+
     <!--<action name="addInfo" class="Web.Actions.AddInfoAction" method="execute">
         <result name="SUCCESS">/menu.jsp</result>
         <result name="FAIL">/menu.jsp</result>

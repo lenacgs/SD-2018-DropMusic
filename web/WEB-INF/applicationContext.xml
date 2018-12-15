@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- Models -->
+    <bean id="Search" class="Web.models.SearchModel" scope="prototype">
+
+    </bean>
+
+    <!-- Services -->
+    <bean id="SearchService" class="Web.Services.SearchService">
+    </bean>
+
+
+    <!-- Actions -->
+    <bean id="search" class="Web.Actions.SearchAction" scope="prototype">
+        <property name="service" ref="SearchService" />
+        <property name="inputObject" ref="Search" />
+    </bean>
+
+
+</beans>

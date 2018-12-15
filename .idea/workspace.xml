@@ -7,140 +7,25 @@
   </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/src/struts.xml" line="62" mnemonic="8" />
+    <bookmark url="file://$PROJECT_DIR$/web/search.jsp" line="37" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4181b51b-9eb8-417c-a84a-b7699f18d9f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/Beans/SearchBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/Services/AlbumSearchService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/Services/ArtistSearchModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/Services/MusicSearchModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/models/AlbumSearchModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/models/ArtistSearchModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Web/models/MusicSearchModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/search.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web/models/AlbumResultModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web/models/ArtistResultModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web/models/MusicResultModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web/models/SearchModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/Actions/RegisterAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/Actions/RegisterAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/Beans/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/Beans/LoginBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/AWeberApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/AWeberApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ConstantContactApi2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/DiggApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/DiggApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/DoktornaraboteApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/DoktornaraboteApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/DropBoxApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/DropBoxApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/EvernoteApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/EvernoteApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FacebookApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FacebookApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FlickrApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FlickrApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/Foursquare2Api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/Foursquare2Api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FoursquareApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FoursquareApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/FreelancerApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/FreelancerApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GetGlueApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GetGlueApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GitHubApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GitHubApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi20.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/GoogleApi20.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/HHApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/HHApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ImgUrApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ImgUrApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/InstagramApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/InstagramApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/KaixinApi20.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/KaixinApi20.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi20.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LinkedInApi20.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LiveApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LiveApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/LoveFilmApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/LoveFilmApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MailruApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MailruApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MeetupApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MeetupApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MendeleyApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MendeleyApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/MisoApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/MisoApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/NetProspexApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/NetProspexApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/NeteaseWeibooApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/NeteaseWeibooApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/OdnoklassnikiApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/OdnoklassnikiApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/PlurkApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/PlurkApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/Px500Api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/Px500Api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/RenrenApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/RenrenApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SapoApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SapoApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SimpleGeoApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SimpleGeoApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi20.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SinaWeiboApi20.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SkyrockApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SkyrockApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/SohuWeiboApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/SohuWeiboApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TrelloApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TrelloApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TumblrApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TumblrApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TutByApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TutByApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/TwitterApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/TwitterApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/UbuntuOneApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/UbuntuOneApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/ViadeoApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/ViadeoApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/VimeoApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/VimeoApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/VkontakteApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/VkontakteApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/XingApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/XingApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/YahooApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/YahooApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/YammerApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/YammerApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleJsonTokenExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleJsonTokenExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/google/GoogleToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/DoktornaraboteOAuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/DoktornaraboteOAuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/GoogleOAuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/GoogleOAuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/HHOAuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/HHOAuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/LinkedIn20ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/LinkedIn20ServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/MailruOAuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/MailruOAuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/OdnoklassnikiServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/OdnoklassnikiServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/TutByOAuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/apis/service/TutByOAuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/AbstractServiceBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/AbstractServiceBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilderAsync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/ServiceBuilderAsync.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/Api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/Api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi10a.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi10a.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi20.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi20.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthConnectionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthConnectionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthParametersMissingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthParametersMissingException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthSignatureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/exceptions/OAuthSignatureException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/AccessTokenExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/AccessTokenExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/BaseStringExtractorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/HeaderExtractorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/JsonTokenExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/JsonTokenExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/RequestTokenExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/RequestTokenExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractor20Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractor20Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/extractors/TokenExtractorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/AbstractRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/AbstractRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ForceTypeOfHttpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ForceTypeOfHttpRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthAsyncRequestCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthAsyncRequestCallback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfigAsync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConfigAsync.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequestAsync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/OAuthRequestAsync.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Parameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Parameter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ParameterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ParameterList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ScribeJavaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/ScribeJavaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/SignatureType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/SignatureType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/model/Verifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth10aServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth10aServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth20ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth20ServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/Base64Encoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/Base64Encoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/CommonsEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/CommonsEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/DatatypeConverterEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/DatatypeConverterEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/HMACSha1SignatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/HMACSha1SignatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/PlaintextSignatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/PlaintextSignatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/RSASha1SignatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/RSASha1SignatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/SignatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/SignatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/services/TimestampServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/MapUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/MapUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/OAuthEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/OAuthEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/Preconditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/Preconditions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/StreamUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/scribejava/core/utils/StreamUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SD-2018-DropMusic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SD-2018-DropMusic.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/Services/AlbumSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Web/Services/SearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/Services/ArtistSearchModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/Services/MusicSearchModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/models/AlbumSearchModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/models/ArtistSearchModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Web/models/MusicSearchModel.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/struts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/menu.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/search.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -153,7 +38,7 @@
     <session id="1212959648">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.28" value="1" />
@@ -163,38 +48,45 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="class" value="1" />
           <entry key="dtd" value="1" />
           <entry key="iml" value="2" />
-          <entry key="java" value="35" />
-          <entry key="jsp" value="10" />
-          <entry key="xml" value="6" />
+          <entry key="java" value="57" />
+          <entry key="jsp" value="12" />
+          <entry key="xml" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="CLASS" value="1" />
           <entry key="DTD" value="1" />
           <entry key="IDEA_MODULE" value="2" />
-          <entry key="JAVA" value="35" />
-          <entry key="JSP" value="10" />
-          <entry key="XML" value="6" />
+          <entry key="JAVA" value="57" />
+          <entry key="JSP" value="12" />
+          <entry key="XML" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="14" />
           <entry key="iml" value="1" />
-          <entry key="java" value="4487" />
-          <entry key="jsp" value="999" />
-          <entry key="xml" value="60" />
+          <entry key="java" value="5770" />
+          <entry key="jsp" value="1362" />
+          <entry key="xml" value="347" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="4487" />
-          <entry key="JSP" value="999" />
+          <entry key="JAVA" value="5770" />
+          <entry key="JSP" value="1362" />
           <entry key="PLAIN_TEXT" value="14" />
-          <entry key="XML" value="60" />
+          <entry key="XML" value="347" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.spring.core.usages.trigger">
+        <counts>
+          <entry key="fixes.SpringFacetInspection.AddFacetFix" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -202,89 +94,14 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Services/AlbumSearchService.java">
+        <entry file="file://$PROJECT_DIR$/src/Web/Services/SearchService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+            <state relative-caret-position="536">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#394#402#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Services/ArtistSearchModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="21" selection-start-column="21" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Services/MusicSearchModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Web/Beans/SearchBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-              <folding>
-                <element signature="e#119#120#0" expanded="true" />
-                <element signature="e#142#143#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistSearchModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-              <folding>
-                <element signature="e#116#117#0" expanded="true" />
-                <element signature="e#143#144#0" expanded="true" />
-                <element signature="e#162#163#0" expanded="true" />
-                <element signature="e#198#199#0" expanded="true" />
-                <element signature="e#268#269#0" expanded="true" />
-                <element signature="e#302#303#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/models/MusicSearchModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="e#146#147#0" expanded="true" />
-                <element signature="e#182#183#0" expanded="true" />
-                <element signature="e#224#225#0" expanded="true" />
-                <element signature="e#258#259#0" expanded="true" />
-                <element signature="e#291#292#0" expanded="true" />
-                <element signature="e#320#321#0" expanded="true" />
-                <element signature="e#352#353#0" expanded="true" />
-                <element signature="e#380#381#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginDropboxSuccessAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -292,7 +109,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Web/Actions/RegisterAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
+            <state relative-caret-position="103">
               <caret line="30" selection-start-line="30" selection-end-line="39" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -302,19 +119,61 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/models/AlbumSearchModel.java">
+        <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistResultModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+            <state relative-caret-position="136">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
-                <element signature="e#218#219#0" expanded="true" />
-                <element signature="e#252#253#0" expanded="true" />
-                <element signature="e#304#305#0" expanded="true" />
-                <element signature="e#329#330#0" expanded="true" />
-                <element signature="e#418#419#0" expanded="true" />
-                <element signature="e#439#440#0" expanded="true" />
-                <element signature="e#487#488#0" expanded="true" />
-                <element signature="e#521#522#0" expanded="true" />
+                <element signature="e#110#111#0" expanded="true" />
+                <element signature="e#135#136#0" expanded="true" />
+                <element signature="e#117#118#0" expanded="true" />
+                <element signature="e#144#145#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/struts.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="75" column="58" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Actions/SearchAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1198#1199#0" expanded="true" />
+                <element signature="e#1236#1237#0" expanded="true" />
+                <element signature="e#1277#1278#0" expanded="true" />
+                <element signature="e#1307#1308#0" expanded="true" />
+                <element signature="e#1360#1361#0" expanded="true" />
+                <element signature="e#1398#1399#0" expanded="true" />
+                <element signature="e#1189#1190#0" expanded="true" />
+                <element signature="e#1223#1224#0" expanded="true" />
+                <element signature="e#1656#1657#0" expanded="true" />
+                <element signature="e#1700#1701#0" expanded="true" />
+                <element signature="e#1607#1608#0" expanded="true" />
+                <element signature="e#1653#1654#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Beans/SearchBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+              <folding>
+                <element signature="e#119#120#0" expanded="true" />
+                <element signature="e#142#143#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -323,8 +182,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Web/Beans/RMIBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="340">
               <caret line="20" selection-start-line="20" selection-end-line="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/search.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="27" column="29" lean-forward="true" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Web/models/SearchModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -335,6 +224,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -345,6 +235,7 @@
       <find>register</find>
       <find>registerb</find>
       <find>loginMenu</find>
+      <find>search</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -353,10 +244,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Dropbox_RESTAPI/DropboxConnection.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/action/LoginAction.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/action/RegisterAction.java" />
-        <option value="$PROJECT_DIR$/src/dropmusic/action/Setup.java" />
         <option value="$PROJECT_DIR$/src/dropmusic/action/SetupAction.java" />
         <option value="$PROJECT_DIR$/src/Web/model/login.java" />
         <option value="$PROJECT_DIR$/src/Web/Beans/login.java" />
@@ -391,19 +278,23 @@
         <option value="$PROJECT_DIR$/src/Web/Beans/RegisterBean.java" />
         <option value="$PROJECT_DIR$/src/Web/Actions/LoginAction.java" />
         <option value="$PROJECT_DIR$/src/Web/Beans/RMIBean.java" />
-        <option value="$PROJECT_DIR$/src/struts.xml" />
         <option value="$PROJECT_DIR$/web/menu.jsp" />
-        <option value="$PROJECT_DIR$/web/search.jsp" />
         <option value="$PROJECT_DIR$/src/Web/Actions/RegisterAction.java" />
-        <option value="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" />
-        <option value="$PROJECT_DIR$/src/Web/models/SearchModel.java" />
         <option value="$PROJECT_DIR$/src/Web/models/ArtistSearchModel.java" />
-        <option value="$PROJECT_DIR$/src/Web/models/AlbumSearchModel.java" />
         <option value="$PROJECT_DIR$/src/Web/models/MusicSearchModel.java" />
-        <option value="$PROJECT_DIR$/src/Web/Services/SearchService.java" />
         <option value="$PROJECT_DIR$/src/Web/Services/ArtistSearchModel.java" />
         <option value="$PROJECT_DIR$/src/Web/Beans/SearchBean.java" />
         <option value="$PROJECT_DIR$/src/Web/Services/AlbumSearchService.java" />
+        <option value="$PROJECT_DIR$/src/Web/models/AlbumSearchModel.java" />
+        <option value="$PROJECT_DIR$/src/Web/models/ArtistResultModel.java" />
+        <option value="$PROJECT_DIR$/src/Web/models/AlbumResultModel.java" />
+        <option value="$PROJECT_DIR$/src/Web/models/MusicResultModel.java" />
+        <option value="$PROJECT_DIR$/src/Web/Services/SearchService.java" />
+        <option value="$PROJECT_DIR$/src/struts.xml" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/Web/models/SearchModel.java" />
+        <option value="$PROJECT_DIR$/web/search.jsp" />
       </list>
     </option>
   </component>
@@ -420,10 +311,9 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="width" value="1920" />
-    <option name="height" value="1040" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1915" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -433,7 +323,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -458,6 +347,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="rmi" type="462c0819:PsiDirectoryNode" />
               <item name="RMIServer.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="rmiClient" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
@@ -498,11 +393,18 @@
               <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SD-2018-DropMusic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SD-2018-DropMusic" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -511,16 +413,19 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544832604715" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../LEI - 20182019/SD/Ficha6/Primes" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544838964978" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\João Silva\Documents\SD-2018-DropMusic\SD-2018-DropMusic\web\WEB-INF" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
@@ -537,7 +442,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Tomcat Server.WebServer">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -729,12 +634,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67875000" />
+    <option name="totallyTimeSpent" value="74077000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="0" y="0" width="1532" height="830" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49292928" visible="true" weight="0.17583893" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49292928" visible="true" weight="0.17391305" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -742,9 +648,10 @@
       <window_info id="Web" order="5" sideWeight="0.5070707" side_tool="true" weight="0.33882785" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Capture Tool" order="7" />
+      <window_info anchor="bottom" id="Spring" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32914045" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3569405" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3739255" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39937106" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -752,7 +659,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.3371105" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.31303117" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3374317" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Application Servers" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
@@ -807,30 +714,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/log4j.dtd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3538" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dropmusic/action/Setup.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/SetupAction.java" />
-    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7260">
-          <caret line="555" column="36" selection-start-line="555" selection-start-column="36" selection-end-line="555" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/error.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uc/sd/apis/FacebookApi2.java" />
-    <entry file="file://$PROJECT_DIR$/src/com2/github/scribejava/core/oauth/OAuthService.java" />
-    <entry file="file://$PROJECT_DIR$/src/lib/com/github/scribejava/core/oauth/OAuthService.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/apis/AWeberApi.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/apis/ConstantContactApi.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/core/model/OAuthConfig.java" />
@@ -856,26 +739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateButtonAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/DropBoxApi2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="89" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="89" />
         </state>
       </provider>
     </entry>
@@ -893,36 +756,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateDropboxAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="31" column="48" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1321#1322#0" expanded="true" />
-            <element signature="e#1348#1349#0" expanded="true" />
-            <element signature="e#1388#1389#0" expanded="true" />
-            <element signature="e#1420#1421#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-            <element signature="e#1523#1524#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-340">
           <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -933,13 +770,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/register.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -947,59 +777,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/struts.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/menu.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/search.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="280" column="44" selection-start-line="280" selection-start-column="8" selection-end-line="280" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/SearchAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#566#567#0" expanded="true" />
-            <element signature="e#602#603#0" expanded="true" />
-            <element signature="e#503#504#0" expanded="true" />
-            <element signature="e#541#542#0" expanded="true" />
-            <element signature="e#330#331#0" expanded="true" />
-            <element signature="e#357#358#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/LoginBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#524#525#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="493">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1009,30 +790,6 @@
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RMIBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/models/AlbumSearchModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
-          <folding>
-            <element signature="e#218#219#0" expanded="true" />
-            <element signature="e#252#253#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#418#419#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#487#488#0" expanded="true" />
-            <element signature="e#521#522#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1061,38 +818,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginDropboxSuccessAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/RegisterAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" selection-start-line="30" selection-end-line="39" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistSearchModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding>
-            <element signature="e#116#117#0" expanded="true" />
-            <element signature="e#143#144#0" expanded="true" />
-            <element signature="e#162#163#0" expanded="true" />
-            <element signature="e#198#199#0" expanded="true" />
-            <element signature="e#268#269#0" expanded="true" />
-            <element signature="e#302#303#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Web/Services/ArtistSearchModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1100,24 +825,246 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Services/AlbumSearchService.java">
+    <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistSearchModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        <state relative-caret-position="153">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateDropboxAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1321#1322#0" expanded="true" />
+            <element signature="e#1348#1349#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
+            <element signature="e#1489#1490#0" expanded="true" />
+            <element signature="e#1523#1524#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/DropBoxApi2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="89" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/SearchBean.java">
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="281" selection-start-line="281" selection-end-line="281" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="930" column="43" selection-start-line="930" selection-start-column="37" selection-end-line="930" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/Clients.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Services/interfaces/SearchService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/AssociateButtonAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginDropboxSuccessAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/LoginAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/struts2-core-2.3.16.3.jar!/org/apache/struts2/components/Component.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/LoginBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/models/MusicResultModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#266#267#0" expanded="true" />
+            <element signature="e#298#299#0" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#378#379#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/models/AlbumResultModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="e#143#144#0" expanded="true" />
+            <element signature="e#175#176#0" expanded="true" />
+            <element signature="e#219#220#0" expanded="true" />
+            <element signature="e#255#256#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/RegisterAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="30" selection-start-line="30" selection-end-line="39" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/models/ArtistResultModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#110#111#0" expanded="true" />
+            <element signature="e#135#136#0" expanded="true" />
+            <element signature="e#117#118#0" expanded="true" />
+            <element signature="e#144#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/struts.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="75" column="58" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/SearchAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
+            <element signature="e#1236#1237#0" expanded="true" />
+            <element signature="e#1277#1278#0" expanded="true" />
+            <element signature="e#1307#1308#0" expanded="true" />
+            <element signature="e#1360#1361#0" expanded="true" />
+            <element signature="e#1398#1399#0" expanded="true" />
+            <element signature="e#1189#1190#0" expanded="true" />
+            <element signature="e#1223#1224#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1700#1701#0" expanded="true" />
+            <element signature="e#1607#1608#0" expanded="true" />
+            <element signature="e#1653#1654#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/RMIBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Services/SearchService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#394#402#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/search.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="27" column="29" lean-forward="true" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/SearchBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
             <element signature="e#119#120#0" expanded="true" />
             <element signature="e#142#143#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/models/SearchModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1175,12 +1122,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>SD-2018-DropMusic</last-edited>
+          <last-edited>Spring|SD-2018-DropMusic</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
