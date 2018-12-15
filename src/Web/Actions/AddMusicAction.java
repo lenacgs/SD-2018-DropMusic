@@ -4,7 +4,6 @@ import Web.Beans.UserBean;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
-import javax.security.auth.login.FailedLoginException;
 import java.util.Map;
 
 public class AddMusicAction extends ActionSupport implements SessionAware {
