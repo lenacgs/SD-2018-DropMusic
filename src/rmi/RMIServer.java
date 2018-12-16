@@ -1,5 +1,6 @@
 package rmi;
 
+import com.github.scribejava.core.model.Token;
 import rmiClient.Clients;
 
 import javax.sql.rowset.serial.SQLOutputImpl;
@@ -119,17 +120,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
         System.out.println(c.getUsername()+" na lista de clientes");
         clientList.add(c);
-        String answer = dealWithRequest("type | get_notifications ; username | " +c.getUsername());
-        String tokens[] = answer.split(" ; ");
-        String mes[][] = new String[tokens.length][];
-        for (int i = 0; i < tokens.length; i++) {
-            mes[i] = tokens[i].split(" \\| ");
-        }
-
-        int counter = Integer.parseInt(mes[1][1]);
-        if(counter > 0){
-            System.out.println(mes[2][1]);
-            sendNotification(mes[2][1], c.getUsername());
+        String answer = get_notifications(c.getUsername());
+        if(!answer.equals("")){
+            sendNotification(answer, c.getUsername());
         }
 
     }
@@ -164,6 +157,23 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         request = "server | " + (replyServer++ + 1) + " ; " + request;
         replyServer = replyServer%3;
         return request;
+    }
+
+    public String get_notifications(String username){
+        String request = "type | get_notifications ; username | " + username;
+        String answer = dealWithRequest(request);
+        String tokens[] = answer.split(" ; ");
+        String mes[][] = new String[tokens.length][];
+        for (int i = 0; i < tokens.length; i++) {
+            mes[i] = tokens[i].split(" \\| ");
+        }
+
+        int counter = Integer.parseInt(mes[1][1]);
+        if(counter > 0){
+            return mes[2][1];
+        }else{
+            return "";
+        }
     }
 
     private String dealWithRequest(String request) {
@@ -222,10 +232,20 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             }
         }
         return message;
+    }
 
+    public String loginDropbox(String accessToken) {
+        String request = "type | loginDropbox ; token | " + accessToken+";";
+        String ans = dealWithRequest(request);
+        if (ans.equals("type | status ; operation | failed ;")) return "0";
+        String []ans1 = ans.split(";");
+        return ans1[2];
+    }
 
-
-
+    public int saveToken(String username, String accessToken) {
+        String request = "type | token ; username | "+username+" ; token | "+accessToken;
+        String ans = dealWithRequest(request);
+        return 1;
     }
 
     public int register (String username, String password) throws java.rmi.RemoteException{
@@ -536,7 +556,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return false;
     }
 
-    private void sendNotification(String message, String user) {
+    public void sendNotification(String message, String user) {
 
         System.out.println("Sending notification :" + message + ": to user " + user);
         for (Clients c : clientList) {
@@ -576,6 +596,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
 
             if (aux[1].equals("operation | failed")){
                 String[] reply = aux[2].split(" \\| ");
+                System.out.println("returning="+ reply[1]);
                 return reply[1];
             }else if(aux[1].equals("command | invalid")){
                 return "Something went wrong!";
