@@ -57,6 +57,30 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name="REDIRECT" type="redirect">${authorization}</result>
     </action>
     <!-- _______________________________________________________________________________________ -->
+    <action name="searchMenu">
+        <result>/search1.jsp</result>
+    </action>
+
+    <action name="search" class="Web.Actions.SearchAction" method="execute">
+        <result name = "SUCCEED">/search2.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+    </action>
+
+    <action name="details" class="Web.Actions.DetailsAction" method="execute">
+        <result name = "SUCCEED">/details.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+    </action>
+    <!-- _______________________________________________________________________________________ -->
+
+    <action name="reviewMenu">
+        <result>/review.jsp</result>
+    </action>
+
+    <action name="review" class="Web.Actions.ReviewAction" method="execute">
+        <result name = "SUCCEED">/menu.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+    </action>
+    <!-- _______________________________________________________________________________________ -->
     <action name="createGroupMenu">
         <result>/createGroup.jsp</result>
     </action>

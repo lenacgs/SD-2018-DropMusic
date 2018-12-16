@@ -36,13 +36,6 @@ public class GivePermissionsAction extends ActionSupport implements SessionAware
         this.session = session;
     }
 
-    public void setgroupId (String groupId){
-        this.groupId=groupId;
-    }
-    public String getgroupId (){
-        return groupId;
-    }
-
     public String getGroupId() {
         return groupId;
     }
