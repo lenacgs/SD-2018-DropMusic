@@ -377,6 +377,24 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
     }
 
+    private User findUserToken(String token) {
+        Group g = findGroup(1);
+
+        if (g!=null) {
+            Iterator it = g.getUsers().iterator();
+
+            while (it.hasNext()) {
+                User aux = (User)it.next();
+                System.out.println("TOKEN=" + aux.getAccessToken());
+
+                if (aux.getAccessToken()!=null && aux.getAccessToken().equals(token)) return aux;
+            }
+            return null;
+        }else {
+            return null;
+        }
+    }
+
     private void test(){
         System.out.println("Registered:");
         Iterator it1 = findGroup(1).getUsers().iterator();
@@ -588,6 +606,15 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     }
                     int perks = currentUser.getPerks();
                     return "type | status ; operation | succeeded ; perks | " +perks;
+                }case "loginDropbox": {
+                    User current;
+                    String token = info[1][1];
+                    current = findUserToken(token);
+
+                    if (current == null) return "type | status ; operation | failed ;";
+
+                    String ans = "type | status ; operation | succeeded ; "+current.getPerks()+","+current.getUsername()+","+token;
+                    return ans;
                 }case "logout":{
                     String username = info[2][1];
                     for(User u : this.mainThread.getLoggedOn()){
@@ -1361,7 +1388,15 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return r.getReply();
                 }default:{
                     return "type | status ; command | invalid";
+                }case "token":{
+                    String username = info[2][1];
+
+                    User current = findUser(username);
+                    current.setAccessToken(info[3][1]);
+                    saveFile("src/Multicast/"+this.mainThread.getName()+"/groups.obj", mainThread.getGroups());
+                    return "type | status ; operation | succeeded ";
                 }
+
             }
         }
         return "type | status ; command | invalid";

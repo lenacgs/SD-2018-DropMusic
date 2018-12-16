@@ -1,5 +1,7 @@
 package Web.Beans;
 
+import com.github.scribejava.core.model.Token;
+
 import java.rmi.RemoteException;
 
 public class LoginBean extends RMIBean {
@@ -22,4 +24,20 @@ public class LoginBean extends RMIBean {
             }
         }
     }
+
+    public String loginDropboxUser(String accessToken) {
+        String res = null;
+        try {
+            res = server.loginDropbox(accessToken);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        if (res.equals("0")) return "FAIL";
+        //res[0]=perks, res[1]=username, res[2]=accessToken
+        return res;
+
+    }
+
+
+
 }
