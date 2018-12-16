@@ -31,4 +31,6 @@ public interface Services extends Remote {
     int downloadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException;
     int saveToken(String username, String accessToken) throws java.rmi.RemoteException;
     String loginDropbox(String accessToken) throws java.rmi.RemoteException;
+    String get_notifications(String username) throws java.rmi.RemoteException;
+    void sendNotification(String message, String user) throws java.rmi.RemoteException;
 }

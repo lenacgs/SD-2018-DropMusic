@@ -120,17 +120,9 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
         System.out.println(c.getUsername()+" na lista de clientes");
         clientList.add(c);
-        String answer = dealWithRequest("type | get_notifications ; username | " +c.getUsername());
-        String tokens[] = answer.split(" ; ");
-        String mes[][] = new String[tokens.length][];
-        for (int i = 0; i < tokens.length; i++) {
-            mes[i] = tokens[i].split(" \\| ");
-        }
-
-        int counter = Integer.parseInt(mes[1][1]);
-        if(counter > 0){
-            System.out.println(mes[2][1]);
-            sendNotification(mes[2][1], c.getUsername());
+        String answer = get_notifications(c.getUsername());
+        if(!answer.equals("")){
+            sendNotification(answer, c.getUsername());
         }
 
     }
@@ -165,6 +157,23 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         request = "server | " + (replyServer++ + 1) + " ; " + request;
         replyServer = replyServer%3;
         return request;
+    }
+
+    public String get_notifications(String username){
+        String request = "type | get_notifications ; username |" + username;
+        String answer = dealWithRequest(request);
+        String tokens[] = answer.split(" ; ");
+        String mes[][] = new String[tokens.length][];
+        for (int i = 0; i < tokens.length; i++) {
+            mes[i] = tokens[i].split(" \\| ");
+        }
+
+        int counter = Integer.parseInt(mes[1][1]);
+        if(counter > 0){
+            return mes[2][1];
+        }else{
+            return "";
+        }
     }
 
     private String dealWithRequest(String request) {
@@ -548,7 +557,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return false;
     }
 
-    private void sendNotification(String message, String user) {
+    public void sendNotification(String message, String user) {
 
         System.out.println("Sending notification :" + message + ": to user " + user);
         for (Clients c : clientList) {
