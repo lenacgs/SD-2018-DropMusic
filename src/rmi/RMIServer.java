@@ -546,7 +546,6 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String request = "type | grant_perks ; perk | " + perk + " ; username | " + username + " ; new_user | " + newUser + " ; group | " + groupID;
         //multicasts tem que verificar se esse user é editor ou owner deste grupo e depois sim fazer as alteracoes.
         //return true se foram bem feitas, return false se o user nao e editor ou owner desse grupo ou se o grupo nao existir
-        //coloquei a retornar uma string para ver se o request esta a ser bem processado. alterar isto
 
         String ans = dealWithRequest(request);
         if (ans.equals("type | grant_perks ; operation | succeeded")) {
@@ -651,6 +650,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         String[] splitted = answer.split(" ; ");
         if(splitted[2].split(" \\| ")[1].equals("empty"))
             return null;
+        System.out.println(splitted[2].split(" \\| ")[1].replaceAll("^[,\\s]+", ""));
         return splitted[2].split(" \\| ")[1].replaceAll("^[,\\s]+", "");
     }
 

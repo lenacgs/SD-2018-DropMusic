@@ -8,16 +8,20 @@ public class LoginBean extends RMIBean {
 
     public LoginBean(){
         super();
+        lookup();
     }
 
     public int loginUser(String username, String password){
-        int perks;
-        try{
-            perks = server.login(username, password);
-            return perks;
-        }catch (RemoteException e){
-            e.printStackTrace();
-            return -1;
+        int perks,trys=0;
+        while(true) {
+            try {
+                if(trys>=30)
+                    return -1;
+                perks = server.login(username, password);
+                return perks;
+            } catch (RemoteException e) {
+                trys=reestablishConnection(trys);
+            }
         }
     }
 
@@ -31,6 +35,7 @@ public class LoginBean extends RMIBean {
         if (res.equals("0")) return "FAIL";
         //res[0]=perks, res[1]=username, res[2]=accessToken
         return res;
+
     }
 
 
