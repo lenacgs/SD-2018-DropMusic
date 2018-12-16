@@ -9,7 +9,25 @@ public class DetailsBean extends RMIBean{
         lookup();
     }
 
-    public String details(String username, String object, String id){
+    public String albumDetails(String username, String object, String id, String artist){
+        int trys=0;
+        String reply;
+        while(true) {
+            try {
+                if(trys>=30)
+                    return null;
+                System.out.println("a");
+                reply = server.details(username, object, id, artist);
+                System.out.println("b");
+                System.out.println(reply);
+                return reply;
+            } catch (RemoteException e) {
+                trys=reestablishConnection(trys);
+            }
+        }
+    }
+
+    public String artistDetails(String username, String object, String id){
         int trys=0;
         String reply;
         while(true) {

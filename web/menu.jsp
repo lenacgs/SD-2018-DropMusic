@@ -20,8 +20,7 @@
     </s:if><br>
     <p>MENU</p>
     <s:form action="searchMenu"><s:submit value="SEARCH"/></s:form>
-    <s:form action="details"><s:submit value="ALBUM & ARTIST DETAILS"/></s:form>
-    <s:form action="review"><s:submit value="ALBUM REVIEW"/></s:form>
+    <s:form action="reviewMenu"><s:submit value="ALBUM REVIEW"/></s:form>
     <s:form action="upload"><s:submit value="UPLOAD MUSIC FILE"/></s:form>
     <s:form action="download"><s:submit value="DOWNLOAD MUSIC FILE"/></s:form>
     <s:form action="createGroupMenu"><s:submit value="CREATE GROUP"/></s:form>

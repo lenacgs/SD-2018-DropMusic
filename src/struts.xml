@@ -70,7 +70,16 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name = "SUCCEED">/details.jsp </result>
         <result name = "FAILED">/menu.jsp </result>
     </action>
+    <!-- _______________________________________________________________________________________ -->
 
+    <action name="reviewMenu">
+        <result>/review.jsp</result>
+    </action>
+
+    <action name="review" class="Web.Actions.ReviewAction" method="execute">
+        <result name = "SUCCEED">/menu.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+    </action>
     <!-- _______________________________________________________________________________________ -->
     <action name="createGroupMenu">
         <result>/createGroup.jsp</result>

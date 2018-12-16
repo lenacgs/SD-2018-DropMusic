@@ -23,6 +23,7 @@
             <s:form action="details" method="post">
                 <li>
                 <s:hidden name="id" value="%{item}"/>
+                <s:hidden name="object" value="%{#session.object}"/>
                 <s:text name="%{item}"/>   <s:submit value="DETAILS"/>
                 </li>
             </s:form>
