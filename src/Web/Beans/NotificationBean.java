@@ -16,7 +16,7 @@ public class NotificationBean extends RMIBean {
         }catch (RemoteException e){
             e.printStackTrace();
         }
-        return null;
+        return "";
 
     }
 

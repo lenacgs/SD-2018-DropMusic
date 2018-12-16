@@ -160,7 +160,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
     }
 
     public String get_notifications(String username){
-        String request = "type | get_notifications ; username |" + username;
+        String request = "type | get_notifications ; username | " + username;
         String answer = dealWithRequest(request);
         String tokens[] = answer.split(" ; ");
         String mes[][] = new String[tokens.length][];

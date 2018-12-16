@@ -44,7 +44,10 @@ public class WebSocketAnnotation {
             users.add(this);
             String notification = notificationBean.getNotifications(this.username);
             if(!notification.equals("")){
-                sendNotification(notification, this.username);
+                String temp[] = notification.split("\n");
+                for(String s : temp){
+                    sendNotification(s, this.username);
+                }
             }
         }else{
             String user = aux[0];
