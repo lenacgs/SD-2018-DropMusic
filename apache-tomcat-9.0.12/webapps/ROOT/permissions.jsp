@@ -12,14 +12,15 @@
     <title>Permissions</title>
 </head>
 <body>
-<s:form action="givePermissions" method="post">
-    Privilege: <select name="perk">
-        <option value="owner">Owner</option>
-        <option value="editor">Owner</option>
-    </select><br>
-    Group ID: <input type="text" name = "groupId"><br>
-    User: <input type="text" name = "newUser"><br>
-    <s:submit value="GIVE PERMISSIONS"/>
-</s:form>
+    <p>DropMusic</p><br>
+    <s:form action="givePermissions" method="post">
+        Privilege: <select name="perk">
+            <option value="owner">Owner</option>
+            <option value="editor">Editor</option>
+        </select><br>
+        Group ID: <input type="text" name = "groupId"><br>
+        User: <input type="text" name = "newUser"><br>
+        <s:submit value="GIVE PERMISSIONS"/>
+    </s:form>
 </body>
 </html>

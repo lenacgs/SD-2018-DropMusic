@@ -6,22 +6,30 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/struts.xml" line="107" mnemonic="8" />
+    <bookmark url="file://$PROJECT_DIR$/src/struts.xml" line="122" mnemonic="8" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4181b51b-9eb8-417c-a84a-b7699f18d9f5" name="Default Changelist" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/GivePermissionsAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/GivePermissionsBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/permissions.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/DetailsAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/DetailsBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web/Beans/SearchBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/details.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/search1.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/search2.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/groups.obj" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/groups.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/writeRequests.obj" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/Multicast/MulticastServer1/writeRequests.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/groups.obj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" afterPath="$PROJECT_DIR$/src/Multicast/MulticastServer1/writeRequests.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/struts.xml" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/WEB-INF/classes/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/joinGroup.jsp" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/joinGroup.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/menu.jsp" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/menu.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/permissions.jsp" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.12/webapps/ROOT/permissions.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web/Actions/GivePermissionsAction.java" afterPath="$PROJECT_DIR$/src/Web/Actions/GivePermissionsAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struts.xml" afterPath="$PROJECT_DIR$/src/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/joinGroup.jsp" afterPath="$PROJECT_DIR$/web/joinGroup.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/menu.jsp" afterPath="$PROJECT_DIR$/web/menu.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/permissions.jsp" afterPath="$PROJECT_DIR$/web/permissions.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,65 +87,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="permissions.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/permissions.jsp">
+      <file leaf-file-name="struts.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/struts.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="joinGroup.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/joinGroup.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GivePermissionsAction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Actions/GivePermissionsAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1491#1492#0" expanded="true" />
-                <element signature="e#1521#1522#0" expanded="true" />
-                <element signature="e#1567#1568#0" expanded="true" />
-                <element signature="e#1605#1606#0" expanded="true" />
-                <element signature="e#1639#1640#0" expanded="true" />
-                <element signature="e#1669#1670#0" expanded="true" />
-                <element signature="e#1715#1716#0" expanded="true" />
-                <element signature="e#1753#1754#0" expanded="true" />
-                <element signature="e#1784#1785#0" expanded="true" />
-                <element signature="e#1811#1812#0" expanded="true" />
-                <element signature="e#1851#1852#0" expanded="true" />
-                <element signature="e#1883#1884#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GivePermissionsBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Beans/GivePermissionsBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JoinGroupBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="24" column="5" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
+            <state relative-caret-position="300">
+              <caret line="70" column="51" lean-forward="false" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -146,38 +100,76 @@
       <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="524" column="26" lean-forward="true" selection-start-line="524" selection-start-column="26" selection-end-line="524" selection-end-column="26" />
+            <state relative-caret-position="475">
+              <caret line="317" column="92" lean-forward="false" selection-start-line="317" selection-start-column="20" selection-end-line="317" selection-end-column="92" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rmiClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <file leaf-file-name="details.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/details.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16465">
-              <caret line="1247" column="17" lean-forward="true" selection-start-line="1247" selection-start-column="17" selection-end-line="1247" selection-end-column="17" />
+            <state relative-caret-position="400">
+              <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="struts.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/struts.xml">
+      <file leaf-file-name="DetailsAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Actions/DetailsAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="101" column="33" lean-forward="false" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="33" />
+            <state relative-caret-position="227">
+              <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1199#1200#0" expanded="true" />
+                <element signature="e#1237#1238#0" expanded="true" />
+                <element signature="e#1266#1267#0" expanded="true" />
+                <element signature="e#1291#1292#0" expanded="true" />
+                <element signature="e#1327#1328#0" expanded="true" />
+                <element signature="e#1355#1356#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DetailsBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Beans/DetailsBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/menu.jsp">
+      <file leaf-file-name="SearchBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web/Beans/SearchBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-150">
+            <state relative-caret-position="377">
+              <caret line="24" column="5" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search1.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/search1.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-98">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search2.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/search2.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="24" column="53" lean-forward="false" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -216,15 +208,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com2/github/scribejava/core/oauth/OAuthService.java" />
-        <option value="$PROJECT_DIR$/src/lib/com/github/scribejava/core/oauth/OAuthService.java" />
-        <option value="$PROJECT_DIR$/src/Web/DropBoxApi2.java" />
-        <option value="$PROJECT_DIR$/src/Web/apis/AWeberApi.java" />
-        <option value="$PROJECT_DIR$/src/Web/apis/ConstantContactApi.java" />
-        <option value="$PROJECT_DIR$/src/Web/core/model/OAuthConfig.java" />
-        <option value="$PROJECT_DIR$/src/Web/core/model/SignatureType.java" />
-        <option value="$PROJECT_DIR$/src/Web/core/model/OAuthRequest.java" />
-        <option value="$PROJECT_DIR$/src/Web/core/oauth/OAuthService.java" />
         <option value="$PROJECT_DIR$/src/Web/ServiceBuilder.java" />
         <option value="$PROJECT_DIR$/src/Web/com/github/scribejava/apis/AWeberApi.java" />
         <option value="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuthService.java" />
@@ -255,7 +238,6 @@
         <option value="$PROJECT_DIR$/src/Web/Beans/JoinGroupBean.java" />
         <option value="$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java" />
         <option value="$PROJECT_DIR$/src/Web/Actions/CreateGroupAction.java" />
-        <option value="$PROJECT_DIR$/web/joinGroup.jsp" />
         <option value="$PROJECT_DIR$/src/Web/Beans/ManageGroupBean.java" />
         <option value="$PROJECT_DIR$/src/Web/Actions/ManageGroupRequestsAction.java" />
         <option value="$PROJECT_DIR$/src/Web/Actions/manageRequestsAction.java" />
@@ -263,10 +245,20 @@
         <option value="$PROJECT_DIR$/src/Web/Actions/ManageRequestsAction.java" />
         <option value="$PROJECT_DIR$/src/Web/Beans/GivePermitionsBean.java" />
         <option value="$PROJECT_DIR$/src/Web/Actions/GivePermitionsAction.java" />
-        <option value="$PROJECT_DIR$/src/Web/Actions/GivePermissionsAction.java" />
-        <option value="$PROJECT_DIR$/src/struts.xml" />
+        <option value="$PROJECT_DIR$/web/addInfo.jsp" />
         <option value="$PROJECT_DIR$/web/menu.jsp" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/GivePermissionsAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/SearchBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/searchAction.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/SearchAction.java" />
+        <option value="$PROJECT_DIR$/web/joinGroup.jsp" />
+        <option value="$PROJECT_DIR$/src/struts.xml" />
         <option value="$PROJECT_DIR$/web/permissions.jsp" />
+        <option value="$PROJECT_DIR$/web/search2.jsp" />
+        <option value="$PROJECT_DIR$/web/search1.jsp" />
+        <option value="$PROJECT_DIR$/web/details.jsp" />
+        <option value="$PROJECT_DIR$/src/Web/Beans/DetailsBean.java" />
+        <option value="$PROJECT_DIR$/src/Web/Actions/DetailsAction.java" />
       </list>
     </option>
   </component>
@@ -303,6 +295,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
@@ -379,7 +372,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -685,12 +677,13 @@
       <workItem from="1544834033311" duration="6980000" />
       <workItem from="1544868849010" duration="8948000" />
       <workItem from="1544883941227" duration="507000" />
-      <workItem from="1544884608907" duration="10869000" />
+      <workItem from="1544884608907" duration="17201000" />
+      <workItem from="1544972235138" duration="3227000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89656000" />
+    <option name="totallyTimeSpent" value="99215000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -706,8 +699,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33577406" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33577406" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3134172" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -718,8 +711,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937106" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937106" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -739,14 +732,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Web/core/model/OAuthRequest.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/core/oauth/OAuthService.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/ServiceBuilder.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/com/github/scribejava/apis/AWeberApi.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/com/ning/http/client/ProxyServer.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/com/ning/http/client/ProxyType.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/com/ning/http/client/Realm.java" />
-    <entry file="file://$PROJECT_DIR$/src/Web/com/github/scribejava/core/oauth/OAuth20ServiceImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/Web/com/github/scribejava/core/oauth/OAuthService.java" />
     <entry file="file://$PROJECT_DIR$/src/com/github/scribejava/core/builder/api/DefaultApi20.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -919,7 +904,7 @@
         <state relative-caret-position="500">
           <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -928,14 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="21" column="49" lean-forward="true" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
           <folding />
         </state>
       </provider>
@@ -961,24 +938,16 @@
         <state relative-caret-position="525">
           <caret line="29" column="64" lean-forward="false" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1482#1483#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1556#1557#0" expanded="true" />
-            <element signature="e#1592#1593#0" expanded="true" />
-            <element signature="e#1622#1623#0" expanded="true" />
-            <element signature="e#1649#1650#0" expanded="true" />
-            <element signature="e#1687#1688#0" expanded="true" />
-            <element signature="e#1717#1718#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1482#1483#0" expanded="false" />
+            <element signature="e#1512#1513#0" expanded="false" />
+            <element signature="e#1556#1557#0" expanded="false" />
+            <element signature="e#1592#1593#0" expanded="false" />
+            <element signature="e#1622#1623#0" expanded="false" />
+            <element signature="e#1649#1650#0" expanded="false" />
+            <element signature="e#1687#1688#0" expanded="false" />
+            <element signature="e#1717#1718#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="536" column="29" lean-forward="true" selection-start-line="536" selection-start-column="29" selection-end-line="536" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -995,24 +964,8 @@
         <state relative-caret-position="475">
           <caret line="43" column="5" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="43" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16465">
-          <caret line="1247" column="17" lean-forward="true" selection-start-line="1247" selection-start-column="17" selection-end-line="1247" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="524" column="26" lean-forward="true" selection-start-line="524" selection-start-column="26" selection-end-line="524" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,14 +973,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="24" column="5" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/menu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -1040,48 +985,147 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/struts.xml">
+    <entry file="file://$PROJECT_DIR$/web/addInfo.jsp" />
+    <entry file="file://$PROJECT_DIR$/web/menu.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="101" column="33" lean-forward="false" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="33" />
+        <state relative-caret-position="400">
+          <caret line="32" column="4" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="86" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web/Actions/GivePermissionsAction.java">
+    <entry file="file://$PROJECT_DIR$/src/Multicast/MulticastServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
-          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1491#1492#0" expanded="true" />
-            <element signature="e#1521#1522#0" expanded="true" />
-            <element signature="e#1567#1568#0" expanded="true" />
-            <element signature="e#1605#1606#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1669#1670#0" expanded="true" />
-            <element signature="e#1715#1716#0" expanded="true" />
-            <element signature="e#1753#1754#0" expanded="true" />
-            <element signature="e#1784#1785#0" expanded="true" />
-            <element signature="e#1811#1812#0" expanded="true" />
-            <element signature="e#1851#1852#0" expanded="true" />
-            <element signature="e#1883#1884#0" expanded="true" />
-          </folding>
+          <caret line="1209" column="67" lean-forward="true" selection-start-line="1209" selection-start-column="67" selection-end-line="1209" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmiClient/rmiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22875">
+          <caret line="935" column="43" lean-forward="false" selection-start-line="935" selection-start-column="43" selection-end-line="935" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/CreateGroupBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="23" column="9" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="23" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/joinGroup.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="29" />
+        <state relative-caret-position="230">
+          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/permissions.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+        <state relative-caret-position="127">
+          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/SearchAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="11" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1339#1340#0" expanded="true" />
+            <element signature="e#1369#1370#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/GivePermissionsAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="36" column="5" lean-forward="true" selection-start-line="33" selection-start-column="4" selection-end-line="36" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1274#1275#0" expanded="true" />
+            <element signature="e#1312#1313#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/SearchBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="24" column="5" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="317" column="92" lean-forward="false" selection-start-line="317" selection-start-column="20" selection-end-line="317" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Beans/DetailsBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web/Actions/DetailsAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1199#1200#0" expanded="true" />
+            <element signature="e#1237#1238#0" expanded="true" />
+            <element signature="e#1266#1267#0" expanded="true" />
+            <element signature="e#1291#1292#0" expanded="true" />
+            <element signature="e#1327#1328#0" expanded="true" />
+            <element signature="e#1355#1356#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/details.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/struts.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="70" column="51" lean-forward="false" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/search1.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-98">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/search2.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="24" column="53" lean-forward="false" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
           <folding />
         </state>
       </provider>
