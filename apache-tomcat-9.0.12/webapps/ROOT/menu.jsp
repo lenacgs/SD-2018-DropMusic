@@ -27,7 +27,7 @@
     <s:form action="joinGroupMenu"><s:submit value="JOIN GROUP"/></s:form>
     <s:form action="addInfo"><s:submit value="ADD INFO"/></s:form>
     <s:form action="changeInfo"><s:submit value="CHANGE INFO"/></s:form>
-    <s:if test="%{#session.perks == '1' || #session.perks == '2'}">
+    <s:if test="%{#session.perks == 1 || #session.perks == 2}">
         <s:form action="manageGroupsMenu"><s:submit value="MANAGE GROUPS"/></s:form>
         <s:form action="permissionsMenu"><s:submit value="GRANT PRIVILEGES TO ANOTHER USER"/></s:form>
     </s:if>
