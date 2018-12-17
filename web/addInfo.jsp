@@ -1,20 +1,21 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
-  User: MADALENA
-  Date: 14/12/2018
-  Time: 22:15
+  User: Alvineca
+  Date: 12/17/2018
+  Time: 12:10 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>ADD INFO</title>
 </head>
 <body>
-    <h4>Do you want to add a new...</h4>
-    <s:form action="addMusicButton"><s:submit value="MUSIC"/></s:form>
-    <s:form action="addAlbumButton"><s:submit value="ALBUM"/></s:form>
-    <s:form action="addArtistButton"><s:submit value="ARTIST"/></s:form>
+    <p>DropMusic</p>
+    <p>What do you want to add:</p><br>
+    <s:form action="addMusicMenu"><s:submit value="MUSIC"/></s:form>
+    <s:form action="addArtistMenu"><s:submit value="ARTIST"/></s:form>
+    <s:form action="addAlbumMenu"><s:submit value="ALBUM"/></s:form>
 </body>
 </html>

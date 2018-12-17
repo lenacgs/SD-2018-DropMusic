@@ -11,10 +11,25 @@ public class RMIBean {
     private int RMIPort = 7000;
 
     public RMIBean() {
+    }
+
+    void lookup() {
         try {
             server = (Services) LocateRegistry.getRegistry(RMIPort).lookup(RMIName);
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
     }
+
+    int reestablishConnection(int trys){
+        try {
+            trys++;
+            lookup();
+            Thread.sleep(1000);
+        } catch (InterruptedException e1) {
+            System.out.println(".");
+        }
+        return trys;
+    }
+
 }
