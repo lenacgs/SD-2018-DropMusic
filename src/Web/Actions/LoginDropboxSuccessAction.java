@@ -2,13 +2,12 @@ package Web.Actions;
 
 import Web.Beans.LoginBean;
 import Web.Beans.UserBean;
-import com.github.scribejava.core.model.Token;
-import com.github.scribejava.core.model.Verifier;
+import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuthService;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
+import org.json.JSONObject;
 
-import java.awt.*;
 import java.util.Map;
 
 public class LoginDropboxSuccessAction extends ActionSupport implements SessionAware {
@@ -18,31 +17,60 @@ public class LoginDropboxSuccessAction extends ActionSupport implements SessionA
 
     public String execute() {
         this.service = (OAuthService) session.get("service");
+
+        //exchange code given by dropbox to get an accessToken for this user
         Verifier codeV = new Verifier(code);
         Token accessToken = service.getAccessToken(null, codeV);
 
-        String res = this.getLoginBean().loginDropboxUser(accessToken.getToken());
-        if (res.equals("FAIL")) {
-            session.put("message", "Error loggin in with Dropbox account");
+        if(accessToken.isEmpty()) {
+            session.put("message", "Error linking Dropbox account :(");
             return "FAIL";
         }
-        String[] resx = res.split(",");
-        //res[0]=perks, res[1]=username, res[2]=accessToken
-        this.getUserBean().setPerks(Integer.parseInt(resx[0]));
-        this.getUserBean().setUsername(resx[1]);
-        this.getUserBean().setAccessToken(resx[2]);
 
-        session.put("accessToken", accessToken);
+        //get account ID from current account
+        //se o user já associou ao dropbox, então já tem um accesstoken
+        OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.dropboxapi.com/2/users/get_current_account", service);
+        request.addHeader("Authorization", "Bearer "+ accessToken.getToken());
+        request.addHeader("Content-type", "application/json");
+        request.addPayload("null");
+        Response response = request.send();
+
+        JSONObject obj = new JSONObject(response.getBody());
+        String accountID = obj.getString("account_id");
+
+        //vai buscar o user cujo accountID = ao do user que está a tentar loggar
+        String ans = this.getLoginBean().loginDropboxUser(accountID);
+        if (ans.equals("FAIL")) {
+            session.put("message", "Error logging in with dropbox account :(");
+            return LOGIN;
+        }
+
+        String[] res = ans.split(",");
+        //res[0]=perks, res[1]=username, res[2]=accessToken
+        this.getUserBean().setPerks(Integer.parseInt(res[0]));
+        this.getUserBean().setUsername(res[1]);
+        this.getUserBean().setAccessToken(accessToken.getToken());
+
+        session.put("accessToken", this.getUserBean().getAccessToken());
+        session.put("loggedIn", true);
+        session.put("username", this.getUserBean().getUsername());
+        session.put("perks", this.getUserBean().getPerks());
         session.put("message", "Logged in with dropbox successfully!");
 
-        System.out.println("-----LOGGED IN WITH DROPBOX: "+this.getUserBean().getUsername());
-        return "SUCCESS";
+        return SUCCESS;
     }
     public LoginBean getLoginBean(){
         if(!session.containsKey("loginBean")){
             this.setLoginBean(new LoginBean());
         }
         return (LoginBean) session.get("loginBean");
+    }
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public void setLoginBean(LoginBean loginBean){
@@ -58,14 +86,6 @@ public class LoginDropboxSuccessAction extends ActionSupport implements SessionA
 
     public void setUserBean(UserBean userBean){
         this.session.put("userBean", userBean);
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     @Override

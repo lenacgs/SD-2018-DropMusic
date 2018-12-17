@@ -17,7 +17,7 @@
     <s:form action="details"><s:submit value="ALBUM & ARTIST DETAILS"/></s:form>
     <s:form action="review"><s:submit value="ALBUM REVIEW"/></s:form>
     <s:form action="upload"><s:submit value="UPLOAD MUSIC FILE"/></s:form>
-    <s:form action="download"><s:submit value="DOWNLOAD MUSIC FILE"/></s:form>
+    <s:form action="share"><s:submit value="SHARE MUSIC FILE"/></s:form>
     <s:form action="createGroup"><s:submit value="CREATE GROUP"/></s:form>
     <s:form action="joinGroup"><s:submit value="JOIN GROUP"/></s:form>
     <s:form action="editorPrivileges"><s:submit value="GRANT EDITOR PRIVILEGES"/></s:form>

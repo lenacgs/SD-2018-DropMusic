@@ -25,7 +25,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
                 this.getUserBean().setUsername(username);
                 this.getUserBean().setPassword(password);
                 this.getUserBean().setPerks(perks);
-
+                String possible = this.getUserBean().loadAccessToken();
+                if (!possible.equals("fail")) {
+                    this.getUserBean().setAccessToken(possible);
+                    session.put("accessToken", possible);
+                }
                 return SUCCESS;
             } else {
                 session.put("message", "Could not login :(");

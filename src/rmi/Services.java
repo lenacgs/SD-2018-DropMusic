@@ -29,6 +29,11 @@ public interface Services extends Remote {
     String showRequests(String username) throws java.rmi.RemoteException;
     boolean manageRequests(String username, String newUser, String groupID, String toDo)throws java.rmi.RemoteException;
     int downloadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException;
-    int saveToken(String username, String accessToken) throws java.rmi.RemoteException;
-    String loginDropbox(String accessToken) throws java.rmi.RemoteException;
+    int saveAccountID(String username, String accessToken) throws java.rmi.RemoteException;
+    String loginDropbox(String accountID) throws java.rmi.RemoteException;
+    String loadAccessToken(String username) throws java.rmi.RemoteException;
+    boolean saveAccessToken(String username, String token) throws java.rmi.RemoteException;
+    boolean uploadDropbox(String username, String musicTitle, String artistName, String fileID) throws java.rmi.RemoteException;
+    String getFileID(String musicTitle, String artistName, String username) throws java.rmi.RemoteException;
+    String [] getAccountIDs(String groups, String username) throws java.rmi.RemoteException;
 }

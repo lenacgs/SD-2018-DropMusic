@@ -6,16 +6,69 @@ import java.rmi.RemoteException;
 
 public class UserBean extends RMIBean {
     private String username, password;
-    private String accessToken;
+    private String accessToken, accountID;
     private int perks;
 
     public UserBean() {
         super();
     }
 
-    public void saveToken() { //puts access token in the database
+    public void saveAccountID() { //puts access token in the database
         try {
-            server.saveToken(this.username, this.accessToken);
+            server.saveAccountID(this.username, this.accountID);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean share(String musicTitle, String artistName, String groups) {
+        try {
+            return server.shareMusic(this.username, groups, musicTitle, artistName);
+        } catch(RemoteException exc){
+            exc.printStackTrace();
+        }
+        return false;
+    }
+
+    public String[] getAccountIDs(String groups) {
+        try {
+            return server.getAccountIDs(groups, username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean uploadDropbox(String username, String musicTitle, String artistName, String fileID) {
+        try {
+            return server.uploadDropbox(username, musicTitle, artistName, fileID);
+        } catch (RemoteException exc) {
+            exc.printStackTrace();
+        }
+        return false;
+    }
+
+    public String getFileID(String musicTitle, String artistName) {
+        try {
+            return server.getFileID(musicTitle, artistName, username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return "fail";
+    }
+
+    public String loadAccessToken() {
+        try{
+            return server.loadAccessToken(this.getUsername());
+        } catch(RemoteException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void saveAccessToken() {
+        try {
+            server.saveAccessToken(username, accessToken);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -30,6 +83,14 @@ public class UserBean extends RMIBean {
         }
         if (ans.equals("New song successfully added!")) return true;
         return false;
+    }
+
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
     }
 
     public String getUsername() {

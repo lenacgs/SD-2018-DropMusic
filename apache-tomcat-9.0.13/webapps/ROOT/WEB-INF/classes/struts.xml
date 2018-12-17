@@ -74,7 +74,24 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <action name="addMusic" class="Web.Actions.AddMusicAction" method="execute">
             <result name="success">/menu.jsp</result>
             <result name="fail">/menu.jsp</result>
+        </action>
 
+        <action name="upload" class="Web.Actions.UploadAction" method="execute">
+            <result name="fail">/menu.jsp</result>
+            <result name="success">/upload.jsp</result>
+        </action>
+
+        <action name="uploadThis" class="Web.Actions.UploadThisAction" method="execute">
+            <result name="success">/menu.jsp</result>
+        </action>
+
+        <action name="share">
+            <result>/share.jsp</result>
+        </action>
+
+        <action name="shareThis" class="Web.Actions.ShareAction" method="execute">
+            <result name="success">/menu.jsp</result>
+            <result name="fail">/menu.jsp</result>
         </action>
 
     </package>
