@@ -13,9 +13,10 @@ public class LoginDropboxAction extends ActionSupport implements SessionAware {
     private static final String API_APP_KEY = "m8rp7duib3txihe";
     private static final String API_APP_SECRET = "k0a57qnvqp4dgg1";
     private String authorization;
+    private OAuthService service;
 
     public String execute() {
-        OAuthService service = new ServiceBuilder()
+        service = new ServiceBuilder()
                 .provider(DropBoxApi2.class)
                 .apiKey(API_APP_KEY)
                 .apiSecret(API_APP_SECRET)

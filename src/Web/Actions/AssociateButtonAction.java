@@ -20,15 +20,17 @@ public class AssociateButtonAction extends ActionSupport implements SessionAware
 
     public String execute() {
         System.out.println("associatebutton");
+
         OAuthService service = new ServiceBuilder()
                 .provider(DropBoxApi2.class)
                 .apiKey(API_APP_KEY)
                 .apiSecret(API_APP_SECRET)
                 .callback("http://localhost:8080/associateDropbox")
                 .build();
-
+        System.out.println("ola");
         this.authorization = service.getAuthorizationUrl(null);
         this.session.put("service", service);
+        System.out.println("returning");
         return "REDIRECT";
     }
 

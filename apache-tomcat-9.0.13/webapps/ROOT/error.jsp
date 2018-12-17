@@ -11,6 +11,6 @@
     <title>ERROR</title>
 </head>
 <body>
-
+<h2>ERROR</h2>
 </body>
 </html>

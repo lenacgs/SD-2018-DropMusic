@@ -1,4 +1,6 @@
 package rmi;
+import com.github.scribejava.core.model.Token;
+
 import java.rmi.Remote;
 
 
@@ -27,4 +29,6 @@ public interface Services extends Remote {
     String showRequests(String username) throws java.rmi.RemoteException;
     boolean manageRequests(String username, String newUser, String groupID, String toDo)throws java.rmi.RemoteException;
     int downloadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException;
+    int saveToken(String username, String accessToken) throws java.rmi.RemoteException;
+    String loginDropbox(String accessToken) throws java.rmi.RemoteException;
 }
