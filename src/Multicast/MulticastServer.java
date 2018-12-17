@@ -377,7 +377,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
     }
 
-    private User findUserToken(String token) {
+    private User findUserAccountID(String accountID) {
         Group g = findGroup(1);
 
         if (g!=null) {
@@ -385,9 +385,15 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
 
             while (it.hasNext()) {
                 User aux = (User)it.next();
-                System.out.println("TOKEN=" + aux.getAccessToken());
+                System.out.println("ACCOUNTID=" + aux.getAccountID());
+                System.out.println("USERNAME="+ aux.getUsername());
+                System.out.println("SEARCHING FOR ACCOUNTID="+accountID);
+                System.out.println("IS THIS IT? "+aux.getAccountID().equals(accountID));
 
-                if (aux.getAccessToken()!=null && aux.getAccessToken().equals(token)) return aux;
+                if (aux.getAccountID()!=null && aux.getAccountID().equals(accountID)) {
+                    System.out.println("Returning this user\nusername="+aux.getUsername()+"\naccountID="+aux.getAccountID());
+                    return aux;
+                }
             }
             return null;
         }else {
@@ -608,12 +614,12 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return "type | status ; operation | succeeded ; perks | " +perks;
                 }case "loginDropbox": {
                     User current;
-                    String token = info[1][1];
-                    current = findUserToken(token);
+                    String accountID = info[2][1];
+                    current = findUserAccountID(accountID);
 
                     if (current == null) return "type | status ; operation | failed ;";
 
-                    String ans = "type | status ; operation | succeeded ; "+current.getPerks()+","+current.getUsername()+","+token;
+                    String ans = "type | status ; operation | succeeded ; "+current.getPerks()+","+current.getUsername()+","+accountID;
                     return ans;
                 }case "logout":{
                     String username = info[2][1];
@@ -1390,13 +1396,78 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     return r.getReply();
                 }default:{
                     return "type | status ; command | invalid";
-                }case "token":{
+                }case "accountID":{
                     String username = info[2][1];
 
                     User current = findUser(username);
-                    current.setAccessToken(info[3][1]);
+                    current.setAccountID(info[3][1]);
                     saveFile("src/Multicast/"+this.mainThread.getName()+"/groups.obj", mainThread.getGroups());
                     return "type | status ; operation | succeeded ";
+                }case "loadAccessToken":{
+                    String username = info[2][1];
+
+                    User current = findUser(username);
+                    String token = current.getAccessToken();
+                    if (token!=null) {
+                        return "type | loadAccessToken ; token | "+token;
+                    }
+                    return "type | status ; operation | failed";
+                }case "saveAccessToken":{
+                    String username = info[2][1];
+                    User current = findUser(username);
+                    String token = info[3][1];
+                    current.setAccessToken(token);
+                    saveFile("src/Multicast/"+this.mainThread.getName()+"/groups.obj", mainThread.getGroups());
+                    return "type | status ; operation | succeeded";
+                }case "uploadDropbox":{
+                    String username = info[2][1];
+                    String musicTitle = info[3][1];
+                    String artistName = info[4][1];
+                    String fileID = info[5][1];
+                    User current = findUser(username);
+                    Music music = findMusic(artistName, musicTitle);
+                    music.setDropboxFileID(fileID);
+                    music.setSharedBy(current);
+
+                    saveFile("src/Multicast/"+this.mainThread.getName()+"/musics.obj", mainThread.getSongs());
+
+                    return "type | status ; operation | succeeded";
+                }case "getFileID":{
+                    String username = info[2][1];
+                    String musicTitle = info[3][1];
+                    String artistName = info[4][1];
+
+                    User current = findUser(username);
+                    Music music = findMusic(artistName, musicTitle);
+
+                    String fileID = music.getDropboxFileID();
+                    return "type | getFileID ; fileID | "+fileID;
+                }case "getAccountIDs":{
+                    String groups = info[2][1];
+                    String username = info[3][1];
+
+                    String thisID = findUser(username).getAccountID();
+                    String[] groupslist = groups.split(",");
+                    ArrayList<String> res = new ArrayList<>();
+                    for (String group:groupslist) {
+                        Group aux = findGroup(Integer.parseInt(group));
+                        for (User user:aux.getUsers()) {
+                            res.add(user.getAccountID());
+                        }
+                    }
+
+                    res.remove(thisID);
+                    if (res.size() == 0) return "type | status ; operation | failed";
+
+                    //juntar todos os IDs numa string, separado por vírgulas
+                    String resfinal = "";
+                    for (String ID:res) {
+                        resfinal += ","+ID;
+                    }
+                    //tirar a virgula final
+                    resfinal = resfinal.substring(1);
+
+                    return "type | getAccountIDs ; IDs | "+resfinal;
                 }
 
             }

@@ -225,16 +225,24 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return message;
     }
 
-    public String loginDropbox(String accessToken) {
-        String request = "type | loginDropbox ; token | " + accessToken+";";
+    public String loginDropbox(String accountID) {
+        String request = "type | loginDropbox ; account | " + accountID;
         String ans = dealWithRequest(request);
         if (ans.equals("type | status ; operation | failed ;")) return "0";
-        String []ans1 = ans.split(";");
+        String []ans1 = ans.split(" ; ");
         return ans1[2];
     }
 
-    public int saveToken(String username, String accessToken) {
-        String request = "type | token ; username | "+username+" ; token | "+accessToken;
+    public boolean saveAccessToken(String username, String accessToken) {
+        String request = "type | saveAccessToken ; username | "+username+" ; token | "+accessToken;
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | status ; operation | failed")) return false;
+        return true;
+    }
+
+    public int saveAccountID(String username, String accountID) {
+        String request = "type | accountID ; username | "+username+" ; accountID | "+accountID;
         String ans = dealWithRequest(request);
         return 1;
     }
@@ -282,6 +290,22 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             }
         }
         return true;
+    }
+
+    public String loadAccessToken(String username) {
+        String request = "type | loadAccessToken ; username | "+username;
+        String ans = dealWithRequest(request);
+
+        System.out.println("Got ans="+ans);
+
+        if (ans.equals("type | status ; operation | failed")) {
+            return "fail";
+        }
+
+        String [] splitted = ans.split(" ; ");
+        String []res = splitted[1].split(" \\| ");
+
+        return res[1]; //retorna o token apenas
     }
 
     public String search(String username, String keyword, String object) throws java.rmi.RemoteException{
@@ -420,6 +444,27 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
+    public String [] getAccountIDs(String groups, String username) {
+        String request = "type | getAccountIDs ; groups | "+groups + " ; username | "+username; //group numbers separated by ","
+        String ans = dealWithRequest(request);
+        if (ans.equals("type | status ; operation | failed")) return null;
+
+        String[] splitted = ans.split(" ; ");
+
+        String IDs = splitted[1].split(" \\| ")[1];
+
+        String []res = IDs.split(",");
+        return res;
+    }
+
+    public boolean uploadDropbox(String username, String musicTitle, String artistName, String fileID) {
+        String request = "type | uploadDropbox ; username | "+username+" ; musicTitle | "+musicTitle+" ; artistName | "+artistName + " ; fileID | " + fileID;
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | status ; operation | succeeded")) return true;
+        else return false;
+    }
+
     /*funcao para upload de um novo ficheiro musical. avisa os servidores e um deles responde com o seu porto, onde o client se vai ligar diretamente por TCP*/
     public int uploadFile (String username, String musicTitle, String artistName) throws java.rmi.RemoteException{
         String request = "type | upload ; username | " + username + " ; music_title | " + musicTitle + " ; artistName | " + artistName;
@@ -470,6 +515,15 @@ public class RMIServer extends UnicastRemoteObject implements Services {
             }
             return "success";
         }
+    }
+
+    public String getFileID(String musicTitle, String artistName, String username) {
+        String request = "type | getFileID ; username | "+username+" ; musicTitle | "+musicTitle+" ; artistName | "+artistName;
+        String ans = dealWithRequest(request);
+
+        if (ans.equals("type | status ; operation | failed")) return "fail";
+        String [] splitted = ans.split(" ; ");
+        return splitted[1].split(" \\| ")[1];
     }
 
     public String changeInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) throws java.rmi.RemoteException{

@@ -14,5 +14,7 @@
         <s:password name="password" /><br><br>
         <s:submit/>
     </s:form>
+
+    <h4>${session.message}</h4>
 </body>
 </html>

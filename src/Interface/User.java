@@ -11,6 +11,7 @@ public class User implements Serializable{
     private String username;
     private String password;
     private int perks;
+    private String accountID, accessToken;
 
     public String getAccessToken() {
         return accessToken;
@@ -20,7 +21,15 @@ public class User implements Serializable{
         this.accessToken = accessToken;
     }
 
-    private String accessToken;
+    public String getAccountID() {
+        return this.accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+
 
     private CopyOnWriteArrayList<Group> defaultShareGroups; //lista de grupos a quem o utilizador partilha sempre por omissão
     private CopyOnWriteArrayList<Music> transferredMusics; //lista de musicas que o user transferiu para o servidor (e que pode enventualmente partilhar com outros userss/grupos)

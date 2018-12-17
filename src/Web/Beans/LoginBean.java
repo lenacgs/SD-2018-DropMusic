@@ -25,10 +25,10 @@ public class LoginBean extends RMIBean {
         }
     }
 
-    public String loginDropboxUser(String accessToken) {
+    public String loginDropboxUser(String accountID) {
         String res = null;
         try {
-            res = server.loginDropbox(accessToken);
+            res = server.loginDropbox(accountID);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
