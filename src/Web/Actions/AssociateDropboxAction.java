@@ -6,19 +6,22 @@ import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.exceptions.OAuthException;
 import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuth20ServiceImpl;
+import com.github.scribejava.core.oauth.OAuthService;
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.tools.example.debug.expr.ParseException;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.apache.struts2.interceptor.SessionAware;
-
+import org.json.*;
 import java.util.Map;
 
 public class AssociateDropboxAction extends ActionSupport implements SessionAware{
     private Map<String, Object> session;
-    private OAuth20ServiceImpl service;
+    private OAuthService service;
     private String code;
 
 
     public String execute() {
-        this.service = (OAuth20ServiceImpl) session.get("service");
+        this.service = (OAuthService) session.get("service");
 
         //exchange code given by dropbox to get an accessToken for this user
         Verifier codeV = new Verifier(code);
@@ -29,22 +32,24 @@ public class AssociateDropboxAction extends ActionSupport implements SessionAwar
             return "FAIL";
         }
 
-        /*//estava a tentar ir buscar a account ID mas esta merda, não funciona, vá-se lá saber porquê
         OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.dropboxapi.com/2/users/get_current_account", service);
         request.addHeader("Authorization", "Bearer "+accessToken.getToken());
         request.addHeader("Content-type", "application/json");
+        request.addPayload("null");
         Response response = request.send();
-        ParameterList paramList = request.getBodyParams();
-        System.out.println("GETTING ACCOUNT INFO!!!------------------------------------");
-        System.out.println("Request sent: "+accessToken.getToken());
-        System.out.println(response.getBody());
-        System.out.println("------------------------------------------------------------");*/
+
+        JSONObject obj = new JSONObject(response.getBody());
+        String accountID = obj.getString("account_id");
+
+        session.put("accountID", accountID);
         session.put("accessToken", accessToken.getToken());
         session.put("message", "Success linking Dropbox account!");
 
+        this.getUserBean().setAccountID(accountID);
         this.getUserBean().setAccessToken(accessToken.getToken());
-        this.getUserBean().saveToken();
-        return "SUCCESS";
+        this.getUserBean().saveAccountID();
+        this.getUserBean().saveAccessToken();
+        return SUCCESS;
     }
 
     public String getCode() {

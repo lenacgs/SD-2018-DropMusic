@@ -12,7 +12,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     <constant name="struts.devMode" value="true" />
     <constant name="struts.ui.theme" value="simple" />
     <package name="hey" extends="struts-default">
-	
+
 	<default-action-ref name="index" />
 	
 	<global-results>
@@ -32,29 +32,25 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	<!-- 'LoginBean' Actions calls 'execute' in 'LoginAction' -->
     <!-- _______________________________________________________________________________________ -->
     <action name="login" class="Web.Actions.LoginAction" method="execute">
-        <result name="SUCCESS">/menu.jsp</result>
-        <result name="LOGIN">/login.jsp</result>
+        <result name="success">/menu.jsp</result>
+        <result name="login">/login.jsp</result>
     </action>
     <action name="loginMenu">
         <result>/login.jsp</result>
     </action>
-    <!-- _______________________________________________________________________________________ -->
-    <action name="menu">
-        <result>/menu.jsp</result>
-    </action>
-    <!-- _______________________________________________________________________________________ -->
+
     <action name="register" class="Web.Actions.RegisterAction" method="execute">
-        <result name="SUCCESS">/menu.jsp</result>
-        <result name="REGISTER">/register.jsp</result>
+        <result name="success">/menu.jsp</result>
+        <result name="register">/register.jsp</result>
     </action>
     <action name="registerMenu">
         <result>/register.jsp</result>
     </action>
     <!-- _______________________________________________________________________________________ -->
-    <action name="loginDropbox" class="Web.Actions.LoginDropboxAction" method="execute">
-        <result name="REDIRECT" type="redirect">${authorization}</result>
+    <action name="menu">
+        <result>/menu.jsp</result>
     </action>
-    <!-- _______________________________________________________________________________________ -->
+
     <action name="searchMenu">
         <result>/search1.jsp</result>
     </action>
@@ -170,30 +166,44 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name = "SUCCEED">/menu.jsp </result>
         <result name = "FAILED">/menu.jsp </result>
     </action>
-    <!-- _______________________________________________________________________________________ -->
-    <!--redirects user to dropbox website when execute() returns "REDIRECT"-->
-    <action name="associateButton" class="Web.Actions.AssociateButtonAction" method="execute">
-        <result name="REDIRECT" type="redirect">${authorization}</result>
-    </action>
 
-    <action name="loginDropboxSuccess" class="Web.Actions.LoginDropboxSuccessAction" method="execute">
-        <result name="SUCCESS">/menu.jsp</result>
-        <result name="FAIL">/index.jsp</result>
-    </action>
+        <action name="loginDropbox" class="Web.Actions.LoginDropboxAction" method="execute">
+            <result name="REDIRECT" type="redirect">${authorization}</result>
+        </action>
 
-    <action name="associateDropbox" class="Web.Actions.AssociateDropboxAction" method="execute">
-        <result name="SUCCESS">/menu.jsp</result>
-        <result name="FAIL">/menu.jsp</result>
-    </action>
-    <!-- _______________________________________________________________________________________ -->
+        <action name="loginDropboxSuccess" class="Web.Actions.LoginDropboxSuccessAction" method="execute">
+            <result name="success">/menu.jsp</result>
+            <result name="fail">/index.jsp</result>
+        </action>
 
+        <!--redirects user to dropbox website when execute() returns "REDIRECT"-->
+        <action name="associateButton" class="Web.Actions.AssociateButtonAction" method="execute">
+            <result name="REDIRECT" type="redirect">${authorization}</result>
+        </action>
 
-    <!--<action name="addInfo" class="Web.Actions.AddInfoAction" method="execute">
-        <result name="SUCCESS">/menu.jsp</result>
-        <result name="FAIL">/menu.jsp</result>
-    </action>-->
+        <action name="associateDropbox" class="Web.Actions.AssociateDropboxAction" method="execute">
+            <result name="success">/menu.jsp</result>
+            <result name="fail">/menu.jsp</result>
+        </action>
 
+        <action name="upload" class="Web.Actions.UploadAction" method="execute">
+            <result name="fail">/menu.jsp</result>
+            <result name="success">/upload.jsp</result>
+        </action>
 
-  </package>
+        <action name="uploadThis" class="Web.Actions.UploadThisAction" method="execute">
+            <result name="success">/menu.jsp</result>
+        </action>
+
+        <action name="share">
+            <result>/share.jsp</result>
+        </action>
+
+        <action name="shareThis" class="Web.Actions.ShareAction" method="execute">
+            <result name="success">/menu.jsp</result>
+            <result name="fail">/menu.jsp</result>
+        </action>
+
+    </package>
 
 </struts>
