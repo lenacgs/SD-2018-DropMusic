@@ -12,19 +12,13 @@ public class JoinGroupMenuAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() throws Exception{
-
         String username = (String)session.get("username");
-        System.out.println("1");
         String group = this.getJoinGroupBean().showGroups(username);
         if(group==null) {
-            System.out.println("FAILED");
             addActionError("There are no groups available for you to join");
             return "FAILED";
         }
-        System.out.println("2");
         String groups[] = group.split(",");
-        System.out.println("3");
-        System.out.println("Succeed");
         session.put("groups",groups);
         return "SUCCEED";
     }

@@ -1027,8 +1027,10 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         return "type | add_album ; operation | failed ; error | You don't have permission to add an album to this group!";
                     }
                 }case "change_info": {
-                    if (info.length == 8) {
-                        if (info[1][1].equals("music")) {
+                    System.out.println("info.length: "+info.length);
+                    System.out.println("object: "+info[1][1]);
+                    if (info.length == 9) {
+                        if (info[2][1].equals("music")) {
                             String username = info[3][1];
                             User current = findUser(username);
                             String groupID = info[4][1];
@@ -1110,7 +1112,7 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                         }
                         return "type | status ; command | invalid";
                     }
-                    else if (info.length == 10) {
+                    else if (info.length == 11) {
                         String username = info[2][1];
                         User current = findUser(username);
                         String groupID = info[3][1];

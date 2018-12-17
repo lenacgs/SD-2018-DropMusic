@@ -97,8 +97,8 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name = "SUCCEED">/menu.jsp</result>
     </action>
     <!-- _______________________________________________________________________________________ -->
-    <action name="addInfoMenu">
-        <result>/addInfo.jsp</result>
+    <action name="addInfoMenu" class="Web.Actions.AddInfoMenuAction" method="execute">
+        <result name = "SUCCEED">/addInfo.jsp</result>
     </action>
 
     <action name="addMusicMenu">
@@ -114,6 +114,29 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
 
     <action name="addInfo" class="Web.Actions.AddInfoAction" method="execute">
+        <result name = "SUCCEED">/menu.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+    </action>
+
+    <!-- _______________________________________________________________________________________ -->
+
+    <action name="changeInfoMenu" class="Web.Actions.ChangeInfoMenuAction" method="execute">
+        <result name = "SUCCEED">/addInfo.jsp</result>
+    </action>
+
+    <action name="changeMusicMenu">
+        <result>/addMusic.jsp</result>
+    </action>
+
+    <action name="changeArtistMenu">
+        <result>/addArtist.jsp</result>
+    </action>
+
+    <action name="changeAlbumMenu">
+        <result>/addAlbum.jsp</result>
+    </action>
+
+    <action name="changeInfo" class="Web.Actions.ChangeInfoAction" method="execute">
         <result name = "SUCCEED">/menu.jsp </result>
         <result name = "FAILED">/menu.jsp </result>
     </action>
