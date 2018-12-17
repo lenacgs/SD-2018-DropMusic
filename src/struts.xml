@@ -99,6 +99,28 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name = "SUCCEED">/menu.jsp</result>
     </action>
     <!-- _______________________________________________________________________________________ -->
+    <action name="addInfoMenu">
+        <result>/addInfo.jsp</result>
+    </action>
+
+    <action name="addMusicMenu">
+        <result>/addMusic.jsp</result>
+    </action>
+
+    <action name="addArtistMenu">
+        <result>/addArtist.jsp</result>
+    </action>
+
+    <action name="addAlbumMenu">
+        <result>/addAlbum.jsp</result>
+    </action>
+
+    <action name="addInfo" class="Web.Actions.AddInfoAction" method="execute">
+        <result name = "SUCCEED">/menu.jsp </result>
+        <result name = "FAILED">/menu.jsp </result>
+    </action>
+
+    <!-- _______________________________________________________________________________________ -->
     <action name="manageGroupsMenu" class="Web.Actions.ManageGroupsMenuAction" method="execute">
         <result name = "SUCCEED">/manageGroup.jsp </result>
         <result name = "FAILED">/menu.jsp </result>
@@ -127,6 +149,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name = "SUCCEED">/menu.jsp </result>
         <result name = "FAILED">/menu.jsp </result>
     </action>
+    <!-- _______________________________________________________________________________________ -->
     <!--redirects user to dropbox website when execute() returns "REDIRECT"-->
     <action name="associateButton" class="Web.Actions.AssociateButtonAction" method="execute">
         <result name="REDIRECT" type="redirect">${authorization}</result>

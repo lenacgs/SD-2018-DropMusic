@@ -21,12 +21,12 @@
     <p>MENU</p>
     <s:form action="searchMenu"><s:submit value="SEARCH"/></s:form>
     <s:form action="reviewMenu"><s:submit value="ALBUM REVIEW"/></s:form>
-    <s:form action="upload"><s:submit value="UPLOAD MUSIC FILE"/></s:form>
-    <s:form action="download"><s:submit value="DOWNLOAD MUSIC FILE"/></s:form>
     <s:form action="createGroupMenu"><s:submit value="CREATE GROUP"/></s:form>
     <s:form action="joinGroupMenu"><s:submit value="JOIN GROUP"/></s:form>
-    <s:form action="addInfo"><s:submit value="ADD INFO"/></s:form>
+    <s:form action="addInfoMenu"><s:submit value="ADD INFO"/></s:form>
     <s:form action="changeInfo"><s:submit value="CHANGE INFO"/></s:form>
+    <s:form action="upload"><s:submit value="UPLOAD MUSIC FILE"/></s:form>
+    <s:form action="download"><s:submit value="DOWNLOAD MUSIC FILE"/></s:form>
     <s:if test="%{#session.perks == 1 || #session.perks == 2}">
         <s:form action="manageGroupsMenu"><s:submit value="MANAGE GROUPS"/></s:form>
         <s:form action="permissionsMenu"><s:submit value="GRANT PRIVILEGES TO ANOTHER USER"/></s:form>
