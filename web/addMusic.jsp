@@ -25,5 +25,7 @@
         <s:textfield name="duration" /><br><br>
         <s:submit/>
     </s:form>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

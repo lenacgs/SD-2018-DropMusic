@@ -1,11 +1,13 @@
 package Web.Beans;
 
 import java.rmi.RemoteException;
+import Web.Beans.RMIBean;
 
 public class NotificationBean extends RMIBean {
 
     public NotificationBean(){
         super();
+        lookup();
     }
 
     public String getNotifications(String username){

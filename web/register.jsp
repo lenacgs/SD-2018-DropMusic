@@ -15,5 +15,12 @@
     <s:password name="password" /><br><br>
     <s:submit value="REGISTER"/>
 </s:form>
+
+<script type ="text/javascript">
+    window.onload = function () {
+        sessionStorage.setItem("notification", "true");
+    }
+
+</script>
 </body>
 </html>

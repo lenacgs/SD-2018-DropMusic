@@ -39,7 +39,10 @@ public class WebSocketAnnotation {
     @OnMessage
     public void receiveMessage(String message){
         String[] aux = message.split(" \\| ");
-        if(aux[0].equals("username")){
+        if(aux[0].equals("username")) {
+            this.username = aux[1];
+            users.add(this);
+        }else if(aux[0].equals("get_notifications")){
             this.username = aux[1];
             users.add(this);
             String notification = notificationBean.getNotifications(this.username);
@@ -61,7 +64,7 @@ public class WebSocketAnnotation {
         t.printStackTrace();
     }
 
-    private void sendNotification(String text, String target){
+    public void sendNotification(String text, String target){
         try{
             boolean sent = false;
             for(WebSocketAnnotation curr : users){

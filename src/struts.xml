@@ -124,7 +124,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
 
     <action name="givePermissions" class="Web.Actions.GivePermissionsAction" method="execute">
-        <result name = "SUCCEED">/menu.jsp </result>
+        <result name = "SUCCESS">/menu.jsp </result>
         <result name = "FAILED">/menu.jsp </result>
     </action>
 

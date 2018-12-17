@@ -16,5 +16,7 @@
     <s:form action="addMusicButton"><s:submit value="MUSIC"/></s:form>
     <s:form action="addAlbumButton"><s:submit value="ALBUM"/></s:form>
     <s:form action="addArtistButton"><s:submit value="ARTIST"/></s:form>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

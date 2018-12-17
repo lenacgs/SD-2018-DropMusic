@@ -3,6 +3,7 @@ package Web.Actions;
 import Web.Beans.GivePermissionsBean;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
+import ws.WebSocketAnnotation;
 
 import java.util.Map;
 
@@ -17,6 +18,9 @@ public class GivePermissionsAction extends ActionSupport implements SessionAware
         boolean reply = this.getGivePermissionsBean().givePermissions(perk, username, newUser, groupId);
         if(reply){
             addActionMessage(newUser+" permissions successfully updated");
+            WebSocketAnnotation websocket = new WebSocketAnnotation();
+            String notification = "Your permissions on group " + groupId + " have been upgraded to " + perk + "!";
+            websocket.sendNotification(notification, newUser);
             return "SUCCESS";
         }
         else{
