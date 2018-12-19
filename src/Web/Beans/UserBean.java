@@ -11,6 +11,7 @@ public class UserBean extends RMIBean {
 
     public UserBean() {
         super();
+        lookup();
     }
 
     public void saveAccountID() { //puts access token in the database
@@ -50,7 +51,10 @@ public class UserBean extends RMIBean {
 
     public String getFileID(String musicTitle, String artistName) {
         try {
-            return server.getFileID(musicTitle, artistName, username);
+            System.out.println("musicTitle="+ musicTitle + " artistName="+artistName+" username="+username);
+            String ans = server.getFileID(musicTitle, artistName, username);
+            System.out.println("hello2");
+            return ans;
         } catch (RemoteException e) {
             e.printStackTrace();
         }

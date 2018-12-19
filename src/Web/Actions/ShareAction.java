@@ -22,7 +22,11 @@ public class ShareAction extends ActionSupport implements SessionAware {
 
     public String execute() {
         //vai buscar o ID da música de quem a partilhou
+        System.out.println("hello");
         String fileID = this.getUserBean().getFileID(musicTitle, artistName);
+
+        System.out.println("");
+
 
         if (fileID.equals("fail")) {
             session.put("message", "Could not share this file");
@@ -65,6 +69,7 @@ public class ShareAction extends ActionSupport implements SessionAware {
         }
 
         shareWith = shareWith.substring(1);
+        System.out.println("sharewith users=" + shareWith);
 
         OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.dropboxapi.com/2/sharing/add_file_member", (OAuthService)this.session.get("service"));
         request.addHeader("authorization", "Bearer "+this.getUserBean().getAccessToken());
@@ -80,6 +85,8 @@ public class ShareAction extends ActionSupport implements SessionAware {
                 "}");
 
         Response response = request.send();
+
+        System.out.println("response=" + response.getBody());
         session.put("message", "Shared music successfully :D");
         return SUCCESS;
 

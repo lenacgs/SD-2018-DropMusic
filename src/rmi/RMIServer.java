@@ -225,7 +225,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return message;
     }
 
-    public String loginDropbox(String accountID) {
+    public String loginDropbox(String accountID) throws java.rmi.RemoteException{
         String request = "type | loginDropbox ; account | " + accountID;
         String ans = dealWithRequest(request);
         if (ans.equals("type | status ; operation | failed ;")) return "0";
@@ -233,7 +233,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return ans1[2];
     }
 
-    public boolean saveAccessToken(String username, String accessToken) {
+    public boolean saveAccessToken(String username, String accessToken) throws java.rmi.RemoteException{
         String request = "type | saveAccessToken ; username | "+username+" ; token | "+accessToken;
         String ans = dealWithRequest(request);
 
@@ -241,7 +241,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
-    public int saveAccountID(String username, String accountID) {
+    public int saveAccountID(String username, String accountID) throws java.rmi.RemoteException{
         String request = "type | accountID ; username | "+username+" ; accountID | "+accountID;
         String ans = dealWithRequest(request);
         return 1;
@@ -292,7 +292,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
-    public String loadAccessToken(String username) {
+    public String loadAccessToken(String username) throws java.rmi.RemoteException{
         String request = "type | loadAccessToken ; username | "+username;
         String ans = dealWithRequest(request);
 
@@ -444,7 +444,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return true;
     }
 
-    public String [] getAccountIDs(String groups, String username) {
+    public String [] getAccountIDs(String groups, String username) throws java.rmi.RemoteException{
         String request = "type | getAccountIDs ; groups | "+groups + " ; username | "+username; //group numbers separated by ","
         String ans = dealWithRequest(request);
         if (ans.equals("type | status ; operation | failed")) return null;
@@ -457,7 +457,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return res;
     }
 
-    public boolean uploadDropbox(String username, String musicTitle, String artistName, String fileID) {
+    public boolean uploadDropbox(String username, String musicTitle, String artistName, String fileID) throws java.rmi.RemoteException{
         String request = "type | uploadDropbox ; username | "+username+" ; musicTitle | "+musicTitle+" ; artistName | "+artistName + " ; fileID | " + fileID;
         String ans = dealWithRequest(request);
 
@@ -517,12 +517,15 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
-    public String getFileID(String musicTitle, String artistName, String username) {
+    public String getFileID(String musicTitle, String artistName, String username){
+        System.out.println("aqui");
         String request = "type | getFileID ; username | "+username+" ; musicTitle | "+musicTitle+" ; artistName | "+artistName;
+        System.out.println("Sending request: "+request);
         String ans = dealWithRequest(request);
 
         if (ans.equals("type | status ; operation | failed")) return "fail";
         String [] splitted = ans.split(" ; ");
+        System.out.println("returning "+splitted[1].split(" \\| ")[1]);
         return splitted[1].split(" \\| ")[1];
     }
 
@@ -627,7 +630,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         dealWithRequest(request);
     }
 
-    public String addInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) { //used for musics and artist
+    public String addInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) throws java.rmi.RemoteException{ //used for musics and artist
 
         if (type.equals("music")) {
             String title = s1, artist = s2, genre = s3, duration = s4;
@@ -671,7 +674,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return "Something went wrong! :(";
     }
 
-    public String addInfo(String username, String groupIDs, String artist, String title, String musics, String year, String publisher, String genre, String description) { //used for albums
+    public String addInfo(String username, String groupIDs, String artist, String title, String musics, String year, String publisher, String genre, String description) throws java.rmi.RemoteException{ //used for albums
         String request = "type | add_album ; username | " + username + " ; groups | "+groupIDs+" ; artist | " + artist + " ; title | " + title + " ; musics | " + musics + " ; year | " + year + " ; publisher | "
                 + publisher + " ; genre | " + genre + " ; description | " + description;
 

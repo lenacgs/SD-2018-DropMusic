@@ -1429,6 +1429,8 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     music.setDropboxFileID(fileID);
                     music.setSharedBy(current);
 
+                    current.getTransferredMusics().add(music);
+
                     saveFile("src/Multicast/"+this.mainThread.getName()+"/musics.obj", mainThread.getSongs());
 
                     return "type | status ; operation | succeeded";
