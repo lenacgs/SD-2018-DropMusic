@@ -9,6 +9,8 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuthService;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -22,11 +24,7 @@ public class ShareAction extends ActionSupport implements SessionAware {
 
     public String execute() {
         //vai buscar o ID da música de quem a partilhou
-        System.out.println("hello");
         String fileID = this.getUserBean().getFileID(musicTitle, artistName);
-
-        System.out.println("");
-
 
         if (fileID.equals("fail")) {
             session.put("message", "Could not share this file");
@@ -88,6 +86,28 @@ public class ShareAction extends ActionSupport implements SessionAware {
 
         System.out.println("response=" + response.getBody());
         session.put("message", "Shared music successfully :D");
+
+        //quando um user faz share de um ficheiro, vai criar um shared_link para esse ficheiro, que vai ser acrescentado junto da música
+        //correspondente para que os outros users possam ter acesso a ele
+
+        OAuthRequest request2 = new OAuthRequest(Verb.POST, "https://api.dropboxapi.com/2/sharing/create_shared_link_with_settings" , (OAuthService)this.session.get("service"));
+        request2.addHeader("Authorization", "Bearer "+this.getUserBean().getAccessToken());
+        request2.addHeader("content-type", "application/json");
+
+        request2.addPayload("{\"path\": \""+fileID+"\", \"settings\": {\"requested_visibility\": \"public\"}}");
+        Response response2 = request2.send();
+
+        System.out.println("MADE REQUEST FOR CREATING SHARING LINK");
+        System.out.println(response2.getCode());
+        System.out.println(response2.getBody());
+        System.out.println("---------------------------------------");
+
+        JSONObject obj = new JSONObject(response2.getBody());
+        String url = (String) obj.get("url");
+
+        //save url on Music DB
+        this.getUserBean().saveFileURL(url, musicTitle, artistName);
+
         return SUCCESS;
 
     }

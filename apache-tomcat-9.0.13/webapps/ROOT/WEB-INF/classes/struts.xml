@@ -204,6 +204,11 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
             <result name="fail">/menu.jsp</result>
         </action>
 
+        <action name="myFiles" class="Web.Actions.MyFilesAction" method="execute">
+            <result name="success">/myFiles.jsp</result>
+            <result name="fail">/menu.jsp</result>
+        </action>
+
     </package>
 
 </struts>

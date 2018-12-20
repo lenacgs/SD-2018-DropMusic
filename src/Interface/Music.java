@@ -13,8 +13,17 @@ public class Music implements Serializable {
     private CopyOnWriteArrayList<String> editors = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<Integer> groups = new CopyOnWriteArrayList<>();
     private String pathToFile; //é usado apenas quando alguém associa um ficheiro a esta música
-    private String dropboxFileID;
-    private User sharedBy;
+    private String dropboxFileID = new String();
+    private User sharedBy = null;
+    private String url = new String();
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public User getSharedBy() {
         return sharedBy;

@@ -517,16 +517,32 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         }
     }
 
-    public String getFileID(String musicTitle, String artistName, String username){
-        System.out.println("aqui");
+    public String getFileID(String musicTitle, String artistName, String username) throws java.rmi.RemoteException{
         String request = "type | getFileID ; username | "+username+" ; musicTitle | "+musicTitle+" ; artistName | "+artistName;
-        System.out.println("Sending request: "+request);
         String ans = dealWithRequest(request);
-
         if (ans.equals("type | status ; operation | failed")) return "fail";
         String [] splitted = ans.split(" ; ");
-        System.out.println("returning "+splitted[1].split(" \\| ")[1]);
         return splitted[1].split(" \\| ")[1];
+    }
+
+    public boolean saveFileURL(String URL, String musicTitle, String artistName) throws java.rmi.RemoteException{
+        String request = "type | saveFileURL ; url | "+URL+" ; musicTitle | "+musicTitle+" ; artistName | "+artistName;
+        String ans = dealWithRequest(request);
+        return true;
+    }
+
+    public String[] getTransferredMusics(String username) throws java.rmi.RemoteException{
+        String request = "type | getTransferredMusics ; username | "+username;
+        String ans = dealWithRequest(request);
+
+        String [] info = ans.split(" ; ");
+
+        int size = Integer.parseInt(info[1].split(" \\| ")[1]);
+        if (size == 0) return null;
+
+        String [] musics = info[2].split(" \\| ");
+
+        return musics;
     }
 
     public String changeInfo(String username, String groups, String type, String s1, String s2, String s3, String s4) throws java.rmi.RemoteException{

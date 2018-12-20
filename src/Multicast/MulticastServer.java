@@ -1426,12 +1426,14 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     String fileID = info[5][1];
                     User current = findUser(username);
                     Music music = findMusic(artistName, musicTitle);
+                    System.out.println("---------FILEID="+fileID+"\nCURRENT="+current.getUsername()+"\nMUSIC="+music.getTitle());
                     music.setDropboxFileID(fileID);
                     music.setSharedBy(current);
 
                     current.getTransferredMusics().add(music);
 
                     saveFile("src/Multicast/"+this.mainThread.getName()+"/musics.obj", mainThread.getSongs());
+                    saveFile("src/Multicast/"+this.mainThread.getName()+"/groups.obj", mainThread.getGroups());
 
                     return "type | status ; operation | succeeded";
                 }case "getFileID":{
@@ -1470,6 +1472,32 @@ class requestHandler extends Thread{ //handles request and sends answer back to 
                     resfinal = resfinal.substring(1);
 
                     return "type | getAccountIDs ; IDs | "+resfinal;
+                }case "saveFileURL":{
+                    String url = info[2][1];
+                    String musicTitle = info[3][1];
+                    String artistName = info[4][1];
+
+                    Music music = findMusic(artistName, musicTitle);
+                    music.setUrl(url);
+                    saveFile("src/Multicast/"+this.mainThread.getName()+"/musics.obj", mainThread.getSongs());
+                    saveFile("src/Multicast/"+this.mainThread.getName()+"/groups.obj", mainThread.getGroups());
+                    return "type | status ; operation | succeeded";
+                }case "getTransferredMusics":{
+                    String username = info[2][1];
+                    User current = findUser(username);
+                    CopyOnWriteArrayList<Music> trnsMusics = current.getTransferredMusics();
+
+                    String res = "type | getTransferredMusics ; list_size | "+trnsMusics.size() + " ; ";
+
+                    for (Music music:trnsMusics) { //para todas as músicas partilhadas com esse user, vamos enviar o título, o artista, o url e quem partilhou este ficheiro
+                        String aux = "";
+                        aux += music.getTitle() +","+ music.getArtist() +","+ music.getUrl() +","+ music.getSharedBy().getUsername() + " | ";
+                        res += aux;
+                    }
+
+                    res.substring(0, res.length()-1);
+                    System.out.println("RES="+res);
+                    return res;
                 }
 
             }

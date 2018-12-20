@@ -31,6 +31,7 @@
         <s:form action="permissionsMenu"><s:submit value="GRANT PRIVILEGES TO ANOTHER USER"/></s:form>
     </s:if>
     <s:form action="share"><s:submit value="SHARE MUSIC FILE"/></s:form>
+    <s:form action="myFiles"><s:submit value="MY FILES"/></s:form>
     <s:form action="associateButton"><s:submit value="LINK DROPBOX ACCOUNT"/></s:form>
 
     <h4>${session.message}</h4>

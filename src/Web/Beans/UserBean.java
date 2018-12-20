@@ -31,6 +31,15 @@ public class UserBean extends RMIBean {
         return false;
     }
 
+    public boolean saveFileURL(String URL, String musicTitle, String artistName) {
+        try {
+            return server.saveFileURL(URL, musicTitle, artistName);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
     public String[] getAccountIDs(String groups) {
         try {
             return server.getAccountIDs(groups, username);
@@ -76,6 +85,15 @@ public class UserBean extends RMIBean {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    public String[] getTransferredMusics() {
+        try {
+            return server.getTransferredMusics(this.username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public boolean addMusic(String username, String groups, String type, String title, String artist, String genre, String duration) {

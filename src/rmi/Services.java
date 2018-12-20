@@ -36,4 +36,6 @@ public interface Services extends Remote {
     boolean uploadDropbox(String username, String musicTitle, String artistName, String fileID) throws java.rmi.RemoteException;
     String getFileID(String musicTitle, String artistName, String username) throws java.rmi.RemoteException;
     String [] getAccountIDs(String groups, String username) throws java.rmi.RemoteException;
+    boolean saveFileURL(String URL, String musicTitle, String artistName) throws java.rmi.RemoteException;
+    String[] getTransferredMusics(String username) throws java.rmi.RemoteException;
 }
