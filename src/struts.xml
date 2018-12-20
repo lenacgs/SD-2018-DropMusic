@@ -39,6 +39,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result>/login.jsp</result>
     </action>
 
+    <action name="menu">
+        <result>/menu.jsp</result>
+    </action>
+
     <action name="register" class="Web.Actions.RegisterAction" method="execute">
         <result name="success">/menu.jsp</result>
         <result name="register">/register.jsp</result>

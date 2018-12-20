@@ -23,6 +23,9 @@ public class RegisterAction extends ActionSupport implements SessionAware{
                 this.getUserBean().setUsername(username);
                 this.getUserBean().setPassword(password);
                 this.getUserBean().setPerks(perks);
+                session.put("message", "Register successful!");
+
+
                 return SUCCESS;
             }else{
                 return LOGIN;
