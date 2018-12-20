@@ -17,5 +17,7 @@
     <s:form action="createGroup"><s:submit value="YES"/></s:form>
     <s:form action="menu"><s:submit value="NO"/></s:form>
 
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

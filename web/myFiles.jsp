@@ -25,6 +25,7 @@
     </c:forEach>
     </div>
 
+    <jsp:include page="notifications.jsp"/>
 
 </body>
 </html>

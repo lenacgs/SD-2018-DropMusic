@@ -46,5 +46,7 @@
             <s:submit value="CHANGE ALBUM"/>
         </s:form>
     </s:else>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

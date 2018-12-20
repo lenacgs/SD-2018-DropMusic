@@ -3,12 +3,12 @@
     <output-path>$PROJECT_DIR$/out/artifacts/WebArchive</output-path>
     <root id="archive" name="WebArchive.war">
       <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="javax.websocket:javax.websocket-api:1.1" />
-          <element id="library" level="project" name="lib" />
-        </element>
         <element id="directory" name="classes">
           <element id="module-output" name="SD-2018-DropMusic" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="javax.websocket-api-1.1" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="SD-2018-DropMusic/web/Web" />

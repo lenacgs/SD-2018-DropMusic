@@ -24,5 +24,7 @@
         <s:textfield name="artistName"/>
         <s:submit/>
     </s:form>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

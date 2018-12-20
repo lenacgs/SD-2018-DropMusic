@@ -16,5 +16,11 @@
     </s:form>
 
     <h4>${session.message}</h4>
+
+    <script>
+        window.onload = function () {
+            sessionStorage.setItem("notification", "true");
+        }
+    </script>
 </body>
 </html>
