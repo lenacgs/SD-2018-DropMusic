@@ -27,5 +27,7 @@
         <s:submit value="SUBMIT REVIEW"/>
     </s:form>
     <s:form action="menu"><s:submit value="BACK"/></s:form>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

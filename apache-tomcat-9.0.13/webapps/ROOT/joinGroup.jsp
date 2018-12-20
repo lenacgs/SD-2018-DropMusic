@@ -19,5 +19,7 @@
             <s:hidden name="id" value="%{group}" /><s:submit value="%{group}"/>
         </s:form>
     </s:iterator>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

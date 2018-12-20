@@ -22,5 +22,7 @@
         User: <input type="text" name = "newUser"><br>
         <s:submit value="GIVE PERMISSIONS"/>
     </s:form>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

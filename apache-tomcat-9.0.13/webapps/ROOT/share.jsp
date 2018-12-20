@@ -22,5 +22,7 @@
         <s:textfield name="groups"/>
         <s:submit/>
     </s:form>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

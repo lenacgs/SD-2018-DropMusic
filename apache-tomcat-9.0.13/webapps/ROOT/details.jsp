@@ -16,5 +16,7 @@
     <s:text name="%{#session.object} details:"/><br>
     <s:text name="%{#session.details}"/>
     <s:form action="search"><s:submit value="BACK"/></s:form>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

@@ -38,4 +38,6 @@ public interface Services extends Remote {
     String [] getAccountIDs(String groups, String username) throws java.rmi.RemoteException;
     boolean saveFileURL(String URL, String musicTitle, String artistName) throws java.rmi.RemoteException;
     String[] getTransferredMusics(String username) throws java.rmi.RemoteException;
+    String get_notifications(String username) throws java.rmi.RemoteException;
+    void sendNotification(String message, String user) throws java.rmi.RemoteException;
 }

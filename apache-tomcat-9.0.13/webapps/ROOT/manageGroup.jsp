@@ -15,5 +15,8 @@
     <p>Drop Music</p>
     <s:form action="menu"><s:submit value="GIVE OWNER PRIVELEGES"/></s:form><%-- EM FALTA --%>
     <s:form action="manageGroupRequests"><s:submit value="MANAGE GROUP REQUESTS"/></s:form>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
+
 </html>

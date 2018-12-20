@@ -40,5 +40,7 @@
             <s:submit value="CHANGE ARTIST"/>
         </s:form>
     </s:else>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

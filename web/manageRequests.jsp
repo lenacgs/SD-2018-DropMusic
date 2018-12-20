@@ -25,5 +25,7 @@
         </s:form>
         <p>---------------- / / ----------------</p>
     </s:iterator>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

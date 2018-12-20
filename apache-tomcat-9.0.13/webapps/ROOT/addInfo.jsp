@@ -28,5 +28,6 @@
     <s:form action="changeArtistMenu"><s:submit value="ARTIST"/></s:form>
     <s:form action="changeAlbumMenu"><s:submit value="ALBUM"/></s:form>
 
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

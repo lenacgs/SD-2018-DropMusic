@@ -35,5 +35,7 @@
     <s:form action="associateButton"><s:submit value="LINK DROPBOX ACCOUNT"/></s:form>
 
     <h4>${session.message}</h4>
+
+    <jsp:include page="notifications.jsp"/>
 </body>
 </html>

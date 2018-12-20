@@ -225,6 +225,24 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return message;
     }
 
+
+    public String get_notifications(String username){
+        String request = "type | get_notifications ; username | " + username;
+        String answer = dealWithRequest(request);
+        String tokens[] = answer.split(" ; ");
+        String mes[][] = new String[tokens.length][];
+        for (int i = 0; i < tokens.length; i++) {
+            mes[i] = tokens[i].split(" \\| ");
+        }
+
+        int counter = Integer.parseInt(mes[1][1]);
+        if(counter > 0){
+            return mes[2][1];
+        }else{
+            return "";
+        }
+    }
+
     public String loginDropbox(String accountID) throws java.rmi.RemoteException{
         String request = "type | loginDropbox ; account | " + accountID;
         String ans = dealWithRequest(request);
@@ -620,7 +638,7 @@ public class RMIServer extends UnicastRemoteObject implements Services {
         return false;
     }
 
-    private void sendNotification(String message, String user) {
+    public void sendNotification(String message, String user) {
 
         System.out.println("Sending notification :" + message + ": to user " + user);
         for (Clients c : clientList) {
